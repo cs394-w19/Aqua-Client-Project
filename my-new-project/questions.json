@@ -1,0 +1,22 @@
+{
+  "questions": [
+    {
+      "text": "What are your favorite types of food?",
+      "options": [
+        "Italian",
+        "Chinese",
+        "Thai",
+        "Korean BBQ",
+        "Fusion"
+      ]
+    },
+    {
+      "text": "How adventurous are you?",
+      "options": [
+        "Couch Potato",
+        "Casual Tourist",
+        "Thrill Seeker"
+      ]
+    }
+  ]
+}
