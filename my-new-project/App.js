@@ -1,11 +1,17 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import SuggestedItem from './components/suggestedItem';
 
 export default class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
+        <Text>Based on your profile, you may enjoy these sites in Rome...</Text>
+        <View>
+        	<Text>Add to Itinerary</Text>
+        	<View>
+        	</View>
+        </View>
       </View>
     );
   }
