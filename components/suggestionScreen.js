@@ -10,18 +10,17 @@ export default class SuggestionScreen extends React.Component {
         console.log("HERE is the location " + fieldCat);
     }
     render() {
-        this.retrieveSuggestions("Chicago");
         return (
             <View style={styles.container}>
                 <Text style={styles.header}>Based on your profile, you may enjoy these sites in Rome...</Text>
                 <ScrollView>
-                    <SuggestedItem/>
-                    <SuggestedItem/>
-                    <SuggestedItem/>
-                    <SuggestedItem/>
-                    <SuggestedItem/>
-                    <SuggestedItem/>
-                    <SuggestedItem/>
+                        <SuggestedItem/>
+                        <SuggestedItem/>
+                        <SuggestedItem/>
+                        <SuggestedItem/>
+                        <SuggestedItem/>
+                        <SuggestedItem/>
+                        <SuggestedItem/>
                 </ScrollView>
             </View>
         );
