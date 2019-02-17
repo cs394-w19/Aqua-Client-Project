@@ -3,19 +3,20 @@
     {
       "text": "What are your favorite types of food?",
       "options": [
-        {"Italian": false},
-        {"Chinese": false},
-        {"Thai": false},
-        {"Korean BBQ":false},
-        {"Fusion":false}
+        {"name": "Italian", "status":false},
+        {"name":"Chinese", "status": false},
+        {"name": "Thai", "status": false},
+        {"name":"Korean BBQ", "status":false},
+        {"name":"Fusion", "status":false},
+        
       ]
     },
     {
       "text": "How adventurous are you?",
       "options": [
-        {"Couch Potato":false},
-        {"Casual Tourist":false},
-        {"Thrill Seeker":false}
+        {"name":"Couch Potato", "status":false},
+        {"name":"Casual Tourist", "status":false},
+        {"name":"Thrill Seeker", "status":false}
       ]
     }
   ]

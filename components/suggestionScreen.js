@@ -10,6 +10,8 @@ export default class SuggestionScreen extends React.Component {
         console.log("HERE is the location " + fieldCat);
     }
     render() {
+        const {state} = this.props.navigation
+        console.log(state.params.state)
         return (
             <View style={styles.container}>
                 <Text style={styles.header}>Based on your profile, you may enjoy these sites in Rome...</Text>
