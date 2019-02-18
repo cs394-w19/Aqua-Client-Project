@@ -1,23 +1,103 @@
 {
-  "questions": [
-    {
-      "text": "What are your favorite types of food?",
-      "options": [
-        {"name": "Italian", "status":false},
-        {"name":"Chinese", "status": false},
-        {"name": "Thai", "status": false},
-        {"name":"Korean BBQ", "status":false},
-        {"name":"Fusion", "status":false},
-        
-      ]
-    },
-    {
-      "text": "How adventurous are you?",
-      "options": [
-        {"name":"Couch Potato", "status":false},
-        {"name":"Casual Tourist", "status":false},
-        {"name":"Thrill Seeker", "status":false}
-      ]
-    }
-  ]
+	"questions": [
+		{
+			"text": "How large is your group?",
+			"options": [
+				{"name": "Solo", "status":false},
+				{"name":"Couple", "status": false},
+				{"name": "Family/Friends (3-4 people)", "status": false},
+				{"name":"Medium-Sized Group (5-8 people)", "status":false},
+				{"name":"Large Group (8+ people)", "status":false},
+
+			]
+		},
+		{
+			"text": "What are your favorite types of food?",
+			"options": [
+				{"name": "Italian", "status":false},
+				{"name":"Chinese", "status": false},
+				{"name": "Thai", "status": false},
+				{"name":"Korean BBQ", "status":false},
+				{"name":"Fusion", "status":false},
+
+			]
+		},
+		{
+			"text": "How adventurous are you?",
+			"options": [
+				{"name":"Couch Potato", "status":false},
+				{"name":"Casual Tourist", "status":false},
+				{"name":"Thrill Seeker", "status":false}
+			]
+		},
+		{
+			"text": "Are you bringing pets?",
+			"options": [
+				{"name":"Yes, a Dog(s)", "status":false},
+				{"name":"Yes, a Cat(s)", "status":false},
+				{"name":"Yes, another species of pet", "status":false},
+				{"name":"No", "status":false}
+			]
+		},
+		{
+			"text": "What is your budget for your trip?",
+			"options": 0
+		},
+		{
+			"text": "Do you have any food needs or restrictions?",
+			"options": [
+				{"name":"No", "status":false},
+				{"name":"Allergies", "status":false},
+				{"name":"Vegetarian", "status":false},
+				{"name":"Vegan", "status":false}
+			]
+		},
+		{
+			"text": "Method of Travel",
+			"options": [
+				{"name":"Car", "status":false},
+				{"name":"Public Ttansport", "status":false},
+				{"name":"Ride share", "status":false}
+				{"name":"Walk", "status":false},
+				{"name":"Bike", "status":false}
+			]
+		},
+		{
+			"text": "What kinds of activities do you like?",
+			"options": [
+				{"name":"Social", "status":false},
+				{"name":"Music", "status":false},
+				{"name":"Sports", "status":false}
+				{"name":"Art", "status":false},
+				{"name":"Books", "status":false}
+			]
+		},
+		{
+			"text": "How long will your trip be in days?",
+			"options": [
+				{"name":"1-2 days", "status":false},
+				{"name":"3-7 days", "status":false},
+				{"name":"1-2 weeks", "status":false}
+				{"name":"3-6 weeks", "status":false},
+				{"name":"6+ weeks", "status":false}
+			]
+		},
+		{
+			"text": "Do you prefer to be indoors or outdoors?",
+			"options": [
+				{"name":"Indoors", "status":false},
+				{"name":"Outdoors", "status":false}
+			]
+		},
+		{
+			"text": "What kinds of activities do you like?",
+			"options": [
+				{"name":"Social", "status":false},
+				{"name":"Music", "status":false},
+				{"name":"Sports", "status":false}
+				{"name":"Art", "status":false},
+				{"name":"Books", "status":false}
+			]
+		},
+	]
 }
