@@ -7,7 +7,7 @@
 				{"name":"Couple", "status": false},
 				{"name": "Family/Friends (3-4 people)", "status": false},
 				{"name":"Medium-Sized Group (5-8 people)", "status":false},
-				{"name":"Large Group (8+ people)", "status":false},
+				{"name":"Large Group (8+ people)", "status":false}
 
 			]
 		},
@@ -18,7 +18,7 @@
 				{"name":"Chinese", "status": false},
 				{"name": "Thai", "status": false},
 				{"name":"Korean BBQ", "status":false},
-				{"name":"Fusion", "status":false},
+				{"name":"Fusion", "status":false}
 
 			]
 		},
@@ -41,7 +41,10 @@
 		},
 		{
 			"text": "What is your budget for your trip?",
-			"options": 0
+			"options": [
+				{"name":"Cheap", "status":false},
+				{"name":"Expensive", "status":false}
+			]
 		},
 		{
 			"text": "Do you have any food needs or restrictions?",
@@ -57,7 +60,7 @@
 			"options": [
 				{"name":"Car", "status":false},
 				{"name":"Public Ttansport", "status":false},
-				{"name":"Ride share", "status":false}
+				{"name":"Ride share", "status":false},
 				{"name":"Walk", "status":false},
 				{"name":"Bike", "status":false}
 			]
@@ -67,7 +70,7 @@
 			"options": [
 				{"name":"Social", "status":false},
 				{"name":"Music", "status":false},
-				{"name":"Sports", "status":false}
+				{"name":"Sports", "status":false},
 				{"name":"Art", "status":false},
 				{"name":"Books", "status":false}
 			]
@@ -77,7 +80,7 @@
 			"options": [
 				{"name":"1-2 days", "status":false},
 				{"name":"3-7 days", "status":false},
-				{"name":"1-2 weeks", "status":false}
+				{"name":"1-2 weeks", "status":false},
 				{"name":"3-6 weeks", "status":false},
 				{"name":"6+ weeks", "status":false}
 			]
@@ -88,16 +91,6 @@
 				{"name":"Indoors", "status":false},
 				{"name":"Outdoors", "status":false}
 			]
-		},
-		{
-			"text": "What kinds of activities do you like?",
-			"options": [
-				{"name":"Social", "status":false},
-				{"name":"Music", "status":false},
-				{"name":"Sports", "status":false}
-				{"name":"Art", "status":false},
-				{"name":"Books", "status":false}
-			]
-		},
+		}
 	]
 }
