@@ -29,9 +29,26 @@ export default class App extends React.Component {
 
     handleSubmitClick = () => {
         const {navigate} = this.props.navigation;
+        const questions = this.state.questions
+        const FilteredCategories = []
+        for (var i = 0; i <questions.length; i++){
+            let question =  questions[i]
+            for (var j = 0; j < question.options.length; j++){
+                let option = question.options[j]
+                if (option.status){
+                    for (var k = 0; k <option.Categories.length; k++){
+                        if (!FilteredCategories.includes(option.Categories[k])){
+                            FilteredCategories.push(option.Categories[k])
+                        }
+                    }
+                }
+            }   
+        } 
         const index = this.state.index;
         if(index === this.state.finalIndex) {
-            navigate("SuggestionScreen", {state: this.state})
+            // navigate("SuggestionScreen", {state: this.state})
+            navigate("SuggestionScreen", {categories: FilteredCategories})
+
             this.setState({completed: true})
         }
         else {
@@ -40,7 +57,7 @@ export default class App extends React.Component {
     }
 
     render() {
-        console.log("INDEX" + this.state.index)
+        // console.log("INDEX" + this.state.index)
 
         const questionItems = this.state.questions.map( q => {
             const questionOptions = q.options.map(o => {

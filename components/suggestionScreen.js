@@ -4,27 +4,55 @@ import SuggestedItem from './suggestedItem';
 import Suggestions from '../suggestions.json';
 
 export default class SuggestionScreen extends React.Component {
-    retrieveSuggestions(location){
-        const foundLocation = Suggestions.Locations.find(l => l.name === location);
-        const fieldCat = foundLocation.Attractions.find(a => a.name === "Shedd Aquarium").Categories[0];
-        console.log("HERE is the location " + fieldCat);
+    constructor(props){
+        
+        super(props); 
+        this.state = {
+            categories: []
+        }
+        
     }
+    
+    componentDidMount = () => {
+        const {state} = this.props.navigation
+        this.setState({categories:state.params.categories})
+
+    }
+    
+    retrieveSuggestions(){
+        const state = this.state
+        const foundAttractions = Suggestions.Locations[0].Attractions.filter(a => 
+            a.Categories.includes(state.categories[0])
+        );
+        const foundRestaurants = Suggestions.Locations[0].Restaurants.filter(r => r.Categories.includes(state.categories[0]));
+        // const foundLocations = []
+        // for (var i = 0; i< Suggestions.Locations.length; i++){
+        //     let location = Suggestions.Locations[i]
+
+        // }
+       if(Suggestions.Locations[0].Attractions[0].Categories.includes(state.categories[0])){
+            console.log("works");
+        }
+        console.log(foundAttractions)
+        const suggestedItems = foundAttractions.map((l) => <SuggestedItem Location = {l}/> )
+        const suggestedRestaurants = foundRestaurants.map((r) => <SuggestedItem Location = {r}/> )
+        suggestedItems.push(suggestedRestaurants)
+        return suggestedItems
+
+    }
+    
 
     render() {
         const {state} = this.props.navigation
-        console.log(state.params.state)
+        // this.setState({categories:state.params.categories})
+        console.log("filtered" + state.params.categories)
+        const Locations = this.retrieveSuggestions()
         return (
             <View style={styles.container}>
-                <Text style={styles.header}>Based on your profile, you may enjoy these sites in Rome...</Text>
+                <Text style={styles.header}>Based on your profile, you may enjoy these sites in Chicago...</Text>
                 <Text style={styles.subHeader}> Add the ones you like and click 'Submit'</Text>
                 <ScrollView>
-                        <SuggestedItem/>
-                        <SuggestedItem/>
-                        <SuggestedItem/>
-                        <SuggestedItem/>
-                        <SuggestedItem/>
-                        <SuggestedItem/>
-                        <SuggestedItem/>
+                    {Locations}
                 </ScrollView>
             </View>
         );
