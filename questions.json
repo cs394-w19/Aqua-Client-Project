@@ -42,7 +42,10 @@
 		},
 		{
 			"text": "What is your budget for your trip?",
-			"options": 0
+			"options": [
+				{"name":"Cheap", "status":false,"Categories": []},
+				{"name":"Expensive", "status":false,"Categories": []}
+			]
 		},
 		{
 			"text": "Do you have any food needs or restrictions?",
