@@ -21,8 +21,8 @@ export default class App extends React.Component {
     }
     handleOptionClick = (o,q) => {
         const state= this.state 
-        let question = state.questions.find(q2 =>q2.text === q.text).options.find(o2 => o2.name === o.name)
-        question.status = !question.status
+        let option = state.questions.find(q2 =>q2.text === q.text).options.find(o2 => o2.name === o.name)
+        option.status = !option.status
         this.setState(state)        
 
     }
@@ -57,8 +57,6 @@ export default class App extends React.Component {
     }
 
     render() {
-        // console.log("INDEX" + this.state.index)
-
         const questionItems = this.state.questions.map( q => {
             const questionOptions = q.options.map(o => {
                 let buttonStyle
@@ -70,7 +68,6 @@ export default class App extends React.Component {
                 else{
                     buttonStyle = styles.button
                     buttonTextStyle = styles.buttonText
-
                 }
 
                 return(
@@ -86,7 +83,7 @@ export default class App extends React.Component {
             )
             })
             return <View>
-                <Text> {q.text}</Text>
+                <Text style={styles.questionText}> {q.text}</Text>
                 <View style= {styles.optionContainer}>
                     {questionOptions}
                 </View>
@@ -94,21 +91,25 @@ export default class App extends React.Component {
         });
         if(!this.state.completed) {
             return (
-                <ScrollView style={styles.container}>
+                <View style={styles.container}>
+                    <View style={styles.questionContainer}>
                     {questionItems[this.state.index]}
-                    <Button title="Submit Button" onPress={this.handleSubmitClick} style={styles.button}>
-                        Submit
-                    </Button>
-                </ScrollView>
+                    </View>
+                    <TouchableWithoutFeedback title="Submit Button" onPress={this.handleSubmitClick}>
+                        <View style={styles.submitButton}><Text style={styles.submitText}>Next</Text></View>
+                    </TouchableWithoutFeedback>
+                </View>
             );
         }
         else{
             return (
                 <ScrollView style={styles.container}>
-                    {questionItems}
-                    <Button title="Submit Button" onPress={this.handleSubmitClick} style={styles.button}>
-                        Submit
-                    </Button>
+                    <View style={styles.questionContainer}>
+                        {questionItems}
+                    </View>
+                    <TouchableWithoutFeedback title="Submit Button" onPress={this.handleSubmitClick}>
+                        <View style={styles.submitButton}><Text style={styles.submitText}>Next</Text></View>
+                    </TouchableWithoutFeedback>
                 </ScrollView>
             );
         }
@@ -119,25 +120,34 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#fff',
-        // alignItems: 'center',
-        // justifyContent: 'center',
+        flexDirection: "column",
+        padding: 20,
+    },
+    questionContainer: {
+        flex:0,
+        paddingBottom: 70,
+    },
+    questionText: {
+        fontSize: 30,
     },
     button: {
-        width: 75,
-        height: 75,
+        width: 100,
+        height: 100,
         backgroundColor: 'white',
         margin: 10,
         borderRadius: 10,
-        borderWidth: 1,
-        borderColor: "black",
+        borderWidth: 3,
+        borderColor:  "#FF9A73",
         alignItems: 'center',
         justifyContent: 'center',
         
 
     },
     buttonText: {
+        textAlign: "center",
         fontWeight: "600",
-        color:"black"
+        fontSize: 15,
+        color:  "black"
     },
 
     optionContainer: {
@@ -148,19 +158,34 @@ const styles = StyleSheet.create({
     },
     buttonClicked: {
         color: "white",
-        width: 75,
-        height: 75,
-        backgroundColor: 'green',
+        width: 100,
+        height: 100,
+        backgroundColor: "#FF9A73",
         margin: 10,
         borderRadius: 10,
-        borderWidth: 1,
-        borderColor: "black",
+        borderWidth: 3,
+        borderColor: "#FF9A73",
         alignItems: 'center',
         justifyContent: 'center',
 
     },
     buttonClickedText: {
+        textAlign: "center",
         fontWeight: "600",
+        fontSize: 15,
         color:"white"
+    },
+    submitButton: {
+        width: 100,
+        height: 40,
+        borderRadius: 20,
+        backgroundColor: "lightgrey",
+        position: "absolute",
+        right: 30,
+        bottom: 50
+    },
+    submitText:{
+        fontSize: 30,
+        textAlign: "center"
     }
 });

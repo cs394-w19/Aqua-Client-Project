@@ -13,7 +13,7 @@ export default class Homepage extends React.Component {
                                           onPress= {()=> {
                                              navigate("Questionnaire")}} >
                     <View style= {styles.button}>
-                        <Text>
+                        <Text style= {styles.buttonLabel}>
                             Plan Your Trip!
                         </Text>
                     </View>
@@ -32,20 +32,23 @@ const styles = StyleSheet.create({
     button: {
         width: "85%",
         height: 75,
-        backgroundColor: '#e8da96',
+        backgroundColor: '#FF9A73',
         margin: 10,
         borderRadius: 10,
-        borderWidth: 1,
-        borderColor: "black",
+        borderWidth: 0,
         alignItems: 'center',
         justifyContent: 'center',
-        fontSize: 35
+    },
+    buttonLabel: {
+        fontSize: 30,
+        color: "#FFF"
     },
     header: {
-        fontSize: 40,
+        fontSize: 70,
+        marginTop: 50,
         width: "100%",
         textAlign: "center",
-        color: "#0e5614",
+        color: "#FF9A73",
         fontWeight: "600",
         height: 300,
         padding: 20,
