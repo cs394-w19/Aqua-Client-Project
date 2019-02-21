@@ -25,12 +25,14 @@ export default class SuggestedItem extends React.Component {
         // const reason = ""
         // rationale.forEach(r=> reason + r + " & ")
         // reason.substring(0, -2)
-        // console.log(Location)
+        const {intersection} = this.props
+        
+
         return (
             <View style={styles.container}>
                 <CheckBox checked={this.state.checked} handleCheckBoxClick={this.handleCheckBoxClick.bind(this)}/>
                 <Text style={styles.text}>{location}</Text>
-                {/*<Text>{reason}</Text>*/}
+                <Text style={styles.reco_text}>Why Recommended: {intersection}</Text>
             </View>
         );
     }
@@ -46,5 +48,10 @@ const styles = StyleSheet.create({
         fontSize: 20,
         padding: 10,
         marginLeft: 20
-    }
+    },
+    reco_text: {
+        fontSize: 10,
+        padding: 10,
+        marginLeft: 20
+    },
 })

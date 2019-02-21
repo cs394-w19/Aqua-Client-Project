@@ -32,20 +32,22 @@ export default class SuggestionScreen extends React.Component {
         //     let location = Suggestions.Locations[i]
 
         // }
-       if(Suggestions.Locations[0].Attractions[0].Categories.includes(state.categories[0])){
-            console.log("works");
-        }
-        console.log(foundAttractions)
+       // if(Suggestions.Locations[0].Attractions[0].Categories.includes(state.categories[0])){
+       //      console.log("works");
+       //  }
+        // console.log(foundAttractions)
         const suggestedItems = foundAttractions.map((l) => <SuggestedItem Location = {l} intersection={l.Categories.filter(x => state.categories.includes(x))}/> )
         const suggestedRestaurants = foundRestaurants.map((r) => <SuggestedItem Location = {r}/> )
         suggestedItems.push(suggestedRestaurants)
-        return suggestedItems
+        return [suggestedItems,state.categories[0]]
 
     }
     
 
     render() {
-        const Locations = this.retrieveSuggestions()
+        const Locations = this.retrieveSuggestions()[0]
+        const Reasons = this.retrieveSuggestions()[1]
+        console.log("type: " + typeof(Reasons) )
         return (
             <View style={styles.container}>
                 <Text style={styles.header}>Based on your profile, you may enjoy these sites in Chicago...</Text>
