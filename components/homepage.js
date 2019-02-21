@@ -3,6 +3,8 @@ import {StyleSheet, Text, View, ScrollView, TouchableWithoutFeedback} from 'reac
 import Questionnaire from './questionnaire';
 
 export default class Homepage extends React.Component {
+    static navigationOptions = { header: null}
+
 
     render() {
         const {navigate} = this.props.navigation;
@@ -10,10 +12,11 @@ export default class Homepage extends React.Component {
             <View style={styles.container}>
                 <Text style={styles.header}>Perfect Day</Text>
                 <TouchableWithoutFeedback title="PlanTrip"
-                                          onPress= {()=> {
-                                             navigate("Questionnaire")}} >
-                    <View style= {styles.button}>
-                        <Text style= {styles.buttonLabel}>
+                                          onPress={() => {
+                                              navigate("Questionnaire")
+                                          }}>
+                    <View style={styles.button}>
+                        <Text style={styles.buttonLabel}>
                             Plan Your Trip!
                         </Text>
                     </View>
@@ -45,12 +48,13 @@ const styles = StyleSheet.create({
     },
     header: {
         fontSize: 70,
-        marginTop: 50,
+        marginTop: 80,
         width: "100%",
         textAlign: "center",
         color: "#FF9A73",
         fontWeight: "600",
         height: 300,
         padding: 20,
+        fontStyle: "italic"
     }
 });
