@@ -1,7 +1,6 @@
 import React from 'react';
-import {Button, StyleSheet, Text, View,TouchableWithoutFeedback,ScrollView} from 'react-native';
+import {Button, StyleSheet, Text, View, TouchableWithoutFeedback, ScrollView} from 'react-native';
 import questions from '../questions.json';
-
 
 
 export default class App extends React.Component {
@@ -19,11 +18,12 @@ export default class App extends React.Component {
         // let options = state.questions.map(q => {q.options.map(o => o ={o: false})})
 
     }
-    handleOptionClick = (o,q) => {
-        const state= this.state 
-        let option = state.questions.find(q2 =>q2.text === q.text).options.find(o2 => o2.name === o.name)
+
+    handleOptionClick = (o, q) => {
+        const state = this.state
+        let option = state.questions.find(q2 => q2.text === q.text).options.find(o2 => o2.name === o.name)
         option.status = !option.status
-        this.setState(state)        
+        this.setState(state)
 
     }
 
@@ -31,77 +31,75 @@ export default class App extends React.Component {
         const {navigate} = this.props.navigation;
         const questions = this.state.questions
         const FilteredCategories = []
-        for (var i = 0; i <questions.length; i++){
-            let question =  questions[i]
-            for (var j = 0; j < question.options.length; j++){
+        for (var i = 0; i < questions.length; i++) {
+            let question = questions[i]
+            for (var j = 0; j < question.options.length; j++) {
                 let option = question.options[j]
-                if (option.status){
-                    for (var k = 0; k <option.Categories.length; k++){
-                        if (!FilteredCategories.includes(option.Categories[k])){
+                if (option.status) {
+                    for (var k = 0; k < option.Categories.length; k++) {
+                        if (!FilteredCategories.includes(option.Categories[k])) {
                             FilteredCategories.push(option.Categories[k])
                         }
                     }
                 }
-            }   
-        } 
+            }
+        }
         const index = this.state.index;
-        if(index === this.state.finalIndex) {
+        if (index === this.state.finalIndex) {
             // navigate("SuggestionScreen", {state: this.state})
             navigate("SuggestionScreen", {categories: FilteredCategories})
 
             this.setState({completed: true})
-        }
-        else {
+        } else {
             this.setState({index: (index + 1)})
         }
     }
 
     render() {
-        const questionItems = this.state.questions.map( q => {
+        const questionItems = this.state.questions.map(q => {
             const questionOptions = q.options.map(o => {
                 let buttonStyle
                 let buttonTextStyle
-                if (this.state.questions.find(q2 =>q2.text === q.text).options.find(o2 => o2.name === o.name).status){
+                if (this.state.questions.find(q2 => q2.text === q.text).options.find(o2 => o2.name === o.name).status) {
                     buttonStyle = styles.buttonClicked
                     buttonTextStyle = styles.buttonClickedText
-                }
-                else{
+                } else {
                     buttonStyle = styles.button
                     buttonTextStyle = styles.buttonText
                 }
 
-                return(
-                <TouchableWithoutFeedback title={o.name} 
-                    onPress= {()=> {
-                    this.handleOptionClick(o,q)}} >
-                    <View style= {buttonStyle}>                    
-                    <Text style={buttonTextStyle}>
-                        {o.name}
-                    </Text>
-                    </View>
-                </TouchableWithoutFeedback>
-            )
+                return (
+                    <TouchableWithoutFeedback title={o.name}
+                                              onPress={() => {
+                                                  this.handleOptionClick(o, q)
+                                              }}>
+                        <View style={buttonStyle}>
+                            <Text style={buttonTextStyle}>
+                                {o.name}
+                            </Text>
+                        </View>
+                    </TouchableWithoutFeedback>
+                )
             })
             return <View>
                 <Text style={styles.questionText}> {q.text}</Text>
-                <View style= {styles.optionContainer}>
+                <View style={styles.optionContainer}>
                     {questionOptions}
                 </View>
             </View>
         });
-        if(!this.state.completed) {
+        if (!this.state.completed) {
             return (
                 <View style={styles.container}>
                     <View style={styles.questionContainer}>
-                    {questionItems[this.state.index]}
+                        {questionItems[this.state.index]}
                     </View>
                     <TouchableWithoutFeedback title="Submit Button" onPress={this.handleSubmitClick}>
                         <View style={styles.submitButton}><Text style={styles.submitText}>Next</Text></View>
                     </TouchableWithoutFeedback>
                 </View>
             );
-        }
-        else{
+        } else {
             return (
                 <ScrollView style={styles.container}>
                     <View style={styles.questionContainer}>
@@ -124,7 +122,7 @@ const styles = StyleSheet.create({
         padding: 20,
     },
     questionContainer: {
-        flex:0,
+        flex: 0,
         paddingBottom: 70,
     },
     questionText: {
@@ -137,17 +135,17 @@ const styles = StyleSheet.create({
         margin: 10,
         borderRadius: 10,
         borderWidth: 3,
-        borderColor:  "#FF9A73",
+        borderColor: "#FF9A73",
         alignItems: 'center',
         justifyContent: 'center',
-        
+
 
     },
     buttonText: {
         textAlign: "center",
         fontWeight: "600",
         fontSize: 15,
-        color:  "black"
+        color: "black"
     },
 
     optionContainer: {
@@ -173,7 +171,7 @@ const styles = StyleSheet.create({
         textAlign: "center",
         fontWeight: "600",
         fontSize: 15,
-        color:"white"
+        color: "white"
     },
     submitButton: {
         width: 100,
@@ -184,7 +182,7 @@ const styles = StyleSheet.create({
         right: 30,
         bottom: 50
     },
-    submitText:{
+    submitText: {
         fontSize: 30,
         textAlign: "center"
     }

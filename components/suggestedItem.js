@@ -19,18 +19,17 @@ export default class SuggestedItem extends React.Component {
     }
 
     render() {
-        const {Location} = this.props
-        const location = Location.name
-        // const rationale = this.props.intersection;
-        // const reason = ""
-        // rationale.forEach(r=> reason + r + " & ")
-        // reason.substring(0, -2)
-        // console.log(Location)
+        const {location, intersection} = this.props;
+        let reason = ""
+        intersection.forEach(r=> reason = reason + r + " | ")
+        reason = reason.substring(0, reason.length-3)
         return (
             <View style={styles.container}>
                 <CheckBox checked={this.state.checked} handleCheckBoxClick={this.handleCheckBoxClick.bind(this)}/>
-                <Text style={styles.text}>{location}</Text>
-                {/*<Text>{reason}</Text>*/}
+                <View style={styles.details}>
+                    <Text style={styles.text}>{location.name}</Text>
+                    <Text style={styles.reason}>{reason}</Text>
+                </View>
             </View>
         );
     }
@@ -42,9 +41,18 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         paddingHorizontal: 40
     },
+    details:{
+        flexDirection: 'column',
+    },
     text: {
         fontSize: 20,
-        padding: 10,
-        marginLeft: 20
-    }
+        marginLeft: 20,
+        flex: 0
+    },
+    reason: {
+        fontSize: 10,
+        marginLeft: 20,
+        color: "#FF9A73",
+        flex: 0
+    },
 })
