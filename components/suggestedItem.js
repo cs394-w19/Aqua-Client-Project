@@ -19,10 +19,18 @@ export default class SuggestedItem extends React.Component {
     }
 
     render() {
+        const {Location} = this.props
+        const location = Location.name
+        // const rationale = this.props.intersection;
+        // const reason = ""
+        // rationale.forEach(r=> reason + r + " & ")
+        // reason.substring(0, -2)
+        // console.log(Location)
         return (
             <View style={styles.container}>
                 <CheckBox checked={this.state.checked} handleCheckBoxClick={this.handleCheckBoxClick.bind(this)}/>
-                <Text style={styles.text}>Pantheon</Text>
+                <Text style={styles.text}>{location}</Text>
+                {/*<Text>{reason}</Text>*/}
             </View>
         );
     }
