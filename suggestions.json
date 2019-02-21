@@ -1,159 +1,154 @@
 {
-  "Locations":
-          [
-            {
-              "name":"Chicago",
-              "Attractions": [
-                  {
-                    "name":"Shedd Aquarium",
-                    "Categories": [
-                        "Animals",
-                        "Family Friendly",
-                        "Daytime",
-                        "Educational",
-                      "Pet Friendly"
-                    ],
-                    "Price": 3,
-                    "Location": "Downtown"
-                  },
-                {
-                    "name":"Willis Tower",
-                    "Categories": [
-                        "Family Friendly",
-                        "Daytime",
-                        "Landmark",
-                        "View"
-                    ],
-                    "Price": 3,
-                    "Location": "Downtown"
-                  },
-                  {
-                    "name":"Field Museum",
-                      "Categories": [
-                        "Family Friendly",
-                        "Daytime",
-                        "Educational",
-                        "History",
-                        "Science"
-                      ],
-                      "Price": 2,
-                      "Location": "Downtown"
-                  },
-                  {
-                    "name":"Wrigley Field",
-                      "Categories": [
-                        "Family Friendly",
-                        "Daytime",
-                        "Sports",
-                        "Baseball"
-                      ],
-                      "Price": 4,
-                      "Location": "Wrigleyville"
-                    },
-                  {
-                    "name":"Millenium Park",
-                    "Categories": [
-                        "Animals",
-                        "Family Friendly",
-                        "Daytime",
-                        "Educational",
-                        "Pet Friendly"
-                    ],
-                    "Price": 1,
-                    "Location": "Downtown"
-                  },
-                  {
-                    "name":"Sky Deck Chicago",
-                    "Categories": [
-                        "Casual Tourist",
-                        "Family Friendly",
-                        "Daytime",
-                        "Educational",
-                      "Pet Friendly"
-                    ],
-                    "Price": 2,
-                    "Location": "Downtown"
-                  },
-                  {
-                    "name":"Jay Pritzker Pavillion",
-                    "Categories": [
-                        "Animals",
-                        "Family Friendly",
-                        "Daytime",
-                        "Educational",
-                        "Night",
-                        "Music",
-                        "Pet Friendly"
-                    ],
-                    "Price": 2,
-                    "Location": "Downtown"
-                  },
-                  {
-                    "name":"Chicago River Cruise",
-                    "Categories": [
-                        "Family Friendly",
-                        "Daytime",
-                        "Educational",
-                    ],
-                    "Price": 4,
-                    "Location": "Downtown"
-                  }
-                ],
-              "Restaurants": [
-                {
-                  "name":"Giordano",
-                    "Categories": [
-                      "Pizza",
-                      "Italian",
-                      "Hearty",
-                      "Deep-Dish",
-                      "Dine-in",
-                      "Family Friendly"
-
-                    ],
-                    "Price": 2,
-                    "Location": "Downtown"
-                  },
-                {
-                  "name":"Alinea",
-                    "Categories": [
-                      "Fine Dining",
-                      "Experimental",
-                      "Michelin",
-                      "Hip"
-                    ],
-                    "Price": 5,
-                    "Location": "Old Town"
-                },
-                {
-                  "name":"Ramen Takeya",
-                    "Categories": [
-                      "Small Plates",
-                      "Japanese",
-                      "Fusion",
-                    ],
-                    "Price": 3,
-                    "Location": "West Loop"
-                },
-                
-                {
-                  "name":"Gibsons Steakhouse",
-                    "Categories": [
-                      "Steakhouse",
-                      "Fine",
-                      "",
-                    ],
-                    "Price": 5,
-                    "Location": "Downtown"
-                }
-
-              ]
-            },
-            {
-              "name": "London",
-              "Attractions" : [],
-              "Restaurants" : []
-            },
-            
-          ]
+  "Locations": [
+    {
+      "name": "Chicago",
+      "Attractions": [
+        {
+          "name": "Shedd Aquarium",
+          "Categories": [
+            "Animals",
+            "Family Friendly",
+            "Daytime",
+            "Educational",
+            "Pet Friendly"
+          ],
+          "Price": 3,
+          "Location": "Downtown"
+        },
+        {
+          "name": "Willis Tower",
+          "Categories": [
+            "Family Friendly",
+            "Daytime",
+            "Landmark",
+            "View"
+          ],
+          "Price": 3,
+          "Location": "Downtown"
+        },
+        {
+          "name": "Field Museum",
+          "Categories": [
+            "Family Friendly",
+            "Daytime",
+            "Educational",
+            "History",
+            "Science"
+          ],
+          "Price": 2,
+          "Location": "Downtown"
+        },
+        {
+          "name": "Wrigley Field",
+          "Categories": [
+            "Family Friendly",
+            "Daytime",
+            "Sports",
+            "Baseball"
+          ],
+          "Price": 4,
+          "Location": "Wrigleyville"
+        },
+        {
+          "name": "Millenium Park",
+          "Categories": [
+            "Animals",
+            "Family Friendly",
+            "Daytime",
+            "Educational",
+            "Pet Friendly"
+          ],
+          "Price": 1,
+          "Location": "Downtown"
+        },
+        {
+          "name": "Sky Deck Chicago",
+          "Categories": [
+            "Casual Tourist",
+            "Family Friendly",
+            "Daytime",
+            "Educational",
+            "Pet Friendly"
+          ],
+          "Price": 2,
+          "Location": "Downtown"
+        },
+        {
+          "name": "Jay Pritzker Pavillion",
+          "Categories": [
+            "Animals",
+            "Family Friendly",
+            "Daytime",
+            "Educational",
+            "Night",
+            "Music",
+            "Pet Friendly"
+          ],
+          "Price": 2,
+          "Location": "Downtown"
+        },
+        {
+          "name": "Chicago River Cruise",
+          "Categories": [
+            "Family Friendly",
+            "Daytime",
+            "Educational"
+          ],
+          "Price": 4,
+          "Location": "Downtown"
+        }
+      ],
+      "Restaurants": [
+        {
+          "name": "Giordano",
+          "Categories": [
+            "Pizza",
+            "Italian",
+            "Hearty",
+            "Deep-Dish",
+            "Dine-in",
+            "Family Friendly"
+          ],
+          "Price": 2,
+          "Location": "Downtown"
+        },
+        {
+          "name": "Alinea",
+          "Categories": [
+            "Fine Dining",
+            "Experimental",
+            "Michelin",
+            "Hip"
+          ],
+          "Price": 5,
+          "Location": "Old Town"
+        },
+        {
+          "name": "Ramen Takeya",
+          "Categories": [
+            "Small Plates",
+            "Japanese",
+            "Fusion"
+          ],
+          "Price": 3,
+          "Location": "West Loop"
+        },
+        {
+          "name": "Gibsons Steakhouse",
+          "Categories": [
+            "Steakhouse",
+            "Fine",
+            ""
+          ],
+          "Price": 5,
+          "Location": "Downtown"
+        }
+      ]
+    },
+    {
+      "name": "London",
+      "Attractions": [],
+      "Restaurants": []
+    }
+  ]
 }

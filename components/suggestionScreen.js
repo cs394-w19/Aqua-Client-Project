@@ -49,7 +49,7 @@ export default class SuggestionScreen extends React.Component {
         return (
             <View style={styles.container}>
                 <Text style={styles.header}>Based on your profile, you may enjoy these sites in Chicago...</Text>
-                <Text style={styles.subHeader}>Add the ones you like!</Text>
+                {/*<Text style={styles.subHeader}>Add the ones you like!</Text>*/}
                 <View style={styles.suggestionsContainer}>
                     <ScrollView>
                         {Locations}
@@ -74,10 +74,10 @@ const styles = StyleSheet.create({
     subHeader: {
         flex: 0,
         padding: 20,
-        fontSize: 15,
-        marginBottom: 10
+        fontSize: 15
     },
     suggestionsContainer: {
+        marginTop: 20,
         flex: 1,
     }
 });
