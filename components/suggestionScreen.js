@@ -7,19 +7,20 @@ export default class SuggestionScreen extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            categories: []
+            attractions: []
         }
     }
 
     componentDidMount = () => {
         const {state} = this.props.navigation;
-        this.setState({categories: state.params.categories})
+        const attractions = this.retrieveSuggestions(state.params.categories);
+        attractions.forEach(a => a.selected = false)
+        this.setState({ attractions: attractions })
     }
 
-    retrieveSuggestions() {
-        const state = this.state;
+    retrieveSuggestions(categories) {
         const foundAttractions = Suggestions.Locations[0].Attractions.filter(a => {
-                let intersection = a.Categories.filter(x => state.categories.includes(x));
+                let intersection = a.Categories.filter(x => categories.includes(x));
                 if (intersection.length > 0) {
                     return true
                 } else
@@ -27,32 +28,34 @@ export default class SuggestionScreen extends React.Component {
             }
         );
         const foundRestaurants = Suggestions.Locations[0].Restaurants.filter(r => {
-            let intersection = r.Categories.filter(x => state.categories.includes(x));
+            let intersection = r.Categories.filter(x => categories.includes(x));
             if (intersection.length > 0) {
                 return true
             } else
                 return false
         });
-        const suggestedItems = foundAttractions.map((l) => <SuggestedItem location={l}
-                                                                          intersection={l.Categories.filter(x => state.categories.includes(x))}/>)
-        const suggestedRestaurants = foundRestaurants.map((r) => <SuggestedItem location={r}
-                                                                                intersection={r.Categories.filter(x => state.categories.includes(x))}/>)
-        suggestedItems.push(suggestedRestaurants)
-        return [suggestedItems, state.categories[0]]
+
+        foundAttractions.push(foundRestaurants)
+        return foundAttractions
     }
 
 
     render() {
-        const Locations = this.retrieveSuggestions()[0]
-        const Reasons = this.retrieveSuggestions()[1]
-        console.log("type: " + typeof (Reasons))
+        const suggestions = this.state.attractions;
+        const suggestedItems = suggestions.map((l) =>
+            <SuggestedItem
+                location={l}
+                intersection={l.Categories.filter(x => categories.includes(x))}
+                // handleItemSelect={}
+            />)
+
         return (
             <View style={styles.container}>
                 <Text style={styles.header}>Based on your profile, you may enjoy these sites in Chicago...</Text>
                 {/*<Text style={styles.subHeader}>Add the ones you like!</Text>*/}
                 <View style={styles.suggestionsContainer}>
                     <ScrollView>
-                        {Locations}
+                        {suggestedItems}
                     </ScrollView>
                 </View>
             </View>
