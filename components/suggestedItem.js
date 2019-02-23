@@ -14,18 +14,15 @@ export default class SuggestedItem extends React.Component {
         }
     }
 
-    handleCheckBoxClick = () => {
-        this.setState({checked: !this.state.checked})
-    }
 
     render() {
-        const {location, intersection} = this.props;
+        const {location, intersection, handleItemSelect} = this.props;
         let reason = ""
         intersection.forEach(r=> reason = reason + r + " | ")
         reason = reason.substring(0, reason.length-3)
         return (
             <View style={styles.container}>
-                <CheckBox checked={this.state.checked} handleCheckBoxClick={this.handleCheckBoxClick.bind(this)}/>
+                <CheckBox checked={location.selected} handleCheckBoxClick={()=>handleItemSelect(location.name)}/>
                 <View style={styles.details}>
                     <Text style={styles.text}>{location.name}</Text>
                     <Text style={styles.reason}>{reason}</Text>
