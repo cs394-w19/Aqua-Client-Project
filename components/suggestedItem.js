@@ -3,9 +3,6 @@ import {StyleSheet, Text, View} from 'react-native';
 import CheckBox from './checkBox';
 
 export default class SuggestedItem extends React.Component {
-    static navigationOptions = {
-        title: 'Welcome',
-    };
 
     constructor(props) {
         super(props);

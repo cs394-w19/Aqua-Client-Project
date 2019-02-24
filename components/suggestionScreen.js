@@ -16,24 +16,24 @@ export default class SuggestionScreen extends React.Component {
         const {state} = this.props.navigation;
         const suggestions = this.retrieveSuggestions(state.params.categories);
         suggestions.forEach(a => a.selected = false)
-        this.setState({ suggestions: suggestions, categories: state.params.categories})
+        this.setState({suggestions: suggestions, categories: state.params.categories})
     }
 
     retrieveSuggestions(categories) {
         let foundAttractions = Suggestions.Locations[0].Attractions.filter(a => {
-            let intersection = a.Categories.filter(x => categories.includes(x));
-            if (intersection.length > 0) {
-                return true
-            } else
-            return false
-        }
+                let intersection = a.Categories.filter(x => categories.includes(x));
+                if (intersection.length > 0) {
+                    return true
+                } else
+                    return false
+            }
         );
         const foundRestaurants = Suggestions.Locations[0].Restaurants.filter(r => {
             let intersection = r.Categories.filter(x => categories.includes(x));
             if (intersection.length > 0) {
                 return true
             } else
-            return false
+                return false
         });
         foundAttractions = foundAttractions.concat(foundRestaurants)
         return foundAttractions
@@ -53,27 +53,29 @@ export default class SuggestionScreen extends React.Component {
         const suggestedItems = suggestions.map((l) => {
             console.log("string    " + l.Categories)
             return (
-            <SuggestedItem
-            location={l}
-            intersection={l.Categories.filter(x => categories.includes(x))}
-            handleItemSelect={this.handleItemSelect.bind(this)}
-            />)})
+                <SuggestedItem
+                    location={l}
+                    intersection={l.Categories.filter(x => categories.includes(x))}
+                    handleItemSelect={this.handleItemSelect.bind(this)}
+                    links={l.links}
+                />)
+        })
         return (
             <View style={styles.container}>
-            <Text style={styles.header}>Based on your profile, you may enjoy these sites in Chicago...</Text>
-        {/*<Text style={styles.subHeader}>Add the ones you like!</Text>*/}
-        <View style={styles.suggestionsContainer}>
-        <ScrollView>
-        {suggestedItems}
-        </ScrollView>
-        </View>
-        <View>
-        <Button
-        title="Go to Itinerary"
-        onPress={() => navigate('ItineraryScreen', {suggestions:this.state.suggestions.filter(s => s.selected)})}
-        />
-        </View>
-        </View>
+                <Text style={styles.header}>Based on your profile, you may enjoy these sites in Chicago...</Text>
+                {/*<Text style={styles.subHeader}>Add the ones you like!</Text>*/}
+                <View style={styles.suggestionsContainer}>
+                    <ScrollView>
+                        {suggestedItems}
+                    </ScrollView>
+                </View>
+                <View>
+                    <Button
+                        title="Go to Itinerary"
+                        onPress={() => navigate('ItineraryScreen', {suggestions: this.state.suggestions.filter(s => s.selected)})}
+                    />
+                </View>
+            </View>
         );
     }
 }

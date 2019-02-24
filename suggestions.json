@@ -13,7 +13,8 @@
             "Pet Friendly"
           ],
           "Price": 3,
-          "Location": "Downtown"
+          "Location": "Downtown",
+          "Hidden-gem": false
         },
         {
           "name": "Willis Tower",
@@ -24,7 +25,8 @@
             "View"
           ],
           "Price": 3,
-          "Location": "Downtown"
+          "Location": "Downtown",
+          "Hidden-gem": false
         },
         {
           "name": "Field Museum",
@@ -36,7 +38,8 @@
             "Science"
           ],
           "Price": 2,
-          "Location": "Downtown"
+          "Location": "Downtown",
+          "Hidden-gem": false
         },
         {
           "name": "Wrigley Field",
@@ -47,7 +50,8 @@
             "Baseball"
           ],
           "Price": 4,
-          "Location": "Wrigleyville"
+          "Location": "Wrigleyville",
+          "Hidden-gem": false
         },
         {
           "name": "Millenium Park",
@@ -59,7 +63,8 @@
             "Pet Friendly"
           ],
           "Price": 1,
-          "Location": "Downtown"
+          "Location": "Downtown",
+          "Hidden-gem": false
         },
         {
           "name": "Sky Deck Chicago",
@@ -71,7 +76,8 @@
             "Pet Friendly"
           ],
           "Price": 2,
-          "Location": "Downtown"
+          "Location": "Downtown",
+          "Hidden-gem": false
         },
         {
           "name": "Jay Pritzker Pavillion",
@@ -85,7 +91,8 @@
             "Pet Friendly"
           ],
           "Price": 2,
-          "Location": "Downtown"
+          "Location": "Downtown",
+          "Hidden-gem": false
         },
         {
           "name": "Chicago River Cruise",
@@ -95,7 +102,8 @@
             "Educational"
           ],
           "Price": 4,
-          "Location": "Downtown"
+          "Location": "Downtown",
+          "Hidden-gem": false
         }
       ],
       "Restaurants": [
@@ -110,7 +118,8 @@
             "Family Friendly"
           ],
           "Price": 2,
-          "Location": "Downtown"
+          "Location": "Downtown",
+          "Hidden-gem": false
         },
         {
           "name": "Alinea",
@@ -121,7 +130,8 @@
             "Hip"
           ],
           "Price": 5,
-          "Location": "Old Town"
+          "Location": "Old Town",
+          "Hidden-gem": false
         },
         {
           "name": "Ramen Takeya",
@@ -131,7 +141,8 @@
             "Fusion"
           ],
           "Price": 3,
-          "Location": "West Loop"
+          "Location": "West Loop",
+          "Hidden-gem": false
         },
         {
           "name": "Gibsons Steakhouse",
@@ -141,14 +152,83 @@
             ""
           ],
           "Price": 5,
-          "Location": "Downtown"
+          "Location": "Downtown",
+          "Hidden-gem": false
         }
       ]
     },
     {
-      "name": "London",
-      "Attractions": [],
-      "Restaurants": []
+      "name": "Paris",
+      "Attractions": [
+        {
+          "name": "The Louvre",
+          "Categories": [
+            "Museum",
+            "Modern Art",
+            "Architecture",
+            "Landmark"
+          ],
+          "Price": 4,
+          "Location": "1st Arrondissement",
+          "Hidden-gem": false
+        },
+        {
+          "name": "Musee D'Orsay",
+          "Categories": [
+            "Museum",
+            "Modern Art",
+            "Architecture",
+            "Landmark"
+          ],
+          "Price": 3,
+          "Location": "1st Arrondissement",
+          "Hidden-gem": false
+        },
+        {
+          "name": "Cathedral Notre-dame De Paris",
+          "Categories": [
+            "Cathedral",
+            "Religion",
+            "Architecture"
+          ],
+          "Price": 1,
+          "Location": "Notre Dame",
+          "Hidden-gem": false
+        },
+        {
+          "name": "Musée de l'Armée",
+          "Categories": [
+            "Museum",
+            "History",
+            "Military"
+          ],
+          "Price": 2,
+          "Location": "7th Arrondissement",
+          "Hidden-gem": false
+        },
+        {
+          "name": "Eiffel Tower",
+          "Categories": [
+            "Landmark",
+            "Photospot"
+          ],
+          "Price": 2,
+          "Location": "Eiffel Tower",
+          "Hidden-gem": false
+        }
+      ],
+      "Restaurants": [
+        {
+          "name": "La Maison du Chocolat",
+          "Categories": [
+            "Food",
+            "Chocolatier"
+          ],
+          "Price": 3,
+          "Location": "6th Arrondissement",
+          "Hidden-gem": false
+        }
+      ]
     }
   ]
 }
