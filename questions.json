@@ -89,7 +89,7 @@
 		{
 			"text": "Do you prefer to be indoors or outdoors?",
 			"options": [
-				{"name":"Indoors", "status":false,"Categories": []},
+				{"name":"Indoors", "status":false,"Categories": ["Indoors"]},
 				{"name":"Outdoors", "status":false,"Categories": []}
 			]
 		},

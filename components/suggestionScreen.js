@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, Text, View, ScrollView, Button} from 'react-native';
+import {StyleSheet, Text, View, ScrollView, Button, WebView} from 'react-native';
 import SuggestedItem from './suggestedItem';
 import Suggestions from '../suggestions.json';
 
@@ -20,7 +20,7 @@ export default class SuggestionScreen extends React.Component {
     }
 
     retrieveSuggestions(categories) {
-        let foundAttractions = Suggestions.Locations[0].Attractions.filter(a => {
+        let foundAttractions = Suggestions.Locations[1].Attractions.filter(a => {
                 let intersection = a.Categories.filter(x => categories.includes(x));
                 if (intersection.length > 0) {
                     return true
@@ -28,7 +28,7 @@ export default class SuggestionScreen extends React.Component {
                     return false
             }
         );
-        const foundRestaurants = Suggestions.Locations[0].Restaurants.filter(r => {
+        const foundRestaurants = Suggestions.Locations[1].Restaurants.filter(r => {
             let intersection = r.Categories.filter(x => categories.includes(x));
             if (intersection.length > 0) {
                 return true
@@ -57,17 +57,21 @@ export default class SuggestionScreen extends React.Component {
                     location={l}
                     intersection={l.Categories.filter(x => categories.includes(x))}
                     handleItemSelect={this.handleItemSelect.bind(this)}
-                    links={l.links}
                 />)
         })
         return (
             <View style={styles.container}>
-                <Text style={styles.header}>Based on your profile, you may enjoy these sites in Chicago...</Text>
+                <Text style={styles.header}>Based on your profile, you may enjoy these sites in Paris...</Text>
                 {/*<Text style={styles.subHeader}>Add the ones you like!</Text>*/}
                 <View style={styles.suggestionsContainer}>
                     <ScrollView>
                         {suggestedItems}
                     </ScrollView>
+                    <WebView
+                        useWebKit={true}
+                        source={{uri: 'https://theblondeabroad.com/ultimate-paris-travel-guide'}}
+                        style={{marginTop: 20}}
+                    />
                 </View>
                 <View>
                     <Button

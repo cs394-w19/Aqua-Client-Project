@@ -272,7 +272,8 @@
             "Museum",
             "Modern Art",
             "Architecture",
-            "Landmark"
+            "Landmark",
+            "Indoors"
           ],
           "Price": 4,
           "Location": "1st Arrondissement",
@@ -284,7 +285,8 @@
             "Museum",
             "Modern Art",
             "Architecture",
-            "Landmark"
+            "Landmark",
+            "Indoors"
           ],
           "Price": 3,
           "Location": "1st Arrondissement",
@@ -295,7 +297,8 @@
           "Categories": [
             "Cathedral",
             "Religion",
-            "Architecture"
+            "Architecture",
+            "Indoors"
           ],
           "Price": 1,
           "Location": "Notre Dame",
@@ -306,7 +309,8 @@
           "Categories": [
             "Museum",
             "History",
-            "Military"
+            "Military",
+            "Indoors"
           ],
           "Price": 2,
           "Location": "7th Arrondissement",
@@ -350,7 +354,8 @@
           "name": "La Maison du Chocolat",
           "Categories": [
             "Food",
-            "Chocolate"
+            "Chocolatier",
+            "Indoors"
           ],
           "Price": 3,
           "Location": "6th Arrondissement",
