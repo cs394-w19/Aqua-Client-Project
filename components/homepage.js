@@ -5,7 +5,6 @@ import Questionnaire from './questionnaire';
 export default class Homepage extends React.Component {
     static navigationOptions = { header: null}
 
-
     render() {
         const {navigate} = this.props.navigation;
         return (

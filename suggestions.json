@@ -14,7 +14,8 @@
           ],
           "Price": 3,
           "Location": "Downtown",
-          "gem": false
+          "gem": false,
+          "link": null
         },
         {
           "name": "Willis Tower",
@@ -26,7 +27,8 @@
           ],
           "Price": 3,
           "Location": "Downtown",
-          "gem": false
+          "gem": false,
+          "link": null
         },
         {
           "name": "Field Museum",
@@ -39,7 +41,8 @@
           ],
           "Price": 2,
           "Location": "Downtown",
-          "gem": false
+          "gem": false,
+          "link": null
         },
         {
           "name": "Wrigley Field",
@@ -51,7 +54,8 @@
           ],
           "Price": 4,
           "Location": "Wrigleyville",
-          "gem": false
+          "gem": false,
+          "link": null
         },
         {
           "name": "Millenium Park",
@@ -64,7 +68,8 @@
           ],
           "Price": 1,
           "Location": "Downtown",
-          "gem": false
+          "gem": false, 
+          "link": null
         },
         {
           "name": "Sky Deck Chicago",
@@ -77,7 +82,8 @@
           ],
           "Price": 2,
           "Location": "Downtown",
-          "gem": false
+          "gem": false, 
+          "link": null
         },
         {
           "name": "Jay Pritzker Pavillion",
@@ -92,7 +98,8 @@
           ],
           "Price": 2,
           "Location": "Downtown",
-          "gem": false
+          "gem": false, 
+          "link": null
         },
         {
           "name": "Chicago River Cruise",
@@ -103,7 +110,8 @@
           ],
           "Price": 4,
           "Location": "Downtown",
-          "gem": false
+          "gem": false, 
+          "link": null
         }
       ],
       "Restaurants": [
@@ -119,7 +127,8 @@
           ],
           "Price": 2,
           "Location": "Downtown",
-          "gem": false
+          "gem": false, 
+          "link": null
         },
         {
           "name": "Alinea",
@@ -131,7 +140,8 @@
           ],
           "Price": 5,
           "Location": "Old Town",
-          "gem": false
+          "gem": false, 
+          "link": null
         },
         {
           "name": "Ramen Takeya",
@@ -142,7 +152,8 @@
           ],
           "Price": 3,
           "Location": "West Loop",
-          "gem": false
+          "gem": false, 
+          "link": null
         },
         {
           "name": "Gibsons Steakhouse",
@@ -153,7 +164,8 @@
           ],
           "Price": 5,
           "Location": "Downtown",
-          "gem": false
+          "gem": false, 
+          "link": null
         }
       ]
     },
@@ -169,7 +181,8 @@
           ],
           "Price": 2,
           "Location": "Belleville",
-          "gem": true
+          "gem": true,
+          "link": "https://theblondeabroad.com/ultimate-paris-travel-guide"
         },
         {
           "name": "Paris Catacombs",
@@ -180,7 +193,8 @@
           ],
           "Price": 2,
           "Location": "N/A",
-          "gem": true
+          "gem": true,
+          "link": "https://theblondeabroad.com/ultimate-paris-travel-guide"
         },
         {
           "name": "Rue Cremieux",
@@ -190,7 +204,8 @@
           ],
           "Price": 0,
           "Location": "N/A",
-          "gem": true
+          "gem": true,
+          "link": "https://www.hayleyonholiday.com/solo-travel-guide-paris/"
         },
         {
           "name": "Musee des Egouts de Paris",
@@ -201,7 +216,8 @@
           ],
           "Price": 1,
           "Location": "N/A",
-          "gem": true
+          "gem": true,
+          "link": "https://wearetravelgirls.com/paris-secret-spots/"
         },
         {
           "name": "Le Marais",
@@ -211,7 +227,8 @@
           ],
           "Price": 1,
           "Location": "N/A",
-          "gem": true
+          "gem": true,
+          "link": "https://wearetravelgirls.com/paris-is-always-a-good-idea/"
         },
         {
           "name": "Atelier des Lumieres",
@@ -223,7 +240,8 @@
           ],
           "Price": 1,
           "Location": "N/A",
-          "gem": true
+          "gem": true,
+          "link": "http://mamalovesparis.com/"
         },
         {
           "name": "Gorges d'Apremont Hike",
@@ -233,7 +251,8 @@
           ],
           "Price": 1,
           "Location": "N/A",
-          "gem": true
+          "gem": true,
+          "link": "http://mamalovesparis.com/discover-outside-paris/"
         },
         {
           "name": "Dragon Slide at Parc Villette",
@@ -243,7 +262,8 @@
           ],
           "Price": 1,
           "Location": "N/A",
-          "gem": true
+          "gem": true,
+          "link": "https://uk.tourisme93.com/dragon.html"
         },
         {
           "name": "La Centquatre",
@@ -253,7 +273,8 @@
           ],
           "Price": 1,
           "Location": "N/A",
-          "gem": true
+          "gem": true,
+          "link": "http://mamalovesparis.com/le-centquatre-paris/"
         },
         {
           "name": "Museum National d'Histoire Naturelle",
@@ -264,7 +285,8 @@
           ],
           "Price": 1,
           "Location": "N/A",
-          "gem": true
+          "gem": true,
+          "link": "https://www.mnhn.fr/en"
         },
         {
           "name": "The Louvre",
@@ -277,7 +299,8 @@
           ],
           "Price": 4,
           "Location": "1st Arrondissement",
-          "gem": false
+          "gem": false, 
+          "link": null
         },
         {
           "name": "Musee D'Orsay",
@@ -290,7 +313,8 @@
           ],
           "Price": 3,
           "Location": "1st Arrondissement",
-          "gem": false
+          "gem": false, 
+          "link": null
         },
         {
           "name": "Cathedral Notre-dame De Paris",
@@ -302,7 +326,8 @@
           ],
           "Price": 1,
           "Location": "Notre Dame",
-          "gem": false
+          "gem": false, 
+          "link": null
         },
         {
           "name": "Musée de l'Armée",
@@ -314,7 +339,8 @@
           ],
           "Price": 2,
           "Location": "7th Arrondissement",
-          "gem": false
+          "gem": false, 
+          "link": null
         },
         {
           "name": "Eiffel Tower",
@@ -324,7 +350,8 @@
           ],
           "Price": 2,
           "Location": "Eiffel Tower",
-          "gem": false
+          "gem": false, 
+          "link": null
         }
       ],
       "Restaurants": [
@@ -336,7 +363,8 @@
           ],
           "Price": 1,
           "Location": "N/A",
-          "gem": true
+          "gem": true,
+          "link": "https://www.davidlebovitz.com/le-camion-qui-fume-paris-hamburger-food-truck/"
         },
         {
           "name": "Au Vieux Paris Darcole",
@@ -348,7 +376,8 @@
           ],
           "Price": 3,
           "Location": "N/A",
-          "gem": true
+          "gem": true,
+          "link": "https://wearetravelgirls.com/fabulous-cafes-paris/"
         },
         {
           "name": "La Maison du Chocolat",
@@ -359,7 +388,8 @@
           ],
           "Price": 3,
           "Location": "6th Arrondissement",
-          "gem": false
+          "gem": false, 
+          "link": null
         }
       ]
     }

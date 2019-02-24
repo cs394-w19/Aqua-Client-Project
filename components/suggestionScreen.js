@@ -64,15 +64,16 @@ export default class SuggestionScreen extends React.Component {
                 <Text style={styles.header}>Based on your profile, you may enjoy these sites in Paris...</Text>
                 {/*<Text style={styles.subHeader}>Add the ones you like!</Text>*/}
                 <View style={styles.suggestionsContainer}>
-                    <ScrollView>
+                    <ScrollView style={styles.scrollView}>
                         {suggestedItems}
                     </ScrollView>
-                    <WebView
+                </View>
+                <WebView
                         useWebKit={true}
                         source={{uri: 'https://theblondeabroad.com/ultimate-paris-travel-guide'}}
-                        style={{marginTop: 20}}
-                    />
-                </View>
+                        style={styles.webView}
+                        scalesPageToFit={true}
+                />
                 <View>
                     <Button
                         title="Go to Itinerary"
@@ -87,21 +88,24 @@ export default class SuggestionScreen extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff'
+        height: 20
     },
     header: {
         flex: 0,
-        padding: 20,
+        padding: 0,
         fontSize: 30,
         paddingBottom: 0
     },
     subHeader: {
         flex: 0,
-        padding: 20,
-        fontSize: 15
+        padding: 10,
+        fontSize: 15,
     },
     suggestionsContainer: {
-        marginTop: 20,
-        flex: 1,
+        marginTop: 10,
+        flex: 1
+    },
+    webView: {
+        height: 0,
     }
 });
