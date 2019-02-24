@@ -161,6 +161,112 @@
       "name": "Paris",
       "Attractions": [
         {
+          "name": "Paris Underground Street Art Tour",
+          "Categories": [
+            "Street Art",
+            "Tour",
+            "Outdoors"
+          ],
+          "Price": 2,
+          "Location": "Belleville",
+          "Hidden-gem": true
+        },
+        {
+          "name": "Paris Catacombs",
+          "Categories": [
+            "City",
+            "History",
+            "Outdoors"
+          ],
+          "Price": 2,
+          "Location": "N/A",
+          "Hidden-gem": true
+        },
+        {
+          "name": "Rue Cremieux",
+          "Categories": [
+            "Scenic",
+            "Photospot"
+          ],
+          "Price": 0,
+          "Location": "N/A",
+          "Hidden-gem": true
+        },
+        {
+          "name": "Musee des Egouts de Paris",
+          "Categories": [
+            "Museum",
+            "Art",
+            "Indoors"
+          ],
+          "Price": 1,
+          "Location": "N/A",
+          "Hidden-gem": true
+        },
+        {
+          "name": "Le Marais",
+          "Categories": [
+            "Shopping",
+            "Fashion"
+          ],
+          "Price": 1,
+          "Location": "N/A",
+          "Hidden-gem": true
+        },
+        {
+          "name": "Atelier des Lumieres",
+          "Categories": [
+            "Art",
+            "Tour",
+            "Family Friendly",
+            "Indoors"
+          ],
+          "Price": 1,
+          "Location": "N/A",
+          "Hidden-gem": true
+        },
+        {
+          "name": "Gorges d'Apremont Hike",
+          "Categories": [
+            "Hike",
+            "Outdoors"
+          ],
+          "Price": 1,
+          "Location": "N/A",
+          "Hidden-gem": true
+        },
+        {
+          "name": "Dragon Slide at Parc Villette",
+          "Categories": [
+            "Outdoors",
+            "Park"
+          ],
+          "Price": 1,
+          "Location": "N/A",
+          "Hidden-gem": true
+        },
+        {
+          "name": "La Centquatre",
+          "Categories": [
+            "Art",
+            "Entertainment"
+          ],
+          "Price": 1,
+          "Location": "N/A",
+          "Hidden-gem": true
+        },
+        {
+          "name": "Museum National d'Histoire Naturelle",
+          "Categories": [
+            "Indoors",
+            "Family Friendly",
+            "Educational"
+          ],
+          "Price": 1,
+          "Location": "N/A",
+          "Hidden-gem": true
+        },
+        {
           "name": "The Louvre",
           "Categories": [
             "Museum",
@@ -219,10 +325,32 @@
       ],
       "Restaurants": [
         {
+          "name": "Le Camion Qui Fume",
+          "Categories": [
+            "Food",
+            "Burger"
+          ],
+          "Price": 1,
+          "Location": "N/A",
+          "Hidden-gem": true
+        },
+        {
+          "name": "Au Vieux Paris Darcole",
+          "Categories": [
+            "Food",
+            "Expensive",
+            "Romantic",
+            "Cafe"
+          ],
+          "Price": 3,
+          "Location": "N/A",
+          "Hidden-gem": true
+        },
+        {
           "name": "La Maison du Chocolat",
           "Categories": [
             "Food",
-            "Chocolatier"
+            "Chocolate"
           ],
           "Price": 3,
           "Location": "6th Arrondissement",
