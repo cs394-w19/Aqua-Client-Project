@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, Text, View, ScrollView, Button, WebView} from 'react-native';
+import {StyleSheet, Text, View, ScrollView, Button, WebView, TouchableWithoutFeedback} from 'react-native';
 import SuggestedItem from './suggestedItem';
 import Suggestions from '../suggestions.json';
 
@@ -8,7 +8,9 @@ export default class SuggestionScreen extends React.Component {
         super(props);
         this.state = {
             suggestions: [],
-            categories: []
+            categories: [],
+            blogVisible: false,
+            blogLink: null
         }
     }
 
@@ -16,7 +18,7 @@ export default class SuggestionScreen extends React.Component {
         const {state} = this.props.navigation;
         const suggestions = this.retrieveSuggestions(state.params.categories);
         suggestions.forEach(a => a.selected = false)
-        this.setState({suggestions: suggestions, categories: state.params.categories})
+        this.setState({suggestions: suggestions, categories: state.params.categories, blogVisible: false})
     }
 
     retrieveSuggestions(categories) {
@@ -39,6 +41,10 @@ export default class SuggestionScreen extends React.Component {
         return foundAttractions
     }
 
+    handleGemClick = (link) => {
+        this.setState({blogVisible: true, link: link})
+    }
+
     handleItemSelect = (name) => {
         const state = this.state;
         const suggestion = state.suggestions.find(s => s.name === name)
@@ -51,35 +57,46 @@ export default class SuggestionScreen extends React.Component {
         const {navigate} = this.props.navigation;
         const suggestions = this.state.suggestions
         const suggestedItems = suggestions.map((l) => {
-            console.log("string    " + l.Categories)
+            console.log("string    " + l.name)
             return (
                 <SuggestedItem
                     location={l}
                     intersection={l.Categories.filter(x => categories.includes(x))}
                     handleItemSelect={this.handleItemSelect.bind(this)}
+                    handleGemClick = {this.handleGemClick.bind(this)}
                 />)
         })
         return (
             <View style={styles.container}>
                 <Text style={styles.header}>Based on your profile, you may enjoy these sites in Paris...</Text>
-                {/*<Text style={styles.subHeader}>Add the ones you like!</Text>*/}
                 <View style={styles.suggestionsContainer}>
-                    <ScrollView style={styles.scrollView}>
+                    <ScrollView>
                         {suggestedItems}
                     </ScrollView>
                 </View>
-                <WebView
+                {/*<View>*/}
+                {/*<Button*/}
+                {/*title="Go to Itinerary"*/}
+                {/*onPress={() => navigate('ItineraryScreen', {suggestions: this.state.suggestions.filter(s => s.selected)})}*/}
+                {/*/>*/}
+                {/*</View>*/}
+                {this.state.blogVisible && <View style={styles.webContainer}>
+                    <WebView
                         useWebKit={true}
-                        source={{uri: 'https://theblondeabroad.com/ultimate-paris-travel-guide'}}
+                        source={{uri: this.state.link}}
                         style={styles.webView}
-                        scalesPageToFit={true}
-                />
-                <View>
-                    <Button
-                        title="Go to Itinerary"
-                        onPress={() => navigate('ItineraryScreen', {suggestions: this.state.suggestions.filter(s => s.selected)})}
                     />
-                </View>
+                    <TouchableWithoutFeedback title="close"
+                                              onPress={() => {
+                                                  this.setState({blogVisible: false})
+                                              }}>
+                        <View style={styles.closeBtn}>
+                            <Text  style={styles.closeBtnText}>
+                                Back to Suggestion List
+                            </Text>
+                        </View>
+                    </TouchableWithoutFeedback>
+                </View>}
             </View>
         );
     }
@@ -88,24 +105,46 @@ export default class SuggestionScreen extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        height: 20
+        backgroundColor: '#fff'
     },
     header: {
         flex: 0,
-        padding: 0,
+        padding: 20,
         fontSize: 30,
         paddingBottom: 0
     },
     subHeader: {
         flex: 0,
-        padding: 10,
+        padding: 20,
         fontSize: 15,
     },
     suggestionsContainer: {
-        marginTop: 10,
-        flex: 1
+        marginTop: 20,
+        flex: 1,
     },
     webView: {
-        height: 0,
+        margin: 10,
+    },
+    webContainer: {
+        height: 500,
+        width: 400,
+        borderRadius: 10,
+        borderWidth: 5,
+        position: 'absolute',
+        alignSelf: 'center',
+        top: 50,
+        backgroundColor: '#fff'
+    },
+    closeBtn: {
+        display: 'flex',
+        backgroundColor: '#000',
+        height: 60,
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+    closeBtnText:{
+        color: "#fff",
+        fontSize: 20,
+        textAlign: 'center'
     }
 });

@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, View, TouchableWithoutFeedback} from 'react-native';
 import CheckBox from './checkBox';
 
 export default class SuggestedItem extends React.Component {
@@ -13,18 +13,21 @@ export default class SuggestedItem extends React.Component {
 
 
     render() {
-        const {location, intersection, handleItemSelect} = this.props;
+        const {location, intersection, handleItemSelect, handleGemClick} = this.props;
         let reason = ""
         intersection.forEach(r=> reason = reason + r + " | ")
         reason = reason.substring(0, reason.length-3)
         const containerStyle = location.gem ? styles.containerGem : styles.container
+        const containerClick = location.gem ? handleGemClick : ()=>{}
         return (
             <View style={containerStyle}>
                 <CheckBox checked={location.selected} handleCheckBoxClick={()=>handleItemSelect(location.name)}/>
-                <View style={styles.details}>
+                <TouchableWithoutFeedback onPress={()=>containerClick(location.link)}>
+                    <View style={styles.details}>
                     <Text style={styles.text}>{location.name}</Text>
                     <Text style={styles.reason}>{reason}</Text>
-                </View>
+                    </View>
+                </TouchableWithoutFeedback>
             </View>
         );
     }
