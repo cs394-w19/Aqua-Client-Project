@@ -4,6 +4,17 @@ import SuggestedItem from './suggestedItem';
 import Suggestions from '../suggestions.json';
 
 export default class SuggestionScreen extends React.Component {
+    static navigationOptions = {
+        title: 'Suggestions',
+        headerTitleStyle: {
+            marginRight: 56,
+            color: "#1EA28A",
+            textAlign: 'center',
+            flex: 1,
+            fontSize: 30
+        }
+    }
+
     constructor(props) {
         super(props);
         this.state = {

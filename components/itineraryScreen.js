@@ -24,6 +24,17 @@ images[17] = require("../assets/locationPictures/17.jpg");
 
 export default class ItineraryScreen extends React.Component {
 
+    static navigationOptions = {
+        title: 'Saved Locations',
+        headerTitleStyle: {
+            marginRight: 56,
+            color: "#1EA28A",
+            textAlign: 'center',
+            flex: 1,
+            fontSize: 30
+        }
+    }
+
     constructor(props) {
         super(props);
         this.state = {
@@ -42,9 +53,6 @@ export default class ItineraryScreen extends React.Component {
         ))
         return (
             <View style={styles.container}>
-                <Text style={styles.header}>
-                    Your Saved Locations
-                </Text>
                 <View style={styles.tabContainer}>
                     <TouchableWithoutFeedback onPress={()=>this.setState({listView: true})}>
                         <View style={this.state.listView ? styles.tabActive : styles.tab}>
@@ -80,7 +88,8 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: 'column',
         alignItems: 'center',
-        justifyContent: 'flex-start'
+        justifyContent: 'flex-start',
+        padding: 30
     },
     header: {
         flex: 0,

@@ -13,19 +13,6 @@ const MainNavigator = createStackNavigator({
     Questionnaire: {screen: Questionnaire},
     SuggestionScreen: {screen: SuggestionScreen},
     ItineraryScreen: {screen: ItineraryScreen}
-}, {
-    defaultNavigationOptions: {
-        title: 'perfect day',
-        headerTitleStyle: {
-            marginRight: 56,
-            fontWeight: 'bold',
-            fontStyle: 'italic',
-            color: "#1EA28A",
-            textAlign: 'center',
-            flex: 1,
-            fontSize: 40
-        }
-    }
 });
 
 const App = createAppContainer(MainNavigator);
