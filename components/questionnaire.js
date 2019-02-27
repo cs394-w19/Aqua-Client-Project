@@ -9,7 +9,7 @@ export default class App extends React.Component {
         this.state = {
             questions: questions.questions,
             index: 0,
-            finalIndex: 9,
+            finalIndex: 10,
             completed: false
         };
         this.handleOptionClick = this.handleOptionClick.bind(this);

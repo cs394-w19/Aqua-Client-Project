@@ -97,7 +97,7 @@
 			"text": "What places would you like to go to?",
 			"options": [
 				{"name":"Theme Parks", "status":false,"Categories": []},
-				{"name":"Museums", "status":false,"Categories": []},
+				{"name":"Museums", "status":false,"Categories": ["museums"]},
 				{"name":"Beaches", "status":false,"Categories": []},
 				{"name":"Historical Landmarks", "status":false,"Categories": []},
 				{"name":"Clubbing", "status":false,"Categories": []}
