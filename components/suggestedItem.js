@@ -14,9 +14,12 @@ export default class SuggestedItem extends React.Component {
 
     render() {
         const {location, intersection, handleItemSelect, handleGemClick} = this.props;
-        let reason = ""
-        intersection.forEach(r => reason = reason + r + ", ")
-        reason = reason.substring(0, reason.length - 2)
+        let reason = intersection[0]
+        if (intersection[1]){
+            reason = reason + ' & ' + intersection[1]
+        }
+        // intersection.forEach(r => reason = reason + r + ", ")
+        // reason = reason.substring(0, reason.length - 2)
         reason = "80% who liked " + reason + " liked this"
         const containerStyle = location.gem ? styles.containerGem : styles.container
         const containerClick = location.gem ? handleGemClick : () => {
