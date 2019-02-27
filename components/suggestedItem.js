@@ -32,7 +32,7 @@ export default class SuggestedItem extends React.Component {
                           handleCheckBoxClick={() => handleItemSelect(location.name)}/>
                 <TouchableWithoutFeedback onPress={() => containerClick(location.link)}>
                     <View style={styles.details}>
-                        <Text style={styles.text}>{location.name}</Text>
+                        <Text style={styles.text} numberOfLines={1}>{location.name}</Text>
                         <Text style={reasonStyle}>{reason}</Text>
                     </View>
                 </TouchableWithoutFeedback>
@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
     },
     containerGem: {
         height: 70,
-        backgroundColor: "#FF9A73",
+        backgroundColor: "#1EA28A",
         flexDirection: 'row',
         marginHorizontal: 40,
         marginVertical: 10,
@@ -62,17 +62,17 @@ const styles = StyleSheet.create({
     },
     details: {
         flexDirection: 'column',
+        width: 250
     },
     text: {
         fontSize: 15,
         marginTop: 5,
         marginLeft: 20,
-        flex: 0
     },
     reason: {
         fontSize: 10,
         marginLeft: 20,
-        color: "#FF9A73",
+        color: "#1EA28A",
         flex: 0
     },
     reasonGem: {

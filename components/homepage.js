@@ -9,7 +9,7 @@ export default class Homepage extends React.Component {
         const {navigate} = this.props.navigation;
         return (
             <View style={styles.container}>
-                <Text style={styles.header}>Perfect Day</Text>
+                <Text style={styles.header}>Glocal</Text>
                 <TouchableWithoutFeedback title="PlanTrip"
                                           onPress={() => {
                                               navigate("Questionnaire")
@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
     button: {
         width: "85%",
         height: 75,
-        backgroundColor: '#FF9A73',
+        backgroundColor: '#1EA28A',
         margin: 10,
         borderRadius: 10,
         borderWidth: 0,
@@ -46,14 +46,11 @@ const styles = StyleSheet.create({
         color: "#FFF"
     },
     header: {
-        fontSize: 70,
+        fontSize: 100,
         marginTop: 80,
-        width: "100%",
         textAlign: "center",
-        color: "#FF9A73",
-        fontWeight: "600",
+        color: "#1EA28A",
         height: 300,
         padding: 20,
-        fontStyle: "italic"
     }
 });
