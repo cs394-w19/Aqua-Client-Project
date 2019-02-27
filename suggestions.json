@@ -175,7 +175,7 @@
         {
           "name": "Paris Underground Street Art Tour",
           "Categories": [
-            "Street Art",
+            "street art",
             "Tour",
             "Outdoors"
           ],
@@ -234,8 +234,8 @@
           "Price": 1,
           "Location": "N/A",
           "gem": true,
-          "link": "https://www.aparisguide.com/lemarais/",
-          "website": "A Paris Guide"
+          "link": "https://www.solosophie.com/a-guide-to-le-marais/",
+          "website": "Solo Sophie"
         },
         {
           "name": "Atelier des Lumieres",
@@ -265,10 +265,11 @@
           "website": "Mama Loves Paris"
         },
         {
-          "name": "Dragon Slide at Parc Villette",
+          "name": "Parc Villette",
           "Categories": [
             "Outdoors",
-            "Park"
+            "Park",
+            "family"
           ],
           "Price": 1,
           "Location": "N/A",
@@ -300,8 +301,8 @@
           "Price": 1,
           "Location": "N/A",
           "gem": true,
-          "link": "https://www.aviewoncities.com/paris/museumdhistoirenaturelle.htm",
-          "website": "Aview On Cities"
+          "link": "https://www.lonelyplanet.com/france/paris/attractions/museum-national-d-histoire-naturelle/a/poi-sig/372459/359279",
+          "website": "Lonely Planet"
         },
         {
           "name": "The Louvre",
