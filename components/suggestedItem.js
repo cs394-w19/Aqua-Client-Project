@@ -15,17 +15,22 @@ export default class SuggestedItem extends React.Component {
     render() {
         const {location, intersection, handleItemSelect, handleGemClick} = this.props;
         let reason = ""
-        intersection.forEach(r=> reason = reason + r + " | ")
-        reason = reason.substring(0, reason.length-3)
+        intersection.forEach(r => reason = reason + r + ", ")
+        reason = reason.substring(0, reason.length - 2)
+        reason = "80% who liked " + reason + " liked this"
         const containerStyle = location.gem ? styles.containerGem : styles.container
-        const containerClick = location.gem ? handleGemClick : ()=>{}
+        const containerClick = location.gem ? handleGemClick : () => {
+        }
+        const reasonStyle = location.gem ? styles.reasonGem : styles.reason
         return (
             <View style={containerStyle}>
-                <CheckBox checked={location.selected} handleCheckBoxClick={()=>handleItemSelect(location.name)}/>
-                <TouchableWithoutFeedback onPress={()=>containerClick(location.link)}>
+                {location.gem && <Text style={styles.suggestedBy}>Suggested By {location.website}</Text>}
+                <CheckBox checked={location.selected} gem={location.gem}
+                          handleCheckBoxClick={() => handleItemSelect(location.name)}/>
+                <TouchableWithoutFeedback onPress={() => containerClick(location.link)}>
                     <View style={styles.details}>
-                    <Text style={styles.text}>{location.name}</Text>
-                    <Text style={styles.reason}>{reason}</Text>
+                        <Text style={styles.text}>{location.name}</Text>
+                        <Text style={reasonStyle}>{reason}</Text>
                     </View>
                 </TouchableWithoutFeedback>
             </View>
@@ -52,11 +57,12 @@ const styles = StyleSheet.create({
         paddingHorizontal: 10,
         alignItems: 'center'
     },
-    details:{
+    details: {
         flexDirection: 'column',
     },
     text: {
-        fontSize: 20,
+        fontSize: 15,
+        marginTop: 5,
         marginLeft: 20,
         flex: 0
     },
@@ -65,5 +71,19 @@ const styles = StyleSheet.create({
         marginLeft: 20,
         color: "#FF9A73",
         flex: 0
+    },
+    reasonGem: {
+        fontSize: 10,
+        marginLeft: 20,
+        color: "#fff",
+        flex: 0
+    },
+    suggestedBy: {
+        fontSize: 10,
+        marginLeft: 20,
+        color: "#fff",
+        position: 'absolute',
+        top: 0,
+        right: 5
     },
 })

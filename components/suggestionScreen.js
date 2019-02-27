@@ -129,6 +129,7 @@ const styles = StyleSheet.create({
         height: 500,
         width: 400,
         borderRadius: 10,
+        borderColor: '#FF9A73',
         borderWidth: 5,
         position: 'absolute',
         alignSelf: 'center',
@@ -137,7 +138,7 @@ const styles = StyleSheet.create({
     },
     closeBtn: {
         display: 'flex',
-        backgroundColor: '#000',
+        backgroundColor: '#FF9A73',
         height: 60,
         alignItems: 'center',
         justifyContent: 'center'

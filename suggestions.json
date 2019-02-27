@@ -182,19 +182,22 @@
           "Price": 2,
           "Location": "Belleville",
           "gem": true,
-          "link": "https://theblondeabroad.com/ultimate-paris-travel-guide"
+          "link": "https://thebigbus.com.au/paris-self-guided-walking-tour-of-belleville/",
+          "website": "The Big Bus"
         },
         {
           "name": "Paris Catacombs",
           "Categories": [
             "City",
             "History",
-            "Outdoors"
+            "Outdoors",
+            "museums"
           ],
           "Price": 2,
           "Location": "N/A",
           "gem": true,
-          "link": "https://theblondeabroad.com/ultimate-paris-travel-guide"
+          "link": "https://www.discoverwalks.com/blog/how-to-visit-the-paris-catacombs/",
+          "website": "Discover Walks"
         },
         {
           "name": "Rue Cremieux",
@@ -205,19 +208,22 @@
           "Price": 0,
           "Location": "N/A",
           "gem": true,
-          "link": "https://www.hayleyonholiday.com/solo-travel-guide-paris/"
+          "link": "https://lorilovesparis.com/hidden-places-see-paris-rue-cremieux/",
+          "website": "Lori Loves Paris"
         },
         {
           "name": "Musee des Egouts de Paris",
           "Categories": [
             "Museum",
             "Art",
-            "Indoors"
+            "Indoors",
+            "museums"
           ],
           "Price": 1,
           "Location": "N/A",
           "gem": true,
-          "link": "https://wearetravelgirls.com/paris-secret-spots/"
+          "link": "https://www.introducingparis.com/sewers-museum",
+          "website": "Introducing Paris"
         },
         {
           "name": "Le Marais",
@@ -228,7 +234,8 @@
           "Price": 1,
           "Location": "N/A",
           "gem": true,
-          "link": "https://wearetravelgirls.com/paris-is-always-a-good-idea/"
+          "link": "https://www.aparisguide.com/lemarais/",
+          "website": "A Paris Guide"
         },
         {
           "name": "Atelier des Lumieres",
@@ -236,12 +243,14 @@
             "Art",
             "Tour",
             "Family Friendly",
-            "Indoors"
+            "Indoors",
+            "museums"
           ],
           "Price": 1,
           "Location": "N/A",
           "gem": true,
-          "link": "http://mamalovesparis.com/"
+          "link": "https://www.sortiraparis.com/arts-culture/exposure/articles/156707-the-atelier-des-lumieres-paris-first-digital-art-center/lang/en",
+          "website": "Sortira Paris"
         },
         {
           "name": "Gorges d'Apremont Hike",
@@ -252,7 +261,8 @@
           "Price": 1,
           "Location": "N/A",
           "gem": true,
-          "link": "http://mamalovesparis.com/discover-outside-paris/"
+          "link": "http://mamalovesparis.com/discover-outside-paris/",
+          "website": "Mama Loves Paris"
         },
         {
           "name": "Dragon Slide at Parc Villette",
@@ -263,35 +273,40 @@
           "Price": 1,
           "Location": "N/A",
           "gem": true,
-          "link": "https://uk.tourisme93.com/dragon.html"
+          "link": "http://worldtoptop.com/parc-de-la-villette/",
+          "website": "World Top Top"
         },
         {
           "name": "La Centquatre",
           "Categories": [
             "Art",
-            "Entertainment"
+            "Entertainment",
+            "museums"
           ],
           "Price": 1,
           "Location": "N/A",
           "gem": true,
-          "link": "http://mamalovesparis.com/le-centquatre-paris/"
+          "link": "http://mamalovesparis.com/le-centquatre-paris/",
+          "website": "Mama Loves Paris"
         },
         {
           "name": "Museum National d'Histoire Naturelle",
           "Categories": [
             "Indoors",
             "Family Friendly",
-            "Educational"
+            "Educational",
+            "museums"
           ],
           "Price": 1,
           "Location": "N/A",
           "gem": true,
-          "link": "https://www.mnhn.fr/en"
+          "link": "https://www.aviewoncities.com/paris/museumdhistoirenaturelle.htm",
+          "website": "Aview On Cities"
         },
         {
           "name": "The Louvre",
           "Categories": [
-            "Museum",
+            "museums",
             "Modern Art",
             "Architecture",
             "Landmark",
@@ -305,7 +320,7 @@
         {
           "name": "Musee D'Orsay",
           "Categories": [
-            "Museum",
+            "museums",
             "Modern Art",
             "Architecture",
             "Landmark",
@@ -332,7 +347,7 @@
         {
           "name": "Musée de l'Armée",
           "Categories": [
-            "Museum",
+            "museums",
             "History",
             "Military",
             "Indoors"
@@ -372,12 +387,14 @@
             "Food",
             "Expensive",
             "Romantic",
-            "Cafe"
+            "Cafe",
+            "museums"
           ],
           "Price": 3,
           "Location": "N/A",
           "gem": true,
-          "link": "https://wearetravelgirls.com/fabulous-cafes-paris/"
+          "link": "https://www.solosophie.com/best-cafe-in-paris-au-vieux-paris-darcole/",
+          "website": "Solo Sophie"
         },
         {
           "name": "La Maison du Chocolat",
