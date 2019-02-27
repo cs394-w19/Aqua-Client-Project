@@ -5,7 +5,7 @@
 			"options": [
 				{"name": "Solo", "status":false, "Categories": []},
 				{"name":"Couple", "status": false,"Categories": ["couple"]},
-				{"name": "Family (3-4 people)", "status": false,"Categories": ["Family Friendly"]},
+				{"name": "Family (3-4 people)", "status": false,"Categories": ["family friendly"]},
 				{"name": "Small-Sized Group (3-4 people)", "status": false,"Categories": []},
 				{"name":"Medium-Sized Group (5-8 people)", "status":false ,"Categories": []},
 				{"name":"Large Group (8+ people)", "status":false, "Categories": []}
@@ -72,7 +72,7 @@
 				{"name":"Social", "status":false,"Categories": []},
 				{"name":"Music", "status":false,"Categories": []},
 				{"name":"Sports", "status":false,"Categories": []},
-				{"name":"Art", "status":false,"Categories": []},
+				{"name":"Art", "status":false,"Categories": ["street art", "art"]},
 				{"name":"Books", "status":false,"Categories": []}
 			]
 		},
