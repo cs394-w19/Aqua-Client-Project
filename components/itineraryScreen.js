@@ -119,7 +119,7 @@ const styles = StyleSheet.create({
     tabContainer:{
         width: 300,
         height: 50,
-        borderRadius: 20,
+        borderRadius: 10,
         borderWidth: 2,
         borderColor: '#1EA28A',
         flexDirection: 'row',

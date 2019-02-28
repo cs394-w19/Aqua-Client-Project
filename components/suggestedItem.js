@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
     },
     containerGem: {
         height: 70,
-        backgroundColor: "#1EA28A",
+        backgroundColor: "#1EA28A88",
         flexDirection: 'row',
         marginHorizontal: 40,
         marginVertical: 10,

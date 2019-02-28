@@ -2,11 +2,10 @@ import React from 'react';
 import { Image, TouchableWithoutFeedback } from 'react-native';
 const checkedBox = require('../assets/checkbox-checked.png');
 const unCheckedBox = require('../assets/checkbox-unchecked.png');
-const unCheckedBoxGem = require('../assets/checkbox-unchecked-gem.png')
 
 export default class CheckBox extends React.Component {
     render() {
-    	let imageLink = this.props.gem ? unCheckedBoxGem : unCheckedBox;
+    	let imageLink = unCheckedBox;
     	if(this.props.checked) {
     		imageLink = checkedBox;
     	}
