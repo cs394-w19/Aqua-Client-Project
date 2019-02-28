@@ -1,8 +1,9 @@
 import React from 'react';
 import {StyleSheet, Text, View, TouchableWithoutFeedback, ScrollView, Image} from 'react-native';
-import MapView, {PROVIDER_GOOGLE} from 'react-native-maps'
+import MapView, {PROVIDER_GOOGLE, Marker} from 'react-native-maps'
+const marker = require("../assets/marker.png")
 let images = []
-images[0] = require('../assets/locationPictures/0.jpg');
+images[0] = require("../assets/locationPictures/0.jpg");
 images[1] = require("../assets/locationPictures/1.jpg");
 images[2] = require("../assets/locationPictures/2.jpg");
 images[3] = require("../assets/locationPictures/3.jpg");
@@ -77,7 +78,11 @@ export default class ItineraryScreen extends React.Component {
                 latitudeDelta: 0.05,
                 longitudeDelta: 0.05
                 }}
-                />}
+                >
+                    <Marker coordinate={{latitude: 48.857, longitude: 2.336}} >
+                        <Image source={marker} style={{width: 100, height: 100}}/>
+                    </Marker>
+                </MapView>}
             </View>
         );
     }
