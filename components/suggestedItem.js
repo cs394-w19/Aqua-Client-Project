@@ -14,9 +14,12 @@ export default class SuggestedItem extends React.Component {
 
     render() {
         const {location, intersection, handleItemSelect, handleGemClick} = this.props;
-        let reason = ""
-        intersection.forEach(r => reason = reason + r + ", ")
-        reason = reason.substring(0, reason.length - 2)
+        let reason = intersection[0]
+        if (intersection[1]){
+            reason = reason + ' & ' + intersection[1]
+        }
+        // intersection.forEach(r => reason = reason + r + ", ")
+        // reason = reason.substring(0, reason.length - 2)
         reason = "80% who liked " + reason + " liked this"
         const containerStyle = location.gem ? styles.containerGem : styles.container
         const containerClick = location.gem ? handleGemClick : () => {
@@ -29,7 +32,7 @@ export default class SuggestedItem extends React.Component {
                           handleCheckBoxClick={() => handleItemSelect(location.name)}/>
                 <TouchableWithoutFeedback onPress={() => containerClick(location.link)}>
                     <View style={styles.details}>
-                        <Text style={styles.text}>{location.name}</Text>
+                        <Text style={styles.text} numberOfLines={1}>{location.name}</Text>
                         <Text style={reasonStyle}>{reason}</Text>
                     </View>
                 </TouchableWithoutFeedback>
@@ -49,7 +52,7 @@ const styles = StyleSheet.create({
     },
     containerGem: {
         height: 70,
-        backgroundColor: "#FF9A73",
+        backgroundColor: "#1EA28A88",
         flexDirection: 'row',
         marginHorizontal: 40,
         marginVertical: 10,
@@ -59,17 +62,17 @@ const styles = StyleSheet.create({
     },
     details: {
         flexDirection: 'column',
+        width: 250
     },
     text: {
         fontSize: 15,
         marginTop: 5,
         marginLeft: 20,
-        flex: 0
     },
     reason: {
         fontSize: 10,
         marginLeft: 20,
-        color: "#FF9A73",
+        color: "#1EA28A",
         flex: 0
     },
     reasonGem: {

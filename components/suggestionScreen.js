@@ -4,14 +4,30 @@ import SuggestedItem from './suggestedItem';
 import Suggestions from '../suggestions.json';
 
 export default class SuggestionScreen extends React.Component {
+    static navigationOptions = {
+        title: 'Suggestions',
+        headerTitleStyle: {
+            marginRight: 56,
+            color: "#1EA28A",
+            textAlign: 'center',
+            flex: 1,
+            fontSize: 30
+        }
+    }
+
     constructor(props) {
         super(props);
         this.state = {
             suggestions: [],
             categories: [],
             blogVisible: false,
-            blogLink: null
+            blogLink: null,
+            webviewLoaded: false
         }
+    }
+
+    _onLoadEnd(){
+        this.setState({ webviewLoaded:true })
     }
 
     componentDidMount = () => {
@@ -73,22 +89,24 @@ export default class SuggestionScreen extends React.Component {
                     <ScrollView>
                         {suggestedItems}
                     </ScrollView>
+                    <TouchableWithoutFeedback
+                        onPress={() => navigate('ItineraryScreen', {suggestions: this.state.suggestions.filter(s => s.selected)})}
+                    >
+                        <View style={styles.itineraryBtn}>
+                            <Text style={styles.itineraryBtnText}>View Saved Locations</Text>
+                        </View>
+                    </TouchableWithoutFeedback>
                 </View>
-                {/*<View>*/}
-                {/*<Button*/}
-                {/*title="Go to Itinerary"*/}
-                {/*onPress={() => navigate('ItineraryScreen', {suggestions: this.state.suggestions.filter(s => s.selected)})}*/}
-                {/*/>*/}
-                {/*</View>*/}
-                {this.state.blogVisible && <View style={styles.webContainer}>
+                {this.state.blogVisible &&  <View style={styles.webContainer}>
                     <WebView
                         useWebKit={true}
+                        onLoad={this._onLoadEnd.bind(this)}
                         source={{uri: this.state.link}}
                         style={styles.webView}
                     />
                     <TouchableWithoutFeedback title="close"
                                               onPress={() => {
-                                                  this.setState({blogVisible: false})
+                                                  this.setState({blogVisible: false, webviewLoaded: false})
                                               }}>
                         <View style={styles.closeBtn}>
                             <Text  style={styles.closeBtnText}>
@@ -121,6 +139,7 @@ const styles = StyleSheet.create({
     suggestionsContainer: {
         marginTop: 20,
         flex: 1,
+        flexDirection: 'column'
     },
     webView: {
         margin: 10,
@@ -129,7 +148,7 @@ const styles = StyleSheet.create({
         height: 500,
         width: 400,
         borderRadius: 10,
-        borderColor: '#FF9A73',
+        borderColor: '#1EA28A',
         borderWidth: 5,
         position: 'absolute',
         alignSelf: 'center',
@@ -138,13 +157,28 @@ const styles = StyleSheet.create({
     },
     closeBtn: {
         display: 'flex',
-        backgroundColor: '#FF9A73',
+        backgroundColor: '#1EA28A',
         height: 60,
         alignItems: 'center',
         justifyContent: 'center'
     },
     closeBtnText:{
         color: "#fff",
+        fontSize: 20,
+        textAlign: 'center'
+    },
+    itineraryBtn: {
+        width: 150,
+        height: 50,
+        backgroundColor: '#1EA28A',
+        borderRadius: 25,
+        marginVertical: 30,
+        marginRight: 30,
+        marginLeft: 'auto',
+        alignItems: 'center'
+    },
+    itineraryBtnText: {
+        color: 'white',
         fontSize: 20,
         textAlign: 'center'
     }

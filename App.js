@@ -11,21 +11,8 @@ console.disableYellowBox = true;
 const MainNavigator = createStackNavigator({
     Homepage: {screen: Homepage},
     Questionnaire: {screen: Questionnaire},
-    SuggestionScreen: {screen: SuggestionScreen}
-    // ItineraryScreen: {screen: ItineraryScreen}
-}, {
-    defaultNavigationOptions: {
-        title: 'perfect day',
-        headerTitleStyle: {
-            marginRight: 56,
-            fontWeight: 'bold',
-            fontStyle: 'italic',
-            color: "#FF9A73",
-            textAlign: 'center',
-            flex: 1,
-            fontSize: 40
-        }
-    }
+    SuggestionScreen: {screen: SuggestionScreen},
+    ItineraryScreen: {screen: ItineraryScreen}
 });
 
 const App = createAppContainer(MainNavigator);
