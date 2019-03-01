@@ -1,8 +1,9 @@
 import React from 'react';
 import {StyleSheet, Text, View, TouchableWithoutFeedback, ScrollView, Image} from 'react-native';
 import MapView, {PROVIDER_GOOGLE, Marker} from 'react-native-maps'
-const marker = require("../assets/marker.png")
-let images = []
+let images = [];
+
+let markers = [];
 images[0] = require("../assets/locationPictures/0.jpg");
 images[1] = require("../assets/locationPictures/1.jpg");
 images[2] = require("../assets/locationPictures/2.jpg");
@@ -21,6 +22,25 @@ images[14] = require("../assets/locationPictures/14.jpg");
 images[15] = require("../assets/locationPictures/15.jpg");
 images[16] = require("../assets/locationPictures/16.jpg");
 images[17] = require("../assets/locationPictures/17.jpg");
+
+markers[0] = require("../assets/markers/0.png");
+markers[1] = require("../assets/markers/1.png");
+markers[2] = require("../assets/markers/2.png");
+markers[3] = require("../assets/markers/3.png");
+markers[4] = require("../assets/markers/4.png");
+markers[5] = require("../assets/markers/5.png");
+markers[6] = require("../assets/markers/6.png");
+markers[7] = require("../assets/markers/7.png");
+markers[8] = require("../assets/markers/8.png");
+markers[9] = require("../assets/markers/9.png");
+markers[10] = require("../assets/markers/10.png");
+markers[11] = require("../assets/markers/11.png");
+markers[12] = require("../assets/markers/12.png");
+markers[13] = require("../assets/markers/13.png");
+markers[14] = require("../assets/markers/14.png");
+markers[15] = require("../assets/markers/15.png");
+markers[16] = require("../assets/markers/16.png");
+markers[17] = require("../assets/markers/17.png");
 
 
 export default class ItineraryScreen extends React.Component {
@@ -52,6 +72,11 @@ export default class ItineraryScreen extends React.Component {
                 <Text style={styles.itemDetails}>{s.name}</Text>
             </View>
         ))
+        const markerItems = suggestions.map(s => (
+            <Marker coordinate={s.coordinates} >
+                <Image source={markers[s.id]} style={{width: 100, height: 100}}/>
+            </Marker>
+        ))
         return (
             <View style={styles.container}>
                 <View style={styles.tabContainer}>
@@ -79,9 +104,7 @@ export default class ItineraryScreen extends React.Component {
                 longitudeDelta: 0.05
                 }}
                 >
-                    <Marker coordinate={{latitude: 48.857, longitude: 2.336}} >
-                        <Image source={marker} style={{width: 100, height: 100}}/>
-                    </Marker>
+                    {markerItems}
                 </MapView>}
             </View>
         );

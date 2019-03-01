@@ -76,7 +76,7 @@
           ],
           "Price": 1,
           "Location": "Downtown",
-          "gem": false, 
+          "gem": false,
           "link": null,
           "latitude": "41.8826 N",
           "longitude": "87.6226 W"
@@ -92,7 +92,7 @@
           ],
           "Price": 2,
           "Location": "Downtown",
-          "gem": false, 
+          "gem": false,
           "link": null,
           "latitude": "41.8789 N",
           "longitude": "87.6359 W"
@@ -110,7 +110,7 @@
           ],
           "Price": 2,
           "Location": "Downtown",
-          "gem": false, 
+          "gem": false,
           "link": null,
           "latitude": "41.8832 N",
           "longitude": "87.6219 W"
@@ -124,7 +124,7 @@
           ],
           "Price": 4,
           "Location": "Downtown",
-          "gem": false, 
+          "gem": false,
           "link": null,
           "latitude": "41.8905 N",
           "longitude": "87.6162 W"
@@ -143,7 +143,7 @@
           ],
           "Price": 2,
           "Location": "Downtown",
-          "gem": false, 
+          "gem": false,
           "link": null,
           "latitude": "41.8925 N",
           "longitude": "87.6162 W"
@@ -158,7 +158,7 @@
           ],
           "Price": 5,
           "Location": "Old Town",
-          "gem": false, 
+          "gem": false,
           "link": null,
           "latitude": "41.9183 N",
           "longitude": "87.6439 W"
@@ -172,7 +172,7 @@
           ],
           "Price": 3,
           "Location": "West Loop",
-          "gem": false, 
+          "gem": false,
           "link": null,
           "latitude": "41.8764 N",
           "longitude": "87.6507 W"
@@ -186,7 +186,7 @@
           ],
           "Price": 5,
           "Location": "Downtown",
-          "gem": false, 
+          "gem": false,
           "link": null,
           "latitude": "41.9014 N",
           "longitude": "87.6279 W"
@@ -209,8 +209,10 @@
           "gem": true,
           "link": "https://thebigbus.com.au/paris-self-guided-walking-tour-of-belleville/",
           "website": "The Big Bus",
-          "latitude": "48.8721 N",
-          "longitude": "2.3770 E"
+          "coordinates": {
+            "latitude": 48.8721,
+            "longitude": 2.3770
+          }
         },
         {
           "name": "Paris Catacombs",
@@ -226,8 +228,10 @@
           "gem": true,
           "link": "https://www.discoverwalks.com/blog/how-to-visit-the-paris-catacombs/",
           "website": "Discover Walks",
-          "latitude": "48.8340 N",
-          "longitude": "2.3324 E"
+          "coordinates": {
+            "latitude": 48.8340,
+            "longitude": 2.3324
+          }
         },
         {
           "name": "Rue Cremieux",
@@ -241,8 +245,10 @@
           "gem": true,
           "link": "https://lorilovesparis.com/hidden-places-see-paris-rue-cremieux/",
           "website": "Lori Loves Paris",
-          "latitude": "48.8468 N",
-          "longitude": "2.3706 E"
+          "coordinates": {
+            "latitude": 48.8468,
+            "longitude": 2.3706
+          }
         },
         {
           "name": "Musee des Egouts de Paris",
@@ -258,8 +264,10 @@
           "gem": true,
           "link": "https://www.introducingparis.com/sewers-museum",
           "website": "Introducing Paris",
-          "latitude": "48.8627 N",
-          "longitude": "2.3110 E"
+          "coordinates": {
+            "latitude": 48.8627,
+            "longitude": 2.3110
+          }
         },
         {
           "name": "Le Marais",
@@ -274,8 +282,10 @@
           "gem": true,
           "link": "https://www.solosophie.com/a-guide-to-le-marais/",
           "website": "Solo Sophie",
-          "latitude": "48.8587 N",
-          "longitude": "2.3588 E"
+          "coordinates": {
+            "latitude": 48.8587,
+            "longitude": 2.3588
+          }
         },
         {
           "name": "Atelier des Lumieres",
@@ -292,8 +302,10 @@
           "gem": true,
           "link": "https://www.sortiraparis.com/arts-culture/exposure/articles/156707-the-atelier-des-lumieres-paris-first-digital-art-center/lang/en",
           "website": "Sortira Paris",
-          "latitude": "48.8616 N",
-          "longitude": "2.3808 E"
+          "coordinates": {
+            "latitude": 48.8616,
+            "longitude": 2.3808
+          }
         },
         {
           "name": "Gorges d'Apremont Hike",
@@ -307,8 +319,10 @@
           "gem": true,
           "link": "http://mamalovesparis.com/discover-outside-paris/",
           "website": "Mama Loves Paris",
-          "latitude": "48.4298 N",
-          "longitude": " 2.6376 E"
+          "coordinates": {
+            "latitude": 48.4298,
+            "longitude": 2.6376
+          }
         },
         {
           "name": "Parc Villette",
@@ -323,8 +337,10 @@
           "gem": true,
           "link": "http://worldtoptop.com/parc-de-la-villette/",
           "website": "World Top Top",
-          "latitude": "48.8938 N",
-          "longitude": "2.3903 E"
+          "coordinates": {
+            "latitude": 48.8938,
+            "longitude": 2.3903
+          }
         },
         {
           "name": "La Centquatre",
@@ -339,8 +355,10 @@
           "gem": true,
           "link": "http://mamalovesparis.com/le-centquatre-paris/",
           "website": "Mama Loves Paris",
-          "latitude": "48.8905 N",
-          "longitude": "2.3686 E"
+          "coordinates": {
+            "latitude": 48.8905,
+            "longitude": 2.3686
+          }
         },
         {
           "name": "Museum National d'Histoire Naturelle",
@@ -356,8 +374,10 @@
           "gem": true,
           "link": "https://www.lonelyplanet.com/france/paris/attractions/museum-national-d-histoire-naturelle/a/poi-sig/372459/359279",
           "website": "Lonely Planet",
-          "latitude": "48.8431 N",
-          "longitude": "2.3636 E"
+          "coordinates": {
+            "latitude": 48.8431,
+            "longitude": 2.3636
+          }
         },
         {
           "name": "The Louvre",
@@ -371,10 +391,12 @@
           "Price": 4,
           "Location": "1st Arrondissement",
           "id": 10,
-          "gem": false, 
+          "gem": false,
           "link": null,
-          "latitude": "48.8611 N",
-          "longitude": "2.3380 E"
+          "coordinates": {
+            "latitude": 48.8611,
+            "longitude": 2.3380
+          }
         },
         {
           "name": "Musee D'Orsay",
@@ -388,10 +410,12 @@
           "Price": 3,
           "Location": "1st Arrondissement",
           "id": 11,
-          "gem": false, 
+          "gem": false,
           "link": null,
-          "latitude": "48.8606 N",
-          "longitude": "2.3261 E"
+          "coordinates": {
+            "latitude": 48.8606,
+            "longitude": 2.3261
+          }
         },
         {
           "name": "Cathedral Notre-dame De Paris",
@@ -404,10 +428,12 @@
           "Price": 1,
           "Location": "Notre Dame",
           "id": 12,
-          "gem": false, 
+          "gem": false,
           "link": null,
-          "latitude": "48.8529 N",
-          "longitude": "2.3501 E"
+          "coordinates": {
+            "latitude": 48.8529,
+            "longitude": 2.3501
+          }
         },
         {
           "name": "Musée de l'Armée",
@@ -420,10 +446,12 @@
           "Price": 2,
           "Location": "7th Arrondissement",
           "id": 13,
-          "gem": false, 
+          "gem": false,
           "link": null,
-          "latitude": "48.8570 N",
-          "longitude": "2.3119 E"
+          "coordinates": {
+            "latitude": 48.8570,
+            "longitude": 2.3119
+          }
         },
         {
           "name": "Eiffel Tower",
@@ -434,61 +462,69 @@
           "Price": 2,
           "Location": "Eiffel Tower",
           "id": 14,
-          "gem": false, 
+          "gem": false,
           "link": null,
-          "latitude": "48.8583 N",
-          "longitude": "2.2945 E"
+          "coordinates": {
+            "latitude": 48.8583,
+            "longitude": 2.2945
+          }
         }
       ],
-"Restaurants": [
-  {
-    "name": "Le Camion Qui Fume",
-    "Categories": [
-      "Food",
-      "Burger"
-    ],
-    "Price": 1,
-    "Location": "N/A",
-    "id": 15,
-    "gem": true,
-    "link": "https://www.davidlebovitz.com/le-camion-qui-fume-paris-hamburger-food-truck/",
-    "latitude": "48.8630 N",
-    "longitude": "2.3149 E"
-  },
-  {
-    "name": "Au Vieux Paris Darcole",
-    "Categories": [
-      "Food",
-      "Expensive",
-      "Romantic",
-      "Cafe",
-      "museums"
-    ],
-    "Price": 3,
-    "Location": "N/A",
-    "id": 16,
-    "gem": true,
-    "link": "https://www.solosophie.com/best-cafe-in-paris-au-vieux-paris-darcole/",
-    "website": "Solo Sophie",
-    "latitude": "48.8542 N",
-    "longitude": "2.3503 E"
-  },
-  {
-    "name": "La Maison du Chocolat",
-    "Categories": [
-      "Food",
-      "Chocolatier",
-      "Indoors"
-    ],
-    "Price": 3,
-    "Location": "6th Arrondissement",
-    "id": 17,
-    "gem": false, 
-    "link": null,
-    "longitude": "48.8950 N",
-    "latitude": "2.1858 E"
-  }
-]
-}
-]
+      "Restaurants": [
+        {
+          "name": "Le Camion Qui Fume",
+          "Categories": [
+            "Food",
+            "Burger"
+          ],
+          "Price": 1,
+          "Location": "N/A",
+          "id": 15,
+          "gem": true,
+          "link": "https://www.davidlebovitz.com/le-camion-qui-fume-paris-hamburger-food-truck/",
+          "coordinates": {
+            "latitude": 48.8630,
+            "longitude": 2.3149
+          }
+        },
+        {
+          "name": "Au Vieux Paris Darcole",
+          "Categories": [
+            "Food",
+            "Expensive",
+            "Romantic",
+            "Cafe",
+            "museums"
+          ],
+          "Price": 3,
+          "Location": "N/A",
+          "id": 16,
+          "gem": true,
+          "link": "https://www.solosophie.com/best-cafe-in-paris-au-vieux-paris-darcole/",
+          "website": "Solo Sophie",
+          "coordinates": {
+            "latitude": 48.8542,
+            "longitude": 2.3503
+          }
+        },
+        {
+          "name": "La Maison du Chocolat",
+          "Categories": [
+            "Food",
+            "Chocolatier",
+            "Indoors"
+          ],
+          "Price": 3,
+          "Location": "6th Arrondissement",
+          "id": 17,
+          "gem": false,
+          "link": null,
+          "coordinates": {
+            "longitude": 48.8950,
+            "latitude": 2.1858
+          }
+        }
+      ]
+    }
+  ]
 }
