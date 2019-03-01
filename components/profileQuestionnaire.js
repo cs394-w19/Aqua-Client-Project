@@ -7,12 +7,10 @@ export default class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            questions: questions.questions,
-            index: 0,
-            finalIndex: 1
+            questions: questions.questions
         };
         this.handleOptionClick = this.handleOptionClick.bind(this);
-        this.handleNextClick = this.handleNextClick.bind(this);
+        this.handleSubmitClick = this.handleSubmitClick.bind(this);
     }
 
     handleOptionClick = (o, q) => {
@@ -23,7 +21,7 @@ export default class App extends React.Component {
 
     }
 
-    handleNextClick = () => {
+    handleSubmitClick = () => {
         const {navigate} = this.props.navigation;
         const {state} = this.props.navigation;
         const db = state.params.db;
@@ -45,27 +43,12 @@ export default class App extends React.Component {
                 }
             }
         }
-        const index = this.state.index;
-        if (index === this.state.finalIndex) {
-            console.log(FilteredCategories)
-            db.collection("users").doc(user).set({preferences: FilteredCategories}).then(res => {
-                console.log("Document successfully written!")
-            });
-            navigate("ProfileScreen")
-            this.setState({completed: true})
-        } else {
-            this.setState({index: (index + 1)})
-        }
-    }
-
-    handlePreviousClick = () => {
-        const {navigate} = this.props.navigation;
-        const index = this.state.index;
-        if (index === 0) {
-            navigate("Homepage")
-        } else {
-            this.setState({index: (index - 1)})
-        }
+        console.log(FilteredCategories)
+        db.collection("users").doc(user).set({preferences: FilteredCategories}).then(res => {
+            console.log("Document successfully written!")
+        });
+        navigate("ProfileScreen")
+        this.setState({completed: true})
     }
 
     render() {
@@ -108,8 +91,8 @@ export default class App extends React.Component {
                         {questionItems}
                     </View>
                 </ScrollView>
-                <TouchableWithoutFeedback title="Next Button" onPress={this.handleNextClick}>
-                    <View style={styles.nextButton}><Text style={styles.submitText}>Next</Text></View>
+                <TouchableWithoutFeedback title="Submit Button" onPress={this.handleSubmitClick}>
+                    <View style={styles.submitButton}><Text style={styles.submitText}>Submit</Text></View>
                 </TouchableWithoutFeedback>
             </View>
         );
@@ -175,14 +158,13 @@ const styles = StyleSheet.create({
         fontSize: 15,
         color: "white"
     },
-    nextButton: {
+    submitButton: {
         width: 100,
         height: 40,
         borderRadius: 20,
         backgroundColor: "lightgrey",
-        position: "absolute",
-        right: 30,
-        bottom: 50
+        bottom: 50,
+        marginHorizontal: "auto"
     },
     previousButton: {
         width: 100,
