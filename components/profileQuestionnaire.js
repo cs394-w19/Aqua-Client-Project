@@ -1,33 +1,18 @@
 import React from 'react';
 import {Button, StyleSheet, Text, View, TouchableWithoutFeedback, ScrollView} from 'react-native';
-import questions from '../questions.json';
+import questions from '../profileQuestions.json';
 
 
 export default class App extends React.Component {
-    static navigationOptions = {
-        title: 'Profile',
-        headerTitleStyle: {
-            marginRight: 56,
-            color: "#1EA28A",
-            textAlign: 'center',
-            flex: 1,
-            fontSize: 30
-        }
-    }
-
     constructor(props) {
         super(props);
         this.state = {
             questions: questions.questions,
             index: 0,
-            finalIndex: 10,
-            completed: false
+            finalIndex: 1
         };
         this.handleOptionClick = this.handleOptionClick.bind(this);
         this.handleNextClick = this.handleNextClick.bind(this);
-
-        // let options = state.questions.map(q => {q.options.map(o => o ={o: false})})
-
     }
 
     handleOptionClick = (o, q) => {
@@ -40,6 +25,11 @@ export default class App extends React.Component {
 
     handleNextClick = () => {
         const {navigate} = this.props.navigation;
+        const {state} = this.props.navigation;
+        const db = state.params.db;
+        const user = state.params.user;
+        console.log(db);
+
         const questions = this.state.questions
         const FilteredCategories = []
         for (var i = 0; i < questions.length; i++) {
@@ -57,7 +47,11 @@ export default class App extends React.Component {
         }
         const index = this.state.index;
         if (index === this.state.finalIndex) {
-            navigate("SuggestionScreen", {categories: FilteredCategories})
+            console.log(FilteredCategories)
+            db.collection("users").doc(user).set({preferences: FilteredCategories}).then(res => {
+                console.log("Document successfully written!")
+            });
+            navigate("ProfileScreen")
             this.setState({completed: true})
         } else {
             this.setState({index: (index + 1)})
@@ -107,34 +101,18 @@ export default class App extends React.Component {
                 </View>
             </View>
         });
-        if (!this.state.completed) {
-            return (
-                <View style={styles.container}>
-                    <View style={styles.questionContainer}>
-                        {questionItems[this.state.index]}
-                    </View>
-                    <TouchableWithoutFeedback title="Previous Button" onPress={this.handlePreviousClick}>
-                        <View style={styles.previousButton}><Text style={styles.submitText}>Previous</Text></View>
-                    </TouchableWithoutFeedback>
-                    <TouchableWithoutFeedback title="Next Button" onPress={this.handleNextClick}>
-                        <View style={styles.nextButton}><Text style={styles.submitText}>Next</Text></View>
-                    </TouchableWithoutFeedback>
-                </View>
-            );
-        } else {
-            return (
-                <View style={styles.container}>
+        return (
+            <View style={styles.container}>
                 <ScrollView>
                     <View style={styles.questionContainer}>
                         {questionItems}
                     </View>
                 </ScrollView>
-                    <TouchableWithoutFeedback title="Next Button" onPress={this.handleNextClick}>
-                        <View style={styles.nextButton}><Text style={styles.submitText}>Next</Text></View>
-                    </TouchableWithoutFeedback>
-                </View>
-            );
-        }
+                <TouchableWithoutFeedback title="Next Button" onPress={this.handleNextClick}>
+                    <View style={styles.nextButton}><Text style={styles.submitText}>Next</Text></View>
+                </TouchableWithoutFeedback>
+            </View>
+        );
     }
 }
 
@@ -159,7 +137,7 @@ const styles = StyleSheet.create({
         margin: 10,
         borderRadius: 10,
         borderWidth: 3,
-        borderColor: "#1EA28A",
+        borderColor: "#FF9A73",
         alignItems: 'center',
         justifyContent: 'center',
 
@@ -182,11 +160,11 @@ const styles = StyleSheet.create({
         color: "white",
         width: 100,
         height: 100,
-        backgroundColor: "#1EA28A",
+        backgroundColor: "#FF9A73",
         margin: 10,
         borderRadius: 10,
         borderWidth: 3,
-        borderColor: "#1EA28A",
+        borderColor: "#FF9A73",
         alignItems: 'center',
         justifyContent: 'center',
 

@@ -6,41 +6,34 @@ import {
     ScrollView,
     TouchableWithoutFeedback
 } from "react-native"
-import Questionnaire from "./questionnaire"
-import * as firebase from "firebase"
-
-const firebaseConfig = {
-    apiKey: "AIzaSyB11yCSN9x1kE7Th3yZk_YnSBiizCyaVqQ",
-    authDomain: "https://glocal-1234.firebaseapp.com",
-    databaseURL: "https://glocal-1234.firebaseio.com",
-    storageBucket: "gs://glocal-1234.appspot.com"
-}
-
-firebase.initializeApp(firebaseConfig)
+import firebase from "../firebase.js"
 
 export default class Homepage extends React.Component {
     constructor() {
         super()
+        this.db = firebase.firestore();
+        this.fb = firebase;
         this.state = {
-            user: null,
+            user: "newUser",
             db: null,
             loggedin: false
         }
     }
 
-    getUser(userId) {
+    getUser2(userId) {
         if (userId == "simeon") {
-            firebase
-                .database()
-                .ref("users/" + userId)
+            this.db
+                .collection("users")
+                .doc(userId)
                 .set({
                     mood: "kill me"
-                })
+                }).then(res => {
+                console.log("Document successfully written!")
+            })
         }
     }
-
     componentDidMount() {
-        this.getUser("simeon")
+        this.getUser2("simeon")
     }
 
     static navigationOptions = { header: null }
@@ -53,11 +46,21 @@ export default class Homepage extends React.Component {
                 <TouchableWithoutFeedback
                     title="PlanTrip"
                     onPress={() => {
-                        navigate("Questionnaire")
+                        navigate("TripQuestionnaire", {db: this.db, user: this.state.user})
                     }}
                 >
                     <View style={styles.button}>
                         <Text style={styles.buttonLabel}>Plan Your Trip!</Text>
+                    </View>
+                </TouchableWithoutFeedback>
+                <TouchableWithoutFeedback
+                    title="UpdateProfile"
+                    onPress={() => {
+                        navigate("ProfileScreen", {db: this.db, user: this.state.user})
+                    }}
+                >
+                    <View style={styles.button}>
+                        <Text style={styles.buttonLabel}>Profile</Text>
                     </View>
                 </TouchableWithoutFeedback>
             </View>
