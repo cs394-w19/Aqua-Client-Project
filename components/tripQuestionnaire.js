@@ -5,7 +5,7 @@ import questions from '../tripQuestions.json';
 
 export default class App extends React.Component {
     static navigationOptions = {
-        title: 'Profile',
+        title: 'Trip Options',
         headerTitleStyle: {
             marginRight: 56,
             color: "#1EA28A",

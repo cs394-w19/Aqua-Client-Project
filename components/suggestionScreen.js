@@ -5,7 +5,7 @@ import Suggestions from '../suggestions.json';
 
 export default class SuggestionScreen extends React.Component {
     static navigationOptions = {
-        title: 'Suggestions',
+        title: 'Recommendations',
         headerTitleStyle: {
             marginRight: 56,
             color: "#1EA28A",

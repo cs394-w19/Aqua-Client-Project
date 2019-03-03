@@ -199,9 +199,7 @@
         {
           "name": "Paris Underground Street Art Tour",
           "Categories": [
-            "street art",
-            "Tour",
-            "Outdoors"
+            "art"
           ],
           "Price": 2,
           "Location": "Belleville",
@@ -217,10 +215,8 @@
         {
           "name": "Paris Catacombs",
           "Categories": [
-            "City",
-            "History",
-            "Outdoors",
-            "museums"
+            "history",
+            "sci-fi"
           ],
           "Price": 2,
           "Location": "Ile-de-France",
@@ -236,8 +232,10 @@
         {
           "name": "Rue Cremieux",
           "Categories": [
-            "Scenic",
-            "Photospot"
+            "gardening",
+            "art",
+            "iconic sites",
+            "architecture"
           ],
           "Price": 0,
           "Location": "Ile-de-France",
@@ -253,9 +251,8 @@
         {
           "name": "Musee des Egouts de Paris",
           "Categories": [
-            "Museum",
-            "Art",
-            "Indoors",
+            "history",
+            "contemporary fiction",
             "museums"
           ],
           "Price": 1,
@@ -272,9 +269,9 @@
         {
           "name": "Le Marais",
           "Categories": [
-            "Shopping",
-            "Fashion",
-            "Indoors"
+            "photography",
+            "history",
+            "shopping"
           ],
           "Price": 1,
           "Location": "N/A",
@@ -290,11 +287,9 @@
         {
           "name": "Atelier des Lumieres",
           "Categories": [
-            "Art",
-            "Tour",
-            "Family Friendly",
-            "Indoors",
-            "museums"
+            "mysteries",
+            "art",
+            "moderate physical activity"
           ],
           "Price": 1,
           "Location": "N/A",
@@ -310,8 +305,8 @@
         {
           "name": "Gorges d'Apremont Hike",
           "Categories": [
-            "Hike",
-            "Outdoors"
+            "landscapes",
+            "high physical activity"
           ],
           "Price": 1,
           "Location": "N/A",
@@ -327,9 +322,8 @@
         {
           "name": "Parc Villette",
           "Categories": [
-            "Outdoors",
-            "Park",
-            "family"
+            "contemporary literature",
+            "rural escapes"
           ],
           "Price": 1,
           "Location": "N/A",
@@ -345,9 +339,9 @@
         {
           "name": "La Centquatre",
           "Categories": [
-            "Art",
-            "Entertainment",
-            "museums"
+            "art",
+            "moderate physical activity",
+            "history"
           ],
           "Price": 1,
           "Location": "N/A",
@@ -363,10 +357,9 @@
         {
           "name": "Museum National d'Histoire Naturelle",
           "Categories": [
-            "Indoors",
-            "Family Friendly",
-            "Educational",
-            "museums"
+            "history",
+            "museums",
+            "architecture"
           ],
           "Price": 1,
           "Location": "N/A",
@@ -382,11 +375,10 @@
         {
           "name": "The Louvre",
           "Categories": [
-            "museums",
-            "Modern Art",
-            "Architecture",
-            "Landmark",
-            "Indoors"
+            "poetry",
+            "art",
+            "history",
+            "museums"
           ],
           "Price": 4,
           "Location": "1st Arrondissement",
@@ -402,10 +394,8 @@
           "name": "Musee D'Orsay",
           "Categories": [
             "museums",
-            "Modern Art",
-            "Architecture",
-            "Landmark",
-            "Indoors"
+            "history",
+            "architecture"
           ],
           "Price": 3,
           "Location": "1st Arrondissement",
@@ -420,10 +410,9 @@
         {
           "name": "Cathedral Notre-dame De Paris",
           "Categories": [
-            "Cathedral",
-            "Religion",
-            "Architecture",
-            "Indoors"
+            "history",
+            "iconic sites",
+            "architecture"
           ],
           "Price": 1,
           "Location": "Notre Dame",
@@ -438,10 +427,9 @@
         {
           "name": "Musée de l'Armée",
           "Categories": [
-            "museums",
-            "History",
-            "Military",
-            "Indoors"
+            "biographies",
+            "history",
+            "architecture"
           ],
           "Price": 2,
           "Location": "7th Arrondissement",
@@ -456,8 +444,9 @@
         {
           "name": "Eiffel Tower",
           "Categories": [
-            "Landmark",
-            "Photospot"
+            "iconic sites",
+            "photography",
+            "history"
           ],
           "Price": 2,
           "Location": "Eiffel Tower",
@@ -474,8 +463,8 @@
         {
           "name": "Le Camion Qui Fume",
           "Categories": [
-            "Food",
-            "Burger"
+            "artisan food",
+            "grab-and-go"
           ],
           "Price": 1,
           "Location": "N/A",
@@ -490,11 +479,8 @@
         {
           "name": "Au Vieux Paris Darcole",
           "Categories": [
-            "Food",
-            "Expensive",
-            "Romantic",
-            "Cafe",
-            "museums"
+            "ambiance",
+            "local cuisine"
           ],
           "Price": 3,
           "Location": "N/A",
@@ -510,9 +496,8 @@
         {
           "name": "La Maison du Chocolat",
           "Categories": [
-            "Food",
-            "Chocolatier",
-            "Indoors"
+            "sweets",
+            "shopping"
           ],
           "Price": 3,
           "Location": "6th Arrondissement",

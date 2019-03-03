@@ -74,7 +74,7 @@ export default class ItineraryScreen extends React.Component {
         ))
         const markerItems = suggestions.map(s => (
             <Marker coordinate={s.coordinates} >
-                <Image source={markers[s.id]} style={{width: 100, height: 100}}/>
+                <Image source={markers[s.id]} style={{width: 138, height: 100}}/>
             </Marker>
         ))
         return (

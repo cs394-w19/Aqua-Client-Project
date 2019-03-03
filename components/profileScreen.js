@@ -2,6 +2,16 @@ import React from 'react';
 import {StyleSheet, Text, View, ScrollView, Image, TouchableWithoutFeedback} from 'react-native';
 
 export default class SuggestionScreen extends React.Component {
+    static navigationOptions = {
+        title: 'Profile',
+        headerTitleStyle: {
+            marginRight: 56,
+            color: "#1EA28A",
+            textAlign: 'center',
+            flex: 1,
+            fontSize: 30
+        }
+    }
     constructor(props) {
         super(props);
         this.state = {
