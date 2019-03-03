@@ -8,10 +8,13 @@ import {
     View,
     Button
 } from "react-native"
+import firebase from "../firebase.js"
 
 class Login extends Component {
-    constructor(props) {
-        super(props)
+    constructor() {
+        super()
+        this.db = firebase.firestore();
+        this.fb = firebase;
         this.state = {
             signUpEmail: "",
             logInEmail: "",
@@ -19,24 +22,27 @@ class Login extends Component {
             logInPassword: "",
             userName: "",
             logInError: null,
-            signUpError: null
+            signUpError: null,
+            user: null,
+            db: null,
+            loggedin: false
         }
     }
 
     handleLogin = event => {
-        console.log("states are " + this.state.logInEmail)
         event.preventDefault()
         const { logInEmail, logInPassword } = this.state
-        this.props.firebase
+        this.fb
             .auth()
             .signInWithEmailAndPassword(logInEmail, logInPassword)
             .then(user => {
-                this.props.history.push("/")
-                this.props.userCredentials(logInEmail)
+                const { navigate } = this.props.navigation
+                navigate("Homepage", { db: this.db, user: user.user.email })
             })
             .catch(error => {
                 this.setState({ logInError: error })
             })
+
     }
 
     handleSignUp = event => {
@@ -46,16 +52,17 @@ class Login extends Component {
             signUpPassword,
             userName,
         } = this.state
-        this.props.firebase
+        this.fb
             .auth()
             .createUserWithEmailAndPassword(signUpEmail, signUpPassword)
             .then(user => {
-                this.props.firebase
+                this.fb
                     .auth()
                     .signInWithEmailAndPassword(signUpEmail, signUpPassword)
                     .then(user => {
-                        this.props.history.push("/")
-                        this.props.userCredentials(signUpEmail)
+                        console.log(user.identifier)
+                        const { navigate } = this.props.navigation
+                        navigate("Homepage", { db: this.db, user: user.user.email })
                     })
                     .catch(error => {
                         this.setState({ error: error })
@@ -64,8 +71,6 @@ class Login extends Component {
             .catch(error => {
                 this.setState({ signUpError: error })
             })
-        let user = { userName: userName }
-        this.props.createNewUser(user, signUpEmail.split("@")[0])
     }
 
     render() {
