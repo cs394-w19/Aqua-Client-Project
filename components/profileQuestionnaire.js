@@ -26,7 +26,7 @@ export default class App extends React.Component {
         const {state} = this.props.navigation;
         const db = state.params.db;
         const user = state.params.user;
-        console.log(db);
+        console.log(user);
 
         const questions = this.state.questions
         const FilteredCategories = []
