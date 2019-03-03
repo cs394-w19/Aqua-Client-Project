@@ -2,6 +2,11 @@ import React from 'react';
 import {StyleSheet, Text, View, TouchableWithoutFeedback, ScrollView, Image, TouchableHighlight} from 'react-native';
 import SortableListView from 'react-native-sortable-listview';
 import MapView, {PROVIDER_GOOGLE, Marker} from 'react-native-maps'
+import MapViewDirections from 'react-native-maps-directions';
+
+
+// Insert the API KEY and remove it before you push
+const GOOGLE_MAPS_APIKEY = '...';
 
 let images = [];
 let markers = [];
@@ -74,22 +79,26 @@ export default class ItineraryScreen extends React.Component {
         )
         this.setState({order: Object.keys(this.data)})
     }
-
+// <Image source={images[suggestion.id]} style={{width: 80, height: 80}}/>
     render() {
         const {state} = this.props.navigation;
         const suggestions = state.params.suggestions;
-        const suggestionItems = suggestions.map(s => (
-            <View style={styles.itineraryItem}>
-                <Image source={images[s.id]} style={{width: 80, height: 80}}/>
-                <Text style={styles.itemDetails}>{s.name}</Text>
-            </View>
-        ))
-        const markerItems = suggestions.map(s => (
-            <Marker coordinate={s.coordinates}>
-                <Image source={markers[s.id]} style={{width: 100, height: 100}}/>
-            </Marker>
-        ))
         let order = this.state.order
+        const markerItems = order.map((o, index) => {
+            const suggestion = suggestions.find(s => s.name === o)
+            return(
+            <Marker coordinate={suggestion.coordinates}>
+                <Image source={markers[suggestion.id]} style={{width: 100, height: 100}}/>
+                <View style={styles.mapItemIndex}>
+                    <Text>
+                        {index+1}
+                    </Text>
+                </View>
+            </Marker>)}
+        )
+        const coordinates = order.map(o => (
+            suggestions.find(s => s.name === o).coordinates
+        ))
         return (
             <View style={styles.container}>
                 <View style={styles.tabContainer}>
@@ -104,6 +113,7 @@ export default class ItineraryScreen extends React.Component {
                         </View>
                     </TouchableWithoutFeedback>
                 </View>
+                <Text style={styles.infoText}>Drag to Plan Trip</Text>
                 {this.state.listView &&
                 <SortableListView
                     style={styles.itinerary}
@@ -113,9 +123,10 @@ export default class ItineraryScreen extends React.Component {
                         order.splice(e.to, 0, order.splice(e.from, 1)[0])
                         this.setState({order: order})
                     }}
-                    renderRow={row => <RowComponent data={row}/>}
+                    renderRow={row => <RowComponent data={row} order={order}/>}
                 />}
-                {!this.state.listView && <MapView
+                {!this.state.listView && 
+                    <MapView
                     style={styles.itinerary}
                     provider={PROVIDER_GOOGLE}
                     region={{
@@ -126,6 +137,16 @@ export default class ItineraryScreen extends React.Component {
                     }}
                 >
                     {markerItems}
+                    <MapViewDirections
+                    origin={coordinates[0]}
+                    waypoints={ (coordinates.length > 2) ? coordinates.slice(1, -1): null}
+                    destination={coordinates[coordinates.length-1]}
+                    apikey={GOOGLE_MAPS_APIKEY}
+                    strokeWidth={3}
+                    strokeColor="hotpink"
+                    optimizeWaypoints={true}/>
+
+
                 </MapView>}
             </View>
         );
@@ -134,6 +155,8 @@ export default class ItineraryScreen extends React.Component {
 
 class RowComponent extends React.Component {
     render() {
+        const index = this.props.order.findIndex(o => o === this.props.data.name)
+        console.log("index +" + index)
         return (
             <TouchableHighlight
                 underlayColor={'#eee'}
@@ -142,7 +165,7 @@ class RowComponent extends React.Component {
                 <View
                     style={styles.itineraryItem}>
                     <Image source={images[this.props.data.id]} style={{width: 80, height: 80}}/>
-                    <Text style={styles.itemDetails}>{this.props.data.name}</Text>
+                    <Text style={styles.itemDetails}>{index+1 + ". "}{this.props.data.name}</Text>
                 </View>
             </TouchableHighlight>
         )
@@ -202,5 +225,22 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: '#1EA28A',
+    },
+    mapItemIndex: {
+        width: 20,
+        backgroundColor: '#1EA28A',
+        color: "black",
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 2,
+        borderWidth: 2,
+        borderColor: "black",
+
+    },
+    infoText: {
+        fontSize: 20,
+        height: 25,
+        margin: 15,
+        justifyContent: 'center',
     }
 });
