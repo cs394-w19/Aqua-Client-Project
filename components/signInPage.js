@@ -62,7 +62,7 @@ class Login extends Component {
                     .then(user => {
                         console.log(user.identifier)
                         const { navigate } = this.props.navigation
-                        navigate("Homepage", { db: this.db, user: user.user.email })
+                        navigate("IntroQuestionnare", { db: this.db, user: user.user.email })
                     })
                     .catch(error => {
                         this.setState({ error: error })

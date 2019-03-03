@@ -1,91 +1,121 @@
 {
-	"questions": [
+    "questions": [
+        {
+            "text": "What are your favorite types of food?",
+            "options": [
+                {
+                    "name": "Italian",
+                    "status": false,
+                    "Categories": ["Italian"]
+                },
+                {
+                    "name": "Chinese",
+                    "status": false,
+                    "Categories": ["Chinese"]
+                },
+                { "name": "Thai", "status": false, "Categories": ["Thai"] },
+                {
+                    "name": "Korean BBQ",
+                    "status": false,
+                    "Categories": ["Korean BBQ"]
+                },
+                { "name": "Fusion", "status": false, "Categories": ["Fusion"] }
+            ]
+        },
+        {
+            "text": "How adventurous are you?",
+            "options": [
+                { "name": "Couch Potato", "status": false, "Categories": [] },
+                { "name": "Casual Tourist", "status": false, "Categories": [] },
+                { "name": "Thrill Seeker", "status": false, "Categories": [] }
+            ]
+        },
 
-		{
-			"text": "What are your favorite types of food?",
-			"options": [
-				{"name": "Italian", "status":false,"Categories": ["Italian"]},
-				{"name":"Chinese", "status": false,"Categories": ["Chinese"]},
-				{"name": "Thai", "status": false,"Categories": ["Thai"]},
-				{"name":"Korean BBQ", "status":false,"Categories": ["Korean BBQ"]},
-				{"name":"Fusion", "status":false,"Categories": ["Fusion"]}
-
+        {
+            "text": "Do you have any food needs or restrictions?",
+            "options": [
+                { "name": "No", "status": false, "Categories": [] },
+                {
+                    "name": "Allergies",
+                    "status": false,
+                    "Categories": ["Allergy Sensitive"]
+                },
+                {
+                    "name": "Vegetarian",
+                    "status": false,
+                    "Categories": ["Vegetarian"]
+                },
+                { "name": "Vegan", "status": false, "Categories": ["Vegan"] }
+            ]
+        },
+        {
+            "text": "Method of Travel",
+            "options": [
+                { "name": "Car", "status": false, "Categories": [] },
+                {
+                    "name": "Public Transport",
+                    "status": false,
+                    "Categories": []
+                },
+                { "name": "Ride share", "status": false, "Categories": [] },
+                { "name": "Walk", "status": false, "Categories": [] },
+                { "name": "Bike", "status": false, "Categories": [] }
+            ]
+        },
+        {
+            "text": "What kinds of activities do you like?",
+            "options": [
+                { "name": "Social", "status": false, "Categories": [] },
+                { "name": "Music", "status": false, "Categories": [] },
+                { "name": "Sports", "status": false, "Categories": [] },
+                {
+                    "name": "Art",
+                    "status": false,
+                    "Categories": ["street art", "art"]
+                },
+                { "name": "Books", "status": false, "Categories": [] }
+            ]
+        },
+        {
+            "text": "Do you prefer to be indoors or outdoors?",
+            "options": [
+                {
+                    "name": "Indoors",
+                    "status": false,
+                    "Categories": ["Indoors"]
+                },
+                { "name": "Outdoors", "status": false, "Categories": [] }
+            ]
+        },
+        {
+            "text": "What places would you like to go to?",
+            "options": [
+                {
+                    "name": "Theme Parks",
+                    "status": false,
+                    "Categories": []
+                },
+                {
+                    "name": "Museums",
+                    "status": false,
+                    "Categories": ["museums"]
+                },
+                {
+                    "name": "Beaches",
+                    "status": false,
+                    "Categories": []
+                },
+                {
+                    "name": "Historical Landmarks",
+                    "status": false,
+                    "Categories": []
+                },
+                {
+                    "name": "Clubbing",
+                    "status": false,
+                    "Categories": []
+                }
 			]
-		},
-		{
-			"text": "How adventurous are you?",
-			"options": [
-				{"name":"Couch Potato", "status":false,"Categories": []},
-				{"name":"Casual Tourist", "status":false,"Categories": []},
-				{"name":"Thrill Seeker", "status":false,"Categories": []}
-			]
-		},
-
-		{
-			"text": "Do you have any food needs or restrictions?",
-			"options": [
-				{"name":"No", "status":false, "Categories": []},
-				{"name":"Allergies", "status":false,"Categories": ["Allergy Sensitive"]},
-				{"name":"Vegetarian", "status":false,"Categories": ["Vegetarian"]},
-				{"name":"Vegan", "status":false,"Categories": ["Vegan"]}
-			]
-		},
-		{
-			"text": "Method of Travel",
-			"options": [
-				{"name":"Car", "status":false,"Categories": []},
-				{"name":"Public Transport", "status":false,"Categories": []},
-				{"name":"Ride share", "status":false,"Categories": []},
-				{"name":"Walk", "status":false,"Categories": []},
-				{"name":"Bike", "status":false,"Categories": []}
-			]
-		},
-		{
-			"text": "What kinds of activities do you like?",
-			"options": [
-				{"name":"Social", "status":false,"Categories": []},
-				{"name":"Music", "status":false,"Categories": []},
-				{"name":"Sports", "status":false,"Categories": []},
-				{"name":"Art", "status":false,"Categories": ["street art", "art"]},
-				{"name":"Books", "status":false,"Categories": []}
-			]
-		},
-		{
-			"text": "Do you prefer to be indoors or outdoors?",
-			"options": [
-				{"name":"Indoors", "status":false,"Categories": ["Indoors"]},
-				{"name":"Outdoors", "status":false,"Categories": []}
-			]
-		},
-		{
-			"text": "What places would you like to go to?",
-			"options": [
-				{
-					"name": "Theme Parks",
-					"status": false,
-					"Categories": []
-				},
-				{
-					"name": "Museums",
-					"status": false,
-					"Categories": ["museums"]
-				},
-				{
-					"name": "Beaches",
-					"status": false,
-					"Categories": []
-				},
-				{
-					"name": "Historical Landmarks",
-					"status": false,
-					"Categories": []
-				},
-				{
-					"name": "Clubbing",
-					"status": false,
-					"Categories": []
-				}
-			]
-		}
-	]
+        }
+    ]
 }
