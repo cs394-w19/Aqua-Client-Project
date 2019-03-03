@@ -6,6 +6,8 @@ import Homepage from './components/homepage';
 import ItineraryScreen from './components/itineraryScreen';
 import ProfileScreen from './components/profileScreen';
 import Login from './components/signInPage';
+import IntroQuestionnare from './components/introQuestionnare.js';
+import Welcome from './components/welcome'
 
 
 import {createStackNavigator, createAppContainer} from 'react-navigation';
@@ -19,6 +21,8 @@ const MainNavigator = createStackNavigator({
     TripQuestionnaire: {screen: TripQuestionnaire},
     SuggestionScreen: {screen: SuggestionScreen},
     ItineraryScreen: {screen: ItineraryScreen},
+    IntroQuestionnare: { screen: IntroQuestionnare},
+    Welcome: {screen: Welcome }
 });
 
 const App = createAppContainer(MainNavigator);
