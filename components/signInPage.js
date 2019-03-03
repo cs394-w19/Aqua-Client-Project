@@ -4,6 +4,7 @@ import {
     Text,
     TextInput,
     TouchableWithoutFeedback,
+    TouchableOpacity,
     ScrollView,
     View,
     Button
@@ -28,6 +29,14 @@ class Login extends Component {
             loggedin: false
         }
     }
+    handleGuest = event => {
+        this.db.collection("users").doc("guest@gmail.com").delete();
+        event.preventDefault()
+        const {guestUserName, guestPassWord} = this.state;
+        const { navigate } = this.props.navigation
+        navigate("Homepage", { db: this.db, user: "guest@gmail.com"})
+
+    }
 
     handleLogin = event => {
         event.preventDefault()
@@ -42,15 +51,13 @@ class Login extends Component {
             .catch(error => {
                 this.setState({ logInError: error })
             })
-
     }
 
     handleSignUp = event => {
         event.preventDefault()
         const {
             signUpEmail,
-            signUpPassword,
-            userName,
+            signUpPassword
         } = this.state
         this.fb
             .auth()
@@ -79,17 +86,12 @@ class Login extends Component {
             logInEmail,
             signUpPassword,
             logInPassword,
-            userName,
             signUpError,
             logInError
         } = this.state
         return (
+            <View style={styles.container}>
             <View>
-                <View>
-                    <View style={styles.titleStyling}>
-                        <Text>Log In</Text>
-                    </View>
-                </View>
                 {logInError ? (
                     <View>
                         <View>
@@ -115,14 +117,11 @@ class Login extends Component {
                                 value={logInPassword}
                                 onChangeText={(text) => { this.setState({ logInPassword: text }) }}
                             />
-                            <Button
-                                style={styles.ButtonStyling}
-                                children="Log In"
-                                title="Log In"
-                                onPress={this.handleLogin}
-                            >
-                                Log In
-                            </Button>
+                            <TouchableWithoutFeedback onPress={this.handleLogin} style={styles.button}>
+                                <View style={styles.button}>
+                                    <Text style={styles.buttonLabel}>Login</Text>
+                                </View>
+                            </TouchableWithoutFeedback>
                         </View>
                     </View>
                 </View>
@@ -136,77 +135,75 @@ class Login extends Component {
                 ) : null}
                 <View>
                     <View style={styles.signInForm}>
-                        <View onSubmit={this.handleSignUp}>
+                        <View style={styles.ViewItem} onSubmit={this.handleSignUp}>
                             <TextInput
-                                style={styles.ViewItem}
                                 name="signUpEmail"
                                 placeholder="Email"
                                 value={signUpEmail}
                                 onChangeText={(text) => { this.setState({ signUpEmail: text }) }}
                             />
                             <TextInput
-                                style={styles.ViewItem}
                                 secureTextEntry={true}
                                 name="signUpPassword"
                                 placeholder="Password"
                                 value={signUpPassword}
                                 onChangeText={(text) => { this.setState({ signUpPassword: text }) }}
                             />
-                            <TextInput
-                                style={styles.ViewItem}
-                                name="userName"
-                                placeholder="User Name"
-                                value={userName}
-                                onChangeText={(text) => { this.setState({ userName: text }) }}
-                            />
-                            <Button
-                                style={styles.ButtonStyling}
-                                children="Sign Up"
-                                title="Sign Up"
-                                onPress={this.handleSignUp}
-                            >
-                                Sign Up
-                            </Button>
+                            <TouchableWithoutFeedback onPress={this.handleSignUp} style={styles.button}>
+                                <View style={styles.button}>
+                                    <Text style={styles.buttonLabel}>Sign Up</Text>
+                                </View>
+                            </TouchableWithoutFeedback>
+                        <View style={styles.buttonStyling}>
+                            <TouchableWithoutFeedback onPress={this.handleGuest} style={styles.button}>
+                                <View style={styles.button}>
+                                    <Text style={styles.buttonLabel}>Sign In As Guest</Text>
+                                </View>
+                            </TouchableWithoutFeedback>
+                        </View>
                         </View>
                     </View>
                 </View>
+            </View>
             </View>
         )
     }
 }
 
 const styles = StyleSheet.create({
-    titleStyling: {
-        textAlign: "center"
+    container: {
+        flex: 1,
+        backgroundColor: "white",
+        alignItems: "center"
     },
     logInForm: {
         display: "flex",
         backgroundColor: "#fff",
         borderRadius: 10,
-        padding: 20,
-        width: 350,
+        padding: 30,
+        width: 310,
         margin: "auto"
     },
     signInForm: {
         display: "flex",
         backgroundColor: "#fff",
         borderRadius: 10,
-        padding: 20,
-        width: 350,
-        margin: "auto"
+        padding: 30,
+        width: 310
     },
-    ViewItem: {
-        width: 320
+    buttonLabel: {
+        fontSize: 30,
+        color: "#FFF"
     },
-    ButtonStyling: {
-        backgroundColor: "#4CAF50",
-        borderWidth: 0,
-        color: "white",
-        padding: 13,
-        textAlign: "center",
-        display: "flex",
-        fontSize: 16,
-        marginTop: 5
+    button: {
+        height: 50,
+        backgroundColor: "#1EA28A",
+        alignItems: "center",
+        borderRadius: 10,
+        justifyContent: "center"
+    },
+    buttonStyling: {
+        marginTop: 20
     }
 })
 export default Login
