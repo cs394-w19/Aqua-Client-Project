@@ -1,8 +1,9 @@
 import React from 'react';
-import {StyleSheet, Text, View, TouchableWithoutFeedback, ScrollView, Image} from 'react-native';
+import {StyleSheet, Text, View, TouchableWithoutFeedback, ScrollView, Image, TouchableHighlight} from 'react-native';
+import SortableListView from 'react-native-sortable-listview';
 import MapView, {PROVIDER_GOOGLE, Marker} from 'react-native-maps'
-let images = [];
 
+let images = [];
 let markers = [];
 images[0] = require("../assets/locationPictures/0.jpg");
 images[1] = require("../assets/locationPictures/1.jpg");
@@ -59,8 +60,19 @@ export default class ItineraryScreen extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            listView: true
+            listView: true,
+            order: [],
         }
+    }
+
+    componentWillMount() {
+        const {state} = this.props.navigation;
+        const suggestions = state.params.suggestions;
+        this.data = {};
+        suggestions.forEach(s =>
+            this.data[s.name] = s
+        )
+        this.setState({order: Object.keys(this.data)})
     }
 
     render() {
@@ -73,41 +85,67 @@ export default class ItineraryScreen extends React.Component {
             </View>
         ))
         const markerItems = suggestions.map(s => (
-            <Marker coordinate={s.coordinates} >
+            <Marker coordinate={s.coordinates}>
                 <Image source={markers[s.id]} style={{width: 100, height: 100}}/>
             </Marker>
         ))
+        let order = this.state.order
         return (
             <View style={styles.container}>
                 <View style={styles.tabContainer}>
-                    <TouchableWithoutFeedback onPress={()=>this.setState({listView: true})}>
+                    <TouchableWithoutFeedback onPress={() => this.setState({listView: true})}>
                         <View style={this.state.listView ? styles.tabActive : styles.tab}>
                             <Text>List</Text>
                         </View>
                     </TouchableWithoutFeedback>
-                    <TouchableWithoutFeedback onPress={()=>this.setState({listView: false})}>
+                    <TouchableWithoutFeedback onPress={() => this.setState({listView: false})}>
                         <View style={!this.state.listView ? styles.tabActive : styles.tab}>
                             <Text>Map</Text>
                         </View>
                     </TouchableWithoutFeedback>
                 </View>
-                {this.state.listView && <ScrollView style={styles.itinerary}>
-                    {suggestionItems}
-                </ScrollView>}
+                {this.state.listView &&
+                <SortableListView
+                    style={styles.itinerary}
+                    data={this.data}
+                    order={order}
+                    onRowMoved={e => {
+                        order.splice(e.to, 0, order.splice(e.from, 1)[0])
+                        this.setState({order: order})
+                    }}
+                    renderRow={row => <RowComponent data={row}/>}
+                />}
                 {!this.state.listView && <MapView
-                style={styles.itinerary}
-                provider={ PROVIDER_GOOGLE }
-                region={{
-                latitude: 48.857627,
-                longitude: 2.336433,
-                latitudeDelta: 0.05,
-                longitudeDelta: 0.05
-                }}
+                    style={styles.itinerary}
+                    provider={PROVIDER_GOOGLE}
+                    region={{
+                        latitude: 48.857627,
+                        longitude: 2.336433,
+                        latitudeDelta: 0.05,
+                        longitudeDelta: 0.05
+                    }}
                 >
                     {markerItems}
                 </MapView>}
             </View>
         );
+    }
+}
+
+class RowComponent extends React.Component {
+    render() {
+        return (
+            <TouchableHighlight
+                underlayColor={'#eee'}
+                {...this.props.sortHandlers}
+            >
+                <View
+                    style={styles.itineraryItem}>
+                    <Image source={images[this.props.data.id]} style={{width: 80, height: 80}}/>
+                    <Text style={styles.itemDetails}>{this.props.data.name}</Text>
+                </View>
+            </TouchableHighlight>
+        )
     }
 }
 
@@ -144,7 +182,7 @@ const styles = StyleSheet.create({
         padding: 10,
         color: '#1EA28A'
     },
-    tabContainer:{
+    tabContainer: {
         width: 300,
         height: 50,
         borderRadius: 10,
@@ -153,7 +191,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         overflow: 'hidden'
     },
-    tab:{
+    tab: {
         width: 150,
         alignItems: 'center',
         justifyContent: 'center',
