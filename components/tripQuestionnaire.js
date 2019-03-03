@@ -1,21 +1,31 @@
 import React from 'react';
 import {Button, StyleSheet, Text, View, TouchableWithoutFeedback, ScrollView} from 'react-native';
-import questions from '../questions.json';
+import questions from '../tripQuestions.json';
 
 
 export default class App extends React.Component {
+    static navigationOptions = {
+        title: 'Profile',
+        headerTitleStyle: {
+            marginRight: 56,
+            color: "#1EA28A",
+            textAlign: 'center',
+            flex: 1,
+            fontSize: 30
+        }
+    }
+
     constructor(props) {
         super(props);
         this.state = {
-            questions: questions.questions,
+            questions: questions.tripQuestions,
             index: 0,
-            finalIndex: 9,
+            finalIndex: 3,
             completed: false
         };
         this.handleOptionClick = this.handleOptionClick.bind(this);
-        this.handleSubmitClick = this.handleSubmitClick.bind(this);
+        this.handleNextClick = this.handleNextClick.bind(this);
 
-        // let options = state.questions.map(q => {q.options.map(o => o ={o: false})})
 
     }
 
@@ -27,10 +37,13 @@ export default class App extends React.Component {
 
     }
 
-    handleSubmitClick = () => {
+    handleNextClick = () => {
         const {navigate} = this.props.navigation;
+        const {state} = this.props.navigation;
+        const db = state.params.db;
+        const user = state.params.user;
         const questions = this.state.questions
-        const FilteredCategories = []
+        let FilteredCategories = []
         for (var i = 0; i < questions.length; i++) {
             let question = questions[i]
             for (var j = 0; j < question.options.length; j++) {
@@ -46,12 +59,29 @@ export default class App extends React.Component {
         }
         const index = this.state.index;
         if (index === this.state.finalIndex) {
-            // navigate("SuggestionScreen", {state: this.state})
-            navigate("SuggestionScreen", {categories: FilteredCategories})
+            db.collection("users").doc(user).get().then((res) => {
+                console.log("retrieved prefs:" + res.data());
+                const categories = res.data().preferences;
+                console.log("categories" + categories);
+                FilteredCategories = FilteredCategories.concat(categories)
+                console.log(FilteredCategories);
+                navigate("SuggestionScreen", {categories: FilteredCategories})
+                this.setState({completed: true})
+                }
+            );
 
-            this.setState({completed: true})
         } else {
             this.setState({index: (index + 1)})
+        }
+    }
+
+    handlePreviousClick = () => {
+        const {navigate} = this.props.navigation;
+        const index = this.state.index;
+        if (index === 0) {
+            navigate("Homepage")
+        } else {
+            this.setState({index: (index - 1)})
         }
     }
 
@@ -94,21 +124,26 @@ export default class App extends React.Component {
                     <View style={styles.questionContainer}>
                         {questionItems[this.state.index]}
                     </View>
-                    <TouchableWithoutFeedback title="Submit Button" onPress={this.handleSubmitClick}>
-                        <View style={styles.submitButton}><Text style={styles.submitText}>Next</Text></View>
+                    <TouchableWithoutFeedback title="Previous Button" onPress={this.handlePreviousClick}>
+                        <View style={styles.previousButton}><Text style={styles.submitText}>Previous</Text></View>
+                    </TouchableWithoutFeedback>
+                    <TouchableWithoutFeedback title="Next Button" onPress={this.handleNextClick}>
+                        <View style={styles.nextButton}><Text style={styles.submitText}>Next</Text></View>
                     </TouchableWithoutFeedback>
                 </View>
             );
         } else {
             return (
-                <ScrollView style={styles.container}>
+                <View style={styles.container}>
+                <ScrollView>
                     <View style={styles.questionContainer}>
                         {questionItems}
                     </View>
-                    <TouchableWithoutFeedback title="Submit Button" onPress={this.handleSubmitClick}>
-                        <View style={styles.submitButton}><Text style={styles.submitText}>Next</Text></View>
-                    </TouchableWithoutFeedback>
                 </ScrollView>
+                    <TouchableWithoutFeedback title="Next Button" onPress={this.handleNextClick}>
+                        <View style={styles.nextButton}><Text style={styles.submitText}>Next</Text></View>
+                    </TouchableWithoutFeedback>
+                </View>
             );
         }
     }
@@ -123,7 +158,7 @@ const styles = StyleSheet.create({
     },
     questionContainer: {
         flex: 0,
-        paddingBottom: 70,
+        paddingBottom: 150,
     },
     questionText: {
         fontSize: 30,
@@ -135,7 +170,7 @@ const styles = StyleSheet.create({
         margin: 10,
         borderRadius: 10,
         borderWidth: 3,
-        borderColor: "#FF9A73",
+        borderColor: "#1EA28A",
         alignItems: 'center',
         justifyContent: 'center',
 
@@ -158,11 +193,11 @@ const styles = StyleSheet.create({
         color: "white",
         width: 100,
         height: 100,
-        backgroundColor: "#FF9A73",
+        backgroundColor: "#1EA28A",
         margin: 10,
         borderRadius: 10,
         borderWidth: 3,
-        borderColor: "#FF9A73",
+        borderColor: "#1EA28A",
         alignItems: 'center',
         justifyContent: 'center',
 
@@ -173,7 +208,7 @@ const styles = StyleSheet.create({
         fontSize: 15,
         color: "white"
     },
-    submitButton: {
+    nextButton: {
         width: 100,
         height: 40,
         borderRadius: 20,
@@ -182,8 +217,19 @@ const styles = StyleSheet.create({
         right: 30,
         bottom: 50
     },
+    previousButton: {
+        width: 100,
+        height: 40,
+        borderRadius: 20,
+        backgroundColor: "lightgrey",
+        position: "absolute",
+        left: 30,
+        bottom: 50
+    },
     submitText: {
-        fontSize: 30,
-        textAlign: "center"
+        fontSize: 20,
+        height: 40,
+        textAlign: "center",
+        paddingVertical: 5
     }
 });

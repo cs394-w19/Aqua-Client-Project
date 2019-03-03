@@ -13,7 +13,11 @@
             "Pet Friendly"
           ],
           "Price": 3,
-          "Location": "Downtown"
+          "Location": "Downtown",
+          "gem": false,
+          "link": null,
+          "latitude": "41.8676 N",
+          "longitude": "87.6140 W"
         },
         {
           "name": "Willis Tower",
@@ -24,7 +28,11 @@
             "View"
           ],
           "Price": 3,
-          "Location": "Downtown"
+          "Location": "Downtown",
+          "gem": false,
+          "link": null,
+          "latitude": "41.8789 N",
+          "longitude": "87.6359 W"
         },
         {
           "name": "Field Museum",
@@ -36,7 +44,11 @@
             "Science"
           ],
           "Price": 2,
-          "Location": "Downtown"
+          "Location": "Downtown",
+          "gem": false,
+          "link": null,
+          "latitude": "41.8663 N",
+          "longitude": "87.6170 W"
         },
         {
           "name": "Wrigley Field",
@@ -47,7 +59,11 @@
             "Baseball"
           ],
           "Price": 4,
-          "Location": "Wrigleyville"
+          "Location": "Wrigleyville",
+          "gem": false,
+          "link": null,
+          "latitude": "41.9484 N",
+          "longitude": "87.6553 W"
         },
         {
           "name": "Millenium Park",
@@ -59,7 +75,11 @@
             "Pet Friendly"
           ],
           "Price": 1,
-          "Location": "Downtown"
+          "Location": "Downtown",
+          "gem": false,
+          "link": null,
+          "latitude": "41.8826 N",
+          "longitude": "87.6226 W"
         },
         {
           "name": "Sky Deck Chicago",
@@ -71,7 +91,11 @@
             "Pet Friendly"
           ],
           "Price": 2,
-          "Location": "Downtown"
+          "Location": "Downtown",
+          "gem": false,
+          "link": null,
+          "latitude": "41.8789 N",
+          "longitude": "87.6359 W"
         },
         {
           "name": "Jay Pritzker Pavillion",
@@ -85,7 +109,11 @@
             "Pet Friendly"
           ],
           "Price": 2,
-          "Location": "Downtown"
+          "Location": "Downtown",
+          "gem": false,
+          "link": null,
+          "latitude": "41.8832 N",
+          "longitude": "87.6219 W"
         },
         {
           "name": "Chicago River Cruise",
@@ -95,7 +123,11 @@
             "Educational"
           ],
           "Price": 4,
-          "Location": "Downtown"
+          "Location": "Downtown",
+          "gem": false,
+          "link": null,
+          "latitude": "41.8905 N",
+          "longitude": "87.6162 W"
         }
       ],
       "Restaurants": [
@@ -110,7 +142,11 @@
             "Family Friendly"
           ],
           "Price": 2,
-          "Location": "Downtown"
+          "Location": "Downtown",
+          "gem": false,
+          "link": null,
+          "latitude": "41.8925 N",
+          "longitude": "87.6162 W"
         },
         {
           "name": "Alinea",
@@ -121,7 +157,11 @@
             "Hip"
           ],
           "Price": 5,
-          "Location": "Old Town"
+          "Location": "Old Town",
+          "gem": false,
+          "link": null,
+          "latitude": "41.9183 N",
+          "longitude": "87.6439 W"
         },
         {
           "name": "Ramen Takeya",
@@ -131,7 +171,11 @@
             "Fusion"
           ],
           "Price": 3,
-          "Location": "West Loop"
+          "Location": "West Loop",
+          "gem": false,
+          "link": null,
+          "latitude": "41.8764 N",
+          "longitude": "87.6507 W"
         },
         {
           "name": "Gibsons Steakhouse",
@@ -141,14 +185,346 @@
             ""
           ],
           "Price": 5,
-          "Location": "Downtown"
+          "Location": "Downtown",
+          "gem": false,
+          "link": null,
+          "latitude": "41.9014 N",
+          "longitude": "87.6279 W"
         }
       ]
     },
     {
-      "name": "London",
-      "Attractions": [],
-      "Restaurants": []
+      "name": "Paris",
+      "Attractions": [
+        {
+          "name": "Paris Underground Street Art Tour",
+          "Categories": [
+            "street art",
+            "Tour",
+            "Outdoors"
+          ],
+          "Price": 2,
+          "Location": "Belleville",
+          "id": 0,
+          "gem": true,
+          "link": "https://thebigbus.com.au/paris-self-guided-walking-tour-of-belleville/",
+          "website": "The Big Bus",
+          "coordinates": {
+            "latitude": 48.8721,
+            "longitude": 2.3770
+          }
+        },
+        {
+          "name": "Paris Catacombs",
+          "Categories": [
+            "City",
+            "History",
+            "Outdoors",
+            "museums"
+          ],
+          "Price": 2,
+          "Location": "Ile-de-France",
+          "id": 1,
+          "gem": true,
+          "link": "https://www.discoverwalks.com/blog/how-to-visit-the-paris-catacombs/",
+          "website": "Discover Walks",
+          "coordinates": {
+            "latitude": 48.8340,
+            "longitude": 2.3324
+          }
+        },
+        {
+          "name": "Rue Cremieux",
+          "Categories": [
+            "Scenic",
+            "Photospot"
+          ],
+          "Price": 0,
+          "Location": "Ile-de-France",
+          "id": 2,
+          "gem": true,
+          "link": "https://lorilovesparis.com/hidden-places-see-paris-rue-cremieux/",
+          "website": "Lori Loves Paris",
+          "coordinates": {
+            "latitude": 48.8468,
+            "longitude": 2.3706
+          }
+        },
+        {
+          "name": "Musee des Egouts de Paris",
+          "Categories": [
+            "Museum",
+            "Art",
+            "Indoors",
+            "museums"
+          ],
+          "Price": 1,
+          "Location": "N/A",
+          "id": 3,
+          "gem": true,
+          "link": "https://www.introducingparis.com/sewers-museum",
+          "website": "Introducing Paris",
+          "coordinates": {
+            "latitude": 48.8627,
+            "longitude": 2.3110
+          }
+        },
+        {
+          "name": "Le Marais",
+          "Categories": [
+            "Shopping",
+            "Fashion",
+            "Indoors"
+          ],
+          "Price": 1,
+          "Location": "N/A",
+          "id": 4,
+          "gem": true,
+          "link": "https://www.solosophie.com/a-guide-to-le-marais/",
+          "website": "Solo Sophie",
+          "coordinates": {
+            "latitude": 48.8587,
+            "longitude": 2.3588
+          }
+        },
+        {
+          "name": "Atelier des Lumieres",
+          "Categories": [
+            "Art",
+            "Tour",
+            "Family Friendly",
+            "Indoors",
+            "museums"
+          ],
+          "Price": 1,
+          "Location": "N/A",
+          "id": 5,
+          "gem": true,
+          "link": "https://www.sortiraparis.com/arts-culture/exposure/articles/156707-the-atelier-des-lumieres-paris-first-digital-art-center/lang/en",
+          "website": "Sortira Paris",
+          "coordinates": {
+            "latitude": 48.8616,
+            "longitude": 2.3808
+          }
+        },
+        {
+          "name": "Gorges d'Apremont Hike",
+          "Categories": [
+            "Hike",
+            "Outdoors"
+          ],
+          "Price": 1,
+          "Location": "N/A",
+          "id": 6,
+          "gem": true,
+          "link": "http://mamalovesparis.com/discover-outside-paris/",
+          "website": "Mama Loves Paris",
+          "coordinates": {
+            "latitude": 48.4298,
+            "longitude": 2.6376
+          }
+        },
+        {
+          "name": "Parc Villette",
+          "Categories": [
+            "Outdoors",
+            "Park",
+            "family"
+          ],
+          "Price": 1,
+          "Location": "N/A",
+          "id": 7,
+          "gem": true,
+          "link": "http://worldtoptop.com/parc-de-la-villette/",
+          "website": "World Top Top",
+          "coordinates": {
+            "latitude": 48.8938,
+            "longitude": 2.3903
+          }
+        },
+        {
+          "name": "La Centquatre",
+          "Categories": [
+            "Art",
+            "Entertainment",
+            "museums"
+          ],
+          "Price": 1,
+          "Location": "N/A",
+          "id": 8,
+          "gem": true,
+          "link": "http://mamalovesparis.com/le-centquatre-paris/",
+          "website": "Mama Loves Paris",
+          "coordinates": {
+            "latitude": 48.8905,
+            "longitude": 2.3686
+          }
+        },
+        {
+          "name": "Museum National d'Histoire Naturelle",
+          "Categories": [
+            "Indoors",
+            "Family Friendly",
+            "Educational",
+            "museums"
+          ],
+          "Price": 1,
+          "Location": "N/A",
+          "id": 9,
+          "gem": true,
+          "link": "https://www.lonelyplanet.com/france/paris/attractions/museum-national-d-histoire-naturelle/a/poi-sig/372459/359279",
+          "website": "Lonely Planet",
+          "coordinates": {
+            "latitude": 48.8431,
+            "longitude": 2.3636
+          }
+        },
+        {
+          "name": "The Louvre",
+          "Categories": [
+            "museums",
+            "Modern Art",
+            "Architecture",
+            "Landmark",
+            "Indoors"
+          ],
+          "Price": 4,
+          "Location": "1st Arrondissement",
+          "id": 10,
+          "gem": false,
+          "link": null,
+          "coordinates": {
+            "latitude": 48.8611,
+            "longitude": 2.3380
+          }
+        },
+        {
+          "name": "Musee D'Orsay",
+          "Categories": [
+            "museums",
+            "Modern Art",
+            "Architecture",
+            "Landmark",
+            "Indoors"
+          ],
+          "Price": 3,
+          "Location": "1st Arrondissement",
+          "id": 11,
+          "gem": false,
+          "link": null,
+          "coordinates": {
+            "latitude": 48.8606,
+            "longitude": 2.3261
+          }
+        },
+        {
+          "name": "Cathedral Notre-dame De Paris",
+          "Categories": [
+            "Cathedral",
+            "Religion",
+            "Architecture",
+            "Indoors"
+          ],
+          "Price": 1,
+          "Location": "Notre Dame",
+          "id": 12,
+          "gem": false,
+          "link": null,
+          "coordinates": {
+            "latitude": 48.8529,
+            "longitude": 2.3501
+          }
+        },
+        {
+          "name": "Musée de l'Armée",
+          "Categories": [
+            "museums",
+            "History",
+            "Military",
+            "Indoors"
+          ],
+          "Price": 2,
+          "Location": "7th Arrondissement",
+          "id": 13,
+          "gem": false,
+          "link": null,
+          "coordinates": {
+            "latitude": 48.8570,
+            "longitude": 2.3119
+          }
+        },
+        {
+          "name": "Eiffel Tower",
+          "Categories": [
+            "Landmark",
+            "Photospot"
+          ],
+          "Price": 2,
+          "Location": "Eiffel Tower",
+          "id": 14,
+          "gem": false,
+          "link": null,
+          "coordinates": {
+            "latitude": 48.8583,
+            "longitude": 2.2945
+          }
+        }
+      ],
+      "Restaurants": [
+        {
+          "name": "Le Camion Qui Fume",
+          "Categories": [
+            "Food",
+            "Burger"
+          ],
+          "Price": 1,
+          "Location": "N/A",
+          "id": 15,
+          "gem": true,
+          "link": "https://www.davidlebovitz.com/le-camion-qui-fume-paris-hamburger-food-truck/",
+          "coordinates": {
+            "latitude": 48.8630,
+            "longitude": 2.3149
+          }
+        },
+        {
+          "name": "Au Vieux Paris Darcole",
+          "Categories": [
+            "Food",
+            "Expensive",
+            "Romantic",
+            "Cafe",
+            "museums"
+          ],
+          "Price": 3,
+          "Location": "N/A",
+          "id": 16,
+          "gem": true,
+          "link": "https://www.solosophie.com/best-cafe-in-paris-au-vieux-paris-darcole/",
+          "website": "Solo Sophie",
+          "coordinates": {
+            "latitude": 48.8542,
+            "longitude": 2.3503
+          }
+        },
+        {
+          "name": "La Maison du Chocolat",
+          "Categories": [
+            "Food",
+            "Chocolatier",
+            "Indoors"
+          ],
+          "Price": 3,
+          "Location": "6th Arrondissement",
+          "id": 17,
+          "gem": false,
+          "link": null,
+          "coordinates": {
+            "longitude": 48.8950,
+            "latitude": 2.1858
+          }
+        }
+      ]
     }
   ]
 }

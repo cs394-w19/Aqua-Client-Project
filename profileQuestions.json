@@ -1,17 +1,6 @@
 {
 	"questions": [
-		{
-			"text": "How large is your group?",
-			"options": [
-				{"name": "Solo", "status":false, "Categories": []},
-				{"name":"Couple", "status": false,"Categories": ["couple"]},
-				{"name": "Family (3-4 people)", "status": false,"Categories": ["Family Friendly"]},
-				{"name": "Small-Sized Group (3-4 people)", "status": false,"Categories": []},
-				{"name":"Medium-Sized Group (5-8 people)", "status":false ,"Categories": []},
-				{"name":"Large Group (8+ people)", "status":false, "Categories": []}
 
-			]
-		},
 		{
 			"text": "What are your favorite types of food?",
 			"options": [
@@ -31,22 +20,7 @@
 				{"name":"Thrill Seeker", "status":false,"Categories": []}
 			]
 		},
-		{
-			"text": "Are you bringing pets?",
-			"options": [
-				{"name":"Yes, a Dog(s)", "status":false,"Categories": ["Pet Friendly","Dog"]},
-				{"name":"Yes, a Cat(s)", "status":false,"Categories": ["Pet Friendly","Cat"]},
-				{"name":"Yes, another species of pet", "status":false,"Categories": ["Pet Friendly"]},
-				{"name":"No", "status":false,"Categories": []}
-			]
-		},
-		{
-			"text": "What is your budget for your trip?",
-			"options": [
-				{"name":"Cheap", "status":false,"Categories": []},
-				{"name":"Expensive", "status":false,"Categories": []}
-			]
-		},
+
 		{
 			"text": "Do you have any food needs or restrictions?",
 			"options": [
@@ -72,35 +46,45 @@
 				{"name":"Social", "status":false,"Categories": []},
 				{"name":"Music", "status":false,"Categories": []},
 				{"name":"Sports", "status":false,"Categories": []},
-				{"name":"Art", "status":false,"Categories": []},
+				{"name":"Art", "status":false,"Categories": ["street art", "art"]},
 				{"name":"Books", "status":false,"Categories": []}
-			]
-		},
-		{
-			"text": "How long will your trip be in days?",
-			"options": [
-				{"name":"1-2 days", "status":false,"Categories": []},
-				{"name":"3-7 days", "status":false,"Categories": []},
-				{"name":"1-2 weeks", "status":false,"Categories": []},
-				{"name":"3-6 weeks", "status":false,"Categories": []},
-				{"name":"6+ weeks", "status":false,"Categories": []}
 			]
 		},
 		{
 			"text": "Do you prefer to be indoors or outdoors?",
 			"options": [
-				{"name":"Indoors", "status":false,"Categories": []},
+				{"name":"Indoors", "status":false,"Categories": ["Indoors"]},
 				{"name":"Outdoors", "status":false,"Categories": []}
 			]
 		},
 		{
 			"text": "What places would you like to go to?",
 			"options": [
-				{"name":"Theme Parks", "status":false,"Categories": []},
-				{"name":"Museums", "status":false,"Categories": []},
-				{"name":"Beaches", "status":false,"Categories": []},
-				{"name":"Historical Landmarks", "status":false,"Categories": []},
-				{"name":"Clubbing", "status":false,"Categories": []}
+				{
+					"name": "Theme Parks",
+					"status": false,
+					"Categories": []
+				},
+				{
+					"name": "Museums",
+					"status": false,
+					"Categories": ["museums"]
+				},
+				{
+					"name": "Beaches",
+					"status": false,
+					"Categories": []
+				},
+				{
+					"name": "Historical Landmarks",
+					"status": false,
+					"Categories": []
+				},
+				{
+					"name": "Clubbing",
+					"status": false,
+					"Categories": []
+				}
 			]
 		}
 	]
