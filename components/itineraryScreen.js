@@ -3,10 +3,11 @@ import {StyleSheet, Text, View, TouchableWithoutFeedback, ScrollView, Image, Tou
 import SortableListView from 'react-native-sortable-listview';
 import MapView, {PROVIDER_GOOGLE, Marker} from 'react-native-maps'
 import MapViewDirections from 'react-native-maps-directions';
+import APIKey from '../apiKey.json';
 
 
 // Insert the API KEY and remove it before you push
-const GOOGLE_MAPS_APIKEY = '...';
+const GOOGLE_MAPS_APIKEY = APIKey.apiKey;
 
 let images = [];
 let markers = [];
