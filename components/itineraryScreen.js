@@ -8,7 +8,6 @@ import APIKey from '../apiKey.json';
 
 // Insert the API KEY and remove it before you push
 const GOOGLE_MAPS_APIKEY = APIKey.apiKey;
-
 let images = [];
 let markers = [];
 images[0] = require("../assets/locationPictures/0.jpg");
@@ -68,34 +67,37 @@ export default class ItineraryScreen extends React.Component {
         this.state = {
             listView: true,
             order: [],
+            data: {}
         }
     }
 
     componentWillMount() {
         const {state} = this.props.navigation;
         const suggestions = state.params.suggestions;
-        this.data = {};
+        let data = {};
         suggestions.forEach(s =>
-            this.data[s.name] = s
+            data[s.name] = {...s}
         )
-        this.setState({order: Object.keys(this.data)})
+        this.setState({order: Object.keys(data), data: data})
     }
+
 // <Image source={images[suggestion.id]} style={{width: 80, height: 80}}/>
     render() {
         const {state} = this.props.navigation;
         const suggestions = state.params.suggestions;
-        let order = this.state.order
+        let { order, data } = this.state;
         const markerItems = order.map((o, index) => {
-            const suggestion = suggestions.find(s => s.name === o)
-            return(
-            <Marker coordinate={suggestion.coordinates}>
-                <Image source={markers[suggestion.id]} style={{width: 100, height: 100}}/>
-                <View style={styles.mapItemIndex}>
-                    <Text>
-                        {index+1}
-                    </Text>
-                </View>
-            </Marker>)}
+                const suggestion = suggestions.find(s => s.name === o)
+                return (
+                    <Marker coordinate={suggestion.coordinates} anchor={{x: 0.5, y: 0.8}}>
+                        <Image source={markers[suggestion.id]} style={{width: 138, height: 100}}/>
+                        <View style={styles.mapItemIndex}>
+                            <Text>
+                                {index + 1}
+                            </Text>
+                        </View>
+                    </Marker>)
+            }
         )
         const coordinates = order.map(o => (
             suggestions.find(s => s.name === o).coordinates
@@ -117,17 +119,21 @@ export default class ItineraryScreen extends React.Component {
                 <Text style={styles.infoText}>Drag to Plan Trip</Text>
                 {this.state.listView &&
                 <SortableListView
+                    removeClippedSubviews={false}
                     style={styles.itinerary}
-                    data={this.data}
+                    sortRowStyle={{margin: 5, padding: 20}}
+                    data={this.state.data}
                     order={order}
+                    activeOpacity={0.7}
+                    moveOnPressIn={true}
                     onRowMoved={e => {
                         order.splice(e.to, 0, order.splice(e.from, 1)[0])
                         this.setState({order: order})
                     }}
-                    renderRow={row => <RowComponent data={row} order={order}/>}
+                    renderRow={row => <RowComponent data={row} order={this.state.order}/>}
                 />}
-                {!this.state.listView && 
-                    <MapView
+                {!this.state.listView &&
+                <MapView
                     style={styles.itinerary}
                     provider={PROVIDER_GOOGLE}
                     region={{
@@ -139,13 +145,13 @@ export default class ItineraryScreen extends React.Component {
                 >
                     {markerItems}
                     <MapViewDirections
-                    origin={coordinates[0]}
-                    waypoints={ (coordinates.length > 2) ? coordinates.slice(1, -1): null}
-                    destination={coordinates[coordinates.length-1]}
-                    apikey={GOOGLE_MAPS_APIKEY}
-                    strokeWidth={3}
-                    strokeColor="hotpink"
-                    optimizeWaypoints={true}/>
+                        origin={coordinates[0]}
+                        waypoints={(coordinates.length > 2) ? coordinates.slice(1, -1) : null}
+                        destination={coordinates[coordinates.length - 1]}
+                        apikey={GOOGLE_MAPS_APIKEY}
+                        strokeWidth={3}
+                        strokeColor="hotpink"
+                        optimizeWaypoints={true}/>
 
 
                 </MapView>}
@@ -156,8 +162,7 @@ export default class ItineraryScreen extends React.Component {
 
 class RowComponent extends React.Component {
     render() {
-        const index = this.props.order.findIndex(o => o === this.props.data.name)
-        console.log("index +" + index)
+        let index = this.props.order.findIndex(o => o === this.props.data.name)
         return (
             <TouchableHighlight
                 underlayColor={'#eee'}
@@ -166,7 +171,7 @@ class RowComponent extends React.Component {
                 <View
                     style={styles.itineraryItem}>
                     <Image source={images[this.props.data.id]} style={{width: 80, height: 80}}/>
-                    <Text style={styles.itemDetails}>{index+1 + ". "}{this.props.data.name}</Text>
+                    <Text style={styles.itemDetails}>{index + 1 + ". "}{this.props.data.name}</Text>
                 </View>
             </TouchableHighlight>
         )
@@ -188,7 +193,6 @@ const styles = StyleSheet.create({
         paddingBottom: 0
     },
     itinerary: {
-        marginTop: 20,
         width: 400,
         flex: 1,
         padding: 20,
