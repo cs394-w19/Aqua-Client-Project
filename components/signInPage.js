@@ -34,7 +34,7 @@ class Login extends Component {
         event.preventDefault()
         const {guestUserName, guestPassWord} = this.state;
         const { navigate } = this.props.navigation
-        navigate("Homepage", { db: this.db, user: "guest@gmail.com"})
+        navigate("Welcome", { db: this.db, user: "guest@gmail.com"})
 
     }
 
@@ -67,7 +67,6 @@ class Login extends Component {
                     .auth()
                     .signInWithEmailAndPassword(signUpEmail, signUpPassword)
                     .then(user => {
-                        console.log(user.identifier)
                         const { navigate } = this.props.navigation
                         navigate("Welcome", { db: this.db, user: user.user.email })
                     })

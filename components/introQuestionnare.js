@@ -1,27 +1,33 @@
-import React from 'react';
-import { Button, StyleSheet, Text, View, TouchableWithoutFeedback, ScrollView } from 'react-native';
-import questions from '../profileQuestions.json';
-
+import React from "react"
+import {
+    Button,
+    StyleSheet,
+    Text,
+    View,
+    TouchableWithoutFeedback,
+    ScrollView
+} from "react-native"
+import questions from "../profileQuestions.json"
 
 export default class App extends React.Component {
     constructor(props) {
-        super(props);
+        super(props)
         this.state = {
             questions: questions.questions,
             index: 0,
-            finalIndex: 6,
+            finalIndex: 4,
             completed: false
-        };
-        this.handleOptionClick = this.handleOptionClick.bind(this);
-        this.handleNextClick = this.handleNextClick.bind(this);
+        }
+        this.handleOptionClick = this.handleOptionClick.bind(this)
+        this.handleNextClick = this.handleNextClick.bind(this)
     }
 
     handleNextClick = () => {
-        const { navigate } = this.props.navigation;
-        const { state } = this.props.navigation;
-        const db = state.params.db;
-        const user = state.params.user;
-        const questions = this.state.questions
+        const { navigate } = this.props.navigation
+        const { state } = this.props.navigation
+        const db = state.params.db
+        const user = state.params.user
+        let questions = this.state.questions
         const FilteredCategories = {}
         for (var i = 0; i < questions.length; i++) {
             let question = questions[i]
@@ -29,40 +35,79 @@ export default class App extends React.Component {
             for (var j = 0; j < question.options.length; j++) {
                 let option = question.options[j]
                 if (option.status) {
-                    if (!FilteredCategories[question.text].includes(option.name)) {
+                    if (
+                        !FilteredCategories[question.text].includes(option.name)
+                    ) {
                         FilteredCategories[question.text].push(option.name)
                     }
                 }
             }
         }
-        const index = this.state.index;
-        if (index === this.state.finalIndex) {
-            db.collection("users").doc(user).set({ preferences: FilteredCategories }).then(res => {
-                console.log("Document successfully written!")
-            });
-            navigate("Homepage", {db: db, user: user})
+        const index = this.state.index
+        const finalIndex = this.state.finalIndex
 
+        if (index === finalIndex) {
+            db.collection("users")
+                .doc(user)
+                .set({ preferences: FilteredCategories })
+                .then(res => {
+                    console.log("Document successfully written!")
+                })
+            navigate("Homepage", { db: db, user: user })
         } else {
-            this.setState({ index: (index + 1) })
+            this.setState({
+                questions: questions,
+                index: index + 1,
+            })
         }
+        console.log("current index: " + index + " finalIndex: " + finalIndex)
     }
 
     handlePreviousClick = () => {
-        const { navigate } = this.props.navigation;
-        const index = this.state.index;
+        const { navigate } = this.props.navigation
+        const index = this.state.index
         if (index === 0) {
             navigate("Homepage")
         } else {
-            this.setState({ index: (index - 1) })
+            this.setState({ index: index - 1 })
         }
     }
 
     handleOptionClick = (o, q) => {
-        const state = this.state
-        let option = state.questions.find(q2 => q2.text === q.text).options.find(o2 => o2.name === o.name)
-        option.status = !option.status
-        this.setState(state)
+        let questions = this.state.questions
+        let extraQuestions = []
 
+        let question = questions
+            .find(q2 => q2.text === q.text)
+        let option = questions
+            .find(q2 => q2.text === q.text)
+            .options.find(o2 => o2.name === o.name)
+            
+        option.status = !option.status
+
+        if (
+            option.status && question.hasOwnProperty("extra") &&
+            !extraQuestions.includes(question.extra[option.name])
+        ) {
+            if (question.extra.hasOwnProperty(option.name)) {
+                extraQuestions.push(question.extra[option.name])
+            }
+        }
+
+        const index = this.state.index
+        let finalIndex = this.state.finalIndex
+
+        if (extraQuestions.length > 0) {
+            for (var i = 0; i < extraQuestions.length; i++) {
+                questions.splice(index + 1, 0, extraQuestions[i])
+                finalIndex += 1
+            }
+        }
+
+        this.setState({
+            finalIndex: finalIndex,
+            questions: questions
+        })
     }
 
     // handleSubmitClick = () => {
@@ -99,7 +144,11 @@ export default class App extends React.Component {
             const questionOptions = q.options.map(o => {
                 let buttonStyle
                 let buttonTextStyle
-                if (this.state.questions.find(q2 => q2.text === q.text).options.find(o2 => o2.name === o.name).status) {
+                if (
+                    this.state.questions
+                        .find(q2 => q2.text === q.text)
+                        .options.find(o2 => o2.name === o.name).status
+                ) {
                     buttonStyle = styles.buttonClicked
                     buttonTextStyle = styles.buttonClickedText
                 } else {
@@ -108,67 +157,77 @@ export default class App extends React.Component {
                 }
 
                 return (
-                    <TouchableWithoutFeedback title={o.name}
+                    <TouchableWithoutFeedback
+                        title={o.name}
                         onPress={() => {
                             this.handleOptionClick(o, q)
-                        }}>
+                        }}
+                    >
                         <View style={buttonStyle}>
-                            <Text style={buttonTextStyle}>
-                                {o.name}
-                            </Text>
+                            <Text style={buttonTextStyle}>{o.name}</Text>
                         </View>
                     </TouchableWithoutFeedback>
                 )
             })
-            return <View>
-                <Text style={styles.questionText}> {q.text}</Text>
-                <View style={styles.optionContainer}>
-                    {questionOptions}
+            return (
+                <View>
+                    <Text style={styles.questionText}> {q.text}</Text>
+                    <View style={styles.optionContainer}>
+                        {questionOptions}
+                    </View>
                 </View>
-            </View>
-        });
+            )
+        })
         return (
             <View style={styles.container}>
                 <View style={styles.questionContainer}>
                     {questionItems[this.state.index]}
                 </View>
-                <TouchableWithoutFeedback title="Previous Button" onPress={this.handlePreviousClick}>
-                    <View style={styles.previousButton}><Text style={styles.submitText}>Previous</Text></View>
+                <TouchableWithoutFeedback
+                    title="Previous Button"
+                    onPress={this.handlePreviousClick}
+                >
+                    <View style={styles.previousButton}>
+                        <Text style={styles.submitText}>Previous</Text>
+                    </View>
                 </TouchableWithoutFeedback>
-                <TouchableWithoutFeedback title="Next Button" onPress={this.handleNextClick}>
-                    <View style={styles.nextButton}><Text style={styles.submitText}>Next</Text></View>
+                <TouchableWithoutFeedback
+                    title="Next Button"
+                    onPress={this.handleNextClick}
+                >
+                    <View style={styles.nextButton}>
+                        <Text style={styles.submitText}>Next</Text>
+                    </View>
                 </TouchableWithoutFeedback>
             </View>
-        );
+        )
     }
 }
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
+        backgroundColor: "#fff",
         flexDirection: "column",
-        padding: 20,
+        padding: 20
     },
     questionContainer: {
         flex: 0,
-        paddingBottom: 150,
+        paddingBottom: 150
     },
     questionText: {
-        fontSize: 30,
+        fontSize: 30
     },
     button: {
         width: 100,
         height: 100,
-        backgroundColor: 'white',
+        backgroundColor: "white",
         margin: 10,
         borderRadius: 10,
         borderWidth: 3,
         borderColor: "#FF9A73",
-        alignItems: 'center',
-        justifyContent: 'center',
-
-
+        alignItems: "center",
+        justifyContent: "center"
     },
     buttonText: {
         textAlign: "center",
@@ -180,8 +239,8 @@ const styles = StyleSheet.create({
     optionContainer: {
         flex: 1,
         flexDirection: "row",
-        justifyContent: 'flex-start',
-        flexWrap: "wrap",
+        justifyContent: "flex-start",
+        flexWrap: "wrap"
     },
     buttonClicked: {
         color: "white",
@@ -192,9 +251,8 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         borderWidth: 3,
         borderColor: "#FF9A73",
-        alignItems: 'center',
-        justifyContent: 'center',
-
+        alignItems: "center",
+        justifyContent: "center"
     },
     buttonClickedText: {
         textAlign: "center",
@@ -234,4 +292,4 @@ const styles = StyleSheet.create({
         textAlign: "center",
         paddingVertical: 5
     }
-});
+})
