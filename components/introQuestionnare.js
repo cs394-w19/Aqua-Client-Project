@@ -75,7 +75,8 @@ export default class App extends React.Component {
 
     handleOptionClick = (o, q) => {
         let questions = this.state.questions
-        let extraQuestions = []
+        const index = this.state.index
+        let finalIndex = this.state.finalIndex
 
         let question = questions
             .find(q2 => q2.text === q.text)
@@ -86,22 +87,15 @@ export default class App extends React.Component {
         option.status = !option.status
 
         if (
-            option.status && question.hasOwnProperty("extra") &&
-            !extraQuestions.includes(question.extra[option.name])
+            option.status && question.hasOwnProperty("extra")
         ) {
             if (question.extra.hasOwnProperty(option.name)) {
-                extraQuestions.push(question.extra[option.name])
-            }
-        }
-
-        const index = this.state.index
-        let finalIndex = this.state.finalIndex
-
-        if (extraQuestions.length > 0) {
-            for (var i = 0; i < extraQuestions.length; i++) {
-                questions.splice(index + 1, 0, extraQuestions[i])
+                questions.splice(index + 1, 0, question.extra[option.name])
                 finalIndex += 1
             }
+        } if (!option.status && question.hasOwnProperty("extra")) {
+            questions.splice(index + 1, 1)
+            finalIndex -= 1
         }
 
         this.setState({
