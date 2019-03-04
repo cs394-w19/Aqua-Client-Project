@@ -49,8 +49,6 @@ export default class App extends React.Component {
         const {state} = this.props.navigation;
         const db = state.params.db;
         const user = state.params.user;
-        console.log(user);
-
         const questions = this.state.questions
         const FilteredCategories = {}
         for (var i = 0; i < questions.length; i++) {
@@ -65,7 +63,6 @@ export default class App extends React.Component {
                 }
             }
         }
-        console.log(FilteredCategories)
         db.collection("users").doc(user).set({preferences: FilteredCategories}).then(res => {
             console.log("Document successfully written!")
         });
