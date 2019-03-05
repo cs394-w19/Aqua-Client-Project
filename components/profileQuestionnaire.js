@@ -4,6 +4,17 @@ import questions from '../profileQuestions.json';
 
 
 export default class App extends React.Component {
+    static navigationOptions = {
+        title: 'Profile',
+        headerTitleStyle: {
+            marginRight: 56,
+            color: "#1EA28A",
+            textAlign: 'center',
+            flex: 1,
+            fontSize: 30
+        }
+    }
+
     constructor(props) {
         super(props);
         this.state = {
@@ -13,12 +24,17 @@ export default class App extends React.Component {
         this.handleSubmitClick = this.handleSubmitClick.bind(this);
     }
 
+    componentWillMount() {
+    }
+
     handleOptionClick = (o, q) => {
         const state = this.state
         let option = state.questions.find(q2 => q2.text === q.text).options.find(o2 => o2.name === o.name)
         option.status = !option.status
+        if (state.questions.find(q2 => q2.text === q.text).extra.find(o2 => o2 === o.name)) {
+            FilteredCategories.push()
+        }
         this.setState(state)
-
     }
 
     loadUserPreferences = () => {
@@ -143,7 +159,7 @@ const styles = StyleSheet.create({
         margin: 10,
         borderRadius: 10,
         borderWidth: 3,
-        borderColor: "#FF9A73",
+        borderColor: "#1EA28A",
         alignItems: 'center',
         justifyContent: 'center',
 
@@ -166,11 +182,11 @@ const styles = StyleSheet.create({
         color: "white",
         width: 100,
         height: 100,
-        backgroundColor: "#FF9A73",
+        backgroundColor: "#1EA28A",
         margin: 10,
         borderRadius: 10,
         borderWidth: 3,
-        borderColor: "#FF9A73",
+        borderColor: "#1EA28A",
         alignItems: 'center',
         justifyContent: 'center',
 
