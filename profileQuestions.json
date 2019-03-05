@@ -6,17 +6,25 @@
                 {
                     "name": "Iconic Sites",
                     "status": false,
-                    "Categories": ["iconic sites", "photography"]
+                    "Categories": [
+                        "iconic sites",
+                        "photography"
+                    ]
                 },
                 {
                     "name": "Stunning Landscapes",
                     "status": false,
-                    "Categories": ["landscapes", "photography"]
+                    "Categories": [
+                        "landscapes",
+                        "photography"
+                    ]
                 },
                 {
                     "name": "Cool Architecture",
                     "status": false,
-                    "Categories": ["architecture"]
+                    "Categories": [
+                        "architecture"
+                    ]
                 }
             ]
         },
@@ -26,33 +34,51 @@
                 {
                     "name": "Locally Authentic",
                     "status": false,
-                    "Categories": ["local cuisine"]
+                    "Categories": [
+                        "local cuisine"
+                    ]
                 },
                 {
                     "name": "Artisan Foods",
                     "status": false,
-                    "Categories": ["artisan food"]
+                    "Categories": [
+                        "artisan food"
+                    ]
                 },
-                { "name": "Sweets", "status": false, "Categories": ["sweets"] },
+                {
+                    "name": "Sweets",
+                    "status": false,
+                    "Categories": [
+                        "sweets"
+                    ]
+                },
                 {
                     "name": "Vegetarian Fare",
                     "status": false,
-                    "Categories": ["vegetarian fare"]
+                    "Categories": [
+                        "vegetarian fare"
+                    ]
                 },
                 {
                     "name": "One-of-a-kind Finds",
                     "status": false,
-                    "Categories": ["unique food"]
+                    "Categories": [
+                        "unique food"
+                    ]
                 },
                 {
                     "name": "Unique Ambiance",
                     "status": false,
-                    "Categories": ["vegetarian fare"]
+                    "Categories": [
+                        "vegetarian fare"
+                    ]
                 },
                 {
                     "name": "Grab-and-go",
                     "status": false,
-                    "Categories": ["grab-and-go"]
+                    "Categories": [
+                        "grab-and-go"
+                    ]
                 }
             ]
         },
@@ -62,30 +88,40 @@
                 {
                     "name": "Coffee Shops",
                     "status": false,
-                    "Categories": ["coffee shops"]
+                    "Categories": [
+                        "coffee shops"
+                    ]
                 },
                 {
                     "name": "Universities",
                     "status": false,
-                    "Categories": ["institutions"]
+                    "Categories": [
+                        "institutions"
+                    ]
                 },
                 {
                     "name": "Concerts",
                     "status": false,
-                    "Categories": ["concerts"]
+                    "Categories": [
+                        "concerts"
+                    ]
                 },
                 {
                     "name": "Museums",
                     "status": false,
-                    "Categories": ["museums"]
+                    "Categories": [
+                        "museums"
+                    ]
                 },
                 {
                     "name": "Shopping",
                     "status": false,
-                    "Categories": ["shopping"]
+                    "Categories": [
+                        "shopping"
+                    ]
                 }
             ],
-            "extra": [
+            "extra": 
                 {
                     "Museums": {
                         "text": "What subjects are you interested in?",
@@ -93,51 +129,65 @@
                             {
                                 "name": "Art",
                                 "status": false,
-                                "Categories": ["coffee shops"]
+                                "Categories": [
+                                    "coffee shops"
+                                ]
                             },
                             {
                                 "name": "History",
                                 "status": false,
-                                "Categories": ["institutions"]
+                                "Categories": [
+                                    "institutions"
+                                ]
                             },
                             {
                                 "name": "Music",
                                 "status": false,
-                                "Categories": ["concerts"]
+                                "Categories": [
+                                    "concerts"
+                                ]
                             },
                             {
                                 "name": "Technology",
                                 "status": false,
-                                "Categories": ["museums"]
+                                "Categories": [
+                                    "museums"
+                                ]
                             },
                             {
                                 "name": "Nature",
                                 "status": false,
-                                "Categories": ["shopping"]
+                                "Categories": [
+                                    "shopping"
+                                ]
                             }
                         ]
                     }
-                }
-            ]
+                }  
         },
-
         {
             "text": "What type of hiking interests you most?",
             "options": [
                 {
                     "name": "No thank you",
                     "status": false,
-                    "Categories": ["low physical activity"]
+                    "Categories": [
+                        "low physical activity"
+                    ]
                 },
                 {
                     "name": "An easy, scenic stroll",
                     "status": false,
-                    "Categories": ["moderate physical activity"]
+                    "Categories": [
+                        "moderate physical activity"
+                    ]
                 },
                 {
                     "name": "The more dangerous the better",
                     "status": false,
-                    "Categories": ["high physical activity"]
+                    "Categories": [
+                        "high physical activity"
+                    ]
                 }
             ]
         },
@@ -147,40 +197,72 @@
                 {
                     "name": "History",
                     "status": false,
-                    "Categories": ["history"]
+                    "Categories": [
+                        "history"
+                    ]
                 },
                 {
                     "name": "Contemporary Literature",
                     "status": false,
-                    "Categories": ["contemporary literature"]
+                    "Categories": [
+                        "contemporary literature"
+                    ]
                 },
-                { "name": "Poetry", "status": false, "Categories": ["poetry"] },
+                {
+                    "name": "Poetry",
+                    "status": false,
+                    "Categories": [
+                        "poetry"
+                    ]
+                },
                 {
                     "name": "Thrillers",
                     "status": false,
-                    "Categories": ["thrillers"]
+                    "Categories": [
+                        "thrillers"
+                    ]
                 },
                 {
                     "name": "Mysteries",
                     "status": false,
-                    "Categories": ["mysteries"]
+                    "Categories": [
+                        "mysteries"
+                    ]
                 },
-                { "name": "Sci-fi", "status": false, "Categories": ["sci-fi"] },
+                {
+                    "name": "Sci-fi",
+                    "status": false,
+                    "Categories": [
+                        "sci-fi"
+                    ]
+                },
                 {
                     "name": "Biographies",
                     "status": false,
-                    "Categories": ["biographies"]
+                    "Categories": [
+                        "biographies"
+                    ]
                 },
-                { "name": "Drama", "status": false, "Categories": ["drama"] },
+                {
+                    "name": "Drama",
+                    "status": false,
+                    "Categories": [
+                        "drama"
+                    ]
+                },
                 {
                     "name": "Comedies",
                     "status": false,
-                    "Categories": ["comedies"]
+                    "Categories": [
+                        "comedies"
+                    ]
                 },
                 {
                     "name": "Romance",
-                    "status": false,
-                    "Categories": ["romance"]
+                    "status": false
+                    "Categories": [
+                        "romance"
+                    ]
                 }
             ]
         }

@@ -60,11 +60,8 @@ export default class App extends React.Component {
         const index = this.state.index;
         if (index === this.state.finalIndex) {
             db.collection("users").doc(user).get().then((res) => {
-                console.log("retrieved prefs:" + res.data());
                 const categories = res.data().preferences;
-                console.log("categories" + categories);
                 FilteredCategories = FilteredCategories.concat(categories)
-                console.log(FilteredCategories);
                 navigate("SuggestionScreen", {categories: FilteredCategories})
                 this.setState({completed: true})
                 }

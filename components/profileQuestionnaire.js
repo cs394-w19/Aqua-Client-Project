@@ -18,7 +18,7 @@ export default class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            questions: questions.questions
+            questions: questions.questions,
         };
         this.handleOptionClick = this.handleOptionClick.bind(this);
         this.handleSubmitClick = this.handleSubmitClick.bind(this);
@@ -37,34 +37,57 @@ export default class App extends React.Component {
         this.setState(state)
     }
 
+    loadUserPreferences = () => {
+        const { state } = this.props.navigation;
+        const db = state.params.db;
+        const user = state.params.user;
+
+        let questions = this.state.questions
+        db.collection("users").doc(user).get().then(preferences => {
+            console.log("preferences is   " + JSON.stringify(preferences.data()))
+            let data = preferences.data()["preferences"]
+            for (var i = 0; i < questions.length; i++) {
+                let answer = data[questions[i].text]
+                for (var j = 0; j < questions[i].options.length; j++) {
+                    if (answer.includes(questions[i].options[j].name)) {
+                        questions[i].options[j].status = true
+                    }
+                }
+            }
+            this.setState({
+                questions: questions
+            })
+        })
+    }
+
     handleSubmitClick = () => {
         const {navigate} = this.props.navigation;
         const {state} = this.props.navigation;
         const db = state.params.db;
         const user = state.params.user;
-        console.log(db);
-
         const questions = this.state.questions
-        const FilteredCategories = []
+        const FilteredCategories = {}
         for (var i = 0; i < questions.length; i++) {
             let question = questions[i]
+            FilteredCategories[questions[i].text] = []
             for (var j = 0; j < question.options.length; j++) {
                 let option = question.options[j]
                 if (option.status) {
-                    for (var k = 0; k < option.Categories.length; k++) {
-                        if (!FilteredCategories.includes(option.Categories[k])) {
-                            FilteredCategories.push(option.Categories[k])
-                        }
+                    if (!FilteredCategories[question.text].includes(option.name)) {
+                        FilteredCategories[question.text].push(option.name)
                     }
                 }
             }
         }
-        console.log(FilteredCategories)
         db.collection("users").doc(user).set({preferences: FilteredCategories}).then(res => {
             console.log("Document successfully written!")
         });
         navigate("ProfileScreen")
         this.setState({completed: true})
+    }
+
+    componentDidMount() {
+        this.loadUserPreferences()
     }
 
     render() {

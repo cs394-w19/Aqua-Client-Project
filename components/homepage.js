@@ -6,15 +6,13 @@ import {
     ScrollView,
     TouchableWithoutFeedback
 } from "react-native"
-import firebase from "../firebase.js"
 
 export default class Homepage extends React.Component {
-    constructor() {
-        super()
-        this.db = firebase.firestore();
-        this.fb = firebase;
+    constructor(props) {
+        super(props)
+        
         this.state = {
-            user: "newUser",
+            user: null,
             db: null,
             loggedin: false
         }
@@ -32,8 +30,21 @@ export default class Homepage extends React.Component {
             })
         }
     }
+
+    updateUser(userId) {
+        this.setState({
+            user: userId
+        })
+    }
+
     componentDidMount() {
-        this.getUser2("simeon")
+        const { state } = this.props.navigation;
+        console.log(state.params.user)
+        this.setState({
+            user: state.params.user,
+            db: state.params.db,
+            loggedin: state.params.login
+        }) 
     }
 
     static navigationOptions = { header: null }
@@ -46,7 +57,7 @@ export default class Homepage extends React.Component {
                 <TouchableWithoutFeedback
                     title="PlanTrip"
                     onPress={() => {
-                        navigate("TripQuestionnaire", {db: this.db, user: this.state.user})
+                        navigate("TripQuestionnaire", {db: this.state.db, user: this.state.user})
                     }}
                 >
                     <View style={styles.button}>
@@ -56,7 +67,8 @@ export default class Homepage extends React.Component {
                 <TouchableWithoutFeedback
                     title="UpdateProfile"
                     onPress={() => {
-                        navigate("ProfileScreen", {db: this.db, user: this.state.user})
+                        console.log(this.db + " and " + this.state.db);
+                        navigate("ProfileScreen", {db: this.state.db, user: this.state.user})
                     }}
                 >
                     <View style={styles.button}>

@@ -5,18 +5,24 @@ import ProfileQuestionnaire from './components/profileQuestionnaire';
 import Homepage from './components/homepage';
 import ItineraryScreen from './components/itineraryScreen';
 import ProfileScreen from './components/profileScreen';
+import Login from './components/signInPage';
+import IntroQuestionnare from './components/introQuestionnare.js';
+import Welcome from './components/welcome'
 
 
 import {createStackNavigator, createAppContainer} from 'react-navigation';
 
 console.disableYellowBox = true;
 const MainNavigator = createStackNavigator({
+    Login: { screen: Login },
     Homepage: {screen: Homepage},
     ProfileScreen: {screen: ProfileScreen},
     ProfileQuestionnaire: {screen: ProfileQuestionnaire},
     TripQuestionnaire: {screen: TripQuestionnaire},
     SuggestionScreen: {screen: SuggestionScreen},
-    ItineraryScreen: {screen: ItineraryScreen}
+    ItineraryScreen: {screen: ItineraryScreen},
+    IntroQuestionnare: { screen: IntroQuestionnare},
+    Welcome: {screen: Welcome }
 });
 
 const App = createAppContainer(MainNavigator);

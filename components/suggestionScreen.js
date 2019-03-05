@@ -73,7 +73,6 @@ export default class SuggestionScreen extends React.Component {
         const {navigate} = this.props.navigation;
         const suggestions = this.state.suggestions
         const suggestedItems = suggestions.map((l) => {
-            console.log("string    " + l.name)
             return (
                 <SuggestedItem
                     location={l}
