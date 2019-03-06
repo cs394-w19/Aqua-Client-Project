@@ -1,6 +1,7 @@
 import React from 'react';
 import {Button, StyleSheet, Text, View, TouchableWithoutFeedback, ScrollView} from 'react-native';
 import questions from '../tripQuestions.json';
+import profileQuestions from "../profileQuestions.json";
 
 
 export default class App extends React.Component {
@@ -38,6 +39,7 @@ export default class App extends React.Component {
     }
 
     handleNextClick = () => {
+        console.log(this.state.index)
         const {navigate} = this.props.navigation;
         const {state} = this.props.navigation;
         const db = state.params.db;
@@ -60,90 +62,101 @@ export default class App extends React.Component {
         const index = this.state.index;
         if (index === this.state.finalIndex) {
             db.collection("users").doc(user).get().then((res) => {
-                const categories = res.data().preferences;
-                FilteredCategories = FilteredCategories.concat(categories)
-                navigate("SuggestionScreen", {categories: FilteredCategories})
-                this.setState({completed: true})
-                }
-            );
-
-        } else {
-            this.setState({index: (index + 1)})
-        }
-    }
-
-    handlePreviousClick = () => {
-        const {navigate} = this.props.navigation;
-        const index = this.state.index;
-        if (index === 0) {
-            navigate("Homepage")
-        } else {
-            this.setState({index: (index - 1)})
-        }
-    }
-
-    render() {
-        const questionItems = this.state.questions.map(q => {
-            const questionOptions = q.options.map(o => {
-                let buttonStyle
-                let buttonTextStyle
-                if (this.state.questions.find(q2 => q2.text === q.text).options.find(o2 => o2.name === o.name).status) {
-                    buttonStyle = styles.buttonClicked
-                    buttonTextStyle = styles.buttonClickedText
-                } else {
-                    buttonStyle = styles.button
-                    buttonTextStyle = styles.buttonText
-                }
-
-                return (
-                    <TouchableWithoutFeedback title={o.name}
-                                              onPress={() => {
-                                                  this.handleOptionClick(o, q)
-                                              }}>
-                        <View style={buttonStyle}>
-                            <Text style={buttonTextStyle}>
-                                {o.name}
-                            </Text>
-                        </View>
-                    </TouchableWithoutFeedback>
+                const data = res.data().preferences;
+                let categories = []
+                profileQuestions.questions.forEach(q =>
+                    q.options.forEach(o => {
+                        if (data[q.text].find(option => option === o.name)) {
+                            categories = categories.concat(o.Categories)
+                        }
+                    })
                 )
-            })
-            return <View>
-                <Text style={styles.questionText}> {q.text}</Text>
-                <View style={styles.optionContainer}>
-                    {questionOptions}
-                </View>
-            </View>
-        });
-        if (!this.state.completed) {
+            FilteredCategories = FilteredCategories.concat(categories)
+            this.setState({completed: true})
+            navigate("SuggestionScreen", {categories: FilteredCategories})
+        }
+    );
+
+}
+else
+{
+    this.setState({index: (index + 1)})
+}
+}
+
+handlePreviousClick = () => {
+    const {navigate} = this.props.navigation;
+    const index = this.state.index;
+    if (index === 0) {
+        navigate("Homepage")
+    } else {
+        this.setState({index: (index - 1)})
+    }
+}
+
+render()
+{
+    const questionItems = this.state.questions.map(q => {
+        const questionOptions = q.options.map(o => {
+            let buttonStyle
+            let buttonTextStyle
+            if (this.state.questions.find(q2 => q2.text === q.text).options.find(o2 => o2.name === o.name).status) {
+                buttonStyle = styles.buttonClicked
+                buttonTextStyle = styles.buttonClickedText
+            } else {
+                buttonStyle = styles.button
+                buttonTextStyle = styles.buttonText
+            }
+
             return (
-                <View style={styles.container}>
-                    <View style={styles.questionContainer}>
-                        {questionItems[this.state.index]}
+                <TouchableWithoutFeedback title={o.name}
+                                          onPress={() => {
+                                              this.handleOptionClick(o, q)
+                                          }}>
+                    <View style={buttonStyle}>
+                        <Text style={buttonTextStyle}>
+                            {o.name}
+                        </Text>
                     </View>
-                    <TouchableWithoutFeedback title="Previous Button" onPress={this.handlePreviousClick}>
-                        <View style={styles.previousButton}><Text style={styles.submitText}>Previous</Text></View>
-                    </TouchableWithoutFeedback>
-                    <TouchableWithoutFeedback title="Next Button" onPress={this.handleNextClick}>
-                        <View style={styles.nextButton}><Text style={styles.submitText}>Next</Text></View>
-                    </TouchableWithoutFeedback>
+                </TouchableWithoutFeedback>
+            )
+        })
+        return <View>
+            <Text style={styles.questionText}> {q.text}</Text>
+            <View style={styles.optionContainer}>
+                {questionOptions}
+            </View>
+        </View>
+    });
+    if (!this.state.completed) {
+        return (
+            <View style={styles.container}>
+                <View style={styles.questionContainer}>
+                    {questionItems[this.state.index]}
                 </View>
-            );
-        } else {
-            return (
-                <View style={styles.container}>
+                <TouchableWithoutFeedback title="Previous Button" onPress={this.handlePreviousClick}>
+                    <View style={styles.previousButton}><Text style={styles.submitText}>Previous</Text></View>
+                </TouchableWithoutFeedback>
+                <TouchableWithoutFeedback title="Next Button" onPress={this.handleNextClick}>
+                    <View style={styles.nextButton}><Text style={styles.submitText}>Next</Text></View>
+                </TouchableWithoutFeedback>
+            </View>
+        );
+    } else {
+        return (
+            <View style={styles.container}>
                 <ScrollView>
                     <View style={styles.questionContainer}>
                         {questionItems}
                     </View>
                 </ScrollView>
-                    <TouchableWithoutFeedback title="Next Button" onPress={this.handleNextClick}>
-                        <View style={styles.nextButton}><Text style={styles.submitText}>Next</Text></View>
-                    </TouchableWithoutFeedback>
-                </View>
-            );
-        }
+                <TouchableWithoutFeedback title="Next Button" onPress={this.handleNextClick}>
+                    <View style={styles.nextButton}><Text style={styles.submitText}>Next</Text></View>
+                </TouchableWithoutFeedback>
+            </View>
+        );
     }
+}
 }
 
 const styles = StyleSheet.create({

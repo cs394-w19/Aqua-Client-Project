@@ -25,8 +25,8 @@ export default class App extends React.Component {
             return (
                 <View style={styles.container}>
                     <View style={styles.questionContainer}>
-                        <Text>WELCOME TO GLOCAL</Text>
-                        <Text>Please fill out a short but CRITICAL questionnare</Text>
+                        <Text style={styles.welcomeHeader}>WELCOME TO GLOCAL</Text>
+                        <Text style={styles.welcomeSubHeader}>Tell us more about yourself to help us give you personalized recommendations!</Text>
                     </View>
                     <TouchableWithoutFeedback
                         title="Next Button"
@@ -51,6 +51,17 @@ const styles = StyleSheet.create({
     questionContainer: {
         flex: 0,
         paddingBottom: 150
+    },
+    welcomeHeader: {
+        color: "#1EA28A",
+        textAlign: "center",
+        fontSize: 30,
+        paddingBottom: 50
+    },
+    welcomeSubHeader: {
+        color: "#1EA28A",
+        textAlign: "center",
+        fontSize: 23
     },
     questionText: {
         fontSize: 30

@@ -219,7 +219,7 @@ const styles = StyleSheet.create({
         margin: 10,
         borderRadius: 10,
         borderWidth: 3,
-        borderColor: "#FF9A73",
+        borderColor: "#1EA28A",
         alignItems: "center",
         justifyContent: "center"
     },
@@ -240,11 +240,11 @@ const styles = StyleSheet.create({
         color: "white",
         width: 100,
         height: 100,
-        backgroundColor: "#FF9A73",
+        backgroundColor: "#1EA28A",
         margin: 10,
         borderRadius: 10,
         borderWidth: 3,
-        borderColor: "#FF9A73",
+        borderColor: "#1EA28A",
         alignItems: "center",
         justifyContent: "center"
     },
