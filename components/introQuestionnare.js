@@ -49,11 +49,11 @@ export default class App extends React.Component {
         if (index === finalIndex) {
             db.collection("users")
                 .doc(user)
-                .set({ preferences: FilteredCategories })
+                .set({ preferences: FilteredCategories, savedLocations: [] })
                 .then(res => {
                     console.log("Document successfully written!")
                 })
-            navigate("Homepage", { db: db, user: user })
+            navigate("Main", { db: db, user: user })
         } else {
             this.setState({
                 questions: questions,
@@ -67,7 +67,7 @@ export default class App extends React.Component {
         const { navigate } = this.props.navigation
         const index = this.state.index
         if (index === 0) {
-            navigate("Homepage")
+            navigate("Welcome")
         } else {
             this.setState({ index: index - 1 })
         }

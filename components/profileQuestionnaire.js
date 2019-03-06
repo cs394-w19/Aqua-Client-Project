@@ -1,65 +1,77 @@
-import React from 'react';
-import {Button, StyleSheet, Text, View, TouchableWithoutFeedback, ScrollView} from 'react-native';
-import questions from '../profileQuestions.json';
-
+import React from "react"
+import {
+    Button,
+    StyleSheet,
+    Text,
+    View,
+    TouchableWithoutFeedback,
+    ScrollView
+} from "react-native"
+import questions from "../profileQuestions.json"
 
 export default class App extends React.Component {
     static navigationOptions = {
-        title: 'Profile',
+        title: "Profile",
         headerTitleStyle: {
             marginRight: 56,
             color: "#1EA28A",
-            textAlign: 'center',
+            textAlign: "center",
             flex: 1,
             fontSize: 30
         }
     }
 
     constructor(props) {
-        super(props);
+        super(props)
         this.state = {
-            questions: questions.questions,
-        };
-        this.handleOptionClick = this.handleOptionClick.bind(this);
-        this.handleSubmitClick = this.handleSubmitClick.bind(this);
+            questions: questions.questions
+        }
+        this.handleOptionClick = this.handleOptionClick.bind(this)
+        this.handleSubmitClick = this.handleSubmitClick.bind(this)
     }
-
 
     handleOptionClick = (o, q) => {
         const state = this.state
-        let option = state.questions.find(q2 => q2.text === q.text).options.find(o2 => o2.name === o.name)
+        let option = state.questions
+            .find(q2 => q2.text === q.text)
+            .options.find(o2 => o2.name === o.name)
         option.status = !option.status
         this.setState(state)
     }
 
     loadUserPreferences = () => {
-        const { state } = this.props.navigation;
-        const db = state.params.db;
-        const user = state.params.user;
+        const { state } = this.props.navigation
+        const db = state.params.db
+        const user = state.params.user
 
         let questions = this.state.questions
-        db.collection("users").doc(user).get().then(preferences => {
-            console.log("preferences is   " + JSON.stringify(preferences.data()))
-            let data = preferences.data()["preferences"]
-            for (var i = 0; i < questions.length; i++) {
-                let answer = data[questions[i].text]
-                for (var j = 0; j < questions[i].options.length; j++) {
-                    if (answer.includes(questions[i].options[j].name)) {
-                        questions[i].options[j].status = true
+        db.collection("users")
+            .doc(user)
+            .get()
+            .then(preferences => {
+                console.log(
+                    "preferences is   " + JSON.stringify(preferences.data())
+                )
+                let data = preferences.data()["preferences"]
+                for (var i = 0; i < questions.length; i++) {
+                    let answer = data[questions[i].text]
+                    for (var j = 0; j < questions[i].options.length; j++) {
+                        if (answer.includes(questions[i].options[j].name)) {
+                            questions[i].options[j].status = true
+                        }
                     }
                 }
-            }
-            this.setState({
-                questions: questions
+                this.setState({
+                    questions: questions
+                })
             })
-        })
     }
 
     handleSubmitClick = () => {
-        const {navigate} = this.props.navigation;
-        const {state} = this.props.navigation;
-        const db = state.params.db;
-        const user = state.params.user;
+        const { navigate } = this.props.navigation
+        const { state } = this.props.navigation
+        const db = state.params.db
+        const user = state.params.user
         const questions = this.state.questions
         const FilteredCategories = {}
         for (var i = 0; i < questions.length; i++) {
@@ -68,17 +80,22 @@ export default class App extends React.Component {
             for (var j = 0; j < question.options.length; j++) {
                 let option = question.options[j]
                 if (option.status) {
-                    if (!FilteredCategories[question.text].includes(option.name)) {
+                    if (
+                        !FilteredCategories[question.text].includes(option.name)
+                    ) {
                         FilteredCategories[question.text].push(option.name)
                     }
                 }
             }
         }
-        db.collection("users").doc(user).set({preferences: FilteredCategories}).then(res => {
-            console.log("Document successfully written!")
-        });
+        db.collection("users")
+            .doc(user)
+            .set({ preferences: FilteredCategories })
+            .then(res => {
+                console.log("Document successfully written!")
+            })
         navigate("ProfileScreen")
-        this.setState({completed: true})
+        this.setState({ completed: true })
     }
 
     componentDidMount() {
@@ -90,7 +107,11 @@ export default class App extends React.Component {
             const questionOptions = q.options.map(o => {
                 let buttonStyle
                 let buttonTextStyle
-                if (this.state.questions.find(q2 => q2.text === q.text).options.find(o2 => o2.name === o.name).status) {
+                if (
+                    this.state.questions
+                        .find(q2 => q2.text === q.text)
+                        .options.find(o2 => o2.name === o.name).status
+                ) {
                     buttonStyle = styles.buttonClicked
                     buttonTextStyle = styles.buttonClickedText
                 } else {
@@ -99,25 +120,27 @@ export default class App extends React.Component {
                 }
 
                 return (
-                    <TouchableWithoutFeedback title={o.name}
-                                              onPress={() => {
-                                                  this.handleOptionClick(o, q)
-                                              }}>
+                    <TouchableWithoutFeedback
+                        title={o.name}
+                        onPress={() => {
+                            this.handleOptionClick(o, q)
+                        }}
+                    >
                         <View style={buttonStyle}>
-                            <Text style={buttonTextStyle}>
-                                {o.name}
-                            </Text>
+                            <Text style={buttonTextStyle}>{o.name}</Text>
                         </View>
                     </TouchableWithoutFeedback>
                 )
             })
-            return <View>
-                <Text style={styles.questionText}> {q.text}</Text>
-                <View style={styles.optionContainer}>
-                    {questionOptions}
+            return (
+                <View>
+                    <Text style={styles.questionText}> {q.text}</Text>
+                    <View style={styles.optionContainer}>
+                        {questionOptions}
+                    </View>
                 </View>
-            </View>
-        });
+            )
+        })
         return (
             <View style={styles.container}>
                 <ScrollView>
@@ -125,40 +148,43 @@ export default class App extends React.Component {
                         {questionItems}
                     </View>
                 </ScrollView>
-                <TouchableWithoutFeedback title="Submit Button" onPress={this.handleSubmitClick}>
-                    <View style={styles.submitButton}><Text style={styles.submitText}>Submit</Text></View>
+                <TouchableWithoutFeedback
+                    title="Submit Button"
+                    onPress={this.handleSubmitClick}
+                >
+                    <View style={styles.submitButton}>
+                        <Text style={styles.submitText}>Save</Text>
+                    </View>
                 </TouchableWithoutFeedback>
             </View>
-        );
+        )
     }
 }
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
+        backgroundColor: "#fff",
         flexDirection: "column",
-        padding: 20,
+        padding: 20
     },
     questionContainer: {
         flex: 0,
-        paddingBottom: 150,
+        paddingBottom: 150
     },
     questionText: {
-        fontSize: 30,
+        fontSize: 30
     },
     button: {
         width: 100,
         height: 100,
-        backgroundColor: 'white',
+        backgroundColor: "white",
         margin: 10,
         borderRadius: 10,
         borderWidth: 3,
         borderColor: "#1EA28A",
-        alignItems: 'center',
-        justifyContent: 'center',
-
-
+        alignItems: "center",
+        justifyContent: "center"
     },
     buttonText: {
         textAlign: "center",
@@ -170,8 +196,8 @@ const styles = StyleSheet.create({
     optionContainer: {
         flex: 1,
         flexDirection: "row",
-        justifyContent: 'flex-start',
-        flexWrap: "wrap",
+        justifyContent: "flex-start",
+        flexWrap: "wrap"
     },
     buttonClicked: {
         color: "white",
@@ -182,9 +208,8 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         borderWidth: 3,
         borderColor: "#1EA28A",
-        alignItems: 'center',
-        justifyContent: 'center',
-
+        alignItems: "center",
+        justifyContent: "center"
     },
     buttonClickedText: {
         textAlign: "center",
@@ -197,8 +222,9 @@ const styles = StyleSheet.create({
         height: 40,
         borderRadius: 20,
         backgroundColor: "lightgrey",
-        bottom: 50,
-        marginHorizontal: "auto"
+        position: "absolute",
+        right: 30,
+        bottom: 50
     },
     previousButton: {
         width: 100,
@@ -215,4 +241,4 @@ const styles = StyleSheet.create({
         textAlign: "center",
         paddingVertical: 5
     }
-});
+})

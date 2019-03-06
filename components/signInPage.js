@@ -46,7 +46,7 @@ class Login extends Component {
             .signInWithEmailAndPassword(logInEmail, logInPassword)
             .then(user => {
                 const { navigate } = this.props.navigation
-                navigate("Homepage", { db: this.db, user: user.user.email })
+                navigate("Main", { db: this.db, user: user.user.email })
             })
             .catch(error => {
                 this.setState({ logInError: error })
