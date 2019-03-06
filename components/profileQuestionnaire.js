@@ -126,7 +126,7 @@ export default class App extends React.Component {
                     </View>
                 </ScrollView>
                 <TouchableWithoutFeedback title="Submit Button" onPress={this.handleSubmitClick}>
-                    <View style={styles.submitButton}><Text style={styles.submitText}>Submit</Text></View>
+                    <View style={styles.submitButton}><Text style={styles.submitText}>Save</Text></View>
                 </TouchableWithoutFeedback>
             </View>
         );
@@ -197,8 +197,9 @@ const styles = StyleSheet.create({
         height: 40,
         borderRadius: 20,
         backgroundColor: "lightgrey",
+        position: 'absolute',
+        right: 30,
         bottom: 50,
-        marginHorizontal: "auto"
     },
     previousButton: {
         width: 100,
