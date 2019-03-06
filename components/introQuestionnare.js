@@ -49,7 +49,7 @@ export default class App extends React.Component {
         if (index === finalIndex) {
             db.collection("users")
                 .doc(user)
-                .set({ preferences: FilteredCategories })
+                .set({ preferences: FilteredCategories, savedLocations: [] })
                 .then(res => {
                     console.log("Document successfully written!")
                 })

@@ -90,7 +90,7 @@ export default class App extends React.Component {
         }
         db.collection("users")
             .doc(user)
-            .set({ preferences: FilteredCategories, savedLocations: [] })
+            .set({ preferences: FilteredCategories })
             .then(res => {
                 console.log("Document successfully written!")
             })

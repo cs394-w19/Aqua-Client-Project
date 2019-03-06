@@ -84,6 +84,7 @@ export default class CollectionScreen extends React.Component {
             .then(userData => {
                 userSavedLocations = userData.data()["savedLocations"]
                 savedLocations = userSavedLocations
+                console.log(JSON.stringify(savedLocations))
                 this.setState({
                     savedLocations: savedLocations
                 })

@@ -32,7 +32,9 @@ export default class SuggestionScreen extends React.Component {
             savedLocations: [],
             blogVisible: false,
             blogLink: null,
-            webviewLoaded: false
+            webviewLoaded: false,
+            db: null,
+            user: null
         }
     }
 
@@ -41,6 +43,7 @@ export default class SuggestionScreen extends React.Component {
     }
 
     componentDidMount = () => {
+        const { navigate } = this.props.navigation
         const { state } = this.props.navigation
         const db = state.params.db
         const user = state.params.user
@@ -66,8 +69,12 @@ export default class SuggestionScreen extends React.Component {
                     suggestions: suggestions,
                     categories: categories,
                     savedLocations: userSavedLocations,
-                    blogVisible: false
+                    blogVisible: false,
+                    user: user,
+                    db: db
                 })
+
+                console.log(userSavedLocations)
             })
     }
 
@@ -101,29 +108,35 @@ export default class SuggestionScreen extends React.Component {
     }
 
     handleItemSelect = name => {
+        const { navigate } = this.props.navigation
         const state = this.state
-        const db = state.params.db
-        const user = state.params.user
+        const db = this.state.db
+        const user = this.state.user
         const suggestion = state.suggestions.find(s => s.name === name)
+        let savedLocations = this.state.savedLocations
+        console.log(savedLocations)
         suggestion.selected = !suggestion.selected
-        this.state(state)
+        this.setState(state)
 
         if (suggestion.selected) {
+            savedLocations.push(suggestion.name)
+            console.log(savedLocations)
             db.collection("users")
                 .doc(user).set({
-                    savedLocations: this.state.savedLocations.push(name)
-                }).then(
+                    savedLocations: savedLocations
+                }, { merge: true }).then(
                     this.setState({
-                        savedLocations: this.state.savedLocations.push(name)
+                        savedLocations: savedLocations
                     })
                 )
             } else {
+            savedLocations.splice(savedLocations.indexOf(suggestion.name), 1)
             db.collection("users")
                 .doc(user).set({
-                    savedLocations: this.state.savedLocations.splice(this.state.savedLocations.indexOf(name), 1)
-                }).then(
+                    savedLocations: savedLocations
+                }, { merge: true }).then(
                     this.setState({
-                        savedLocations: this.state.savedLocations.splice(this.state.savedLocations.indexOf(name), 1)
+                        savedLocations: savedLocations
                     })
                 )
             }
