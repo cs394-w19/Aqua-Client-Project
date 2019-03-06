@@ -67,15 +67,30 @@ export default class CollectionScreen extends React.Component {
         this.state = {
             listView: true,
             order: [],
-            data: {}
+            data: {},
+            savedLocations: []
         }
     }
 
     componentWillMount() {
+        const { navigate } = this.props.navigation;
         const {state} = this.props.navigation;
-        const suggestions = state.params.suggestions;
+        const db = state.params.db
+        const user = state.params.user
+        let savedLocations = []
+        db.collection("users")
+            .doc(user)
+            .get()
+            .then(userData => {
+                userSavedLocations = userData.data()["savedLocations"]
+                savedLocations = userSavedLocations
+                this.setState({
+                    savedLocations: savedLocations
+                })
+            })
+
         let data = {};
-        suggestions.forEach(s =>
+        savedLocations.forEach(s =>
             data[s.name] = {...s}
         )
         this.setState({order: Object.keys(data), data: data})
