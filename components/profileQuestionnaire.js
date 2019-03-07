@@ -9,16 +9,18 @@ import {
 } from "react-native"
 import questions from "../profileQuestions.json"
 
-export default class App extends React.Component {
+export default class ProfileQuestionnaire extends React.Component {
     static navigationOptions = {
-        title: "Profile",
+        title: 'Profile',
         headerTitleStyle: {
-            marginRight: 56,
             color: "#1EA28A",
-            textAlign: "center",
-            flex: 1,
-            fontSize: 30
-        }
+            textAlign: 'center',
+            alignSelf: 'center',
+            position: 'absolute',
+            left: 0,
+            right: 50,
+            fontSize: 20,
+        },
     }
 
     constructor(props) {
@@ -41,17 +43,14 @@ export default class App extends React.Component {
 
     loadUserPreferences = () => {
         const { state } = this.props.navigation
-        const db = state.params.db
-        const user = state.params.user
+        const db = this.props.db
+        const user = this.props.user
 
         let questions = this.state.questions
         db.collection("users")
             .doc(user)
             .get()
             .then(preferences => {
-                console.log(
-                    "preferences is   " + JSON.stringify(preferences.data())
-                )
                 let data = preferences.data()["preferences"]
                 for (var i = 0; i < questions.length; i++) {
                     let answer = data[questions[i].text]
@@ -70,8 +69,8 @@ export default class App extends React.Component {
     handleSubmitClick = () => {
         const { navigate } = this.props.navigation
         const { state } = this.props.navigation
-        const db = state.params.db
-        const user = state.params.user
+        const db = this.props.db
+        const user = this.props.user
         const questions = this.state.questions
         const FilteredCategories = {}
         for (var i = 0; i < questions.length; i++) {

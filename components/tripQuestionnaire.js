@@ -39,11 +39,10 @@ export default class App extends React.Component {
     }
 
     handleNextClick = () => {
-        console.log(this.state.index)
         const {navigate} = this.props.navigation;
         const {state} = this.props.navigation;
-        const db = state.params.db;
-        const user = state.params.user;
+        const db = this.props.db;
+        const user = this.props.user;
         const questions = this.state.questions
         let FilteredCategories = []
         for (var i = 0; i < questions.length; i++) {
@@ -73,7 +72,7 @@ export default class App extends React.Component {
                 )
             FilteredCategories = FilteredCategories.concat(categories)
             this.setState({completed: true})
-            navigate("SuggestionScreen", {categories: FilteredCategories})
+            navigate("SuggestionScreen")
         }
     );
 

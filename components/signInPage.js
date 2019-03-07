@@ -14,7 +14,6 @@ import firebase from "../firebase.js"
 class Login extends Component {
     constructor() {
         super()
-        this.db = firebase.firestore();
         this.fb = firebase;
         this.state = {
             signUpEmail: "",
@@ -30,23 +29,26 @@ class Login extends Component {
         }
     }
     handleGuest = event => {
-        this.db.collection("users").doc("guest@gmail.com").delete();
+        // this.db.collection("users").doc("guest@gmail.com").delete();
         event.preventDefault()
-        const {guestUserName, guestPassWord} = this.state;
         const { navigate } = this.props.navigation
-        navigate("Welcome", { db: this.db, user: "guest@gmail.com"})
+        this.props.handleLogin("guest@gmail.com")
+        navigate("Welcome")
 
     }
 
     handleLogin = event => {
         event.preventDefault()
-        const { logInEmail, logInPassword } = this.state
+        // const { logInEmail, logInPassword } = this.state
+        const logInEmail = "garion@gmail.com"
+        const logInPassword = "glocal"
         this.fb
             .auth()
             .signInWithEmailAndPassword(logInEmail, logInPassword)
             .then(user => {
                 const { navigate } = this.props.navigation
-                navigate("Main", { db: this.db, user: user.user.email })
+                this.props.handleLogin(user.user.email)
+                navigate("Main")
             })
             .catch(error => {
                 this.setState({ logInError: error })
@@ -68,7 +70,8 @@ class Login extends Component {
                     .signInWithEmailAndPassword(signUpEmail, signUpPassword)
                     .then(user => {
                         const { navigate } = this.props.navigation
-                        navigate("Welcome", { db: this.db, user: user.user.email })
+                        this.props.handleLogin(signUpEmail)
+                        navigate("Welcome")
                     })
                     .catch(error => {
                         this.setState({ error: error })

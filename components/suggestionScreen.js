@@ -14,14 +14,15 @@ import profileQuestions from "../profileQuestions.json";
 
 export default class SuggestionScreen extends React.Component {
     static navigationOptions = {
-        title: "Recommendations",
+        title: 'Itinerary',
         headerTitleStyle: {
             marginRight: 56,
             color: "#1EA28A",
-            textAlign: "center",
+            textAlign: 'center',
             flex: 1,
-            fontSize: 30
-        }
+            fontSize: 20
+        },
+        tabBarLabel: 'Itineraries'
     }
 
     constructor(props) {
@@ -45,8 +46,8 @@ export default class SuggestionScreen extends React.Component {
     componentDidMount = () => {
         const { navigate } = this.props.navigation
         const { state } = this.props.navigation
-        const db = state.params.db
-        const user = state.params.user
+        const db = this.props.db
+        const user = this.props.user
         let userPreferences = {}
         let categories = []
         db.collection("users")
@@ -54,7 +55,7 @@ export default class SuggestionScreen extends React.Component {
             .get()
             .then(userData => {
                 userPreferences = userData.data()["preferences"]
-                userSavedLocations = userData.data()["savedLocations"]
+                let userSavedLocations = userData.data()["savedLocations"]
 
                 profileQuestions.questions.forEach(q =>
                     q.options.forEach(o => {
@@ -73,8 +74,6 @@ export default class SuggestionScreen extends React.Component {
                     user: user,
                     db: db
                 })
-
-                console.log(userSavedLocations)
             })
     }
 
@@ -114,13 +113,12 @@ export default class SuggestionScreen extends React.Component {
         const user = this.state.user
         const suggestion = state.suggestions.find(s => s.name === name)
         let savedLocations = this.state.savedLocations
-        console.log(savedLocations)
+    
         suggestion.selected = !suggestion.selected
         this.setState(state)
 
         if (suggestion.selected) {
-            savedLocations.push(suggestion.name)
-            console.log(savedLocations)
+            savedLocations.push(suggestion)
             db.collection("users")
                 .doc(user).set({
                     savedLocations: savedLocations
@@ -130,7 +128,7 @@ export default class SuggestionScreen extends React.Component {
                     })
                 )
             } else {
-            savedLocations.splice(savedLocations.indexOf(suggestion.name), 1)
+            savedLocations.splice(savedLocations.indexOf(savedLocations.find(l => l.name == suggestion.name)), 1)
             db.collection("users")
                 .doc(user).set({
                     savedLocations: savedLocations

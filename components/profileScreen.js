@@ -22,9 +22,8 @@ export default class SuggestionScreen extends React.Component {
     render() {
 
         const {navigate} = this.props.navigation;
-        const {state} = this.props.navigation;
-        const db = state.params.db;
-        const user = state.params.user;
+        const db = this.props.db;
+        const user = this.props.user;
         return (
             <View style={styles.container}>
                 <Text style={styles.header}>Your Profile</Text>

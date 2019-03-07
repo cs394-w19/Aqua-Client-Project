@@ -8,6 +8,7 @@ import {
     ScrollView
 } from "react-native"
 import questions from "../profileQuestions.json"
+import {NavigationActions, StackActions} from "react-navigation";
 
 export default class App extends React.Component {
     constructor(props) {
@@ -23,10 +24,8 @@ export default class App extends React.Component {
     }
 
     handleNextClick = () => {
-        const { navigate } = this.props.navigation
-        const { state } = this.props.navigation
-        const db = state.params.db
-        const user = state.params.user
+        const db = this.props.db
+        const user = this.props.user
         let questions = this.state.questions
         const FilteredCategories = {}
         for (var i = 0; i < questions.length; i++) {
@@ -53,14 +52,16 @@ export default class App extends React.Component {
                 .then(res => {
                     console.log("Document successfully written!")
                 })
-            navigate("Main", { db: db, user: user })
+            const resetAction = StackActions.reset({
+                index: 0,
+                actions: [NavigationActions.navigate({routeName: 'Main'})]});
+            this.props.navigation.dispatch(resetAction);
         } else {
             this.setState({
                 questions: questions,
                 index: index + 1,
             })
         }
-        console.log("current index: " + index + " finalIndex: " + finalIndex)
     }
 
     handlePreviousClick = () => {
@@ -103,35 +104,6 @@ export default class App extends React.Component {
             questions: questions
         })
     }
-
-    // handleSubmitClick = () => {
-    //     const { navigate } = this.props.navigation;
-    //     const { state } = this.props.navigation;
-    //     const db = state.params.db;
-    //     const user = state.params.user;
-    //     console.log(user);
-
-    //     const questions = this.state.questions
-    //     const FilteredCategories = {}
-    //     for (var i = 0; i < questions.length; i++) {
-    //         let question = questions[i]
-    //         FilteredCategories[questions[i].text] = []
-    //         for (var j = 0; j < question.options.length; j++) {
-    //             let option = question.options[j]
-    //             if (option.status) {
-    //                 if (!FilteredCategories[question.text].includes(option.name)) {
-    //                     FilteredCategories[question.text].push(option.name)
-    //                 }
-    //             }
-    //         }
-    //     }
-    //     console.log(FilteredCategories)
-    //     db.collection("users").doc(user).set({ preferences: FilteredCategories }).then(res => {
-    //         console.log("Document successfully written!")
-    //     });
-    //     navigate("Homepage")
-    //     // this.setState({ completed: true })
-    // }
 
     render() {
         const questionItems = this.state.questions.map(q => {

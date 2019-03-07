@@ -16,10 +16,10 @@ export default class App extends React.Component {
     handleNextClick = () => {
         const { navigate } = this.props.navigation
         const { state } = this.props.navigation
-        const db = state.params.db
-        const user = state.params.user
+        const db = this.props.db
+        const user = this.props.user
         
-        navigate("IntroQuestionnare", { db: db, user: user })
+        navigate("IntroQuestionnare")
     }
     render() {
             return (

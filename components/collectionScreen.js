@@ -52,13 +52,13 @@ markers[17] = require("../assets/markers/17.png");
 export default class CollectionScreen extends React.Component {
 
     static navigationOptions = {
-        title: 'Saved Locations',
+        title: 'Collection',
         headerTitleStyle: {
             marginRight: 56,
             color: "#1EA28A",
             textAlign: 'center',
             flex: 1,
-            fontSize: 30
+            fontSize: 20
         }
     }
 
@@ -75,38 +75,36 @@ export default class CollectionScreen extends React.Component {
     componentWillMount() {
         const { navigate } = this.props.navigation;
         const {state} = this.props.navigation;
-        const db = state.params.db
-        const user = state.params.user
+        const db = this.props.db
+        const user = this.props.user
         let savedLocations = []
         db.collection("users")
             .doc(user)
             .get()
             .then(userData => {
-                userSavedLocations = userData.data()["savedLocations"]
+                let userSavedLocations = userData.data()["savedLocations"]
                 savedLocations = userSavedLocations
-                console.log(JSON.stringify(savedLocations))
                 this.setState({
                     savedLocations: savedLocations
                 })
+                let data = {};
+                savedLocations.forEach(s =>
+                    data[s.name] = { ...s }
+                )
+                this.setState({ order: Object.keys(data), data: data })
             })
-
-        let data = {};
-        savedLocations.forEach(s =>
-            data[s.name] = {...s}
-        )
-        this.setState({order: Object.keys(data), data: data})
     }
 
 // <Image source={images[suggestion.id]} style={{width: 80, height: 80}}/>
     render() {
         const {state} = this.props.navigation;
-        const suggestions = state.params.suggestions;
+        const savedLocations = this.state.savedLocations
         let { order, data } = this.state;
         const markerItems = order.map((o, index) => {
-                const suggestion = suggestions.find(s => s.name === o)
+            const location = savedLocations.find(s => s.name === o)
                 return (
-                    <Marker coordinate={suggestion.coordinates} anchor={{x: 0.5, y: 0.8}}>
-                        <Image source={markers[suggestion.id]} style={{width: 138, height: 100}}/>
+                    <Marker coordinate={location.coordinates} anchor={{x: 0.5, y: 0.8}}>
+                        <Image source={markers[location.id]} style={{width: 138, height: 100}}/>
                         <View style={styles.mapItemIndex}>
                             <Text>
                                 {index + 1}
@@ -116,7 +114,7 @@ export default class CollectionScreen extends React.Component {
             }
         )
         const coordinates = order.map(o => (
-            suggestions.find(s => s.name === o).coordinates
+            savedLocations.find(s => s.name === o).coordinates
         ))
         return (
             <View style={styles.container}>
