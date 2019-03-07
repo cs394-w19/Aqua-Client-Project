@@ -39,10 +39,9 @@ export default class Homepage extends React.Component {
 
     componentDidMount() {
         const { state } = this.props.navigation;
-        console.log(state.params.user)
         this.setState({
-            user: state.params.user,
-            db: state.params.db,
+            user: this.props.user,
+            db: this.props.db,
             loggedin: state.params.login
         }) 
     }
@@ -57,7 +56,7 @@ export default class Homepage extends React.Component {
                 <TouchableWithoutFeedback
                     title="PlanTrip"
                     onPress={() => {
-                        navigate("TripQuestionnaire", {db: this.state.db, user: this.state.user})
+                        navigate("TripQuestionnaire")
                     }}
                 >
                     <View style={styles.button}>
@@ -67,7 +66,6 @@ export default class Homepage extends React.Component {
                 <TouchableWithoutFeedback
                     title="UpdateProfile"
                     onPress={() => {
-                        console.log(this.db + " and " + this.state.db);
                         navigate("ProfileScreen", {db: this.state.db, user: this.state.user})
                     }}
                 >

@@ -52,13 +52,13 @@ markers[17] = require("../assets/markers/17.png");
 export default class CollectionScreen extends React.Component {
 
     static navigationOptions = {
-        title: 'Saved Locations',
+        title: 'Collection',
         headerTitleStyle: {
             marginRight: 56,
             color: "#1EA28A",
             textAlign: 'center',
             flex: 1,
-            fontSize: 30
+            fontSize: 20
         }
     }
 
@@ -75,14 +75,14 @@ export default class CollectionScreen extends React.Component {
     componentWillMount() {
         const { navigate } = this.props.navigation;
         const {state} = this.props.navigation;
-        const db = state.params.db
-        const user = state.params.user
+        const db = this.props.db
+        const user = this.props.user
         let savedLocations = []
         db.collection("users")
             .doc(user)
             .get()
             .then(userData => {
-                userSavedLocations = userData.data()["savedLocations"]
+                let userSavedLocations = userData.data()["savedLocations"]
                 savedLocations = userSavedLocations
                 this.setState({
                     savedLocations: savedLocations
@@ -91,8 +91,6 @@ export default class CollectionScreen extends React.Component {
                 savedLocations.forEach(s =>
                     data[s.name] = { ...s }
                 )
-
-                console.log("THE DATA IS: " + data)
                 this.setState({ order: Object.keys(data), data: data })
             })
     }
