@@ -114,12 +114,12 @@ export default class SuggestionScreen extends React.Component {
         const user = this.state.user
         const suggestion = state.suggestions.find(s => s.name === name)
         let savedLocations = this.state.savedLocations
-        console.log(savedLocations)
+    
         suggestion.selected = !suggestion.selected
         this.setState(state)
 
         if (suggestion.selected) {
-            savedLocations.push(suggestion.name)
+            savedLocations.push(suggestion)
             console.log(savedLocations)
             db.collection("users")
                 .doc(user).set({
@@ -130,7 +130,7 @@ export default class SuggestionScreen extends React.Component {
                     })
                 )
             } else {
-            savedLocations.splice(savedLocations.indexOf(suggestion.name), 1)
+            savedLocations.splice(savedLocations.indexOf(suggestion), 1)
             db.collection("users")
                 .doc(user).set({
                     savedLocations: savedLocations
@@ -140,6 +140,8 @@ export default class SuggestionScreen extends React.Component {
                     })
                 )
             }
+
+        console.log("location are " + savedLocations)
         }
 
     render() {

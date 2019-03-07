@@ -84,29 +84,29 @@ export default class CollectionScreen extends React.Component {
             .then(userData => {
                 userSavedLocations = userData.data()["savedLocations"]
                 savedLocations = userSavedLocations
-                console.log(JSON.stringify(savedLocations))
                 this.setState({
                     savedLocations: savedLocations
                 })
-            })
+                let data = {};
+                savedLocations.forEach(s =>
+                    data[s.name] = { ...s }
+                )
 
-        let data = {};
-        savedLocations.forEach(s =>
-            data[s.name] = {...s}
-        )
-        this.setState({order: Object.keys(data), data: data})
+                console.log("THE DATA IS: " + data)
+                this.setState({ order: Object.keys(data), data: data })
+            })
     }
 
 // <Image source={images[suggestion.id]} style={{width: 80, height: 80}}/>
     render() {
         const {state} = this.props.navigation;
-        const suggestions = state.params.suggestions;
+        const savedLocations = this.state.savedLocations
         let { order, data } = this.state;
         const markerItems = order.map((o, index) => {
-                const suggestion = suggestions.find(s => s.name === o)
+            const location = savedLocations.find(s => s.name === o)
                 return (
-                    <Marker coordinate={suggestion.coordinates} anchor={{x: 0.5, y: 0.8}}>
-                        <Image source={markers[suggestion.id]} style={{width: 138, height: 100}}/>
+                    <Marker coordinate={location.coordinates} anchor={{x: 0.5, y: 0.8}}>
+                        <Image source={markers[location.id]} style={{width: 138, height: 100}}/>
                         <View style={styles.mapItemIndex}>
                             <Text>
                                 {index + 1}
@@ -116,7 +116,7 @@ export default class CollectionScreen extends React.Component {
             }
         )
         const coordinates = order.map(o => (
-            suggestions.find(s => s.name === o).coordinates
+            savedLocations.find(s => s.name === o).coordinates
         ))
         return (
             <View style={styles.container}>

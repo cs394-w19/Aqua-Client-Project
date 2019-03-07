@@ -30,7 +30,7 @@ class Login extends Component {
         }
     }
     handleGuest = event => {
-        this.db.collection("users").doc("guest@gmail.com").delete();
+        // this.db.collection("users").doc("guest@gmail.com").delete();
         event.preventDefault()
         const {guestUserName, guestPassWord} = this.state;
         const { navigate } = this.props.navigation
