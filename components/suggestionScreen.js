@@ -130,7 +130,7 @@ export default class SuggestionScreen extends React.Component {
                     })
                 )
             } else {
-            savedLocations.splice(savedLocations.indexOf(suggestion), 1)
+            savedLocations.splice(savedLocations.indexOf(savedLocations.find(l => l.name == suggestion.name)), 1)
             db.collection("users")
                 .doc(user).set({
                     savedLocations: savedLocations
