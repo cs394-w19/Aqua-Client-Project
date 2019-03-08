@@ -8,7 +8,6 @@ import {
     TouchableWithoutFeedback,
     ScrollView
 } from "react-native"
-import SuggestedItem from "./suggestedItem"
 import Suggestions from "../suggestions.json"
 import profileQuestions from "../profileQuestions.json";
 
@@ -115,6 +114,26 @@ export default class newItinerary extends React.Component {
         return foundAttractions
     }
 
+    handleItemSelect = name => {
+        const state = this.state
+        const db = this.state.db
+        const user = this.state.user
+        let location;
+        if (state.suggestions.find(s => s.name === name)) {
+            location = state.suggestions.find(s => s.name === name)
+            location.selected = !location.selected
+            this.setState(state)
+        } else {
+            location = state.savedLocations.find(s => s.name === name)
+            location.selected = !location.selected
+            this.setState(state)
+        }
+    }
+
+    handleCreate = () =>{
+        this.setState({dialogVisible: true})
+    }
+
     render() {
         const {categories, suggestions, savedLocations} = this.state;
         const suggestedItems = suggestions.map(l => {
@@ -124,7 +143,7 @@ export default class newItinerary extends React.Component {
                     intersection={l.Categories.filter(x =>
                         categories.includes(x)
                     )}
-                    // handleItemSelect={this.handleItemSelect.bind(this)}
+                    handleItemSelect={this.handleItemSelect.bind(this)}
                     // handleGemClick={this.handleGemClick.bind(this)}
                 />
             )
@@ -136,8 +155,7 @@ export default class newItinerary extends React.Component {
                     intersection={l.Categories.filter(x =>
                         categories.includes(x)
                     )}
-                    // handleItemSelect={this.handleItemSelect.bind(this)}
-                    // handleGemClick={this.handleGemClick.bind(this)}
+                    handleItemSelect={this.handleItemSelect.bind(this)}
                 />
             )
         })
@@ -159,6 +177,11 @@ export default class newItinerary extends React.Component {
                         </View>
                     </ScrollView>
                 </View>
+                <TouchableWithoutFeedback onPress={()=>this.handleCreate()}>
+                    <View style={styles.createBtn}>
+                        <Text>Create Itinerary</Text>
+                    </View>
+                </TouchableWithoutFeedback>
             </View>
         )
     }
@@ -174,11 +197,18 @@ class CollectionItem extends React.Component {
                 </View>
                 <Image style={{width: 200, height: 170, borderBottomLeftRadius: 10, borderBottomRightRadius: 10}}
                        source={images[location.id]}/>
-                <TouchableWithoutFeedback>
+                {!location.selected &&
+                <TouchableWithoutFeedback onPress={() => this.props.handleItemSelect(location.name)}>
                     <View style={styles.colAddBtn}>
                         <Text style={styles.colAddBtnText}>Add to Itinerary</Text>
                     </View>
-                </TouchableWithoutFeedback>
+                </TouchableWithoutFeedback>}
+                {location.selected &&
+                <TouchableWithoutFeedback onPress={() => this.props.handleItemSelect(location.name)}>
+                    <View style={styles.colAddedBtn}>
+                        <Text style={styles.colAddBtnText}>Added</Text>
+                    </View>
+                </TouchableWithoutFeedback>}
             </View>
         )
     }
@@ -196,7 +226,7 @@ const styles = StyleSheet.create({
         marginLeft: 5
     },
     collectionsContainer: {
-        flex: 1,
+        flex: 5,
         backgroundColor: "#1EA28Acc",
     },
     collectionsScroll: {
@@ -204,7 +234,7 @@ const styles = StyleSheet.create({
         flex: 0
     },
     suggestionsContainer: {
-        flex: 1,
+        flex: 5,
         backgroundColor: "#555555cc"
     },
     colItem: {
@@ -237,7 +267,27 @@ const styles = StyleSheet.create({
         borderBottomLeftRadius: 10,
         borderBottomRightRadius: 10
     },
+    colAddedBtn: {
+        height: 40,
+        width: 200,
+        position: 'absolute',
+        bottom: 0,
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: '#1EA28Acc',
+        borderBottomLeftRadius: 10,
+        borderBottomRightRadius: 10
+    },
     colAddBtnText: {
+        fontSize: 20,
+        textAlign: 'center'
+    },
+    createBtn: {
+        backgroundColor: 'black',
+        flex: 1
+    },
+    createBtnText:{
+        color: 'white',
         fontSize: 20,
         textAlign: 'center'
     }
