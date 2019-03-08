@@ -79,7 +79,7 @@ export default class Itinerary extends React.Component {
         }
     }
 
-    componentWillMount() {
+    componentDidMount() {
         const { navigate } = this.props.navigation
         const { state } = this.props.navigation
         const db = state.params.db
@@ -90,17 +90,27 @@ export default class Itinerary extends React.Component {
             .get()
             .then(itinerary => {
                 locations = itinerary.data()["locations"]
-                console.log("her her" + JSON.stringify(locations))
+
                 let name = itinerary.data()["name"]
-                this.setState({
-                    locations: locations,
-                    name: name,
-                    id: itineraryId
-                })
                 let data = {}
 
                 locations.forEach(s => (data[s.name] = { ...s }))
-                this.setState({ order: Object.keys(data), data: data })
+
+                order = itinerary.data()["order"]
+                    ? itinerary.data()["order"]
+                    : Object.keys(data)
+
+                // console.log("locations... " + JSON.stringify(locations))
+                
+                this.setState({
+                    locations: locations,
+                    name: name,
+                    id: itineraryId,
+                    order: order,
+                    data: data,
+                    db: db
+                })
+                // console.log("state is: " + JSON.stringify(this.state))
             })
     }
 
@@ -109,8 +119,11 @@ export default class Itinerary extends React.Component {
         const { state } = this.props.navigation
         const locations = this.state.locations
         let { order, data } = this.state
+
+        console.log("114" + JSON.stringify(order))
         const markerItems = order.map((o, index) => {
             const location = locations.find(s => s.name === o)
+            // console.log("location" + JSON.stringify(order) + " \n and o" + o)
             return (
                 <Marker
                     coordinate={location.coordinates}
@@ -129,6 +142,7 @@ export default class Itinerary extends React.Component {
         const coordinates = order.map(
             o => locations.find(s => s.name === o).coordinates
         )
+        console.log("136" + JSON.stringify(order))
         return (
             <View style={styles.container}>
                 <Text style={styles.tripTitle}> {this.state.name} </Text>
@@ -167,12 +181,19 @@ export default class Itinerary extends React.Component {
                         style={styles.itinerary}
                         sortRowStyle={{ margin: 5, padding: 20 }}
                         data={this.state.data}
-                        order={order}
+                        order={this.state.order}
                         activeOpacity={0.7}
                         moveOnPressIn={true}
                         onRowMoved={e => {
-                            order.splice(e.to, 0, order.splice(e.from, 1)[0])
-                            this.setState({ order: order })
+                            db = this.state.db
+                            o = this.state.order
+                            console.log("before " + this.state.order)
+                            o.splice(e.to, 0, o.splice(e.from, 1)[0])
+                            console.log("after " + this.state.order)
+                            this.setState({ order: o })
+                            db.collection("itineraries")
+                                .doc(itineraryId)
+                                .set({order: o}, {merge: true})
                         }}
                         renderRow={row => (
                             <RowComponent data={row} order={this.state.order} />

@@ -33,7 +33,7 @@ class Login extends Component {
         event.preventDefault()
         const { navigate } = this.props.navigation
         this.props.handleLogin("guest@gmail.com")
-        navigate("Main")
+        navigate("Welcome")
 
     }
 
