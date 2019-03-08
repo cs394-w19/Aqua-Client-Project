@@ -78,21 +78,23 @@ export default class CollectionScreen extends React.Component {
         const db = this.props.db
         const user = this.props.user
         let savedLocations = []
-        db.collection("users")
-            .doc(user)
-            .get()
-            .then(userData => {
-                let userSavedLocations = userData.data()["savedLocations"]
-                savedLocations = userSavedLocations
-                this.setState({
-                    savedLocations: savedLocations
+        this.focusListener = this.props.navigation.addListener("didFocus", () => {
+            db.collection("users")
+                .doc(user)
+                .get()
+                .then(userData => {
+                    let userSavedLocations = userData.data()["savedLocations"]
+                    savedLocations = userSavedLocations
+                    this.setState({
+                        savedLocations: savedLocations
+                    })
+                    let data = {};
+                    savedLocations.forEach(s =>
+                        data[s.name] = {...s}
+                    )
+                    this.setState({order: Object.keys(data), data: data})
                 })
-                let data = {};
-                savedLocations.forEach(s =>
-                    data[s.name] = { ...s }
-                )
-                this.setState({ order: Object.keys(data), data: data })
-            })
+        })
     }
 
 // <Image source={images[suggestion.id]} style={{width: 80, height: 80}}/>
@@ -130,7 +132,6 @@ export default class CollectionScreen extends React.Component {
                         </View>
                     </TouchableWithoutFeedback>
                 </View>
-                <Text style={styles.infoText}>Drag to Plan Trip</Text>
                 {this.state.listView &&
                 <SortableListView
                     removeClippedSubviews={false}

@@ -10,6 +10,7 @@ import Login from './components/signInPage';
 import IntroQuestionnare from './components/introQuestionnare.js';
 import Welcome from './components/welcome'
 import NewItinerary from "./components/newItinerary"
+import Itinerary from "./components/itinerary"
 import firebase from "./firebase.js"
 
 import {createStackNavigator, createAppContainer, createBottomTabNavigator} from 'react-navigation';
@@ -21,7 +22,8 @@ let user;
 
 const ItineraryStack = createStackNavigator({
     ItineraryScreen: props => <ItineraryScreen {...props} db={db} user={user}/>,
-    NewItinerary: {screen: NewItinerary}
+  NewItinerary: {screen: NewItinerary},
+  Itinerary: props => <Itinerary {...props} db={db} user={user}/>
 }, {
     defaultNavigationOptions: {
         title: 'Itineraries',
