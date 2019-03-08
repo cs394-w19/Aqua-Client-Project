@@ -23,6 +23,7 @@ let user;
 const ItineraryStack = createStackNavigator({
     ItineraryScreen: props => <ItineraryScreen {...props} db={db} user={user}/>,
   NewItinerary: {screen: NewItinerary},
+  TripQuestionnaire: props => <TripQuestionnaire {...props} db={db} user={user}/>,
   Itinerary: props => <Itinerary {...props} db={db} user={user}/>
 }, {
     defaultNavigationOptions: {

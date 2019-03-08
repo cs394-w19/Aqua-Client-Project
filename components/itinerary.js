@@ -131,7 +131,7 @@ export default class Itinerary extends React.Component {
         )
         return (
             <View style={styles.container}>
-                <Text style={styles.tripTitle}> this.state.name </Text>
+                <Text style={styles.tripTitle}> {this.state.name} </Text>
                 <View style={styles.tabContainer}>
                     <TouchableWithoutFeedback
                         onPress={() => this.setState({ listView: true })}

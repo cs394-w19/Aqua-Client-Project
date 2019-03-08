@@ -9,35 +9,35 @@ import {
     ScrollView
 } from "react-native"
 import Suggestions from "../suggestions.json"
-import profileQuestions from "../profileQuestions.json";
+import profileQuestions from "../profileQuestions.json"
 
-let images = [];
-images[0] = require("../assets/locationPictures/0.jpg");
-images[1] = require("../assets/locationPictures/1.jpg");
-images[2] = require("../assets/locationPictures/2.jpg");
-images[3] = require("../assets/locationPictures/3.jpg");
-images[4] = require("../assets/locationPictures/4.jpg");
-images[5] = require("../assets/locationPictures/5.jpg");
-images[6] = require("../assets/locationPictures/6.jpg");
-images[7] = require("../assets/locationPictures/7.jpg");
-images[8] = require("../assets/locationPictures/8.jpg");
-images[9] = require("../assets/locationPictures/9.jpg");
-images[10] = require("../assets/locationPictures/10.jpg");
-images[11] = require("../assets/locationPictures/11.jpg");
-images[12] = require("../assets/locationPictures/12.jpg");
-images[13] = require("../assets/locationPictures/13.jpg");
-images[14] = require("../assets/locationPictures/14.jpg");
-images[15] = require("../assets/locationPictures/15.jpg");
-images[16] = require("../assets/locationPictures/16.jpg");
-images[17] = require("../assets/locationPictures/17.jpg");
+let images = []
+images[0] = require("../assets/locationPictures/0.jpg")
+images[1] = require("../assets/locationPictures/1.jpg")
+images[2] = require("../assets/locationPictures/2.jpg")
+images[3] = require("../assets/locationPictures/3.jpg")
+images[4] = require("../assets/locationPictures/4.jpg")
+images[5] = require("../assets/locationPictures/5.jpg")
+images[6] = require("../assets/locationPictures/6.jpg")
+images[7] = require("../assets/locationPictures/7.jpg")
+images[8] = require("../assets/locationPictures/8.jpg")
+images[9] = require("../assets/locationPictures/9.jpg")
+images[10] = require("../assets/locationPictures/10.jpg")
+images[11] = require("../assets/locationPictures/11.jpg")
+images[12] = require("../assets/locationPictures/12.jpg")
+images[13] = require("../assets/locationPictures/13.jpg")
+images[14] = require("../assets/locationPictures/14.jpg")
+images[15] = require("../assets/locationPictures/15.jpg")
+images[16] = require("../assets/locationPictures/16.jpg")
+images[17] = require("../assets/locationPictures/17.jpg")
 
 export default class newItinerary extends React.Component {
     static navigationOptions = {
-        title: 'New Itinerary',
+        title: "New Itinerary",
         headerTitleStyle: {
             marginRight: 56,
             color: "#1EA28A",
-            textAlign: 'center',
+            textAlign: "center",
             flex: 1,
             fontSize: 20
         }
@@ -55,32 +55,44 @@ export default class newItinerary extends React.Component {
             user: null,
             itineraryId: null
         }
-        this.handleCreate = this.handleCreate.bind(this);
+        this.handleCreate = this.handleCreate.bind(this)
     }
 
     componentDidMount = () => {
-        const {state} = this.props.navigation
+        const { state } = this.props.navigation
         const db = state.params.db
-        const user = state.params.user;
+        const user = state.params.user
         const itineraryId = state.params.itineraryId
         db.collection("users")
             .doc(user)
             .get()
             .then(userData => {
-                let userPreferences = userData.data()["preferences"] ? userData.data()["preferences"] : []
-                let userSavedLocations = userData.data()["savedLocations"] ? userData.data()["savedLocations"] : []
+                let userPreferences = userData.data()["preferences"]
+                    ? userData.data()["preferences"]
+                    : []
+                let userSavedLocations = userData.data()["savedLocations"]
+                    ? userData.data()["savedLocations"]
+                    : []
                 let categories = []
                 profileQuestions.questions.forEach(q =>
                     q.options.forEach(o => {
-                        if (userPreferences[q.text].find(option => option === o.name)) {
+                        if (
+                            userPreferences[q.text].find(
+                                option => option === o.name
+                            )
+                        ) {
                             categories = categories.concat(o.Categories)
                         }
                     })
                 )
                 let suggestions = this.retrieveSuggestions(categories)
-                suggestions = suggestions.filter(s => (userSavedLocations.find(l => l.name === s.name) === undefined))
-                suggestions.forEach(s => s.selected = false)
-                userSavedLocations.forEach(l => l.selected = false)
+                suggestions = suggestions.filter(
+                    s =>
+                        userSavedLocations.find(l => l.name === s.name) ===
+                        undefined
+                )
+                suggestions.forEach(s => (s.selected = false))
+                userSavedLocations.forEach(l => (l.selected = false))
                 this.setState({
                     suggestions: suggestions,
                     categories: categories,
@@ -122,7 +134,7 @@ export default class newItinerary extends React.Component {
         const state = this.state
         const db = this.state.db
         const user = this.state.user
-        let location;
+        let location
         if (state.suggestions.find(s => s.name === name)) {
             location = state.suggestions.find(s => s.name === name)
             location.selected = !location.selected
@@ -134,22 +146,34 @@ export default class newItinerary extends React.Component {
         }
     }
 
-    handleCreate = () =>{
-        const {state} = this.props.navigation
+    handleCreate = () => {
+        const { navigate } = this.props.navigation
+        const { state } = this.props.navigation
         const db = this.state.db
-        const user = this.state.user;
-        const itineraryId = this.state.itineraryId;
-        let itineraryItems = this.state.savedLocations.filter(l => l.selected);
+        const user = this.state.user
+        const itineraryId = this.state.itineraryId
+        let itineraryItems = this.state.savedLocations.filter(l => l.selected)
 
-        itineraryItems = itineraryItems.concat(this.state.suggestions.filter(s => s.selected));
+        itineraryItems = itineraryItems.concat(
+            this.state.suggestions.filter(s => s.selected)
+        )
 
-        db.collection("itineraries").doc(itineraryId).set({locations: itineraryItems}, {merge: true}).then(rev=>{
-            console.log("wrote itinerary");
+        db.collection("itineraries")
+            .doc(itineraryId)
+            .set({ locations: itineraryItems }, { merge: true })
+            .then(rev => {
+                console.log("wrote itinerary")
+            })
+
+        navigate("Itinerary", {
+            db: db,
+            user: user,
+            itineraryId: itineraryId
         })
     }
 
     render() {
-        const {categories, suggestions, savedLocations} = this.state;
+        const { categories, suggestions, savedLocations } = this.state
         const suggestedItems = suggestions.map(l => {
             return (
                 <CollectionItem
@@ -191,9 +215,11 @@ export default class newItinerary extends React.Component {
                         </View>
                     </ScrollView>
                 </View>
-                <TouchableWithoutFeedback onPress={()=>this.handleCreate()}>
+                <TouchableWithoutFeedback onPress={() => this.handleCreate()}>
                     <View style={styles.createBtn}>
-                        <Text>Create Itinerary</Text>
+                        <Text style={styles.createBtnText}>
+                            Create Itinerary
+                        </Text>
                     </View>
                 </TouchableWithoutFeedback>
             </View>
@@ -203,26 +229,47 @@ export default class newItinerary extends React.Component {
 
 class CollectionItem extends React.Component {
     render() {
-        const {location, intersection} = this.props;
+        const { location, intersection } = this.props
         return (
             <View style={styles.colItem}>
                 <View style={styles.colItemHeader}>
-                    <Text style={styles.colItemHeaderText}>{location.name}</Text>
+                    <Text style={styles.colItemHeaderText}>
+                        {location.name}
+                    </Text>
                 </View>
-                <Image style={{width: 200, height: 170, borderBottomLeftRadius: 10, borderBottomRightRadius: 10}}
-                       source={images[location.id]}/>
-                {!location.selected &&
-                <TouchableWithoutFeedback onPress={() => this.props.handleItemSelect(location.name)}>
-                    <View style={styles.colAddBtn}>
-                        <Text style={styles.colAddBtnText}>Add to Itinerary</Text>
-                    </View>
-                </TouchableWithoutFeedback>}
-                {location.selected &&
-                <TouchableWithoutFeedback onPress={() => this.props.handleItemSelect(location.name)}>
-                    <View style={styles.colAddedBtn}>
-                        <Text style={styles.colAddBtnText}>Added</Text>
-                    </View>
-                </TouchableWithoutFeedback>}
+                <Image
+                    style={{
+                        width: 200,
+                        height: 170,
+                        borderBottomLeftRadius: 10,
+                        borderBottomRightRadius: 10
+                    }}
+                    source={images[location.id]}
+                />
+                {!location.selected && (
+                    <TouchableWithoutFeedback
+                        onPress={() =>
+                            this.props.handleItemSelect(location.name)
+                        }
+                    >
+                        <View style={styles.colAddBtn}>
+                            <Text style={styles.colAddBtnText}>
+                                Add to Itinerary
+                            </Text>
+                        </View>
+                    </TouchableWithoutFeedback>
+                )}
+                {location.selected && (
+                    <TouchableWithoutFeedback
+                        onPress={() =>
+                            this.props.handleItemSelect(location.name)
+                        }
+                    >
+                        <View style={styles.colAddedBtn}>
+                            <Text style={styles.colAddBtnText}>Added</Text>
+                        </View>
+                    </TouchableWithoutFeedback>
+                )}
             </View>
         )
     }
@@ -231,20 +278,20 @@ class CollectionItem extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        flexDirection: 'column',
+        flexDirection: "column"
     },
     header: {
-        color: 'white',
+        color: "white",
         fontSize: 20,
         marginTop: 5,
         marginLeft: 5
     },
     collectionsContainer: {
         flex: 5,
-        backgroundColor: "#1EA28Acc",
+        backgroundColor: "#1EA28Acc"
     },
     collectionsScroll: {
-        flexDirection: 'row',
+        flexDirection: "row",
         flex: 0
     },
     suggestionsContainer: {
@@ -254,55 +301,54 @@ const styles = StyleSheet.create({
     colItem: {
         height: 230,
         width: 208,
-        backgroundColor: '#000',
+        backgroundColor: "#000",
         borderWidth: 4,
         margin: 10,
-        borderRadius: 10,
+        borderRadius: 10
     },
     colItemHeader: {
         flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-
+        alignItems: "center",
+        justifyContent: "center"
     },
     colItemHeaderText: {
         fontSize: 20,
-        color: 'white',
-        textAlign: 'center'
+        color: "white",
+        textAlign: "center"
     },
     colAddBtn: {
         height: 40,
         width: 200,
-        position: 'absolute',
+        position: "absolute",
         bottom: 0,
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: '#ffffffcc',
+        alignItems: "center",
+        justifyContent: "center",
+        backgroundColor: "#ffffffcc",
         borderBottomLeftRadius: 10,
         borderBottomRightRadius: 10
     },
     colAddedBtn: {
         height: 40,
         width: 200,
-        position: 'absolute',
+        position: "absolute",
         bottom: 0,
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: '#1EA28Acc',
+        alignItems: "center",
+        justifyContent: "center",
+        backgroundColor: "#1EA28Acc",
         borderBottomLeftRadius: 10,
         borderBottomRightRadius: 10
     },
     colAddBtnText: {
         fontSize: 20,
-        textAlign: 'center'
+        textAlign: "center"
     },
     createBtn: {
-        backgroundColor: 'black',
+        backgroundColor: "black",
         flex: 1
     },
-    createBtnText:{
-        color: 'white',
+    createBtnText: {
+        color: "white",
         fontSize: 20,
-        textAlign: 'center'
+        textAlign: "center"
     }
 })
