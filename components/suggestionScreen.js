@@ -198,7 +198,7 @@ export default class SuggestionScreen extends React.Component {
                         >
                             <View style={styles.closeBtn}>
                                 <Text style={styles.closeBtnText}>
-                                    Back to Suggestion List
+                                    X
                                 </Text>
                             </View>
                         </TouchableWithoutFeedback>
@@ -247,8 +247,13 @@ const styles = StyleSheet.create({
     closeBtn: {
         display: "flex",
         backgroundColor: "#1EA28A",
-        height: 60,
+        height: 40,
+        width: 40,
+        borderRadius: 5,
         alignItems: "center",
+        position: "absolute",
+        top: 20,
+        right: 20,
         justifyContent: "center"
     },
     closeBtnText: {
