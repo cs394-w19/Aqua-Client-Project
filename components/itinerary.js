@@ -213,7 +213,6 @@ export default class Itinerary extends React.Component {
 
 class RowComponent extends React.Component {
     render() {
-        let index = this.props.order.findIndex(o => o === this.props.data.name)
         return (
             <TouchableHighlight
                 underlayColor={"#eee"}
@@ -225,7 +224,6 @@ class RowComponent extends React.Component {
                         style={{ width: 80, height: 80 }}
                     />
                     <Text style={styles.itemDetails}>
-                        {index + 1 + ". "}
                         {this.props.data.name}
                     </Text>
                 </View>

@@ -9,9 +9,11 @@ export default class CheckBox extends React.Component {
     	if(this.props.checked) {
     		imageLink = checkedBox;
     	}
+    	let style = this.props.checked? {width:  50, height: 50} : {width: 50, height: 50, opacity: 0.8}
+
     	return (
     		<TouchableWithoutFeedback onPress={this.props.handleCheckBoxClick}>
-    			<Image source={imageLink} style={{width: 50, height: 50, opacity: 0.5}}/>
+    			<Image source={imageLink} style={style}/>
     		</TouchableWithoutFeedback>
     );
   }
