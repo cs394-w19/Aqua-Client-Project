@@ -163,13 +163,14 @@ export default class newItinerary extends React.Component {
             .set({ locations: itineraryItems }, { merge: true })
             .then(rev => {
                 console.log("wrote itinerary")
+                navigate("Itinerary", {
+                    db: db,
+                    user: user,
+                    itineraryId: itineraryId
+                })
             })
 
-        navigate("Itinerary", {
-            db: db,
-            user: user,
-            itineraryId: itineraryId
-        })
+        
     }
 
     render() {
