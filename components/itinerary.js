@@ -91,7 +91,7 @@ export default class Itinerary extends React.Component {
             .then(itinerary => {
                 locations = itinerary.data()["locations"]
                 console.log("her her" + JSON.stringify(locations))
-                name = itinerary.data()["name"]
+                let name = itinerary.data()["name"]
                 this.setState({
                     locations: locations,
                     name: name,

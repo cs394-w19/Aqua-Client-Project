@@ -1,6 +1,27 @@
 import React from 'react';
-import {StyleSheet, Text, View, TouchableWithoutFeedback} from 'react-native';
+import {StyleSheet, Text, View, TouchableWithoutFeedback, Image} from 'react-native';
 import CheckBox from './checkBox';
+
+let images = [];
+images[0] = require("../assets/locationPictures/0.jpg");
+images[1] = require("../assets/locationPictures/1.jpg");
+images[2] = require("../assets/locationPictures/2.jpg");
+images[3] = require("../assets/locationPictures/3.jpg");
+images[4] = require("../assets/locationPictures/4.jpg");
+images[5] = require("../assets/locationPictures/5.jpg");
+images[6] = require("../assets/locationPictures/6.jpg");
+images[7] = require("../assets/locationPictures/7.jpg");
+images[8] = require("../assets/locationPictures/8.jpg");
+images[9] = require("../assets/locationPictures/9.jpg");
+images[10] = require("../assets/locationPictures/10.jpg");
+images[11] = require("../assets/locationPictures/11.jpg");
+images[12] = require("../assets/locationPictures/12.jpg");
+images[13] = require("../assets/locationPictures/13.jpg");
+images[14] = require("../assets/locationPictures/14.jpg");
+images[15] = require("../assets/locationPictures/15.jpg");
+images[16] = require("../assets/locationPictures/16.jpg");
+images[17] = require("../assets/locationPictures/17.jpg");
+const gem = require("../assets/diamond.png")
 
 export default class SuggestedItem extends React.Component {
 
@@ -11,82 +32,93 @@ export default class SuggestedItem extends React.Component {
         }
     }
 
-
     render() {
         const {location, intersection, handleItemSelect, handleGemClick} = this.props;
         let reason = intersection[0]
-        if (intersection[1]){
+        if (intersection[1]) {
             reason = reason + ' & ' + intersection[1]
         }
         // intersection.forEach(r => reason = reason + r + ", ")
         // reason = reason.substring(0, reason.length - 2)
         reason = "80% who liked " + reason + " liked this"
-        const containerStyle = location.gem ? styles.containerGem : styles.container
         const containerClick = location.gem ? handleGemClick : () => {
         }
-        const reasonStyle = location.gem ? styles.reasonGem : styles.reason
         return (
-            <View style={containerStyle}>
-                {location.gem && <Text style={styles.suggestedBy}>Suggested By {location.website}</Text>}
-                <CheckBox checked={location.selected} gem={location.gem}
-                          handleCheckBoxClick={() => handleItemSelect(location.name)}/>
-                <TouchableWithoutFeedback onPress={() => containerClick(location.link)}>
+            <TouchableWithoutFeedback onPress={() => containerClick(location.link)}>
+                <View style={styles.container}>
+                    <Image source={images[location.id]} style={{height: 250, width: 350}}/>
                     <View style={styles.details}>
-                        <Text style={styles.text} numberOfLines={1}>{location.name}</Text>
-                        <Text style={reasonStyle}>{reason}</Text>
+                        <View style={styles.textDetails}>
+                            <Text style={styles.text}>{location.name}</Text>
+                            <Text style={styles.reason}>{reason}</Text>
+                            {location.gem && <Text style={styles.suggestedBy}>Suggested By {location.website}</Text>}
+                        </View>
+                        {location.gem && <Image source={gem}
+                                                style={{
+                                                    position: 'absolute',
+                                                    right: 10,
+                                                    top: 5,
+                                                    height: 30,
+                                                    width: 30,
+                                                    rotate: '30deg'
+                                                }}/>
+                        }
+
                     </View>
-                </TouchableWithoutFeedback>
-            </View>
-        );
+
+                    <View style={styles.checkbox}>
+                        <CheckBox checked={location.selected} gem={location.gem}
+                                  handleCheckBoxClick={() => handleItemSelect(location.name)}/>
+                    </View>
+                </View>
+            </TouchableWithoutFeedback>
+        )
+            ;
     }
 }
 
 const styles = StyleSheet.create({
     container: {
-        height: 70,
-        flexDirection: 'row',
-        marginHorizontal: 40,
-        marginVertical: 10,
-        paddingHorizontal: 10,
-        alignItems: 'center'
+        flex: 0,
+        backgroundColor: '#1EA28A88',
+        borderRadius: 10,
+        borderWidth: 10,
+        borderColor: '#1EA28A88',
+        width: 370,
+        shadowColor: 'black',
+        shadowRadius: 5,
+        margin: 10,
     },
     containerGem: {
-        height: 70,
+        flex: 0,
         backgroundColor: "#1EA28A88",
-        flexDirection: 'row',
-        marginHorizontal: 40,
-        marginVertical: 10,
-        borderRadius: 5,
-        paddingHorizontal: 10,
         alignItems: 'center'
     },
+    checkbox: {
+        position: 'absolute',
+        right: 20,
+        top: 20,
+    },
     details: {
+        height: 100
+    },
+    textDetails: {
         flexDirection: 'column',
-        width: 250
+        width: 300
     },
     text: {
-        fontSize: 15,
+        fontSize: 20,
         marginTop: 5,
-        marginLeft: 20,
+        marginLeft: 10,
     },
     reason: {
-        fontSize: 10,
-        marginLeft: 20,
-        color: "#1EA28A",
-        flex: 0
-    },
-    reasonGem: {
-        fontSize: 10,
-        marginLeft: 20,
-        color: "#fff",
-        flex: 0
+        fontSize: 15,
+        marginLeft: 10,
+        color: "#1EA28A"
     },
     suggestedBy: {
         fontSize: 10,
-        marginLeft: 20,
+        marginLeft: 10,
         color: "#fff",
-        position: 'absolute',
-        top: 0,
-        right: 5
     },
 })

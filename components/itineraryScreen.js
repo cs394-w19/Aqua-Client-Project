@@ -36,35 +36,37 @@ export default class ItineraryScreen extends React.Component {
     componentDidMount() {
         const db = this.props.db
         const user = this.props.user
-        let upcomingItineraries
-        let pastItineraries
-        db.collection("users")
-            .doc(user)
-            .get()
-            .then(userData => {
-                upcomingItineraries = userData.data()["upcomingItineraries"]
-                    ? userData.data()["upcomingItineraries"]
-                    : []
-                pastItineraries = userData.data()["pastItineraries"]
-                    ? userData.data()["pastItineraries"]
-                    : []
-                this.setState({
-                    upcomingItineraries: upcomingItineraries,
-                    pastItineraries: pastItineraries
-                })
-                let itineraryNames = {}
-                db.collection("itineraries")
-                    .where("users", "array-contains", user)
-                    .get()
-                    .then(itineraries => {
-                        itineraries.forEach(i => {
-                            itineraryNames[i.id] = i.data().name
-                        })
-                        this.setState({
-                            itineraryNames: itineraryNames
-                        })
+        this.focusListener = this.props.navigation.addListener("didFocus", () => {
+            let upcomingItineraries
+            let pastItineraries
+            db.collection("users")
+                .doc(user)
+                .get()
+                .then(userData => {
+                    upcomingItineraries = userData.data()["upcomingItineraries"]
+                        ? userData.data()["upcomingItineraries"]
+                        : []
+                    pastItineraries = userData.data()["pastItineraries"]
+                        ? userData.data()["pastItineraries"]
+                        : []
+                    this.setState({
+                        upcomingItineraries: upcomingItineraries,
+                        pastItineraries: pastItineraries
                     })
-            })
+                    let itineraryNames = {}
+                    db.collection("itineraries")
+                        .where("users", "array-contains", user)
+                        .get()
+                        .then(itineraries => {
+                            itineraries.forEach(i => {
+                                itineraryNames[i.id] = i.data().name
+                            })
+                            this.setState({
+                                itineraryNames: itineraryNames
+                            })
+                        })
+                })
+        })
     }
 
     handleCreate(itineraryName) {
@@ -133,7 +135,7 @@ export default class ItineraryScreen extends React.Component {
                 </TouchableWithoutFeedback>
             )
         })
-        let itineraryName
+        let itineraryName="";
         return (
             <ScrollView>
                 <View style={styles.container}>
