@@ -130,7 +130,6 @@ export default class CollectionScreen extends React.Component {
                         </View>
                     </TouchableWithoutFeedback>
                 </View>
-                <Text style={styles.infoText}>Drag to Plan Trip</Text>
                 {this.state.listView &&
                 <SortableListView
                     removeClippedSubviews={false}
