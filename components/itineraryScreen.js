@@ -24,12 +24,45 @@ export default class ItineraryScreen extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            dialogVisible: false
+            dialogVisible: false,
+            upcomingItineraries: [],
+            pastItineraries: []
         }
+        this.handleCreate = this.handleCreate.bind(this)
+    }
+
+    componentDidMount() {
+        const db = this.props.db;
+        const user = this.props.user;
+        let upcomingItineraries;
+        let pastItineraries;
+        db.collection("user").doc(user).get().then(data => {
+            upcomingItineraries = data["upcomingItineraries"] ? data["upcomingItineraries"] : [];
+            pastItineraries = data["pastItineraries"] ? data["pastItineraries"] : [];
+            this.setState({upcomingItineraries: upcomingItineraries, pastItineraries: pastItineraries})
+        })
+    }
+
+    handleCreate(itineraryName) {
+        const {navigate} = this.props.navigation;
+        this.setState({dialogVisible: false})
+        const db = this.props.db
+        const user = this.props.user;
+        const itinerary = {"name": itineraryName, "city": "", "locations": []}
+        let upcomingItineraries = this.state.upcomingItineraries;
+        console.log("itineraries" + upcomingItineraries);
+        db.collection("itineraries")
+            .add(itinerary).then( rev =>
+            {
+                upcomingItineraries.push(rev.id);
+                db.collection("users").doc(user).set({upcomingItineraries: upcomingItineraries}, {merge: true});
+                console.log("itinerary written");
+                navigate('NewItinerary', {db: this.props.db, user: this.props.user, itineraryId: rev.id})
+            }
+        )
     }
 
     render() {
-        const {navigate} = this.props.navigation;
         let itineraryName;
         return (
             <ScrollView>
@@ -49,9 +82,7 @@ export default class ItineraryScreen extends React.Component {
                                   value={itineraryName}
                                   onChangeText={(text) =>itineraryName=text }/>
                     <Dialog.Button label="Cancel" onPress={() => this.setState({dialogVisible: false})}/>
-                    <Dialog.Button label="Create" onPress={()=>{
-                        this.setState({dialogVisible: false})
-                        navigate('NewItinerary', {db: this.props.db, user: this.props.user, itineraryName: itineraryName})}
+                    <Dialog.Button label="Create" onPress={()=> this.handleCreate(itineraryName)
                     }/>
                 </Dialog.Container>
             </ScrollView>

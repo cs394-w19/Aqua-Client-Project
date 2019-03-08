@@ -52,19 +52,22 @@ export default class newItinerary extends React.Component {
             blogVisible: false,
             blogLink: null,
             db: null,
-            user: null
+            user: null,
+            itineraryId: null
         }
+        this.handleCreate = this.handleCreate.bind(this);
     }
 
     componentDidMount = () => {
         const {state} = this.props.navigation
         const db = state.params.db
         const user = state.params.user;
+        const itineraryId = state.params.itineraryId
         db.collection("users")
             .doc(user)
             .get()
             .then(userData => {
-                let userPreferences = userData.data()["preferences"]
+                let userPreferences = userData.data()["preferences"] ? userData.data()["preferences"] : []
                 let userSavedLocations = userData.data()["savedLocations"] ? userData.data()["savedLocations"] : []
                 let categories = []
                 profileQuestions.questions.forEach(q =>
@@ -74,8 +77,8 @@ export default class newItinerary extends React.Component {
                         }
                     })
                 )
-                const suggestions = this.retrieveSuggestions(categories)
-                suggestions.filter(s => !userSavedLocations.find(l => l.name === s.name))
+                let suggestions = this.retrieveSuggestions(categories)
+                suggestions = suggestions.filter(s => (userSavedLocations.find(l => l.name === s.name) === undefined))
                 suggestions.forEach(s => s.selected = false)
                 userSavedLocations.forEach(l => l.selected = false)
                 this.setState({
@@ -84,7 +87,8 @@ export default class newItinerary extends React.Component {
                     savedLocations: userSavedLocations,
                     blogVisible: false,
                     user: user,
-                    db: db
+                    db: db,
+                    itineraryId: itineraryId
                 })
             })
     }
@@ -131,7 +135,17 @@ export default class newItinerary extends React.Component {
     }
 
     handleCreate = () =>{
-        this.setState({dialogVisible: true})
+        const {state} = this.props.navigation
+        const db = this.state.db
+        const user = this.state.user;
+        const itineraryId = this.state.itineraryId;
+        let itineraryItems = this.state.savedLocations.filter(l => l.selected);
+
+        itineraryItems = itineraryItems.concat(this.state.suggestions.filter(s => s.selected));
+
+        db.collection("itineraries").doc(itineraryId).set({locations: itineraryItems}, {merge: true}).then(rev=>{
+            console.log("wrote itinerary");
+        })
     }
 
     render() {

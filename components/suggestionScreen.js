@@ -54,8 +54,8 @@ export default class SuggestionScreen extends React.Component {
             .doc(user)
             .get()
             .then(userData => {
-                userPreferences = userData.data()["preferences"]
-                let userSavedLocations = userData.data()["savedLocations"]
+                userPreferences = userData.data()["preferences"] ? userData.data()["preferences"] : [];
+                let userSavedLocations = userData.data()["savedLocations"] ?  userData.data()["savedLocations"]: [];
 
                 profileQuestions.questions.forEach(q =>
                     q.options.forEach(o => {
