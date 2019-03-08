@@ -193,7 +193,7 @@ export default class newItinerary extends React.Component {
                 </View>
                 <TouchableWithoutFeedback onPress={()=>this.handleCreate()}>
                     <View style={styles.createBtn}>
-                        <Text>Create Itinerary</Text>
+                        <Text style={styles.createBtnText}>Create Itinerary</Text>
                     </View>
                 </TouchableWithoutFeedback>
             </View>
@@ -209,7 +209,7 @@ class CollectionItem extends React.Component {
                 <View style={styles.colItemHeader}>
                     <Text style={styles.colItemHeaderText}>{location.name}</Text>
                 </View>
-                <Image style={{width: 200, height: 170, borderBottomLeftRadius: 10, borderBottomRightRadius: 10}}
+                <Image style={{width: 200, height: 150, borderBottomLeftRadius: 10, borderBottomRightRadius: 10}}
                        source={images[location.id]}/>
                 {!location.selected &&
                 <TouchableWithoutFeedback onPress={() => this.props.handleItemSelect(location.name)}>
@@ -252,7 +252,7 @@ const styles = StyleSheet.create({
         backgroundColor: "#555555cc"
     },
     colItem: {
-        height: 230,
+        height: 210,
         width: 208,
         backgroundColor: '#000',
         borderWidth: 4,

@@ -1,6 +1,5 @@
 import React from 'react';
 import {StyleSheet, Text, View, TouchableWithoutFeedback, ScrollView, Image, TouchableHighlight} from 'react-native';
-import SortableListView from 'react-native-sortable-listview';
 import MapView, {PROVIDER_GOOGLE, Marker} from 'react-native-maps'
 import MapViewDirections from 'react-native-maps-directions';
 import APIKey from '../apiKey.json';
@@ -66,15 +65,11 @@ export default class CollectionScreen extends React.Component {
         super(props);
         this.state = {
             listView: true,
-            order: [],
-            data: {},
             savedLocations: []
         }
     }
 
     componentWillMount() {
-        const { navigate } = this.props.navigation;
-        const {state} = this.props.navigation;
         const db = this.props.db
         const user = this.props.user
         let savedLocations = []
@@ -83,43 +78,26 @@ export default class CollectionScreen extends React.Component {
                 .doc(user)
                 .get()
                 .then(userData => {
-                    let userSavedLocations = userData.data()["savedLocations"]
+                    let userSavedLocations = userData.data()["savedLocations"] ? userData.data()["savedLocations"] : []
                     savedLocations = userSavedLocations
-                    this.setState({
-                        savedLocations: savedLocations
-                    })
-                    let data = {};
-                    savedLocations.forEach(s =>
-                        data[s.name] = {...s}
-                    )
-                    this.setState({order: Object.keys(data), data: data})
+                    this.setState({savedLocations: savedLocations})
                 })
         })
     }
 
-// <Image source={images[suggestion.id]} style={{width: 80, height: 80}}/>
     render() {
-        const {state} = this.props.navigation;
         const savedLocations = this.state.savedLocations
-        let { order, data } = this.state;
-        const markerItems = order.map((o, index) => {
-            const location = savedLocations.find(s => s.name === o)
+        const markerItems = savedLocations.map((s) => {
                 return (
-                    <Marker coordinate={location.coordinates} anchor={{x: 0.5, y: 0.8}}>
-                        <Image source={markers[location.id]} style={{width: 138, height: 100}}/>
-                        <View style={styles.mapItemIndex}>
-                            <Text>
-                                {index + 1}
-                            </Text>
-                        </View>
+                    <Marker coordinate={s.coordinates} anchor={{x: 0.5, y: 0.8}}>
+                        <Image source={markers[s.id]} style={{width: 138, height: 100}}/>
                     </Marker>)
             }
         )
-        const coordinates = order.map(o => (
-            savedLocations.find(s => s.name === o).coordinates
-        ))
+        const items = savedLocations.map(row => <RowComponent data={row}/>)
         return (
             <View style={styles.container}>
+                <Text style={styles.header}>Collection</Text>
                 <View style={styles.tabContainer}>
                     <TouchableWithoutFeedback onPress={() => this.setState({listView: true})}>
                         <View style={this.state.listView ? styles.tabActive : styles.tab}>
@@ -133,20 +111,12 @@ export default class CollectionScreen extends React.Component {
                     </TouchableWithoutFeedback>
                 </View>
                 {this.state.listView &&
-                <SortableListView
-                    removeClippedSubviews={false}
-                    style={styles.itinerary}
-                    sortRowStyle={{margin: 5, padding: 20}}
-                    data={this.state.data}
-                    order={order}
-                    activeOpacity={0.7}
-                    moveOnPressIn={true}
-                    onRowMoved={e => {
-                        order.splice(e.to, 0, order.splice(e.from, 1)[0])
-                        this.setState({order: order})
-                    }}
-                    renderRow={row => <RowComponent data={row} order={this.state.order}/>}
-                />}
+                <ScrollView>
+                    <View>
+                    {items}
+                    </View>
+                </ScrollView>
+                }
                 {!this.state.listView &&
                 <MapView
                     style={styles.itinerary}
@@ -159,16 +129,6 @@ export default class CollectionScreen extends React.Component {
                     }}
                 >
                     {markerItems}
-                    <MapViewDirections
-                        origin={coordinates[0]}
-                        waypoints={(coordinates.length > 2) ? coordinates.slice(1, -1) : null}
-                        destination={coordinates[coordinates.length - 1]}
-                        apikey={GOOGLE_MAPS_APIKEY}
-                        strokeWidth={3}
-                        strokeColor="hotpink"
-                        optimizeWaypoints={true}/>
-
-
                 </MapView>}
             </View>
         );
@@ -177,18 +137,12 @@ export default class CollectionScreen extends React.Component {
 
 class RowComponent extends React.Component {
     render() {
-        let index = this.props.order.findIndex(o => o === this.props.data.name)
         return (
-            <TouchableHighlight
-                underlayColor={'#eee'}
-                {...this.props.sortHandlers}
-            >
-                <View
-                    style={styles.itineraryItem}>
-                    <Image source={images[this.props.data.id]} style={{width: 80, height: 80}}/>
-                    <Text style={styles.itemDetails}>{index + 1 + ". "}{this.props.data.name}</Text>
-                </View>
-            </TouchableHighlight>
+            <View
+                style={styles.itineraryItem}>
+                <Image source={images[this.props.data.id]} style={{width: 80, height: 80}}/>
+                <Text style={styles.itemDetails}>{this.props.data.name}</Text>
+            </View>
         )
     }
 }
@@ -199,13 +153,15 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'flex-start',
-        padding: 30
+        paddingTop: 20,
     },
     header: {
+        margin: 20,
         flex: 0,
-        padding: 20,
+        textAlign: 'center',
         fontSize: 30,
-        paddingBottom: 0
+        fontWeight: "bold",
+        color: '#1EA28A'
     },
     itinerary: {
         width: 400,
@@ -214,9 +170,10 @@ const styles = StyleSheet.create({
     },
     itineraryItem: {
         margin: 5,
+        width: 350,
+        padding: 20,
         borderBottomWidth: 1,
         borderColor: 'grey',
-        padding: 10,
         borderRadius: 5,
         flexDirection: 'row'
     },
@@ -232,7 +189,8 @@ const styles = StyleSheet.create({
         borderWidth: 2,
         borderColor: '#1EA28A',
         flexDirection: 'row',
-        overflow: 'hidden'
+        overflow: 'hidden',
+        marginBottom: 5
     },
     tab: {
         width: 150,

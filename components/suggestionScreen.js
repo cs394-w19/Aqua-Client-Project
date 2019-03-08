@@ -4,7 +4,6 @@ import {
     Text,
     View,
     ScrollView,
-    Button,
     WebView,
     TouchableWithoutFeedback
 } from "react-native"
@@ -14,17 +13,6 @@ import profileQuestions from "../profileQuestions.json";
 import {withNavigationFocus} from "react-navigation"
 
 class SuggestionScreen extends React.Component {
-    static navigationOptions = {
-        title: 'Itinerary',
-        headerTitleStyle: {
-            marginRight: 56,
-            color: "#1EA28A",
-            textAlign: 'center',
-            flex: 1,
-            fontSize: 20
-        },
-        tabBarLabel: 'Itineraries'
-    }
 
     constructor(props) {
         super(props)
@@ -146,7 +134,6 @@ class SuggestionScreen extends React.Component {
 
     render() {
         const categories = this.state.categories
-        const {navigate} = this.props.navigation
         const suggestions = this.state.suggestions
         const suggestedItems = suggestions.map(l => {
             return (
@@ -165,7 +152,7 @@ class SuggestionScreen extends React.Component {
                 <Text style={styles.header}>
                     EXPLORE
                 </Text>
-                <ScrollView>
+                <ScrollView style={{flex: 1}}>
                     <View style={styles.suggestionsContainer}>
                         {suggestedItems}
                     </View>
@@ -205,19 +192,15 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: "#fff",
         alignItems: 'center',
+        justifyContent: 'flex-start',
+        paddingTop: 20,
     },
     header: {
-        flex: 0,
-        padding: 20,
+        margin: 20,
+        textAlign: 'center',
         fontSize: 30,
-        marginTop: 10,
-        paddingBottom: 0,
-        color: '#1EA28A'
-    },
-    subHeader: {
-        flex: 0,
-        padding: 20,
-        fontSize: 15
+        fontWeight: "bold",
+        color: '#1EA28A',
     },
     suggestionsContainer: {
         marginTop: 20,
