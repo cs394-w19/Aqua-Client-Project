@@ -26,9 +26,8 @@ export default class SuggestionScreen extends React.Component {
         const user = this.props.user;
         return (
             <View style={styles.container}>
-                <Text style={styles.header}>Your Profile</Text>
                 <View style={styles.profileContainer}>
-                    <Image style={styles.imageStyling} source={require('../userpicture.png')}/>
+                    <Image style={styles.imageStyling} source={require('../profile_pic.jpeg')}/>
                     <Text style={styles.userName}>{user}</Text>
 
                 </View>
@@ -70,10 +69,15 @@ const styles = StyleSheet.create({
     profileContainer: {
         marginTop: 20,
         flex: 0,
+        justifyContent: 'center',
+        alignItems: 'center',
     },
     imageStyling: {
         width: 200,
-        height: 200
+        height: 200,
+        borderRadius: 20,
+        borderColor: "#1EA28A"
+
     },
     userName:{
         textAlign: "center",
