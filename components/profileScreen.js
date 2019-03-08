@@ -26,7 +26,6 @@ export default class SuggestionScreen extends React.Component {
         const user = this.props.user;
         return (
             <View style={styles.container}>
-                <Text style={styles.header}>Your Profile</Text>
                 <View style={styles.profileContainer}>
                     <Image style={styles.imageStyling} source={require('../profile_pic.jpeg')}/>
                     <Text style={styles.userName}>{user}</Text>
