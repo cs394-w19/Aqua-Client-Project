@@ -10,6 +10,7 @@ import {
 } from "react-native"
 import Suggestions from "../suggestions.json"
 import profileQuestions from "../profileQuestions.json"
+import {NavigationActions, StackActions} from "react-navigation";
 
 let images = []
 images[0] = require("../assets/locationPictures/0.jpg")
@@ -163,11 +164,17 @@ export default class newItinerary extends React.Component {
             .set({ locations: itineraryItems }, { merge: true })
             .then(rev => {
                 console.log("wrote itinerary")
-                navigate("Itinerary", {
-                    db: db,
-                    user: user,
-                    itineraryId: itineraryId
-                })
+                const resetAction = StackActions.reset({
+                    index: 1,
+                    actions: [ NavigationActions.navigate({
+                        routeName: 'ItineraryScreen'}),
+                        NavigationActions.navigate({
+                        routeName: 'Itinerary', params: {
+                            db: db,
+                            user: user,
+                            itineraryId: itineraryId} })]
+                });
+                this.props.navigation.dispatch(resetAction);
             })
 
         

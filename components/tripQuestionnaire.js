@@ -95,11 +95,6 @@ export default class App extends React.Component {
                                 itineraryId: itineraryId} })]
                     });
                     this.props.navigation.dispatch(resetAction);
-                    navigate("NewItinerary", {
-                        db: this.props.db,
-                        user: this.props.user,
-                        itineraryId: itineraryId
-                    })
                 })
         } else {
             this.setState({ index: index + 1 })
