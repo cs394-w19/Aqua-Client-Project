@@ -92,16 +92,40 @@ export default class newItinerary extends React.Component {
                         userSavedLocations.find(l => l.name === s.name) ===
                         undefined
                 )
-                suggestions.forEach(s => (s.selected = false))
-                userSavedLocations.forEach(l => (l.selected = false))
-                this.setState({
-                    suggestions: suggestions,
-                    categories: categories,
-                    savedLocations: userSavedLocations,
-                    blogVisible: false,
-                    user: user,
-                    db: db,
-                    itineraryId: itineraryId
+                let previouslyChosenLocations = []
+                db.collection("itineraries").doc(itineraryId).get().then(it => {
+                    if(it.data()["order"]){
+                        console.log("poop");
+                       previouslyChosenLocations =  previouslyChosenLocations.concat(it.data()["order"]);
+                    }
+                    console.log(it.data()["order"])
+                    console.log(previouslyChosenLocations)
+
+                    suggestions.forEach(s => {
+                        if(previouslyChosenLocations.find(p => (s.name === p)) ===undefined){
+                            s.selected = false;
+                        }
+                        else {
+                            s.selected = true;
+                        }
+                    })
+                    userSavedLocations.forEach(l => {
+                        if(previouslyChosenLocations.find(p => (l.name === p)) ===undefined){
+                            l.selected = false;
+                        }
+                        else {
+                            l.selected = true;
+                        }
+                    })
+                    this.setState({
+                        suggestions: suggestions,
+                        categories: categories,
+                        savedLocations: userSavedLocations,
+                        blogVisible: false,
+                        user: user,
+                        db: db,
+                        itineraryId: itineraryId
+                    })
                 })
             })
     }
@@ -161,7 +185,7 @@ export default class newItinerary extends React.Component {
 
         db.collection("itineraries")
             .doc(itineraryId)
-            .set({ locations: itineraryItems }, { merge: true })
+            .set({ locations: itineraryItems, order: itineraryItems.map(i => i.name) }, { merge: true })
             .then(rev => {
                 console.log("wrote itinerary")
                 const resetAction = StackActions.reset({
@@ -176,8 +200,6 @@ export default class newItinerary extends React.Component {
                 });
                 this.props.navigation.dispatch(resetAction);
             })
-
-        
     }
 
     render() {

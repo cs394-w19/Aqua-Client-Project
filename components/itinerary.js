@@ -97,35 +97,30 @@ export default class Itinerary extends React.Component {
 
                     locations.forEach(s => (data[s.name] = {...s}))
 
-                    order = itinerary.data()["order"]
-                        ? itinerary.data()["order"]
-                        : Object.keys(data)
 
-                    // console.log("locations... " + JSON.stringify(locations))
-
-                    this.setState({
-                        locations: locations,
-                        name: name,
-                        id: itineraryId,
-                        order: order,
-                        data: data,
-                        db: db
-                    })
-                    // console.log("state is: " + JSON.stringify(this.state))
+                let order = itinerary.data()["order"]
+                    ? itinerary.data()["order"]
+                    : Object.keys(data)
+                
+                this.setState({
+                    locations: locations,
+                    name: name,
+                    id: itineraryId,
+                    order: order,
+                    data: data,
+                    db: db
                 })
-        })
+            })
+    })
     }
-
-    // <Image source={images[suggestion.id]} style={{width: 80, height: 80}}/>
     render() {
-        const {state} = this.props.navigation
+        const { state, navigate } = this.props.navigation
         const locations = this.state.locations
         let {order, data} = this.state
 
         console.log("114" + JSON.stringify(order))
         const markerItems = order.map((o, index) => {
             const location = locations.find(s => s.name === o)
-            // console.log("location" + JSON.stringify(order) + " \n and o" + o)
             return (
                 <Marker
                     coordinate={location.coordinates}
@@ -187,20 +182,21 @@ export default class Itinerary extends React.Component {
                         activeOpacity={0.7}
                         moveOnPressIn={true}
                         onRowMoved={e => {
-                            db = this.state.db
-                            o = this.state.order
+                            let db = this.state.db
+                            let o = this.state.order
                             console.log("before " + this.state.order)
                             o.splice(e.to, 0, o.splice(e.from, 1)[0])
                             console.log("after " + this.state.order)
                             this.setState({order: o})
                             db.collection("itineraries")
-                                .doc(itineraryId)
+                                .doc(this.state.id)
                                 .set({order: o}, {merge: true})
                         }}
                         renderRow={row => (
                             <RowComponent data={row} order={this.state.order}/>
                         )}
                     />
+
                 )}
                 {!this.state.listView && (
                     <MapView
@@ -229,6 +225,19 @@ export default class Itinerary extends React.Component {
                         />
                     </MapView>
                 )}
+
+                <TouchableWithoutFeedback onPress={() => navigate("NewItinerary", {
+                    db: this.props.db,
+                    user: this.props.user,
+                    itineraryId: this.state.id
+                })}>
+                    <View style = {styles.editItineraryBtn}>
+                        <Text style= {styles.editItineraryBtnText}>
+                            + More Locations
+                        </Text>
+                    </View>
+
+                </TouchableWithoutFeedback>
             </View>
         )
     }
@@ -327,5 +336,18 @@ const styles = StyleSheet.create({
         height: 25,
         margin: 15,
         justifyContent: "center"
-    }
+    },
+    editItineraryBtn: {
+        display: "flex",
+        height: 100,
+        width: 300,
+        alignItems: "center",
+        justifyContent: "center",
+        backgroundColor: "grey",
+        borderRadius: 10
+    },
+    editItineraryBtnText: {
+        fontSize: 30,
+        color: "white"
+    },
 })
