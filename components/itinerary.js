@@ -9,7 +9,7 @@ import {
     TouchableHighlight
 } from "react-native"
 import SortableListView from "react-native-sortable-listview"
-import MapView, { PROVIDER_GOOGLE, Marker } from "react-native-maps"
+import MapView, {PROVIDER_GOOGLE, Marker} from "react-native-maps"
 import MapViewDirections from "react-native-maps-directions"
 import APIKey from "../apiKey.json"
 
@@ -80,45 +80,47 @@ export default class Itinerary extends React.Component {
     }
 
     componentDidMount() {
-        const { navigate } = this.props.navigation
-        const { state } = this.props.navigation
+        const {navigate} = this.props.navigation
+        const {state} = this.props.navigation
         const db = state.params.db
         const itineraryId = state.params.itineraryId
-        let locations = []
-        db.collection("itineraries")
-            .doc(itineraryId)
-            .get()
-            .then(itinerary => {
-                locations = itinerary.data()["locations"]
+        this.focusListener = this.props.navigation.addListener("didFocus", () => {
+            let locations = []
+            db.collection("itineraries")
+                .doc(itineraryId)
+                .get()
+                .then(itinerary => {
+                    locations = itinerary.data()["locations"]
 
-                let name = itinerary.data()["name"]
-                let data = {}
+                    let name = itinerary.data()["name"]
+                    let data = {}
 
-                locations.forEach(s => (data[s.name] = { ...s }))
+                    locations.forEach(s => (data[s.name] = {...s}))
 
-                order = itinerary.data()["order"]
-                    ? itinerary.data()["order"]
-                    : Object.keys(data)
+                    order = itinerary.data()["order"]
+                        ? itinerary.data()["order"]
+                        : Object.keys(data)
 
-                // console.log("locations... " + JSON.stringify(locations))
-                
-                this.setState({
-                    locations: locations,
-                    name: name,
-                    id: itineraryId,
-                    order: order,
-                    data: data,
-                    db: db
+                    // console.log("locations... " + JSON.stringify(locations))
+
+                    this.setState({
+                        locations: locations,
+                        name: name,
+                        id: itineraryId,
+                        order: order,
+                        data: data,
+                        db: db
+                    })
+                    // console.log("state is: " + JSON.stringify(this.state))
                 })
-                // console.log("state is: " + JSON.stringify(this.state))
-            })
+        })
     }
 
     // <Image source={images[suggestion.id]} style={{width: 80, height: 80}}/>
     render() {
-        const { state } = this.props.navigation
+        const {state} = this.props.navigation
         const locations = this.state.locations
-        let { order, data } = this.state
+        let {order, data} = this.state
 
         console.log("114" + JSON.stringify(order))
         const markerItems = order.map((o, index) => {
@@ -127,11 +129,11 @@ export default class Itinerary extends React.Component {
             return (
                 <Marker
                     coordinate={location.coordinates}
-                    anchor={{ x: 0.5, y: 0.8 }}
+                    anchor={{x: 0.5, y: 0.8}}
                 >
                     <Image
                         source={markers[location.id]}
-                        style={{ width: 138, height: 100 }}
+                        style={{width: 138, height: 100}}
                     />
                     <View style={styles.mapItemIndex}>
                         <Text>{index + 1}</Text>
@@ -145,10 +147,10 @@ export default class Itinerary extends React.Component {
         console.log("136" + JSON.stringify(order))
         return (
             <View style={styles.container}>
-                <Text style={styles.tripTitle}> {this.state.name} </Text>
+                <Text style={styles.header}> {this.state.name} </Text>
                 <View style={styles.tabContainer}>
                     <TouchableWithoutFeedback
-                        onPress={() => this.setState({ listView: true })}
+                        onPress={() => this.setState({listView: true})}
                     >
                         <View
                             style={
@@ -161,7 +163,7 @@ export default class Itinerary extends React.Component {
                         </View>
                     </TouchableWithoutFeedback>
                     <TouchableWithoutFeedback
-                        onPress={() => this.setState({ listView: false })}
+                        onPress={() => this.setState({listView: false})}
                     >
                         <View
                             style={
@@ -179,7 +181,7 @@ export default class Itinerary extends React.Component {
                     <SortableListView
                         removeClippedSubviews={false}
                         style={styles.itinerary}
-                        sortRowStyle={{ margin: 5, padding: 20 }}
+                        sortRowStyle={{margin: 5, padding: 20}}
                         data={this.state.data}
                         order={this.state.order}
                         activeOpacity={0.7}
@@ -190,13 +192,13 @@ export default class Itinerary extends React.Component {
                             console.log("before " + this.state.order)
                             o.splice(e.to, 0, o.splice(e.from, 1)[0])
                             console.log("after " + this.state.order)
-                            this.setState({ order: o })
+                            this.setState({order: o})
                             db.collection("itineraries")
                                 .doc(itineraryId)
                                 .set({order: o}, {merge: true})
                         }}
                         renderRow={row => (
-                            <RowComponent data={row} order={this.state.order} />
+                            <RowComponent data={row} order={this.state.order}/>
                         )}
                     />
                 )}
@@ -243,7 +245,7 @@ class RowComponent extends React.Component {
                 <View style={styles.itineraryItem}>
                     <Image
                         source={images[this.props.data.id]}
-                        style={{ width: 80, height: 80 }}
+                        style={{width: 80, height: 80}}
                     />
                     <Text style={styles.itemDetails}>
                         {index + 1 + ". "}
@@ -266,7 +268,9 @@ const styles = StyleSheet.create({
     header: {
         flex: 0,
         padding: 20,
-        fontSize: 30,
+        fontSize: 20,
+        fontWeight: "bold",
+        margin: 20,
         paddingBottom: 0
     },
     itinerary: {
