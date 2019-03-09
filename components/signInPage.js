@@ -39,9 +39,7 @@ class Login extends Component {
 
     handleLogin = event => {
         event.preventDefault()
-        // const { logInEmail, logInPassword } = this.state
-        const logInEmail = "garion@gmail.com"
-        const logInPassword = "glocal"
+        const { logInEmail, logInPassword } = this.state
         this.fb
             .auth()
             .signInWithEmailAndPassword(logInEmail, logInPassword)
@@ -105,14 +103,14 @@ class Login extends Component {
                     <View style={styles.logInForm}>
                         <View onSubmit={this.handleLogin}>
                             <TextInput
-                                style={styles.ViewItem}
+                                style={styles.textInput}
                                 name="logInEmail"
                                 placeholder="Email"
                                 value={logInEmail}
                                 onChangeText={(text) => { this.setState({ logInEmail: text }) }}
                             />
                             <TextInput
-                                style={styles.ViewItem}
+                                style={styles.textInput}
                                 secureTextEntry={true}
                                 name="logInPassword"
                                 placeholder="Password"
@@ -139,12 +137,14 @@ class Login extends Component {
                     <View style={styles.signInForm}>
                         <View style={styles.ViewItem} onSubmit={this.handleSignUp}>
                             <TextInput
+                                style={styles.textInput}
                                 name="signUpEmail"
                                 placeholder="Email"
                                 value={signUpEmail}
                                 onChangeText={(text) => { this.setState({ signUpEmail: text }) }}
                             />
                             <TextInput
+                                style={styles.textInput}
                                 secureTextEntry={true}
                                 name="signUpPassword"
                                 placeholder="Password"
@@ -156,13 +156,13 @@ class Login extends Component {
                                     <Text style={styles.buttonLabel}>Sign Up</Text>
                                 </View>
                             </TouchableWithoutFeedback>
-                        <View style={styles.buttonStyling}>
-                            <TouchableWithoutFeedback onPress={this.handleGuest} style={styles.button}>
-                                <View style={styles.button}>
-                                    <Text style={styles.buttonLabel}>Sign In As Guest</Text>
-                                </View>
-                            </TouchableWithoutFeedback>
-                        </View>
+                        {/*<View style={styles.buttonStyling}>*/}
+                            {/*<TouchableWithoutFeedback onPress={this.handleGuest} style={styles.button}>*/}
+                                {/*<View style={styles.button}>*/}
+                                    {/*<Text style={styles.buttonLabel}>Sign In As Guest</Text>*/}
+                                {/*</View>*/}
+                            {/*</TouchableWithoutFeedback>*/}
+                        {/*</View>*/}
                         </View>
                     </View>
                 </View>
@@ -176,7 +176,11 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: "white",
-        alignItems: "center"
+        alignItems: "center",
+        justifyContent: "space-around"
+    },
+    textInput: {
+        fontSize: 20
     },
     logInForm: {
         display: "flex",

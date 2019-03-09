@@ -11,16 +11,16 @@ import questions from "../profileQuestions.json"
 
 export default class ProfileQuestionnaire extends React.Component {
     static navigationOptions = {
-        title: 'Profile',
+        title: "Profile",
         headerTitleStyle: {
             color: "#1EA28A",
-            textAlign: 'center',
-            alignSelf: 'center',
-            position: 'absolute',
+            textAlign: "center",
+            alignSelf: "center",
+            position: "absolute",
             left: 0,
             right: 50,
-            fontSize: 20,
-        },
+            fontSize: 20
+        }
     }
 
     constructor(props) {
