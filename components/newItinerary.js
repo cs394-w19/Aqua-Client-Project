@@ -267,39 +267,20 @@ class CollectionItem extends React.Component {
                         {location.name}
                     </Text>
                 </View>
-                <Image
-                    style={{
-                        width: 200,
-                        height: 170,
-                        borderBottomLeftRadius: 10,
-                        borderBottomRightRadius: 10
-                    }}
-                    source={images[location.id]}
-                />
-                {!location.selected && (
-                    <TouchableWithoutFeedback
-                        onPress={() =>
-                            this.props.handleItemSelect(location.name)
-                        }
-                    >
-                        <View style={styles.colAddBtn}>
-                            <Text style={styles.colAddBtnText}>
-                                Add to Itinerary
-                            </Text>
-                        </View>
-                    </TouchableWithoutFeedback>
-                )}
-                {location.selected && (
-                    <TouchableWithoutFeedback
-                        onPress={() =>
-                            this.props.handleItemSelect(location.name)
-                        }
-                    >
-                        <View style={styles.colAddedBtn}>
-                            <Text style={styles.colAddBtnText}>Added</Text>
-                        </View>
-                    </TouchableWithoutFeedback>
-                )}
+                <Image style={{width: 200, height: 150, borderBottomLeftRadius: 10, borderBottomRightRadius: 10}}
+                       source={images[location.id]}/>
+                {!location.selected &&
+                <TouchableWithoutFeedback onPress={() => this.props.handleItemSelect(location.name)}>
+                    <View style={styles.colAddBtn}>
+                        <Text style={styles.colAddBtnText}>Add to Itinerary</Text>
+                    </View>
+                </TouchableWithoutFeedback>}
+                {location.selected &&
+                <TouchableWithoutFeedback onPress={() => this.props.handleItemSelect(location.name)}>
+                    <View style={styles.colAddedBtn}>
+                        <Text style={styles.colAddBtnText}>Added</Text>
+                    </View>
+                </TouchableWithoutFeedback>}
             </View>
         )
     }
@@ -329,7 +310,7 @@ const styles = StyleSheet.create({
         backgroundColor: "#555555cc"
     },
     colItem: {
-        height: 230,
+        height: 210,
         width: 208,
         backgroundColor: "#000",
         borderWidth: 4,

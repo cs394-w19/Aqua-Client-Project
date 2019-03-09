@@ -98,9 +98,7 @@ export default class ItineraryScreen extends React.Component {
     }
 
     handleCreate(itineraryName) {
-        if (!itineraryName) {
-            itineraryName = ""
-        }
+        itineraryName = itineraryName ? itineraryName : ""
         const { navigate } = this.props.navigation
         this.setState({ dialogVisible: false })
         const db = this.props.db
@@ -166,7 +164,7 @@ export default class ItineraryScreen extends React.Component {
                 </TouchableWithoutFeedback>
             )
         })
-        let itineraryName
+        let itineraryName;
         return (
             <ScrollView>
                 <View style={styles.container}>
