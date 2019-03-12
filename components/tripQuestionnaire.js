@@ -28,7 +28,7 @@ export default class App extends React.Component {
         this.state = {
             questions: questions.tripQuestions,
             index: 0,
-            finalIndex: 3,
+            finalIndex: 2,
             completed: false
         }
         this.handleOptionClick = this.handleOptionClick.bind(this)

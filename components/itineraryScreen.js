@@ -181,9 +181,9 @@ export default class ItineraryScreen extends React.Component {
                     {pastItineraries}
                 </View>
                 <Dialog.Container visible={this.state.dialogVisible}>
-                    <Dialog.Title>Name Your Itinerary</Dialog.Title>
+                    <Dialog.Title>Name Your Trip</Dialog.Title>
                     <Dialog.Input
-                        placeholder="Itinerary Name"
+                        placeholder="Trip Name"
                         value={itineraryName}
                         onChangeText={text => (itineraryName = text)}
                     />
