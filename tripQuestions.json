@@ -15,11 +15,65 @@
     {
       "text": "What is your budget for your trip?",
       "options": [
-        {"name":"Affordable", "status":false,"Categories": []},
-        {"name":"Medium Cost", "status":false,"Categories": []},
-        {"name":"Luxurious", "status":false,"Categories": []}
+        {"name":"Inexpensive", "status":false,"Categories": []},
+        {"name":"Moderately Priced", "status":false,"Categories": []},
+        {"name":"Pricey", "status":false,"Categories": []},
+        {"name":"Ultra High-End", "status":false,"Categories": []}
       ]
     },
+    {
+      "text": "Have you been here before? ",
+      "options": [
+        {"name":"Yes", "status":false,"Categories": []},
+        {"name":"No", "status":false,"Categories": []}
+      ]
+    },
+    {
+      "text": "What are you travelling for?",
+      "options": [
+        {"name":"Weekend Getaway", "status":false,"Categories": []},
+        {"name":"Business Trip", "status":false,"Categories": []},
+        {"name":"Trip With Friends", "status":false,"Categories": []},
+        {"name":"Birthday", "status":false,"Categories": []},
+        {"name":"Family Vacation", "status":false,"Categories": []},
+        {"name":"Other", "status":false,"Categories": []}
+      ]
+    },
+    {
+      "text": "What kind of places would you like to visit for this trip?",
+      "options": [
+        {"name":"Historical buildings", "status":false,"Categories": []},
+        {"name":"Museum art", "status":false,"Categories": []},
+        {"name":"Outdoor/ landscape", "status":false,"Categories": []},
+        {"name":"Adventure", "status":false,"Categories": []},
+        {"name":"Night life", "status":false,"Categories": []},
+        {"name":"Unique places", "status":false,"Categories": []}
+      ]
+    },
+    {
+      "text": "What kinds of food experiences are you looking for?",
+      "options": [
+        {"name":"Locally authentic", "status":false,"Categories": []},
+        {"name":"Artisan food", "status":false,"Categories": []},
+        {"name":"Sweets", "status":false,"Categories": []},
+        {"name":"Vegetarian delights", "status":false,"Categories": []},
+        {"name":"One of a kind", "status":false,"Categories": []},
+        {"name":"Unique ambience", "status":false,"Categories": []},
+        {"name":"Grab and go", "status":false,"Categories": []}
+      ]
+    },
+    {
+      "text": "Are you looking for any local hangout, if so select which one?",
+      "options": [
+        {"name":"Coffee shops", "status":false,"Categories": []},
+        {"name":"Universities", "status":false,"Categories": []},
+        {"name":"Concerts", "status":false,"Categories": []},
+        {"name":"Spas and wellness", "status":false,"Categories": []},
+        {"name":"Shopping", "status":false,"Categories": []}
+        
+      ]
+    },    
+
     {
       "text": "How long will your trip be in days?",
       "options": [
