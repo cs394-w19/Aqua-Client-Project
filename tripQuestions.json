@@ -13,19 +13,11 @@
       ]
     },
     {
-      "text": "Are you bringing pets?",
-      "options": [
-        {"name":"Yes, a Dog(s)", "status":false,"Categories": ["Pet Friendly","Dog"]},
-        {"name":"Yes, a Cat(s)", "status":false,"Categories": ["Pet Friendly","Cat"]},
-        {"name":"Yes, another species of pet", "status":false,"Categories": ["Pet Friendly"]},
-        {"name":"No", "status":false,"Categories": []}
-      ]
-    },
-    {
       "text": "What is your budget for your trip?",
       "options": [
-        {"name":"Cheap", "status":false,"Categories": []},
-        {"name":"Expensive", "status":false,"Categories": []}
+        {"name":"Affordable", "status":false,"Categories": []},
+        {"name":"Medium Cost", "status":false,"Categories": []},
+        {"name":"Luxurious", "status":false,"Categories": []}
       ]
     },
     {
