@@ -156,13 +156,13 @@ class Login extends Component {
                                     <Text style={styles.buttonLabel}>Sign Up</Text>
                                 </View>
                             </TouchableWithoutFeedback>
-                        {/*<View style={styles.buttonStyling}>*/}
-                            {/*<TouchableWithoutFeedback onPress={this.handleGuest} style={styles.button}>*/}
-                                {/*<View style={styles.button}>*/}
-                                    {/*<Text style={styles.buttonLabel}>Sign In As Guest</Text>*/}
-                                {/*</View>*/}
-                            {/*</TouchableWithoutFeedback>*/}
-                        {/*</View>*/}
+                        <View style={styles.buttonStyling}>
+                            <TouchableWithoutFeedback onPress={this.handleGuest} style={styles.button}>
+                                <View style={styles.button}>
+                                    <Text style={styles.buttonLabel}>Sign In As Guest</Text>
+                                </View>
+                            </TouchableWithoutFeedback>
+                        </View>
                         </View>
                     </View>
                 </View>
