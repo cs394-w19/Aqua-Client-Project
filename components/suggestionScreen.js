@@ -26,12 +26,32 @@ class SuggestionScreen extends React.Component {
             db: null,
             user: null,
             search: "",
-            vicinity: 1
+            paris: false
         }
     }
 
     _onLoadEnd() {
         this.setState({ webviewLoaded: true })
+    }
+
+    shuffle(array) {
+        var currentIndex = array.length,
+            temporaryValue,
+            randomIndex
+
+        // While there remain elements to shuffle...
+        while (0 !== currentIndex) {
+            // Pick a remaining element...
+            randomIndex = Math.floor(Math.random() * currentIndex)
+            currentIndex -= 1
+
+            // And swap it with the current element.
+            temporaryValue = array[currentIndex]
+            array[currentIndex] = array[randomIndex]
+            array[randomIndex] = temporaryValue
+        }
+
+        return array
     }
 
     componentDidMount = () => {
@@ -88,29 +108,61 @@ class SuggestionScreen extends React.Component {
     }
 
     retrieveSuggestions(categories) {
-        let index = this.state.vicinity
-        let foundAttractions = Suggestions.Locations[index].Attractions.filter(
-            a => {
-                let intersection = a.Categories.filter(x =>
-                    categories.includes(x)
+        let foundAttractions = []
+        let foundRestaurants = []
+        if (this.state.paris) {
+            consoie.log("PARIS PARIS PARIS")
+            foundAttractions = foundAttractions.concat(
+                Suggestions.Locations[1].Attractions.filter(a => {
+                    let intersection = a.Categories.filter(x =>
+                        categories.includes(x)
+                    )
+                    if (intersection.length > 0) {
+                        return true
+                    } else return false
+                })
+            )
+            foundRestaurants = foundRestaurants.concat(
+                Suggestions.Locations[1].Restaurants.filter(r => {
+                    let intersection = r.Categories.filter(x =>
+                        categories.includes(x)
+                    )
+                    if (intersection.length > 0) {
+                        return true
+                    } else return false
+                })
+            )
+        } else {
+            for (var i = 0; i < Suggestions.Locations.length; i++) {
+                foundAttractions = foundAttractions.concat(
+                    Suggestions.Locations[i].Attractions.filter(a => {
+                        let intersection = a.Categories.filter(x =>
+                            categories.includes(x)
+                        )
+                        if (intersection.length > 0) {
+                            return true
+                        } else return false
+                    })
                 )
-                if (intersection.length > 0) {
-                    return true
-                } else return false
             }
-        )
-        const foundRestaurants = Suggestions.Locations[index].Restaurants.filter(
-            r => {
-                let intersection = r.Categories.filter(x =>
-                    categories.includes(x)
+            for (var i = 0; i < Suggestions.Locations.length; i++) {
+                foundRestaurants = foundRestaurants.concat(
+                    Suggestions.Locations[i].Restaurants.filter(r => {
+                        let intersection = r.Categories.filter(x =>
+                            categories.includes(x)
+                        )
+                        if (intersection.length > 0) {
+                            return true
+                        } else return false
+                    })
                 )
-                if (intersection.length > 0) {
-                    return true
-                } else return false
             }
-        )
+        }
+
+        
         foundAttractions = foundAttractions.concat(foundRestaurants)
-        return foundAttractions
+        console.log("found Attractions" + foundAttractions)
+        return this.shuffle(foundAttractions)
     }
 
     handleGemClick = link => {
@@ -191,7 +243,14 @@ class SuggestionScreen extends React.Component {
                     <TextInput
                         style={styles.searchInput}
                         placeholder="Where Are You Traveling?"
-                        onChangeText={text => this.setState({ search: text })}
+                        onChangeText={text => {
+                            let paris
+                            if (text.length > 0) {
+                                paris = true
+                            } else {
+                                paris = false
+                            }
+                            this.setState({ search: text, paris: paris })}}
                     >
                         {this.state.search}
                     </TextInput>

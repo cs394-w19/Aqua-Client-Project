@@ -12,6 +12,7 @@ import Welcome from './components/welcome'
 import NewItinerary from "./components/newItinerary"
 import Itinerary from "./components/itinerary"
 import firebase from "./firebase.js"
+import LocationSelection from './components/locationSelection.js'
 
 import {createStackNavigator, createAppContainer, createBottomTabNavigator} from 'react-navigation';
 
@@ -23,6 +24,7 @@ let user;
 const ItineraryStack = createStackNavigator({
     ItineraryScreen: props => <ItineraryScreen {...props} db={db} user={user}/>,
     NewItinerary: {screen: NewItinerary},
+    LocationSelection: props => <LocationSelection {...props} db={db} user={user}/>,
     TripQuestionnaire: props => <TripQuestionnaire {...props} db={db} user={user}/>,
     Itinerary: props => <Itinerary {...props} db={db} user={user}/>
 }, {
@@ -54,8 +56,7 @@ const ProfileStack = createStackNavigator({
         },
         headerButton: {
             width: 50
-        }
-        ,
+        },
     }
 })
 

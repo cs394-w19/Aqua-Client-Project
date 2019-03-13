@@ -159,7 +159,7 @@ class Login extends Component {
                         <View style={styles.buttonStyling}>
                             <TouchableWithoutFeedback onPress={this.handleGuest} style={styles.button}>
                                 <View style={styles.button}>
-                                    {/* <Text style={styles.buttonLabel}>Sign In As Guest</Text> */}
+                                    <Text style={styles.buttonLabel}>Sign In As Guest</Text>
                                 </View>
                             </TouchableWithoutFeedback>
                         </View>
