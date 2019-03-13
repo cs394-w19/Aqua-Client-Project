@@ -13,9 +13,9 @@ import NewItinerary from "./components/newItinerary"
 import Itinerary from "./components/itinerary"
 import firebase from "./firebase.js"
 import LocationSelection from './components/locationSelection.js'
-
+import {Image, View} from 'react-native'
 import {createStackNavigator, createAppContainer, createBottomTabNavigator} from 'react-navigation';
-
+import Icon from "./assets/checkbox-checked.png"
 console.disableYellowBox = true;
 
 let db = firebase.firestore();
@@ -65,7 +65,39 @@ const TabNavigator = createBottomTabNavigator({
     Collection: props => <CollectionScreen db={db} user={user} {...props}/>,
     Itineraries: ItineraryStack,
     Profile: ProfileStack
-})
+// },{
+    // defaultNavigationOptions: ({ navigation }) => ({
+    //     tabBarIcon: ({ focused, tintColor }) =>{
+    //         console.log("yes")
+    //         let icon =  getTabBarIcon(navigation, focused, tintColor)
+    //
+    //         console.log("no")
+    //         return icon
+    //     }
+
+    // }),
+    //     tabBarOptions: {
+    //     activeTintColor: 'tomato',
+    //         inactiveTintColor: 'gray',
+    // },
+}
+)
+
+const getTabBarIcon = (navigation, focused, tintColor) =>{
+    console.log("Getting Icons")
+    const { routeName } = navigation.state;
+    // let iconName;
+    // if (routeName === 'Home') {
+    //     iconName = `ios-information-circle${focused ? '' : '-outline'}`;
+    //     // We want to add badges to home tab icon
+    //     IconComponent = HomeIconWithBadge;
+    // } else if (routeName === 'Settings') {
+    //     iconName = `ios-options${focused ? '' : '-outline'}`;
+    // }
+
+    // You can return any component that you like here!
+    return (<View><Image source={Icon} /></View>);
+}
 
 const MainNavigator = createStackNavigator({
     Login: (props) => <Login {...props} handleLogin={(u) => user = u}/>,

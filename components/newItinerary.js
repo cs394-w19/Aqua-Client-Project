@@ -206,7 +206,7 @@ export default class newItinerary extends React.Component {
         const { categories, suggestions, savedLocations } = this.state
         const suggestedItems = suggestions.map(l => {
             return (
-                <CollectionItem
+                <SuggestionItem
                     location={l}
                     intersection={l.Categories.filter(x =>
                         categories.includes(x)
@@ -230,7 +230,7 @@ export default class newItinerary extends React.Component {
         return (
             <View style={styles.container}>
                 <View style={styles.collectionsContainer}>
-                    <Text style={styles.header}>From your Collection</Text>
+                    <Text style={styles.header}>From Collection</Text>
                     <ScrollView horizontal={true}>
                         <View style={styles.collectionsScroll}>
                             {savedItems}
@@ -260,15 +260,23 @@ export default class newItinerary extends React.Component {
 class CollectionItem extends React.Component {
     render() {
         const { location, intersection } = this.props
+        let reason = intersection[0]
+        if (intersection[1]) {
+            reason = reason + ' & ' + intersection[1]
+        }
+        // intersection.forEach(r => reason = reason + r + ", ")
+        // reason = reason.substring(0, reason.length - 2)
+        reason = "80% who liked " + reason + " liked this"
         return (
             <View style={styles.colItem}>
+                <Image style={{width: 180, height: 120}}
+                       source={images[location.id]}/>
                 <View style={styles.colItemHeader}>
                     <Text style={styles.colItemHeaderText}>
                         {location.name}
                     </Text>
+                    <Text style={styles.colItemSubHeader}>{reason}</Text>
                 </View>
-                <Image style={{width: 200, height: 150, borderBottomLeftRadius: 10, borderBottomRightRadius: 10}}
-                       source={images[location.id]}/>
                 {!location.selected &&
                 <TouchableWithoutFeedback onPress={() => this.props.handleItemSelect(location.name)}>
                     <View style={styles.colAddBtn}>
@@ -278,7 +286,44 @@ class CollectionItem extends React.Component {
                 {location.selected &&
                 <TouchableWithoutFeedback onPress={() => this.props.handleItemSelect(location.name)}>
                     <View style={styles.colAddedBtn}>
-                        <Text style={styles.colAddBtnText}>Added</Text>
+                        <Text style={styles.colAddedBtnText}>Added</Text>
+                    </View>
+                </TouchableWithoutFeedback>}
+            </View>
+        )
+    }
+}
+
+class SuggestionItem extends React.Component {
+    render() {
+        const { location, intersection } = this.props
+        let reason = intersection[0]
+        if (intersection[1]) {
+            reason = reason + ' & ' + intersection[1]
+        }
+        // intersection.forEach(r => reason = reason + r + ", ")
+        // reason = reason.substring(0, reason.length - 2)
+        reason = "80% who liked " + reason + " liked this"
+        return (
+            <View style={styles.colItem}>
+                <Image style={{width: 180, height: 120}}
+                       source={images[location.id]}/>
+                <View style={styles.sugItemHeader}>
+                    <Text style={styles.sugItemHeaderText}>
+                        {location.name}
+                    </Text>
+                    <Text style={styles.sugItemSubHeader}>{reason}</Text>
+                </View>
+                {!location.selected &&
+                <TouchableWithoutFeedback onPress={() => this.props.handleItemSelect(location.name)}>
+                    <View style={styles.colAddBtn}>
+                        <Text style={styles.colAddBtnText}>Add to Itinerary</Text>
+                    </View>
+                </TouchableWithoutFeedback>}
+                {location.selected &&
+                <TouchableWithoutFeedback onPress={() => this.props.handleItemSelect(location.name)}>
+                    <View style={styles.colAddedBtn}>
+                        <Text style={styles.colAddedBtnText}>Added</Text>
                     </View>
                 </TouchableWithoutFeedback>}
             </View>
@@ -289,17 +334,16 @@ class CollectionItem extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        flexDirection: "column"
+        flexDirection: "column",
+        alignItems: 'center'
     },
     header: {
-        color: "white",
         fontSize: 20,
         marginTop: 5,
         marginLeft: 5
     },
     collectionsContainer: {
         flex: 5,
-        backgroundColor: "#1EA28Acc"
     },
     collectionsScroll: {
         flexDirection: "row",
@@ -307,55 +351,77 @@ const styles = StyleSheet.create({
     },
     suggestionsContainer: {
         flex: 5,
-        backgroundColor: "#555555cc"
+        borderTopWidth: 1,
+        borderColor: "#DADADA"
     },
     colItem: {
-        height: 210,
-        width: 208,
-        backgroundColor: "#000",
-        borderWidth: 4,
-        margin: 10,
-        borderRadius: 10
+        height: 200,
+        width: 180,
+        margin: 10
     },
     colItemHeader: {
-        flex: 1,
-        alignItems: "center",
-        justifyContent: "center"
+        height: 60,
+        backgroundColor: "#1EA28A",
+        padding: 5,
     },
     colItemHeaderText: {
-        fontSize: 20,
-        color: "white",
-        textAlign: "center"
+        fontSize: 15,
+        color: "white"
+    },
+    sugItemSubHeader:{
+        fontSize: 10,
+    },
+    colItemSubHeader:{
+        fontSize: 10,
+        color: "white"
+    },
+    sugItemHeader: {
+        height: 60,
+        backgroundColor: "#DADADA",
+        padding: 5,
+    },
+    sugItemHeaderText: {
+        fontSize: 15
     },
     colAddBtn: {
-        height: 40,
-        width: 200,
-        position: "absolute",
-        bottom: 0,
+        height: 30,
+        width: 100,
+        borderRadius: 15,
+        marginHorizontal: 40,
+        marginTop: -15,
         alignItems: "center",
         justifyContent: "center",
-        backgroundColor: "#ffffffcc",
-        borderBottomLeftRadius: 10,
-        borderBottomRightRadius: 10
+        backgroundColor: "#fff",
+        borderWidth: 1
     },
     colAddedBtn: {
-        height: 40,
-        width: 200,
-        position: "absolute",
-        bottom: 0,
+        height: 30,
+        width: 100,
+        borderRadius: 15,
+        marginHorizontal: 40,
+        marginTop: -15,
         alignItems: "center",
         justifyContent: "center",
-        backgroundColor: "#1EA28Acc",
-        borderBottomLeftRadius: 10,
-        borderBottomRightRadius: 10
+        borderColor: '#fff',
+        backgroundColor: "#1EA28A",
+        borderWidth: 1
     },
     colAddBtnText: {
-        fontSize: 20,
+        fontSize: 12,
+        textAlign: "center"
+    },
+    colAddedBtnText: {
+        fontSize: 12,
+        color: '#fff',
         textAlign: "center"
     },
     createBtn: {
-        backgroundColor: "black",
-        flex: 1
+        backgroundColor: "#1EA28A",
+        width: 200,
+        borderRadius: 5,
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center'
     },
     createBtnText: {
         color: "white",
