@@ -56,16 +56,6 @@ markers[16] = require("../assets/markers/16.png")
 markers[17] = require("../assets/markers/17.png")
 
 export default class Itinerary extends React.Component {
-    static navigationOptions = {
-        title: "Itinerary",
-        headerTitleStyle: {
-            marginRight: 56,
-            color: "#1EA28A",
-            textAlign: "center",
-            flex: 1,
-            fontSize: 20
-        }
-    }
 
     constructor(props) {
         super(props)
@@ -171,7 +161,7 @@ export default class Itinerary extends React.Component {
                         </View>
                     </TouchableWithoutFeedback>
                 </View>
-                <Text style={styles.infoText}>Drag to Plan Trip</Text>
+                {this.state.listView && <Text style={styles.infoText}>Hold and drag items to sort</Text>}
                 {this.state.listView && (
                     <SortableListView
                         removeClippedSubviews={false}
@@ -270,13 +260,13 @@ const styles = StyleSheet.create({
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "flex-start",
-        padding: 30
+        paddingVertical: 5
     },
     header: {
         flex: 0,
-        padding: 20,
-        fontSize: 20,
+        fontSize: 30,
         fontWeight: "bold",
+        color: '#1EA28A',
         margin: 20,
         paddingBottom: 0
     },
@@ -330,22 +320,23 @@ const styles = StyleSheet.create({
         borderColor: "black"
     },
     infoText: {
-        fontSize: 20,
+        fontSize: 15,
         height: 25,
-        margin: 15,
+        margin: 5,
         justifyContent: "center"
     },
     editItineraryBtn: {
         display: "flex",
-        height: 100,
-        width: 300,
+        height: 40,
+        width: 200,
         alignItems: "center",
         justifyContent: "center",
         backgroundColor: "grey",
-        borderRadius: 10
+        borderRadius: 20,
+        margin: 10
     },
     editItineraryBtnText: {
-        fontSize: 30,
-        color: "white"
+        fontSize: 20,
+        color: "white",
     },
 })

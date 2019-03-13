@@ -33,17 +33,6 @@ images[17] = require("../assets/locationPictures/17.jpg")
 
 
 export default class ItineraryScreen extends React.Component {
-    static navigationOptions = {
-        title: "Itineraries",
-        headerTitleStyle: {
-            marginRight: 56,
-            color: "#1EA28A",
-            textAlign: "center",
-            flex: 1,
-            fontSize: 20
-        },
-        tabBarLabel: "Itineraries"
-    }
 
     constructor(props) {
         super(props)
@@ -129,7 +118,6 @@ export default class ItineraryScreen extends React.Component {
     }
 
     openItinerary(itineraryId) {
-        console.log("uhh this one" + itineraryId)
         const { navigate } = this.props.navigation
         navigate("Itinerary", {
             db: this.props.db,
@@ -145,7 +133,7 @@ export default class ItineraryScreen extends React.Component {
                     <View style={styles.upcomingItineraryBtn}>
                         <Image style={{position: "absolute", height: 100,
                             width: 300,
-                            borderRadius: 10, opacity: 0.7}} source={images[Math.floor(Math.random() * 17)]}/>
+                            borderRadius: 10, opacity: 0.7}} source={images[parseInt((i.replace( /(^.+\D)(\d+)(\D.+$)/i,'$2')))%18]}/>
                         <Text style={styles.itineraryBtnText}>
                             {this.state.itineraryNames[i]}
                         </Text>
@@ -167,6 +155,8 @@ export default class ItineraryScreen extends React.Component {
         let itineraryName;
         let locationName;
         return (
+            <View>
+                <Text style={styles.header}>Your Trips</Text>
             <ScrollView>
                 <View style={styles.container}>
                     <TouchableWithoutFeedback
@@ -203,11 +193,20 @@ export default class ItineraryScreen extends React.Component {
                     />
                 </Dialog.Container>
             </ScrollView>
+            </View>
         )
     }
 }
 
 const styles = StyleSheet.create({
+    header: {
+        marginTop: 40,
+        flex: 0,
+        textAlign: 'center',
+        fontSize: 30,
+        fontWeight: "bold",
+        color: '#1EA28A'
+    },
     container: {
         flex: 1,
         flexDirection: "column",

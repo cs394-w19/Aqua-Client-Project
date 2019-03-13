@@ -15,7 +15,14 @@ import firebase from "./firebase.js"
 import LocationSelection from './components/locationSelection.js'
 import {Image, View} from 'react-native'
 import {createStackNavigator, createAppContainer, createBottomTabNavigator} from 'react-navigation';
-import Icon from "./assets/checkbox-checked.png"
+import ExplIcon from "./assets/navBarIcons/Icon-01.png"
+import ColIcon from "./assets/navBarIcons/Icon-02.png"
+import ProfIcon from "./assets/navBarIcons/Icon-04.png"
+import ItinIcon from "./assets/navBarIcons/Icon-03.png"
+import ExplIconGreen from "./assets/navBarIcons/Icon-05.png"
+import ColIconGreen from "./assets/navBarIcons/Icon-06.png"
+import ItinIconGreen from "./assets/navBarIcons/Icon-07.png"
+import ProfIconGreen from "./assets/navBarIcons/Icon-08.png"
 console.disableYellowBox = true;
 
 let db = firebase.firestore();
@@ -29,13 +36,7 @@ const ItineraryStack = createStackNavigator({
     Itinerary: props => <Itinerary {...props} db={db} user={user}/>
 }, {
     defaultNavigationOptions: {
-        title: 'Itineraries',
-        headerTitleStyle: {
-            color: "#1EA28A",
-            textAlign: 'center',
-            flex: 1,
-            fontSize: 20
-        },
+        header:null
     }
 })
 
@@ -65,38 +66,37 @@ const TabNavigator = createBottomTabNavigator({
     Collection: props => <CollectionScreen db={db} user={user} {...props}/>,
     Itineraries: ItineraryStack,
     Profile: ProfileStack
-// },{
-    // defaultNavigationOptions: ({ navigation }) => ({
-    //     tabBarIcon: ({ focused, tintColor }) =>{
-    //         console.log("yes")
-    //         let icon =  getTabBarIcon(navigation, focused, tintColor)
-    //
-    //         console.log("no")
-    //         return icon
-    //     }
-
-    // }),
-    //     tabBarOptions: {
-    //     activeTintColor: 'tomato',
-    //         inactiveTintColor: 'gray',
-    // },
+},{
+    defaultNavigationOptions: ({ navigation }) => ({
+        tabBarIcon: ({ focused, tintColor }) =>{
+            let icon =  getTabBarIcon(navigation, focused, tintColor)
+            return icon
+        }
+    }),
+        tabBarOptions: {
+        activeTintColor: '#1EA28A',
+            inactiveTintColor: 'gray',
+    },
 }
 )
 
 const getTabBarIcon = (navigation, focused, tintColor) =>{
-    console.log("Getting Icons")
     const { routeName } = navigation.state;
-    // let iconName;
-    // if (routeName === 'Home') {
-    //     iconName = `ios-information-circle${focused ? '' : '-outline'}`;
-    //     // We want to add badges to home tab icon
-    //     IconComponent = HomeIconWithBadge;
-    // } else if (routeName === 'Settings') {
-    //     iconName = `ios-options${focused ? '' : '-outline'}`;
-    // }
-
-    // You can return any component that you like here!
-    return (<View><Image source={Icon} /></View>);
+    let icon
+    switch(routeName){
+        case "Browse":
+            icon = focused ? ExplIconGreen : ExplIcon
+            break
+        case "Collection":
+            icon = focused ? ColIconGreen : ColIcon
+            break
+        case "Itineraries":
+            icon = focused ? ItinIconGreen : ItinIcon
+            break
+        case "Profile":
+            icon = focused ? ProfIconGreen : ProfIcon
+    }
+    return <Image source={icon} style={{width: 30, height: 30}} />;
 }
 
 const MainNavigator = createStackNavigator({

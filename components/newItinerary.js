@@ -33,16 +33,6 @@ images[16] = require("../assets/locationPictures/16.jpg")
 images[17] = require("../assets/locationPictures/17.jpg")
 
 export default class newItinerary extends React.Component {
-    static navigationOptions = {
-        title: "New Itinerary",
-        headerTitleStyle: {
-            marginRight: 56,
-            color: "#1EA28A",
-            textAlign: "center",
-            flex: 1,
-            fontSize: 20
-        }
-    }
 
     constructor(props) {
         super(props)
@@ -54,6 +44,7 @@ export default class newItinerary extends React.Component {
             blogLink: null,
             db: null,
             user: null,
+            name: null,
             itineraryId: null
         }
         this.handleCreate = this.handleCreate.bind(this)
@@ -95,11 +86,10 @@ export default class newItinerary extends React.Component {
                 let previouslyChosenLocations = []
                 db.collection("itineraries").doc(itineraryId).get().then(it => {
                     if(it.data()["order"]){
-                        console.log("poop");
                        previouslyChosenLocations =  previouslyChosenLocations.concat(it.data()["order"]);
                     }
-                    console.log(it.data()["order"])
-                    console.log(previouslyChosenLocations)
+
+                    let name = it.data()["name"]
 
                     suggestions.forEach(s => {
                         if(previouslyChosenLocations.find(p => (s.name === p)) ===undefined){
@@ -124,6 +114,7 @@ export default class newItinerary extends React.Component {
                         blogVisible: false,
                         user: user,
                         db: db,
+                        name: name,
                         itineraryId: itineraryId
                     })
                 })
@@ -203,7 +194,7 @@ export default class newItinerary extends React.Component {
     }
 
     render() {
-        const { categories, suggestions, savedLocations } = this.state
+        const { categories, suggestions, savedLocations, name } = this.state
         const suggestedItems = suggestions.map(l => {
             return (
                 <SuggestionItem
@@ -229,6 +220,7 @@ export default class newItinerary extends React.Component {
         })
         return (
             <View style={styles.container}>
+                <Text style={styles.topHeader}>{name}</Text>
                 <View style={styles.collectionsContainer}>
                     <Text style={styles.header}>From Collection</Text>
                     <ScrollView horizontal={true}>
@@ -335,7 +327,16 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         flexDirection: "column",
-        alignItems: 'center'
+        alignItems: 'center',
+        paddingVertical: 5
+    },
+    topHeader: {
+        flex: 0,
+        fontSize: 30,
+        fontWeight: "bold",
+        color: '#1EA28A',
+        margin: 20,
+        paddingBottom: 0
     },
     header: {
         fontSize: 20,
@@ -357,7 +358,7 @@ const styles = StyleSheet.create({
     colItem: {
         height: 200,
         width: 180,
-        margin: 10
+        margin: 5
     },
     colItemHeader: {
         height: 60,
