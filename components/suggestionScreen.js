@@ -3,17 +3,17 @@ import {
     StyleSheet,
     Text,
     View,
+    TextInput,
     ScrollView,
     WebView,
     TouchableWithoutFeedback
 } from "react-native"
 import SuggestedItem from "./suggestedItem"
 import Suggestions from "../suggestions.json"
-import profileQuestions from "../profileQuestions.json";
-import {withNavigationFocus} from "react-navigation"
+import profileQuestions from "../profileQuestions.json"
+import { withNavigationFocus } from "react-navigation"
 
 class SuggestionScreen extends React.Component {
-
     constructor(props) {
         super(props)
         this.state = {
@@ -24,53 +24,72 @@ class SuggestionScreen extends React.Component {
             blogLink: null,
             webviewLoaded: false,
             db: null,
-            user: null
+            user: null,
+            search: "",
+            vicinity: 1
         }
     }
 
     _onLoadEnd() {
-        this.setState({webviewLoaded: true})
+        this.setState({ webviewLoaded: true })
     }
-
 
     componentDidMount = () => {
         const db = this.props.db
         const user = this.props.user
         let userPreferences = {}
         let categories = []
-        this.focusListener = this.props.navigation.addListener("didFocus", () => {
-            db.collection("users")
-                .doc(user)
-                .get()
-                .then(userData => {
-                    userPreferences = userData.data()["preferences"] ? userData.data()["preferences"] : [];
-                    let userSavedLocations = userData.data()["savedLocations"] ? userData.data()["savedLocations"] : [];
+        this.focusListener = this.props.navigation.addListener(
+            "didFocus",
+            () => {
+                db.collection("users")
+                    .doc(user)
+                    .get()
+                    .then(userData => {
+                        userPreferences = userData.data()["preferences"]
+                            ? userData.data()["preferences"]
+                            : []
+                        let userSavedLocations = userData.data()[
+                            "savedLocations"
+                        ]
+                            ? userData.data()["savedLocations"]
+                            : []
 
-                    profileQuestions.questions.forEach(q =>
-                        q.options.forEach(o => {
-                            if (userPreferences[q.text].find(option => option === o.name)) {
-                                categories = categories.concat(o.Categories)
-                            }
+                        profileQuestions.questions.forEach(q =>
+                            q.options.forEach(o => {
+                                if (
+                                    userPreferences[q.text].find(
+                                        option => option === o.name
+                                    )
+                                ) {
+                                    categories = categories.concat(o.Categories)
+                                }
+                            })
+                        )
+                        let suggestions = this.retrieveSuggestions(categories)
+                        suggestions = suggestions.filter(
+                            s =>
+                                userSavedLocations.find(
+                                    l => l.name === s.name
+                                ) === undefined
+                        )
+                        suggestions.forEach(a => (a.selected = false))
+                        this.setState({
+                            suggestions: suggestions,
+                            categories: categories,
+                            savedLocations: userSavedLocations,
+                            blogVisible: false,
+                            user: user,
+                            db: db
                         })
-                    )
-                    let suggestions = this.retrieveSuggestions(categories)
-                    suggestions = suggestions.filter(s => (userSavedLocations.find(l => l.name === s.name) === undefined))
-                    suggestions.forEach(a => (a.selected = false))
-                    this.setState({
-                        suggestions: suggestions,
-                        categories: categories,
-                        savedLocations: userSavedLocations,
-                        blogVisible: false,
-                        user: user,
-                        db: db
                     })
-                })
-        })
+            }
+        )
     }
 
-
     retrieveSuggestions(categories) {
-        let foundAttractions = Suggestions.Locations[1].Attractions.filter(
+        let index = this.state.vicinity
+        let foundAttractions = Suggestions.Locations[index].Attractions.filter(
             a => {
                 let intersection = a.Categories.filter(x =>
                     categories.includes(x)
@@ -80,7 +99,7 @@ class SuggestionScreen extends React.Component {
                 } else return false
             }
         )
-        const foundRestaurants = Suggestions.Locations[1].Restaurants.filter(
+        const foundRestaurants = Suggestions.Locations[index].Restaurants.filter(
             r => {
                 let intersection = r.Categories.filter(x =>
                     categories.includes(x)
@@ -95,11 +114,11 @@ class SuggestionScreen extends React.Component {
     }
 
     handleGemClick = link => {
-        this.setState({blogVisible: true, link: link})
+        this.setState({ blogVisible: true, link: link })
     }
 
     handleItemSelect = name => {
-        const {navigate} = this.props.navigation
+        const { navigate } = this.props.navigation
         const state = this.state
         const db = this.state.db
         const user = this.state.user
@@ -112,23 +131,38 @@ class SuggestionScreen extends React.Component {
         if (suggestion.selected) {
             savedLocations.push(suggestion)
             db.collection("users")
-                .doc(user).set({
-                savedLocations: savedLocations
-            }, {merge: true}).then(
-                this.setState({
-                    savedLocations: savedLocations
-                })
-            )
+                .doc(user)
+                .set(
+                    {
+                        savedLocations: savedLocations
+                    },
+                    { merge: true }
+                )
+                .then(
+                    this.setState({
+                        savedLocations: savedLocations
+                    })
+                )
         } else {
-            savedLocations.splice(savedLocations.indexOf(savedLocations.find(l => l.name == suggestion.name)), 1)
-            db.collection("users")
-                .doc(user).set({
-                savedLocations: savedLocations
-            }, {merge: true}).then(
-                this.setState({
-                    savedLocations: savedLocations
-                })
+            savedLocations.splice(
+                savedLocations.indexOf(
+                    savedLocations.find(l => l.name == suggestion.name)
+                ),
+                1
             )
+            db.collection("users")
+                .doc(user)
+                .set(
+                    {
+                        savedLocations: savedLocations
+                    },
+                    { merge: true }
+                )
+                .then(
+                    this.setState({
+                        savedLocations: savedLocations
+                    })
+                )
         }
     }
 
@@ -149,13 +183,20 @@ class SuggestionScreen extends React.Component {
         })
         return (
             <View style={styles.container}>
-                <Text style={styles.header}>
-                    EXPLORE
-                </Text>
+                <Text style={styles.header}>Explore</Text>
                 <Text style={styles.headerSubtitle}>
-                    Recommendations Based on your Profile
+                    Recommendations based on your profile
                 </Text>
-                <ScrollView style={{flex: 1}}>
+                <View style={styles.searchInputBox}>
+                    <TextInput
+                        style={styles.searchInput}
+                        placeholder="Where Are You Traveling?"
+                        onChangeText={text => this.setState({ search: text })}
+                    >
+                        {this.state.search}
+                    </TextInput>
+                </View>
+                <ScrollView style={{ flex: 1 }}>
                     <View style={styles.suggestionsContainer}>
                         {suggestedItems}
                     </View>
@@ -165,7 +206,7 @@ class SuggestionScreen extends React.Component {
                         <WebView
                             useWebKit={true}
                             onLoad={this._onLoadEnd.bind(this)}
-                            source={{uri: this.state.link}}
+                            source={{ uri: this.state.link }}
                             style={styles.webView}
                         />
                         <TouchableWithoutFeedback
@@ -178,9 +219,7 @@ class SuggestionScreen extends React.Component {
                             }}
                         >
                             <View style={styles.closeBtn}>
-                                <Text style={styles.closeBtnText}>
-                                    X
-                                </Text>
+                                <Text style={styles.closeBtnText}>X</Text>
                             </View>
                         </TouchableWithoutFeedback>
                     </View>
@@ -194,16 +233,17 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: "#fff",
-        alignItems: 'center',
-        justifyContent: 'flex-start',
-        paddingTop: 20,
+        alignItems: "center",
+        justifyContent: "flex-start",
+        paddingTop: 20
     },
     header: {
-        margin: 14,
-        textAlign: 'center',
+        marginTop: 20,
+        marginBottom: 0,
+        textAlign: "center",
         fontSize: 30,
         fontWeight: "bold",
-        color: '#1EA28A',
+        color: "#1EA28A"
     },
     suggestionsContainer: {
         marginTop: 20,
@@ -257,12 +297,33 @@ const styles = StyleSheet.create({
         textAlign: "center"
     },
     headerSubtitle: {
-        margin: 10,
-        textAlign: 'center',
-        fontSize: 15,
+        marginTop: 7,
+        marginBottom: 11,
+        textAlign: "center",
+        fontSize: 14,
         fontWeight: "bold",
-        color: '#1EA28A',
+        color: "#bbb"
+    },
+    searchInput: {
+        width: 300,
+        height: 50,
+        // paddingLeft: 15,
+        textAlign: "center",
+        color: "black",
+        fontSize: 16,
+        fontWeight: "700"
+    },
+    searchInputBox: {
+        borderRadius: 7,
+        width: 300,
+        height: 50,
+        textAlign: "center",
+        borderWidth: 1.25,
+        borderColor: "gray"
+        // shadowOffset: {width: 2, height: 2},
+        // shadowColor: "black",
+        // shadowOpacity: 0.5
     }
 })
 
-export default withNavigationFocus(SuggestionScreen);
+export default withNavigationFocus(SuggestionScreen)
