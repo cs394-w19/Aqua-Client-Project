@@ -248,7 +248,7 @@ export default class newItinerary extends React.Component {
                 <TouchableWithoutFeedback onPress={() => this.handleCreate()}>
                     <View style={styles.createBtn}>
                         <Text style={styles.createBtnText}>
-                            Create Itinerary
+                            Create Trip
                         </Text>
                     </View>
                 </TouchableWithoutFeedback>
@@ -317,7 +317,7 @@ class SuggestionItem extends React.Component {
                 {!location.selected &&
                 <TouchableWithoutFeedback onPress={() => this.props.handleItemSelect(location.name)}>
                     <View style={styles.colAddBtn}>
-                        <Text style={styles.colAddBtnText}>Add to Itinerary</Text>
+                        <Text style={styles.colAddBtnText}>Add to Trip</Text>
                     </View>
                 </TouchableWithoutFeedback>}
                 {location.selected &&

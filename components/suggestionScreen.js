@@ -179,6 +179,9 @@ class SuggestionScreen extends React.Component {
                 <Text style={styles.header}>
                     EXPLORE
                 </Text>
+                <Text style={styles.headerSubtitle}>
+                    Recommendations Based on your Profile
+                </Text>
                 <ScrollView style={{flex: 1}}>
                     <View style={styles.suggestionsContainer}>
                         {suggestedItems}
@@ -223,7 +226,7 @@ const styles = StyleSheet.create({
         paddingTop: 20,
     },
     header: {
-        margin: 20,
+        margin: 14,
         textAlign: 'center',
         fontSize: 30,
         fontWeight: "bold",
@@ -279,6 +282,13 @@ const styles = StyleSheet.create({
         color: "white",
         fontSize: 20,
         textAlign: "center"
+    },
+    headerSubtitle: {
+        margin: 10,
+        textAlign: 'center',
+        fontSize: 15,
+        fontWeight: "bold",
+        color: '#1EA28A',
     }
 })
 

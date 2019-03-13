@@ -9,13 +9,24 @@
             "Animals",
             "Family Friendly",
             "Daytime",
-            "Educational",
-            "Pet Friendly"
+            "Educational"            
           ],
           "Price": 3,
           "Location": "Downtown",
           "gem": false,
           "link": null,
+          "latitude": "41.8676 N",
+          "longitude": "87.6140 W"
+        },
+        {
+          "name": "Lurie Garden",
+          "Categories": [
+            "Nature"        
+          ],
+          "Price": 3,
+          "Location": "Downtown",
+          "gem": false,
+          "link": "https://www.publicgardens.org/sites/default/files/styles/1000x400_garden_image/public/images/Garden/Lurie%20Garden.jpg?itok=clGZJXIH",
           "latitude": "41.8676 N",
           "longitude": "87.6140 W"
         },
@@ -510,6 +521,147 @@
           }
         }
       ]
+    },
+    {
+      "name": "Munnar",
+      "Attractions": [
+        {
+          "name": "Tea Estates",
+          "Categories": [    
+            "Nature",
+            "Museums"  
+          ],
+          "Price": 3,
+          "Location": "Mountainside",
+          "gem": true,
+          "link": "https://media-cdn.tripadvisor.com/media/photo-s/11/3b/9d/57/munnar-tea-estates.jpg",
+          "latitude": "41.8676 N",
+          "longitude": "87.6140 W"
+        }
+        ],
+      "Restaurants": [  ]
+    },
+    {
+      "name": "Muras",
+      "Attractions": [
+        {
+          "name": "Inca Salt Pools",
+          "Categories": [           
+            "Nature",
+            "Museums"       
+          ],
+          "Price": 3,
+          "Location": "Downtown",
+          "gem": false,
+          "link": "https://lh6.ggpht.com/-Qmi3fOKPmW8/UWP52M7mz4I/AAAAAAAAnJg/8nVNSy4Rchs/maras-salt-mine-0%25255B2%25255D.jpg?imgmax=800",
+          "latitude": "41.8676 N",
+          "longitude": "87.6140 W"
+        }
+        ],
+      "Restaurants": [  ]
+    },
+    {
+      "name": "Muras",
+      "Attractions": [
+        {
+          "name": "Comic Strip Route",
+          "Categories": [           
+            "Art"
+                   
+          ],
+          "Price": 3,
+          "Location": "Downtown",
+          "gem": true,
+          "link": "https://s3-eu-west-1.amazonaws.com/brussels-images/content/gallery/visit/article/9820_9820---LES-MURS-DE-LA-PROMENADE-BD-EN-DE%C3%8C%C2%81TAIL_sq_640.jpg",
+          "latitude": "41.8676 N",
+          "longitude": "87.6140 W"
+        }
+        ],
+      "Restaurants": [  ]
+    },
+    {
+      "name": "Muras",
+      "Attractions": [
+        {
+          "name": "Comic Strip Route",
+          "Categories": [           
+            "Art",
+            "Museums"       
+          ],
+          "Price": 3,
+          "Location": "Downtown",
+          "gem": true,
+          "link": "https://s3-eu-west-1.amazonaws.com/brussels-images/content/gallery/visit/article/9820_9820---LES-MURS-DE-LA-PROMENADE-BD-EN-DE%C3%8C%C2%81TAIL_sq_640.jpg",
+          "latitude": "41.8676 N",
+          "longitude": "87.6140 W"
+        }
+        ],
+      "Restaurants": [  ]
+    },
+    {
+      "name": "London",
+      "Attractions": [
+        {
+          "name": "Epping Forest",
+          "Categories": [           
+            "Nature",
+            "Exotic"       
+          ],
+          "Price": 3,
+          "Location": "Rural",
+          "gem": true,
+          "link": "https:www.visiteppingforest.org",
+          "latitude": "41.8676 N",
+          "longitude": "87.6140 W"
+        },
+        {
+          "name": "Leadenhall Market",
+          "Categories": [           
+            "Shopping",
+            "Historic Sites",
+            "Exotic"       
+          ],
+          "Price": 3,
+          "Location": "Downtown",
+          "gem": true,
+          "link": "https://fullsuitcase.com/london-hidden-gems/",
+          "latitude": "41.8676 N",
+          "longitude": "87.6140 W"
+        }
+        ],
+      "Restaurants": [ 
+        {
+          "name": "Saint Aymes",
+          "Categories": [           
+            "Food",
+            "Exotic"       
+          ],
+          "Price": 3,
+          "Location": "Downtown",
+          "gem": true,
+          "link": "https://fullsuitcase.com/london-hidden-gems/",
+          "latitude": "41.8676 N",
+          "longitude": "87.6140 W"
+        } ]
+    },
+    {
+      "name": "Positano",
+      "Attractions": [
+        {
+          "name": "Sentiero degli dei Hike",
+          "Categories": [           
+            "Hiking",       
+          ],
+          "Price": 3,
+          "Location": "Rural",
+          "gem": true,
+          "link": "https://www.positano.com/en/e/il-sentiero-degli-dei",
+          "latitude": "41.8676 N",
+          "longitude": "87.6140 W"
+        }
+        ],
+      "Restaurants": [  ]
     }
+
   ]
 }

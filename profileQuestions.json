@@ -169,7 +169,7 @@
             "text": "What type of hiking interests you most?",
             "options": [
                 {
-                    "name": "No thank you",
+                    "name": "Not interested",
                     "status": false,
                     "Categories": [
                         "low physical activity"
