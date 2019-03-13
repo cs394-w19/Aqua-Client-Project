@@ -47,6 +47,8 @@ markers[15] = require("../assets/markers/15.png");
 markers[16] = require("../assets/markers/16.png");
 markers[17] = require("../assets/markers/17.png");
 
+const unCheckedBox = require('../assets/heart-green.png');
+
 
 export default class CollectionScreen extends React.Component {
 
@@ -58,7 +60,7 @@ export default class CollectionScreen extends React.Component {
             textAlign: 'center',
             flex: 1,
             fontSize: 20
-        }
+        },tabBarIcon: ({ focused, horizontal, tintColor})=>(<Image source={unCheckedBox}/>)
     }
 
     constructor(props) {

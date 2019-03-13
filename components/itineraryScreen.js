@@ -97,7 +97,7 @@ export default class ItineraryScreen extends React.Component {
         )
     }
 
-    handleCreate(itineraryName) {
+    handleCreate(itineraryName, locationName) {
         itineraryName = itineraryName ? itineraryName : ""
         const { navigate } = this.props.navigation
         this.setState({ dialogVisible: false })
@@ -117,10 +117,10 @@ export default class ItineraryScreen extends React.Component {
                 db.collection("users")
                     .doc(user)
                     .set(
-                        { upcomingItineraries: upcomingItineraries },
+                        { upcomingItineraries: upcomingItineraries, city: locationName  },
                         { merge: true }
                     )
-                navigate("LocationSelection", {
+                navigate("TripQuestionnaire", {
                     db: this.props.db,
                     user: this.props.user,
                     itineraryId: rev.id
@@ -165,6 +165,7 @@ export default class ItineraryScreen extends React.Component {
             )
         })
         let itineraryName;
+        let locationName;
         return (
             <ScrollView>
                 <View style={styles.container}>
@@ -181,9 +182,14 @@ export default class ItineraryScreen extends React.Component {
                     {pastItineraries}
                 </View>
                 <Dialog.Container visible={this.state.dialogVisible}>
-                    <Dialog.Title>Name Your Trip</Dialog.Title>
+                    <Dialog.Title>Create a new plan!</Dialog.Title>
                     <Dialog.Input
-                        placeholder="Trip Name"
+                        placeholder="Where Are You Travelling?"
+                        value={locationName}
+                        onChangeText={text => (locationName = text)}
+                    />
+                    <Dialog.Input
+                        placeholder="Name Your Plan"
                         value={itineraryName}
                         onChangeText={text => (itineraryName = text)}
                     />
@@ -193,7 +199,7 @@ export default class ItineraryScreen extends React.Component {
                     />
                     <Dialog.Button
                         label="Create"
-                        onPress={() => this.handleCreate(itineraryName)}
+                        onPress={() => this.handleCreate(itineraryName, locationName)}
                     />
                 </Dialog.Container>
             </ScrollView>

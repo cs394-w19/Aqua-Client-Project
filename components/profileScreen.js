@@ -1,17 +1,21 @@
 import React from 'react';
 import {StyleSheet, Text, View, ScrollView, Image, TouchableWithoutFeedback} from 'react-native';
 
+const unCheckedBox = require('../assets/heart.png');
+
 export default class SuggestionScreen extends React.Component {
     static navigationOptions = {
-        title: 'Profile',
+        title: 'Profiles',
         headerTitleStyle: {
             marginRight: 56,
             color: "#1EA28A",
             textAlign: 'center',
             flex: 1,
             fontSize: 30
-        }
+        },
+        tabBarIcon: ({ focused, horizontal, tintColor})=>(<Image source={unCheckedBox}/>)
     }
+
     constructor(props) {
         super(props);
         this.state = {
@@ -79,7 +83,7 @@ const styles = StyleSheet.create({
         borderColor: "#1EA28A"
 
     },
-    userName:{
+    userName: {
         textAlign: "center",
         flex: 0,
         padding: 20,
