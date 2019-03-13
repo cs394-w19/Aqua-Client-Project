@@ -120,7 +120,7 @@ export default class ItineraryScreen extends React.Component {
                         { upcomingItineraries: upcomingItineraries },
                         { merge: true }
                     )
-                navigate("TripQuestionnaire", {
+                navigate("LocationSelection", {
                     db: this.props.db,
                     user: this.props.user,
                     itineraryId: rev.id
