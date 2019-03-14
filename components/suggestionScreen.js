@@ -12,6 +12,7 @@ import SuggestedItem from "./suggestedItem"
 import Suggestions from "../suggestions.json"
 import profileQuestions from "../profileQuestions.json";
 import {withNavigationFocus} from "react-navigation"
+import Dialog from "react-native-dialog"
 
 class SuggestionScreen extends React.Component {
 
@@ -26,8 +27,10 @@ class SuggestionScreen extends React.Component {
             webviewLoaded: false,
             db: null,
             user: null,
-            chosenLoc: ""
+            chosenLoc: "",
+            dialogVisible: false
         }
+        this.handleCreate = this.handleCreate.bind(this)
     }
 
     _onLoadEnd() {
@@ -92,14 +95,14 @@ class SuggestionScreen extends React.Component {
         let foundAttractions = []
         for (var i = 0; i < Suggestions.Locations.length; i++) {
             foundAttractions = foundAttractions.concat((Suggestions.Locations[i].Attractions.filter(
-                a => {
-                    let intersection = a.Categories.filter(x =>
-                        categories.includes(x)
-                    )
-                    if (intersection.length > 0) {
-                        return true
-                    } else return false
-                }
+                    a => {
+                        let intersection = a.Categories.filter(x =>
+                            categories.includes(x)
+                        )
+                        if (intersection.length > 0) {
+                            return true
+                        } else return false
+                    }
                 )
             ).map(l => {
                     return {
@@ -111,7 +114,7 @@ class SuggestionScreen extends React.Component {
         }
         let foundRestaurants = []
         for (var i = 0; i < Suggestions.Locations.length; i++) {
-            foundRestaurants = foundRestaurants.concat(Suggestions.Locations[i].Restaurants.filter(
+            foundRestaurants = foundRestaurants.concat((Suggestions.Locations[i].Restaurants.filter(
                 r => {
                     let intersection = r.Categories.filter(x =>
                         categories.includes(x)
@@ -119,6 +122,12 @@ class SuggestionScreen extends React.Component {
                     if (intersection.length > 0) {
                         return true
                     } else return false
+                }
+                )).map(l => {
+                    return {
+                        ...l,
+                        city: Suggestions.Locations[i].name
+                    }
                 }
                 )
             )
@@ -160,10 +169,46 @@ class SuggestionScreen extends React.Component {
             )
         }
     }
+    handleCreate(itineraryName, locationName) {
+        itineraryName = itineraryName ? itineraryName : ""
+        const { navigate } = this.props.navigation
+        this.setState({ dialogVisible: false })
+        const { db, user } = this.props
+        const itinerary = {
+            name: itineraryName,
+            city: "",
+            locations: [],
+            users: [user]
+        }
+        db.collection("users")
+            .doc(user)
+            .get()
+            .then(userData => {
+                let upcomingItineraries = userData.data()["upcomingItineraries"] ? userData.data()["upcomingItineraries"] : []
+                db.collection("itineraries")
+                    .add(itinerary)
+                    .then(rev => {
+                        upcomingItineraries.push(rev.id)
+                        db.collection("users")
+                            .doc(user)
+                            .set(
+                                { upcomingItineraries: upcomingItineraries, city: locationName  },
+                                { merge: true }
+                            )
+                        navigate("TripQuestionnaire", {
+                            db: this.props.db,
+                            user: this.props.user,
+                            itineraryId: rev.id
+                        })
+                    })
+            })
+    }
+
 
     render() {
-        const {categories, suggestions, chosenLoc} = this.state
-        const suggestedItems = suggestions.map(l => {
+        const {categories, suggestions} = this.state
+        let chosenLoc = this.state.chosenLoc
+        const suggestedItems = suggestions.filter(l => l.city.startsWith(chosenLoc)).map(l => {
             return (
                 <SuggestedItem
                     location={l}
@@ -175,6 +220,7 @@ class SuggestionScreen extends React.Component {
                 />
             )
         })
+        let itineraryName
         return (
             <View style={styles.container}>
                 <Text style={styles.header}>
@@ -185,12 +231,24 @@ class SuggestionScreen extends React.Component {
                 </Text>
                 <TextInput
                     style={styles.textInput}
-                    placeholder="Whare Are You Travelling?"
+                    placeholder="Where Are You Travelling?"
                     value={chosenLoc}
                     onChangeText={(text) => {
                         this.setState({chosenLoc: text})
                     }}
                 />
+                <TouchableWithoutFeedback
+                    title="create"
+                    onPress={() => {
+                        this.setState({
+                            dialogVisible: true
+                        })
+                    }}
+                >
+                    <View><Text style={styles.createBtnText}>
+                        + Create a New Plan
+                    </Text></View>
+                </TouchableWithoutFeedback>
                 <ScrollView style={{flex: 1}}>
                     <View style={styles.suggestionsContainer}>
                         {suggestedItems}
@@ -221,6 +279,27 @@ class SuggestionScreen extends React.Component {
                         </TouchableWithoutFeedback>
                     </View>
                 )}
+                <Dialog.Container visible={this.state.dialogVisible}>
+                    <Dialog.Title>Create a new plan!</Dialog.Title>
+                    <Dialog.Input
+                        placeholder="Where Are You Travelling?"
+                        value={chosenLoc}
+                        onChangeText={text => (this.setState({chosenLoc: text}))}
+                    />
+                    <Dialog.Input
+                        placeholder="Name Your Plan"
+                        value={itineraryName}
+                        onChangeText={text => (itineraryName = text)}
+                    />
+                    <Dialog.Button
+                        label="Cancel"
+                        onPress={() => this.setState({ dialogVisible: false })}
+                    />
+                    <Dialog.Button
+                        label="Create"
+                        onPress={() => this.handleCreate(itineraryName, chosenLoc)}
+                    />
+                </Dialog.Container>
             </View>
         )
     }
@@ -305,6 +384,10 @@ const styles = StyleSheet.create({
         height: 40,
         padding: 5,
         borderColor: 'darkgrey'
+    },
+    createBtnText:{
+        color: "#0D76FC",
+        paddingTop: 10
     }
 })
 

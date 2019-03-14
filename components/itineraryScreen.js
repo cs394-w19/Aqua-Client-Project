@@ -68,7 +68,7 @@ export default class ItineraryScreen extends React.Component {
                     .then(userData => {
                         upcomingItineraries = userData.data()[
                             "upcomingItineraries"
-                        ]
+                            ]
                             ? userData.data()["upcomingItineraries"]
                             : []
                         pastItineraries = userData.data()["pastItineraries"]

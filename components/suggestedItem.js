@@ -67,7 +67,7 @@ export default class SuggestedItem extends React.Component {
                     <Image source={images[location.id]} style={{height: 120, width: 180}}/>
                     <View style={styles.details}>
                         <View style={styles.textDetails}>
-                            <Text style={textStyle}>{location.name}</Text>
+                            <Text style={textStyle}>{location.name}, {location.city}</Text>
                             <Text style={reasonStyle}>{reason}</Text>
                             {location.gem && <Text style={suggestedByStlye}>Suggested By {location.website}</Text>}
                         </View>
