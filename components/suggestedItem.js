@@ -45,6 +45,9 @@ export default class SuggestedItem extends React.Component {
             checked: false
         }
     }
+    componentWillMount() {
+        this.setState({checked: this.props.location.selected})
+    }
 
     render() {
         const {location, intersection, handleItemSelect, handleGemClick} = this.props;
@@ -57,10 +60,10 @@ export default class SuggestedItem extends React.Component {
         reason = "80% who liked " + reason + " liked this"
         const containerClick = location.gem ? handleGemClick : () => {
         }
-        const containerStyle = this.state.checked ? styles.containerSelected : styles.container
-        const textStyle=this.state.checked ? styles.textSelected: styles.text;
-        const reasonStyle= this.state.checked ? styles.reasonSelected : styles.reason;
-        const suggestedByStlye= this.state.checked ? styles.suggestedBySelected : styles.suggestedBy;
+        const containerStyle = location.selected ? styles.containerSelected : styles.container
+        const textStyle=location.selected ? styles.textSelected: styles.text;
+        const reasonStyle= location.selected ? styles.reasonSelected : styles.reason;
+        const suggestedByStlye= location.selected ? styles.suggestedBySelected : styles.suggestedBy;
         return (
             <TouchableWithoutFeedback onPress={() => containerClick(location.link)}>
                 <View style={containerStyle}>
@@ -75,8 +78,6 @@ export default class SuggestedItem extends React.Component {
                     {location.gem && <Image source={gem}
                                             style={{
                                                 position: 'absolute',
-                                                left: 10,
-                                                top: 10,
                                                 height: 30,
                                                 width: 30,
                                             }}/>

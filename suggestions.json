@@ -479,7 +479,7 @@
           "Price": 2,
           "Location": "Downtown",
           "id": 18,
-          "gem": true,
+          "gem": false,
           "link": null,
           "coordinates": {
             "latitude": 48.8583,
@@ -496,7 +496,7 @@
           "Price": 2,
           "Location": "Downtown",
           "id": 19,
-          "gem": true,
+          "gem": false,
           "link": null,
           "coordinates": {
             "latitude": 48.8583,
@@ -513,7 +513,7 @@
           "Price": 2,
           "Location": "Downtown",
           "id": 20,
-          "gem": true,
+          "gem": false,
           "link": null,
           "coordinates": {
             "latitude": 48.8583,
@@ -530,7 +530,7 @@
           "Price": 2,
           "Location": "Downtown",
           "id": 21,
-          "gem": true,
+          "gem": false,
           "link": null,
           "coordinates": {
             "latitude": 48.8583,
@@ -545,7 +545,7 @@
           "Price": 2,
           "Location": "Downtown",
           "id": 22,
-          "gem": true,
+          "gem": false,
           "link": null,
           "coordinates": {
             "latitude": 48.8583,
@@ -617,8 +617,8 @@
           "Price": 3,
           "Location": "Mountainside",
           "id": 23,
-          "gem": true,
-          "link": "https://media-cdn.tripadvisor.com/media/photo-s/11/3b/9d/57/munnar-tea-estates.jpg",
+          "gem": false,
+          "link": null,
           "latitude": 10.0889,
           "longitude": -77.0595
         }
