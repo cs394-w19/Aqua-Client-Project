@@ -1,9 +1,15 @@
-import React from 'react';
-import {StyleSheet, Text, View, TouchableWithoutFeedback, ScrollView, Image} from 'react-native';
-import MapView, {PROVIDER_GOOGLE, Marker} from 'react-native-maps'
-let images = [];
+import React from "react"
+import {
+    StyleSheet,
+    Text,
+    View,
+    TouchableWithoutFeedback,
+    ScrollView,
+    Image
+} from "react-native"
+import Dialog from "react-native-dialog"
 
-let markers = [];
+let images = []
 images[0] = require("../assets/locationPictures/0.jpg");
 images[1] = require("../assets/locationPictures/1.jpg");
 images[2] = require("../assets/locationPictures/2.jpg");
@@ -22,147 +28,233 @@ images[14] = require("../assets/locationPictures/14.jpg");
 images[15] = require("../assets/locationPictures/15.jpg");
 images[16] = require("../assets/locationPictures/16.jpg");
 images[17] = require("../assets/locationPictures/17.jpg");
-
-markers[0] = require("../assets/markers/0.png");
-markers[1] = require("../assets/markers/1.png");
-markers[2] = require("../assets/markers/2.png");
-markers[3] = require("../assets/markers/3.png");
-markers[4] = require("../assets/markers/4.png");
-markers[5] = require("../assets/markers/5.png");
-markers[6] = require("../assets/markers/6.png");
-markers[7] = require("../assets/markers/7.png");
-markers[8] = require("../assets/markers/8.png");
-markers[9] = require("../assets/markers/9.png");
-markers[10] = require("../assets/markers/10.png");
-markers[11] = require("../assets/markers/11.png");
-markers[12] = require("../assets/markers/12.png");
-markers[13] = require("../assets/markers/13.png");
-markers[14] = require("../assets/markers/14.png");
-markers[15] = require("../assets/markers/15.png");
-markers[16] = require("../assets/markers/16.png");
-markers[17] = require("../assets/markers/17.png");
-
+images[18] = require("../assets/locationPictures/18.jpg");
+images[19] = require("../assets/locationPictures/19.jpg");
+images[20] = require("../assets/locationPictures/20.jpg");
+images[21] = require("../assets/locationPictures/21.jpg");
+images[22] = require("../assets/locationPictures/22.jpg");
+images[23] = require("../assets/locationPictures/23.jpg");
+images[24] = require("../assets/locationPictures/24.jpg");
+images[25] = require("../assets/locationPictures/25.jpg");
+images[26] = require("../assets/locationPictures/26.jpg");
+images[27] = require("../assets/locationPictures/27.jpeg");
+images[28] = require("../assets/locationPictures/28.jpg");
+images[29] = require("../assets/locationPictures/29.jpg");
+images[30] = require("../assets/locationPictures/30.jpeg");
 
 export default class ItineraryScreen extends React.Component {
 
-    static navigationOptions = {
-        title: 'Saved Locations',
-        headerTitleStyle: {
-            marginRight: 56,
-            color: "#1EA28A",
-            textAlign: 'center',
-            flex: 1,
-            fontSize: 30
+    constructor(props) {
+        super(props)
+        this.state = {
+            dialogVisible: false,
+            upcomingItineraries: [],
+            pastItineraries: [],
+            itineraryNames: {}
         }
+        this.handleCreate = this.handleCreate.bind(this)
     }
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            listView: true
+    componentDidMount() {
+        const { db, user } = this.props
+        this.focusListener = this.props.navigation.addListener(
+            "didFocus",
+            () => {
+                let upcomingItineraries
+                let pastItineraries
+                db.collection("users")
+                    .doc(user)
+                    .get()
+                    .then(userData => {
+                        upcomingItineraries = userData.data()[
+                            "upcomingItineraries"
+                            ]
+                            ? userData.data()["upcomingItineraries"]
+                            : []
+                        pastItineraries = userData.data()["pastItineraries"]
+                            ? userData.data()["pastItineraries"]
+                            : []
+                        this.setState({
+                            upcomingItineraries: upcomingItineraries,
+                            pastItineraries: pastItineraries
+                        })
+                        let itineraryNames = {}
+                        db.collection("itineraries")
+                            .where("users", "array-contains", user)
+                            .get()
+                            .then(itineraries => {
+                                itineraries.forEach(i => {
+                                    itineraryNames[i.id] = i.data().name
+                                })
+                                this.setState({
+                                    itineraryNames: itineraryNames
+                                })
+                            })
+                    })
+            }
+        )
+    }
+
+    handleCreate(itineraryName, locationName) {
+        itineraryName = itineraryName ? itineraryName : ""
+        const { navigate } = this.props.navigation
+        this.setState({ dialogVisible: false })
+        const { db, user } = this.props
+        const itinerary = {
+            name: itineraryName,
+            city: locationName,
+            locations: [],
+            users: [user]
         }
+        console.log("itinerary is here ->" + JSON.stringify(itinerary));
+        let upcomingItineraries = this.state.upcomingItineraries
+        db.collection("itineraries")
+            .add(itinerary)
+            .then(rev => {
+                upcomingItineraries.push(rev.id)
+                db.collection("users")
+                    .doc(user)
+                    .set(
+                        { upcomingItineraries: upcomingItineraries, city: locationName  },
+                        { merge: true }
+                    )
+                navigate("TripQuestionnaire", {
+                    db: this.props.db,
+                    user: this.props.user,
+                    itineraryId: rev.id
+                })
+            })
+    }
+
+    openItinerary(itineraryId) {
+        const { navigate } = this.props.navigation
+        navigate("Itinerary", {
+            db: this.props.db,
+            user: this.props.user,
+            itineraryId: itineraryId
+        })
     }
 
     render() {
-        const {state} = this.props.navigation;
-        const suggestions = state.params.suggestions;
-        const suggestionItems = suggestions.map(s => (
-            <View style={styles.itineraryItem}>
-                <Image source={images[s.id]} style={{width: 80, height: 80}}/>
-                <Text style={styles.itemDetails}>{s.name}</Text>
-            </View>
-        ))
-        const markerItems = suggestions.map(s => (
-            <Marker coordinate={s.coordinates} >
-                <Image source={markers[s.id]} style={{width: 100, height: 100}}/>
-            </Marker>
-        ))
+        const upcomingItineraries = this.state.upcomingItineraries.map(i => {
+            return (
+                <TouchableWithoutFeedback onPress={() => this.openItinerary(i)}>
+                    <View style={styles.upcomingItineraryBtn}>
+                        <Image style={{position: "absolute", height: 100,
+                            width: 300,
+                            borderRadius: 10, opacity: 0.7}} source={images[parseInt((i.replace( /(^.+\D)(\d+)(\D.+$)/i,'$2')))%18]}/>
+                        <Text style={styles.itineraryBtnText}>
+                            {this.state.itineraryNames[i]}
+                        </Text>
+                    </View>
+                </TouchableWithoutFeedback>
+            )
+        })
+        const pastItineraries = this.state.pastItineraries.map(i => {
+            return (
+                <TouchableWithoutFeedback onPress={() => this.openItinerary(i)}>
+                    <View style={styles.newItineraryBtn}>
+                        <Text style={styles.newItineraryBtnText}>
+                            {this.state.itineraryNames[i]}
+                        </Text>
+                    </View>
+                </TouchableWithoutFeedback>
+            )
+        })
+        let itineraryName;
+        let locationName;
         return (
-            <View style={styles.container}>
-                <View style={styles.tabContainer}>
-                    <TouchableWithoutFeedback onPress={()=>this.setState({listView: true})}>
-                        <View style={this.state.listView ? styles.tabActive : styles.tab}>
-                            <Text>List</Text>
+            <View>
+                <Text style={styles.header}>Your Trips</Text>
+            <ScrollView>
+                <View style={styles.container}>
+                    <TouchableWithoutFeedback
+                        onPress={() => this.setState({ dialogVisible: true })}
+                    >
+                        <View style={styles.newItineraryBtn}>
+                            <Text style={styles.newItineraryBtnText}>+</Text>
+                            <Text style={styles.newItineraryBtnText}>Create a New Trip</Text>
                         </View>
                     </TouchableWithoutFeedback>
-                    <TouchableWithoutFeedback onPress={()=>this.setState({listView: false})}>
-                        <View style={!this.state.listView ? styles.tabActive : styles.tab}>
-                            <Text>Map</Text>
-                        </View>
-                    </TouchableWithoutFeedback>
+                    <Text style={styles.subHeader}>Upcoming Trips</Text>
+                    {upcomingItineraries}
+                    <Text style={styles.subHeader}>Past Trips</Text>
+                    {pastItineraries}
                 </View>
-                {this.state.listView && <ScrollView style={styles.itinerary}>
-                    {suggestionItems}
-                </ScrollView>}
-                {!this.state.listView && <MapView
-                style={styles.itinerary}
-                provider={ PROVIDER_GOOGLE }
-                region={{
-                latitude: 48.857627,
-                longitude: 2.336433,
-                latitudeDelta: 0.05,
-                longitudeDelta: 0.05
-                }}
-                >
-                    {markerItems}
-                </MapView>}
+                <Dialog.Container visible={this.state.dialogVisible}>
+                    <Dialog.Title>Create a new plan!</Dialog.Title>
+                    <Dialog.Input
+                        placeholder="Where Are You Travelling?"
+                        value={locationName}
+                        onChangeText={text => (locationName = text)}
+                    />
+                    <Dialog.Input
+                        placeholder="Name Your Plan"
+                        value={itineraryName}
+                        onChangeText={text => (itineraryName = text)}
+                    />
+                    <Dialog.Button
+                        label="Cancel"
+                        onPress={() => this.setState({ dialogVisible: false })}
+                    />
+                    <Dialog.Button
+                        label="Create"
+                        onPress={() => this.handleCreate(itineraryName, locationName)}
+                    />
+                </Dialog.Container>
+            </ScrollView>
             </View>
-        );
+        )
     }
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'flex-start',
-        padding: 30
-    },
     header: {
+        marginTop: 40,
         flex: 0,
-        padding: 20,
+        textAlign: 'center',
         fontSize: 30,
-        paddingBottom: 0
-    },
-    itinerary: {
-        marginTop: 20,
-        width: 400,
-        flex: 1,
-        padding: 20,
-    },
-    itineraryItem: {
-        margin: 5,
-        borderBottomWidth: 1,
-        borderColor: 'grey',
-        padding: 10,
-        borderRadius: 5,
-        flexDirection: 'row'
-    },
-    itemDetails: {
-        fontSize: 20,
-        padding: 10,
+        fontWeight: "bold",
         color: '#1EA28A'
     },
-    tabContainer:{
+    container: {
+        flex: 1,
+        flexDirection: "column",
+        alignItems: "center",
+        padding: 30
+    },
+    newItineraryBtn: {
+        display: "flex",
+        height: 100,
         width: 300,
-        height: 50,
-        borderRadius: 10,
-        borderWidth: 2,
-        borderColor: '#1EA28A',
-        flexDirection: 'row',
-        overflow: 'hidden'
+        alignItems: "center",
+        justifyContent: "center",
+        backgroundColor: "grey",
+        borderRadius: 10
     },
-    tab:{
-        width: 150,
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: '#fff',
+    upcomingItineraryBtn: {
+        margin: 10,
+        display: "flex",
+        height: 100,
+        width: 300,
+        alignItems: "center",
+        justifyContent: "center",
+        backgroundColor: "#ffffffcc",
+        borderRadius: 10
     },
-    tabActive: {
-        width: 150,
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: '#1EA28A',
+    newItineraryBtnText: {
+        fontSize: 50,
+        color: "white"
+    },itineraryBtnText: {
+        fontSize: 40,
+        color: "black"
+    },
+    subHeader: {
+        marginTop: 30,
+        fontSize: 20,
+        borderTopWidth: 2,
+        textAlign: "center",
+        width: 350,
+        borderTopColor: "grey"
     }
-});
+})

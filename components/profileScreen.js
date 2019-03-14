@@ -1,7 +1,20 @@
 import React from 'react';
 import {StyleSheet, Text, View, ScrollView, Image, TouchableWithoutFeedback} from 'react-native';
 
+const unCheckedBox = require('../assets/heart.png');
+
 export default class SuggestionScreen extends React.Component {
+    static navigationOptions = {
+        title: 'Profiles',
+        headerTitleStyle: {
+            marginRight: 56,
+            color: "#1EA28A",
+            textAlign: 'center',
+            flex: 1,
+            fontSize: 30
+        }
+    }
+
     constructor(props) {
         super(props);
         this.state = {
@@ -10,16 +23,12 @@ export default class SuggestionScreen extends React.Component {
     }
 
     render() {
-
         const {navigate} = this.props.navigation;
-        const {state} = this.props.navigation;
-        const db = state.params.db;
-        const user = state.params.user;
+        const { db, user } = this.props
         return (
             <View style={styles.container}>
-                <Text style={styles.header}>Your Profile</Text>
                 <View style={styles.profileContainer}>
-                    <Image style={styles.imageStyling} source={require('../userpicture.png')}/>
+                    <Image style={styles.imageStyling} source={require('../profile_pic.jpeg')}/>
                     <Text style={styles.userName}>{user}</Text>
 
                 </View>
@@ -61,12 +70,17 @@ const styles = StyleSheet.create({
     profileContainer: {
         marginTop: 20,
         flex: 0,
+        justifyContent: 'center',
+        alignItems: 'center',
     },
     imageStyling: {
         width: 200,
-        height: 200
+        height: 200,
+        borderRadius: 20,
+        borderColor: "#1EA28A"
+
     },
-    userName:{
+    userName: {
         textAlign: "center",
         flex: 0,
         padding: 20,

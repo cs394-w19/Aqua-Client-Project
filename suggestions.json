@@ -9,15 +9,27 @@
             "Animals",
             "Family Friendly",
             "Daytime",
-            "Educational",
-            "Pet Friendly"
+            "Educational"            
           ],
           "Price": 3,
           "Location": "Downtown",
           "gem": false,
           "link": null,
-          "latitude": "41.8676 N",
-          "longitude": "87.6140 W"
+          "latitude": 41.8676,
+          "longitude": 87.6140
+        },
+        {
+          "name": "Lurie Garden",
+          "Categories": [
+            "Nature"        
+          ],
+          "Price": 3,
+          "Location": "Downtown",
+          "id": 26,
+          "gem": false,
+          "link": "https://www.publicgardens.org/sites/default/files/styles/1000x400_garden_image/public/images/Garden/Lurie%20Garden.jpg?itok=clGZJXIH",
+          "latitude": 41.8676,
+          "longitude": 87.6140
         },
         {
           "name": "Willis Tower",
@@ -31,8 +43,8 @@
           "Location": "Downtown",
           "gem": false,
           "link": null,
-          "latitude": "41.8789 N",
-          "longitude": "87.6359 W"
+          "latitude": 41.8789,
+          "longitude": 87.6359
         },
         {
           "name": "Field Museum",
@@ -47,8 +59,8 @@
           "Location": "Downtown",
           "gem": false,
           "link": null,
-          "latitude": "41.8663 N",
-          "longitude": "87.6170 W"
+          "latitude": 41.8663,
+          "longitude": 87.6170
         },
         {
           "name": "Wrigley Field",
@@ -62,8 +74,8 @@
           "Location": "Wrigleyville",
           "gem": false,
           "link": null,
-          "latitude": "41.9484 N",
-          "longitude": "87.6553 W"
+          "latitude": 41.9484,
+          "longitude": 87.6553
         },
         {
           "name": "Millenium Park",
@@ -78,8 +90,8 @@
           "Location": "Downtown",
           "gem": false,
           "link": null,
-          "latitude": "41.8826 N",
-          "longitude": "87.6226 W"
+          "latitude": 41.8826,
+          "longitude": 87.6226
         },
         {
           "name": "Sky Deck Chicago",
@@ -94,8 +106,8 @@
           "Location": "Downtown",
           "gem": false,
           "link": null,
-          "latitude": "41.8789 N",
-          "longitude": "87.6359 W"
+          "latitude": 41.8789,
+          "longitude": 87.6359
         },
         {
           "name": "Jay Pritzker Pavillion",
@@ -112,8 +124,8 @@
           "Location": "Downtown",
           "gem": false,
           "link": null,
-          "latitude": "41.8832 N",
-          "longitude": "87.6219 W"
+          "latitude": 41.8832,
+          "longitude": 87.6219
         },
         {
           "name": "Chicago River Cruise",
@@ -126,8 +138,8 @@
           "Location": "Downtown",
           "gem": false,
           "link": null,
-          "latitude": "41.8905 N",
-          "longitude": "87.6162 W"
+          "latitude": 41.8905,
+          "longitude": 87.6162
         }
       ],
       "Restaurants": [
@@ -145,8 +157,8 @@
           "Location": "Downtown",
           "gem": false,
           "link": null,
-          "latitude": "41.8925 N",
-          "longitude": "87.6162 W"
+          "latitude": 41.8925,
+          "longitude": 87.6162
         },
         {
           "name": "Alinea",
@@ -160,8 +172,8 @@
           "Location": "Old Town",
           "gem": false,
           "link": null,
-          "latitude": "41.9183 N",
-          "longitude": "87.6439 W"
+          "latitude": 41.9183,
+          "longitude": 87.6439
         },
         {
           "name": "Ramen Takeya",
@@ -174,22 +186,21 @@
           "Location": "West Loop",
           "gem": false,
           "link": null,
-          "latitude": "41.8764 N",
-          "longitude": "87.6507 W"
+          "latitude": 41.8764,
+          "longitude": 87.6507
         },
         {
           "name": "Gibsons Steakhouse",
           "Categories": [
             "Steakhouse",
-            "Fine",
-            ""
+            "Fine"
           ],
           "Price": 5,
           "Location": "Downtown",
           "gem": false,
           "link": null,
-          "latitude": "41.9014 N",
-          "longitude": "87.6279 W"
+          "latitude": 41.9014,
+          "longitude": 87.6279
         }
       ]
     },
@@ -199,9 +210,7 @@
         {
           "name": "Paris Underground Street Art Tour",
           "Categories": [
-            "street art",
-            "Tour",
-            "Outdoors"
+            "art"
           ],
           "Price": 2,
           "Location": "Belleville",
@@ -217,10 +226,8 @@
         {
           "name": "Paris Catacombs",
           "Categories": [
-            "City",
-            "History",
-            "Outdoors",
-            "museums"
+            "history",
+            "sci-fi"
           ],
           "Price": 2,
           "Location": "Ile-de-France",
@@ -236,8 +243,10 @@
         {
           "name": "Rue Cremieux",
           "Categories": [
-            "Scenic",
-            "Photospot"
+            "gardening",
+            "art",
+            "iconic sites",
+            "architecture"
           ],
           "Price": 0,
           "Location": "Ile-de-France",
@@ -253,9 +262,8 @@
         {
           "name": "Musee des Egouts de Paris",
           "Categories": [
-            "Museum",
-            "Art",
-            "Indoors",
+            "history",
+            "contemporary fiction",
             "museums"
           ],
           "Price": 1,
@@ -272,9 +280,9 @@
         {
           "name": "Le Marais",
           "Categories": [
-            "Shopping",
-            "Fashion",
-            "Indoors"
+            "photography",
+            "history",
+            "shopping"
           ],
           "Price": 1,
           "Location": "N/A",
@@ -290,11 +298,9 @@
         {
           "name": "Atelier des Lumieres",
           "Categories": [
-            "Art",
-            "Tour",
-            "Family Friendly",
-            "Indoors",
-            "museums"
+            "mysteries",
+            "art",
+            "moderate physical activity"
           ],
           "Price": 1,
           "Location": "N/A",
@@ -310,8 +316,8 @@
         {
           "name": "Gorges d'Apremont Hike",
           "Categories": [
-            "Hike",
-            "Outdoors"
+            "landscapes",
+            "high physical activity"
           ],
           "Price": 1,
           "Location": "N/A",
@@ -327,9 +333,8 @@
         {
           "name": "Parc Villette",
           "Categories": [
-            "Outdoors",
-            "Park",
-            "family"
+            "contemporary literature",
+            "rural escapes"
           ],
           "Price": 1,
           "Location": "N/A",
@@ -345,9 +350,9 @@
         {
           "name": "La Centquatre",
           "Categories": [
-            "Art",
-            "Entertainment",
-            "museums"
+            "art",
+            "moderate physical activity",
+            "history"
           ],
           "Price": 1,
           "Location": "N/A",
@@ -363,10 +368,9 @@
         {
           "name": "Museum National d'Histoire Naturelle",
           "Categories": [
-            "Indoors",
-            "Family Friendly",
-            "Educational",
-            "museums"
+            "history",
+            "museums",
+            "architecture"
           ],
           "Price": 1,
           "Location": "N/A",
@@ -382,11 +386,10 @@
         {
           "name": "The Louvre",
           "Categories": [
-            "museums",
-            "Modern Art",
-            "Architecture",
-            "Landmark",
-            "Indoors"
+            "poetry",
+            "art",
+            "history",
+            "museums"
           ],
           "Price": 4,
           "Location": "1st Arrondissement",
@@ -402,10 +405,8 @@
           "name": "Musee D'Orsay",
           "Categories": [
             "museums",
-            "Modern Art",
-            "Architecture",
-            "Landmark",
-            "Indoors"
+            "history",
+            "architecture"
           ],
           "Price": 3,
           "Location": "1st Arrondissement",
@@ -420,10 +421,9 @@
         {
           "name": "Cathedral Notre-dame De Paris",
           "Categories": [
-            "Cathedral",
-            "Religion",
-            "Architecture",
-            "Indoors"
+            "history",
+            "iconic sites",
+            "architecture"
           ],
           "Price": 1,
           "Location": "Notre Dame",
@@ -438,10 +438,9 @@
         {
           "name": "Musée de l'Armée",
           "Categories": [
-            "museums",
-            "History",
-            "Military",
-            "Indoors"
+            "biographies",
+            "history",
+            "architecture"
           ],
           "Price": 2,
           "Location": "7th Arrondissement",
@@ -456,13 +455,97 @@
         {
           "name": "Eiffel Tower",
           "Categories": [
-            "Landmark",
-            "Photospot"
+            "iconic sites",
+            "photography",
+            "history"
           ],
           "Price": 2,
           "Location": "Eiffel Tower",
           "id": 14,
           "gem": false,
+          "link": null,
+          "coordinates": {
+            "latitude": 48.8583,
+            "longitude": 2.2945
+          }
+        },
+        {
+          "name": "Bastille Area",
+          "Categories": [
+            "iconic sites",
+            "photography",
+            "history"
+          ],
+          "Price": 2,
+          "Location": "Downtown",
+          "id": 18,
+          "gem": true,
+          "link": null,
+          "coordinates": {
+            "latitude": 48.8583,
+            "longitude": 2.2945
+          }
+        },
+        {
+          "name": "Parc des Buttes-Chaumont",
+          "Categories": [
+            "iconic sites",
+            "photography",
+            "history"
+          ],
+          "Price": 2,
+          "Location": "Downtown",
+          "id": 19,
+          "gem": true,
+          "link": null,
+          "coordinates": {
+            "latitude": 48.8583,
+            "longitude": 2.2945
+          }
+        },
+        {
+          "name": "Canal Saint Martin",
+          "Categories": [
+            "gardening",
+            "photography",
+            "marketplace"
+          ],
+          "Price": 2,
+          "Location": "Downtown",
+          "id": 20,
+          "gem": true,
+          "link": null,
+          "coordinates": {
+            "latitude": 48.8583,
+            "longitude": 2.2945
+          }
+        },
+        {
+          "name": "The Terrace at the Printemps Department Store",
+          "Categories": [
+            "food",
+            "drink"
+            
+          ],
+          "Price": 2,
+          "Location": "Downtown",
+          "id": 21,
+          "gem": true,
+          "link": null,
+          "coordinates": {
+            "latitude": 48.8583,
+            "longitude": 2.2945
+          }
+        },
+        {
+          "name": "Palais Garnier",
+          "Categories": [
+            "museum"
+          ],
+          "Price": 2,
+          "Location": "Downtown",
+          "id": 22,
+          "gem": true,
           "link": null,
           "coordinates": {
             "latitude": 48.8583,
@@ -474,8 +557,8 @@
         {
           "name": "Le Camion Qui Fume",
           "Categories": [
-            "Food",
-            "Burger"
+            "artisan food",
+            "grab-and-go"
           ],
           "Price": 1,
           "Location": "N/A",
@@ -490,11 +573,8 @@
         {
           "name": "Au Vieux Paris Darcole",
           "Categories": [
-            "Food",
-            "Expensive",
-            "Romantic",
-            "Cafe",
-            "museums"
+            "ambiance",
+            "local cuisine"
           ],
           "Price": 3,
           "Location": "N/A",
@@ -510,9 +590,8 @@
         {
           "name": "La Maison du Chocolat",
           "Categories": [
-            "Food",
-            "Chocolatier",
-            "Indoors"
+            "sweets",
+            "shopping"
           ],
           "Price": 3,
           "Location": "6th Arrondissement",
@@ -520,11 +599,139 @@
           "gem": false,
           "link": null,
           "coordinates": {
-            "longitude": 48.8950,
-            "latitude": 2.1858
+            "latitude": 48.8950,
+            "longitude": 2.1858
           }
         }
       ]
+    },
+    {
+      "name": "Munnar",
+      "Attractions": [
+        {
+          "name": "Tea Estates",
+          "Categories": [    
+            "nature",
+            "museums"  
+          ],
+          "Price": 3,
+          "Location": "Mountainside",
+          "id": 23,
+          "gem": true,
+          "link": "https://media-cdn.tripadvisor.com/media/photo-s/11/3b/9d/57/munnar-tea-estates.jpg",
+          "latitude": 10.0889,
+          "longitude": -77.0595
+        }
+        ],
+      "Restaurants": [  ]
+    },
+    {
+      "name": "Muras",
+      "Attractions": [
+        {
+          "name": "Inca Salt Pools",
+          "Categories": [           
+            "nature",
+            "museums"      
+          ],
+          "Price": 3,
+          "Location": "Downtown",
+          "id": 24,
+          "gem": false,
+          "link": "https://lh6.ggpht.com/-Qmi3fOKPmW8/UWP52M7mz4I/AAAAAAAAnJg/8nVNSy4Rchs/maras-salt-mine-0%25255B2%25255D.jpg?imgmax=800",
+          "latitude": -13.3347,
+          "longitude": 72.1579
+        }
+        ],
+      "Restaurants": [  ]
+    },
+    {
+      "name": "Bruselles",
+      "Attractions": [
+        {
+          "name": "Comic Strip Route",
+          "Categories": [           
+            "art"    
+          ],
+          "Price": 3,
+          "Location": "Downtown",
+          "id": 25,
+          "gem": true,
+          "link": "https://s3-eu-west-1.amazonaws.com/brussels-images/content/gallery/visit/article/9820_9820---LES-MURS-DE-LA-PROMENADE-BD-EN-DE%C3%8C%C2%81TAIL_sq_640.jpg",
+          "latitude": 50.8503,
+          "longitude": 4.3517
+        }
+        ],
+      "Restaurants": [  ]
+    },
+    {
+      "name": "London",
+      "Attractions": [
+        {
+          "name": "Epping Forest",
+          "Categories": [           
+            "nature",
+            "hiking"       
+          ],
+          "Price": 3,
+          "Location": "Rural",
+          "id": 27,
+          "gem": true,
+          "link": "https:www.visiteppingforest.org",
+          "latitude": 51.7044,
+          "longitude": 0.1656
+        },
+        {
+          "name": "Leadenhall Market",
+          "Categories": [           
+            "shopping",
+            "historic sites",
+            "exotic"       
+          ],
+          "Price": 3,
+          "Location": "Downtown",
+          "id": 28,
+          "gem": true,
+          "link": "https://fullsuitcase.com/london-hidden-gems/",
+          "latitude": 51.5128,
+          "longitude": 0.0835
+        }
+        ],
+      "Restaurants": [ 
+        {
+          "name": "Saint Aymes",
+          "Categories": [           
+            "food"     
+          ],
+          "Price": 3,
+          "Location": "Downtown",
+          "id": 29,
+          "gem": true,
+          "link": "https://fullsuitcase.com/london-hidden-gems/",
+          "latitude": 51.5128,
+          "longitude": 0.0835
+        } ]
+    },
+    {
+      "name": "Positano",
+      "Attractions": [
+        {
+          "name": "Sentiero degli dei Hike",
+          "Categories": [           
+            "hiking",
+            "nature"       
+          ],
+          "Price": 3,
+          "Location": "Rural",
+          "id": 30,
+          "gem": true,
+          "link": "https://www.positano.com/en/e/il-sentiero-degli-dei",
+          "latitude": 40.6281,
+          "longitude": 14.4850
+        }
+        ],
+      "Restaurants": [  ]
     }
+
   ]
 }

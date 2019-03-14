@@ -1,18 +1,18 @@
 import React from 'react';
-import { Image, TouchableWithoutFeedback } from 'react-native';
-const checkedBox = require('../assets/checkbox-checked.png');
-const unCheckedBox = require('../assets/checkbox-unchecked.png');
+import {Image, TouchableWithoutFeedback, View} from 'react-native';
+
+const icon = require('../assets/navBarIcons/Icon-06.png');
 
 export default class CheckBox extends React.Component {
     render() {
-    	let imageLink = unCheckedBox;
-    	if(this.props.checked) {
-    		imageLink = checkedBox;
-    	}
-    	return (
-    		<TouchableWithoutFeedback onPress={this.props.handleCheckBoxClick}>
-    			<Image source={imageLink} style={{width: 50, height: 50}}/>
-    		</TouchableWithoutFeedback>
-    );
-  }
+        return (
+            <TouchableWithoutFeedback onPress={this.props.handleCheckBoxClick}>
+                <View style={{width: 30, height: 30, borderRadius: 15, backgroundColor: '#ffffffcc'}}>
+                    {this.props.checked &&
+                    <Image source={icon} style={{width: 38, height: 40, position: 'absolute', right: -6, top: -5}}/>
+                    }
+                </View>
+            </TouchableWithoutFeedback>
+        );
+    }
 }

@@ -1,91 +1,270 @@
 {
-	"questions": [
-
-		{
-			"text": "What are your favorite types of food?",
-			"options": [
-				{"name": "Italian", "status":false,"Categories": ["Italian"]},
-				{"name":"Chinese", "status": false,"Categories": ["Chinese"]},
-				{"name": "Thai", "status": false,"Categories": ["Thai"]},
-				{"name":"Korean BBQ", "status":false,"Categories": ["Korean BBQ"]},
-				{"name":"Fusion", "status":false,"Categories": ["Fusion"]}
-
-			]
-		},
-		{
-			"text": "How adventurous are you?",
-			"options": [
-				{"name":"Couch Potato", "status":false,"Categories": []},
-				{"name":"Casual Tourist", "status":false,"Categories": []},
-				{"name":"Thrill Seeker", "status":false,"Categories": []}
-			]
-		},
-
-		{
-			"text": "Do you have any food needs or restrictions?",
-			"options": [
-				{"name":"No", "status":false, "Categories": []},
-				{"name":"Allergies", "status":false,"Categories": ["Allergy Sensitive"]},
-				{"name":"Vegetarian", "status":false,"Categories": ["Vegetarian"]},
-				{"name":"Vegan", "status":false,"Categories": ["Vegan"]}
-			]
-		},
-		{
-			"text": "Method of Travel",
-			"options": [
-				{"name":"Car", "status":false,"Categories": []},
-				{"name":"Public Transport", "status":false,"Categories": []},
-				{"name":"Ride share", "status":false,"Categories": []},
-				{"name":"Walk", "status":false,"Categories": []},
-				{"name":"Bike", "status":false,"Categories": []}
-			]
-		},
-		{
-			"text": "What kinds of activities do you like?",
-			"options": [
-				{"name":"Social", "status":false,"Categories": []},
-				{"name":"Music", "status":false,"Categories": []},
-				{"name":"Sports", "status":false,"Categories": []},
-				{"name":"Art", "status":false,"Categories": ["street art", "art"]},
-				{"name":"Books", "status":false,"Categories": []}
-			]
-		},
-		{
-			"text": "Do you prefer to be indoors or outdoors?",
-			"options": [
-				{"name":"Indoors", "status":false,"Categories": ["Indoors"]},
-				{"name":"Outdoors", "status":false,"Categories": []}
-			]
-		},
-		{
-			"text": "What places would you like to go to?",
-			"options": [
-				{
-					"name": "Theme Parks",
-					"status": false,
-					"Categories": []
-				},
-				{
-					"name": "Museums",
-					"status": false,
-					"Categories": ["museums"]
-				},
-				{
-					"name": "Beaches",
-					"status": false,
-					"Categories": []
-				},
-				{
-					"name": "Historical Landmarks",
-					"status": false,
-					"Categories": []
-				},
-				{
-					"name": "Clubbing",
-					"status": false,
-					"Categories": []
-				}
-			]
-		}
-	]
+    "questions": [
+        {
+            "text": "Which type of photo are you more likely to take on vacation?",
+            "options": [
+                {
+                    "name": "Iconic Sites",
+                    "status": false,
+                    "Categories": [
+                        "iconic sites",
+                        "photography"
+                    ]
+                },
+                {
+                    "name": "Stunning Landscapes",
+                    "status": false,
+                    "Categories": [
+                        "landscapes",
+                        "photography"
+                    ]
+                },
+                {
+                    "name": "Cool Architecture",
+                    "status": false,
+                    "Categories": [
+                        "architecture"
+                    ]
+                }
+            ]
+        },
+        {
+            "text": "What type of food experiences interest you the most?",
+            "options": [
+                {
+                    "name": "Locally Authentic",
+                    "status": false,
+                    "Categories": [
+                        "local cuisine"
+                    ]
+                },
+                {
+                    "name": "Artisan Foods",
+                    "status": false,
+                    "Categories": [
+                        "artisan food"
+                    ]
+                },
+                {
+                    "name": "Sweets",
+                    "status": false,
+                    "Categories": [
+                        "sweets"
+                    ]
+                },
+                {
+                    "name": "Vegetarian Fare",
+                    "status": false,
+                    "Categories": [
+                        "vegetarian fare"
+                    ]
+                },
+                {
+                    "name": "One-of-a-kind Finds",
+                    "status": false,
+                    "Categories": [
+                        "unique food"
+                    ]
+                },
+                {
+                    "name": "Unique Ambiance",
+                    "status": false,
+                    "Categories": [
+                        "dining ambiance"
+                    ]
+                },
+                {
+                    "name": "Grab-and-go",
+                    "status": false,
+                    "Categories": [
+                        "grab-and-go"
+                    ]
+                }
+            ]
+        },
+        {
+            "text": "Which type of local hangout are you most likely to visit while on vacation?",
+            "options": [
+                {
+                    "name": "Coffee Shops",
+                    "status": false,
+                    "Categories": [
+                        "coffee shops"
+                    ]
+                },
+                {
+                    "name": "Universities",
+                    "status": false,
+                    "Categories": [
+                        "institutions"
+                    ]
+                },
+                {
+                    "name": "Concerts",
+                    "status": false,
+                    "Categories": [
+                        "concerts"
+                    ]
+                },
+                {
+                    "name": "Museums",
+                    "status": false,
+                    "Categories": [
+                        "museums"
+                    ]
+                },
+                {
+                    "name": "Shopping",
+                    "status": false,
+                    "Categories": [
+                        "shopping"
+                    ]
+                }
+            ],
+            "extra": 
+                {
+                    "Museums": {
+                        "text": "What subjects are you interested in?",
+                        "options": [
+                            {
+                                "name": "Art",
+                                "status": false,
+                                "Categories": [
+                                    "art"
+                                ]
+                            },
+                            {
+                                "name": "History",
+                                "status": false,
+                                "Categories": [
+                                    "history"
+                                ]
+                            },
+                            {
+                                "name": "Music",
+                                "status": false,
+                                "Categories": [
+                                    "concerts"
+                                ]
+                            },
+                            {
+                                "name": "Technology",
+                                "status": false,
+                                "Categories": [
+                                    "technology"
+                                ]
+                            },
+                            {
+                                "name": "Nature",
+                                "status": false,
+                                "Categories": [
+                                    "nature"
+                                ]
+                            }
+                        ]
+                    }
+                }  
+        },
+        {
+            "text": "What type of hiking interests you most?",
+            "options": [
+                {
+                    "name": "Not interested",
+                    "status": false,
+                    "Categories": [
+                        "low physical activity"
+                    ]
+                },
+                {
+                    "name": "An easy, scenic stroll",
+                    "status": false,
+                    "Categories": [
+                        "moderate physical activity"
+                    ]
+                },
+                {
+                    "name": "The more dangerous the better",
+                    "status": false,
+                    "Categories": [
+                        "high physical activity"
+                    ]
+                }
+            ]
+        },
+        {
+            "text": "Which storylines do you like best in books and movies?",
+            "options": [
+                {
+                    "name": "History",
+                    "status": false,
+                    "Categories": [
+                        "history"
+                    ]
+                },
+                {
+                    "name": "Contemporary Literature",
+                    "status": false,
+                    "Categories": [
+                        "contemporary literature"
+                    ]
+                },
+                {
+                    "name": "Poetry",
+                    "status": false,
+                    "Categories": [
+                        "poetry"
+                    ]
+                },
+                {
+                    "name": "Thrillers",
+                    "status": false,
+                    "Categories": [
+                        "thrilling movies"
+                    ]
+                },
+                {
+                    "name": "Mysteries",
+                    "status": false,
+                    "Categories": [
+                        "mysteries"
+                    ]
+                },
+                {
+                    "name": "Sci-fi",
+                    "status": false,
+                    "Categories": [
+                        "sci-fi"
+                    ]
+                },
+                {
+                    "name": "Biographies",
+                    "status": false,
+                    "Categories": [
+                        "biographies"
+                    ]
+                },
+                {
+                    "name": "Drama",
+                    "status": false,
+                    "Categories": [
+                        "drama"
+                    ]
+                },
+                {
+                    "name": "Comedies",
+                    "status": false,
+                    "Categories": [
+                        "comedies"
+                    ]
+                },
+                {
+                    "name": "Romance",
+                    "status": false,
+                    "Categories": [
+                        "romance"
+                    ]
+                }
+            ]
+        }
+    ]
 }

@@ -1,77 +1,29 @@
 import React from "react"
 import {
-    Button,
     StyleSheet,
     Text,
     View,
-    TouchableWithoutFeedback,
-    ScrollView
+    TouchableWithoutFeedback
 } from "react-native"
 import questions from "../profileQuestions.json"
+import {NavigationActions, StackActions} from "react-navigation";
 
-export default class ProfileQuestionnaire extends React.Component {
-    static navigationOptions = {
-        title: "Profile",
-        headerTitleStyle: {
-            color: "#1EA28A",
-            textAlign: "center",
-            alignSelf: "center",
-            position: "absolute",
-            left: 0,
-            right: 50,
-            fontSize: 20
-        }
-    }
-
+export default class App extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            questions: questions.questions
+            questions: questions.questions,
+            index: 0,
+            finalIndex: 4,
+            completed: false
         }
         this.handleOptionClick = this.handleOptionClick.bind(this)
-        this.handleSubmitClick = this.handleSubmitClick.bind(this)
+        this.handleNextClick = this.handleNextClick.bind(this)
     }
 
-    handleOptionClick = (o, q) => {
-        const state = this.state
-        let option = state.questions
-            .find(q2 => q2.text === q.text)
-            .options.find(o2 => o2.name === o.name)
-        option.status = !option.status
-        this.setState(state)
-    }
-
-    loadUserPreferences = () => {
-        const { state } = this.props.navigation
-        const db = this.props.db
-        const user = this.props.user
-
+    handleNextClick = () => {
+        const { db, user } = this.props
         let questions = this.state.questions
-        db.collection("users")
-            .doc(user)
-            .get()
-            .then(preferences => {
-                let data = preferences.data()["preferences"]
-                for (var i = 0; i < questions.length; i++) {
-                    let answer = data[questions[i].text]
-                    for (var j = 0; j < questions[i].options.length; j++) {
-                        if (answer.includes(questions[i].options[j].name)) {
-                            questions[i].options[j].status = true
-                        }
-                    }
-                }
-                this.setState({
-                    questions: questions
-                })
-            })
-    }
-
-    handleSubmitClick = () => {
-        const { navigate } = this.props.navigation
-        const { state } = this.props.navigation
-        const db = this.props.db
-        const user = this.props.user
-        const questions = this.state.questions
         const FilteredCategories = {}
         for (var i = 0; i < questions.length; i++) {
             let question = questions[i]
@@ -87,17 +39,67 @@ export default class ProfileQuestionnaire extends React.Component {
                 }
             }
         }
-        db.collection("users")
-            .doc(user)
-            .set({ preferences: FilteredCategories })
-            .then(res => {
-                navigate("ProfileScreen")
-                this.setState({ completed: true })
+        const index = this.state.index
+        const finalIndex = this.state.finalIndex
+
+        if (index === finalIndex) {
+            db.collection("users")
+                .doc(user)
+                .set({ preferences: FilteredCategories, savedLocations: [] })
+                .then(res => {
+                    console.log("Document successfully written!")
+                })
+            const resetAction = StackActions.reset({
+                index: 0,
+                actions: [NavigationActions.navigate({routeName: 'Main'})]});
+            this.props.navigation.dispatch(resetAction);
+        } else {
+            this.setState({
+                questions: questions,
+                index: index + 1,
             })
+        }
     }
 
-    componentDidMount() {
-        this.loadUserPreferences()
+    handlePreviousClick = () => {
+        const { navigate } = this.props.navigation
+        const index = this.state.index
+        if (index === 0) {
+            navigate("Welcome")
+        } else {
+            this.setState({ index: index - 1 })
+        }
+    }
+
+    handleOptionClick = (o, q) => {
+        let questions = this.state.questions
+        const index = this.state.index
+        let finalIndex = this.state.finalIndex
+
+        let question = questions
+            .find(q2 => q2.text === q.text)
+        let option = questions
+            .find(q2 => q2.text === q.text)
+            .options.find(o2 => o2.name === o.name)
+            
+        option.status = !option.status
+
+        if (
+            option.status && question.hasOwnProperty("extra")
+        ) {
+            if (question.extra.hasOwnProperty(option.name)) {
+                questions.splice(index + 1, 0, question.extra[option.name])
+                finalIndex += 1
+            }
+        } if (!option.status && question.hasOwnProperty("extra")) {
+            questions.splice(index + 1, 1)
+            finalIndex -= 1
+        }
+
+        this.setState({
+            finalIndex: finalIndex,
+            questions: questions
+        })
     }
 
     render() {
@@ -141,17 +143,23 @@ export default class ProfileQuestionnaire extends React.Component {
         })
         return (
             <View style={styles.container}>
-                <ScrollView>
-                    <View style={styles.questionContainer}>
-                        {questionItems}
-                    </View>
-                </ScrollView>
+                <View style={styles.questionContainer}>
+                    {questionItems[this.state.index]}
+                </View>
                 <TouchableWithoutFeedback
-                    title="Submit Button"
-                    onPress={this.handleSubmitClick}
+                    title="Previous Button"
+                    onPress={this.handlePreviousClick}
                 >
-                    <View style={styles.submitButton}>
-                        <Text style={styles.submitText}>Save</Text>
+                    <View style={styles.previousButton}>
+                        <Text style={styles.submitText}>Previous</Text>
+                    </View>
+                </TouchableWithoutFeedback>
+                <TouchableWithoutFeedback
+                    title="Next Button"
+                    onPress={this.handleNextClick}
+                >
+                    <View style={styles.nextButton}>
+                        <Text style={styles.submitText}>Next</Text>
                     </View>
                 </TouchableWithoutFeedback>
             </View>
@@ -216,6 +224,14 @@ const styles = StyleSheet.create({
         color: "white"
     },
     submitButton: {
+        width: 100,
+        height: 40,
+        borderRadius: 20,
+        backgroundColor: "lightgrey",
+        bottom: 50,
+        marginHorizontal: "auto"
+    },
+    nextButton: {
         width: 100,
         height: 40,
         borderRadius: 20,
