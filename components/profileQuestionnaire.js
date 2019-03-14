@@ -91,10 +91,9 @@ export default class ProfileQuestionnaire extends React.Component {
             .doc(user)
             .set({ preferences: FilteredCategories })
             .then(res => {
-                console.log("Document successfully written!")
+                navigate("ProfileScreen")
+                this.setState({ completed: true })
             })
-        navigate("ProfileScreen")
-        this.setState({ completed: true })
     }
 
     componentDidMount() {

@@ -1,6 +1,5 @@
 import React from "react"
 import {
-    Button,
     StyleSheet,
     Text,
     Image,
@@ -178,7 +177,6 @@ export default class newItinerary extends React.Component {
             .doc(itineraryId)
             .set({ locations: itineraryItems, order: itineraryItems.map(i => i.name) }, { merge: true })
             .then(rev => {
-                console.log("wrote itinerary")
                 const resetAction = StackActions.reset({
                     index: 1,
                     actions: [ NavigationActions.navigate({
@@ -240,7 +238,7 @@ export default class newItinerary extends React.Component {
                 <TouchableWithoutFeedback onPress={() => this.handleCreate()}>
                     <View style={styles.createBtn}>
                         <Text style={styles.createBtnText}>
-                            Create Trip
+                            Save and View Trip
                         </Text>
                     </View>
                 </TouchableWithoutFeedback>

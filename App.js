@@ -2,7 +2,6 @@ import React from 'react';
 import SuggestionScreen from './components/suggestionScreen';
 import TripQuestionnaire from './components/tripQuestionnaire';
 import ProfileQuestionnaire from './components/profileQuestionnaire';
-import Homepage from './components/homepage';
 import CollectionScreen from './components/collectionScreen';
 import ItineraryScreen from './components/itineraryScreen';
 import ProfileScreen from './components/profileScreen';
@@ -12,7 +11,6 @@ import Welcome from './components/welcome'
 import NewItinerary from "./components/newItinerary"
 import Itinerary from "./components/itinerary"
 import firebase from "./firebase.js"
-import LocationSelection from './components/locationSelection.js'
 import {Image, View} from 'react-native'
 import {createStackNavigator, createAppContainer, createBottomTabNavigator} from 'react-navigation';
 import ExplIcon from "./assets/navBarIcons/Icon-01.png"
@@ -31,7 +29,6 @@ let user;
 const ItineraryStack = createStackNavigator({
     ItineraryScreen: props => <ItineraryScreen {...props} db={db} user={user}/>,
     NewItinerary: {screen: NewItinerary},
-    LocationSelection: props => <LocationSelection {...props} db={db} user={user}/>,
     TripQuestionnaire: props => <TripQuestionnaire {...props} db={db} user={user}/>,
     Itinerary: props => <Itinerary {...props} db={db} user={user}/>
 }, {
