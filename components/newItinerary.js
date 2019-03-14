@@ -57,13 +57,14 @@ export default class newItinerary extends React.Component {
             db: null,
             user: null,
             name: null,
-            itineraryId: null
+            itineraryId: null,
+            city: null
         }
         this.handleCreate = this.handleCreate.bind(this)
     }
 
     componentDidMount = () => {
-        const { state } = this.props.navigation
+        const {state} = this.props.navigation
         const db = state.params.db
         const user = state.params.user
         const itineraryId = state.params.itineraryId
@@ -89,33 +90,37 @@ export default class newItinerary extends React.Component {
                         }
                     })
                 )
-                let suggestions = this.retrieveSuggestions(categories)
-                suggestions = suggestions.filter(
-                    s =>
-                        userSavedLocations.find(l => l.name === s.name) ===
-                        undefined
-                )
+
                 let previouslyChosenLocations = []
                 db.collection("itineraries").doc(itineraryId).get().then(it => {
-                    if(it.data()["order"]){
-                       previouslyChosenLocations =  previouslyChosenLocations.concat(it.data()["order"]);
+                    if (it.data()["order"]) {
+                        previouslyChosenLocations = previouslyChosenLocations.concat(it.data()["order"]);
                     }
 
                     let name = it.data()["name"]
+                    let city = it.data()["city"]
+                    this.setState({
+                        city: city
+                    })
+                    userSavedLocations = userSavedLocations.filter(l => l.city === city);
+                    let suggestions = this.retrieveSuggestions(categories)
+                    suggestions = suggestions.filter(
+                        s =>
+                            userSavedLocations.find(l => l.name === s.name) ===
+                            undefined
+                    )
 
                     suggestions.forEach(s => {
-                        if(previouslyChosenLocations.find(p => (s.name === p)) ===undefined){
+                        if (previouslyChosenLocations.find(p => (s.name === p)) === undefined) {
                             s.selected = false;
-                        }
-                        else {
+                        } else {
                             s.selected = true;
                         }
                     })
                     userSavedLocations.forEach(l => {
-                        if(previouslyChosenLocations.find(p => (l.name === p)) ===undefined){
+                        if (previouslyChosenLocations.find(p => (l.name === p)) === undefined) {
                             l.selected = false;
-                        }
-                        else {
+                        } else {
                             l.selected = true;
                         }
                     })
@@ -127,14 +132,18 @@ export default class newItinerary extends React.Component {
                         user: user,
                         db: db,
                         name: name,
-                        itineraryId: itineraryId
+                        itineraryId: itineraryId,
+                        city: city
                     })
                 })
             })
     }
 
     retrieveSuggestions(categories) {
-        let foundAttractions = Suggestions.Locations[1].Attractions.filter(
+        let city = this.state.city;
+        let location = Suggestions.Locations.find(l => (l.name === city))
+        let foundAttractions = []
+        foundAttractions = foundAttractions.concat(location.Attractions.filter(
             a => {
                 let intersection = a.Categories.filter(x =>
                     categories.includes(x)
@@ -143,8 +152,10 @@ export default class newItinerary extends React.Component {
                     return true
                 } else return false
             }
+            )
         )
-        const foundRestaurants = Suggestions.Locations[1].Restaurants.filter(
+        let foundRestaurants = []
+        foundRestaurants = foundRestaurants.concat(location.Restaurants.filter(
             r => {
                 let intersection = r.Categories.filter(x =>
                     categories.includes(x)
@@ -153,9 +164,10 @@ export default class newItinerary extends React.Component {
                     return true
                 } else return false
             }
+            )
         )
         foundAttractions = foundAttractions.concat(foundRestaurants)
-        return foundAttractions
+        return foundAttractions;
     }
 
     handleItemSelect = name => {
@@ -175,8 +187,8 @@ export default class newItinerary extends React.Component {
     }
 
     handleCreate = () => {
-        const { navigate } = this.props.navigation
-        const { state } = this.props.navigation
+        const {navigate} = this.props.navigation
+        const {state} = this.props.navigation
         const db = this.state.db
         const user = this.state.user
         const itineraryId = this.state.itineraryId
@@ -188,24 +200,27 @@ export default class newItinerary extends React.Component {
 
         db.collection("itineraries")
             .doc(itineraryId)
-            .set({ locations: itineraryItems, order: itineraryItems.map(i => i.name) }, { merge: true })
+            .set({locations: itineraryItems, order: itineraryItems.map(i => i.name)}, {merge: true})
             .then(rev => {
                 const resetAction = StackActions.reset({
                     index: 1,
-                    actions: [ NavigationActions.navigate({
-                        routeName: 'ItineraryScreen'}),
+                    actions: [NavigationActions.navigate({
+                        routeName: 'ItineraryScreen'
+                    }),
                         NavigationActions.navigate({
-                        routeName: 'Itinerary', params: {
-                            db: db,
-                            user: user,
-                            itineraryId: itineraryId} })]
+                            routeName: 'Itinerary', params: {
+                                db: db,
+                                user: user,
+                                itineraryId: itineraryId
+                            }
+                        })]
                 });
                 this.props.navigation.dispatch(resetAction);
             })
     }
 
     render() {
-        const { categories, suggestions, savedLocations, name } = this.state
+        const {categories, suggestions, savedLocations, name} = this.state
         const suggestedItems = suggestions.map(l => {
             return (
                 <SuggestionItem
@@ -262,7 +277,7 @@ export default class newItinerary extends React.Component {
 
 class CollectionItem extends React.Component {
     render() {
-        const { location, intersection } = this.props
+        const {location, intersection} = this.props
         let reason = intersection[0]
         if (intersection[1]) {
             reason = reason + ' & ' + intersection[1]
@@ -299,7 +314,7 @@ class CollectionItem extends React.Component {
 
 class SuggestionItem extends React.Component {
     render() {
-        const { location, intersection } = this.props
+        const {location, intersection} = this.props
         let reason = intersection[0]
         if (intersection[1]) {
             reason = reason + ' & ' + intersection[1]
@@ -380,10 +395,10 @@ const styles = StyleSheet.create({
         fontSize: 15,
         color: "white"
     },
-    sugItemSubHeader:{
+    sugItemSubHeader: {
         fontSize: 10,
     },
-    colItemSubHeader:{
+    colItemSubHeader: {
         fontSize: 10,
         color: "white"
     },
