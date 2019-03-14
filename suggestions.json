@@ -15,8 +15,8 @@
           "Location": "Downtown",
           "gem": false,
           "link": null,
-          "latitude": "41.8676 N",
-          "longitude": "87.6140 W"
+          "latitude": 41.8676,
+          "longitude": 87.6140
         },
         {
           "name": "Lurie Garden",
@@ -25,6 +25,7 @@
           ],
           "Price": 3,
           "Location": "Downtown",
+          "id": 26,
           "gem": false,
           "link": "https://www.publicgardens.org/sites/default/files/styles/1000x400_garden_image/public/images/Garden/Lurie%20Garden.jpg?itok=clGZJXIH",
           "latitude": 41.8676,
@@ -467,6 +468,89 @@
             "latitude": 48.8583,
             "longitude": 2.2945
           }
+        },
+        {
+          "name": "Bastille Area",
+          "Categories": [
+            "iconic sites",
+            "photography",
+            "history"
+          ],
+          "Price": 2,
+          "Location": "Downtown",
+          "id": 18,
+          "gem": true,
+          "link": null,
+          "coordinates": {
+            "latitude": 48.8583,
+            "longitude": 2.2945
+          }
+        },
+        {
+          "name": "Parc des Buttes-Chaumont",
+          "Categories": [
+            "iconic sites",
+            "photography",
+            "history"
+          ],
+          "Price": 2,
+          "Location": "Downtown",
+          "id": 19,
+          "gem": true,
+          "link": null,
+          "coordinates": {
+            "latitude": 48.8583,
+            "longitude": 2.2945
+          }
+        },
+        {
+          "name": "Canal Saint Martin",
+          "Categories": [
+            "gardening",
+            "photography",
+            "marketplace"
+          ],
+          "Price": 2,
+          "Location": "Downtown",
+          "id": 20,
+          "gem": true,
+          "link": null,
+          "coordinates": {
+            "latitude": 48.8583,
+            "longitude": 2.2945
+          }
+        },
+        {
+          "name": "The Terrace at the Printemps Department Store",
+          "Categories": [
+            "food",
+            "drink"
+            
+          ],
+          "Price": 2,
+          "Location": "Downtown",
+          "id": 21,
+          "gem": true,
+          "link": null,
+          "coordinates": {
+            "latitude": 48.8583,
+            "longitude": 2.2945
+          }
+        },
+        {
+          "name": "Palais Garnier",
+          "Categories": [
+            "museum"
+          ],
+          "Price": 2,
+          "Location": "Downtown",
+          "id": 22,
+          "gem": true,
+          "link": null,
+          "coordinates": {
+            "latitude": 48.8583,
+            "longitude": 2.2945
+          }
         }
       ],
       "Restaurants": [
@@ -532,6 +616,7 @@
           ],
           "Price": 3,
           "Location": "Mountainside",
+          "id": 23,
           "gem": true,
           "link": "https://media-cdn.tripadvisor.com/media/photo-s/11/3b/9d/57/munnar-tea-estates.jpg",
           "latitude": 10.0889,
@@ -551,6 +636,7 @@
           ],
           "Price": 3,
           "Location": "Downtown",
+          "id": 24,
           "gem": false,
           "link": "https://lh6.ggpht.com/-Qmi3fOKPmW8/UWP52M7mz4I/AAAAAAAAnJg/8nVNSy4Rchs/maras-salt-mine-0%25255B2%25255D.jpg?imgmax=800",
           "latitude": -13.3347,
@@ -560,7 +646,7 @@
       "Restaurants": [  ]
     },
     {
-      "name": "Bruxelles",
+      "name": "Bruselles",
       "Attractions": [
         {
           "name": "Comic Strip Route",
@@ -569,6 +655,7 @@
           ],
           "Price": 3,
           "Location": "Downtown",
+          "id": 25,
           "gem": true,
           "link": "https://s3-eu-west-1.amazonaws.com/brussels-images/content/gallery/visit/article/9820_9820---LES-MURS-DE-LA-PROMENADE-BD-EN-DE%C3%8C%C2%81TAIL_sq_640.jpg",
           "latitude": 50.8503,
@@ -576,7 +663,7 @@
         }
         ],
       "Restaurants": [  ]
-    }
+    },
     {
       "name": "London",
       "Attractions": [
@@ -588,6 +675,7 @@
           ],
           "Price": 3,
           "Location": "Rural",
+          "id": 27,
           "gem": true,
           "link": "https:www.visiteppingforest.org",
           "latitude": 51.7044,
@@ -602,6 +690,7 @@
           ],
           "Price": 3,
           "Location": "Downtown",
+          "id": 28,
           "gem": true,
           "link": "https://fullsuitcase.com/london-hidden-gems/",
           "latitude": 51.5128,
@@ -616,6 +705,7 @@
           ],
           "Price": 3,
           "Location": "Downtown",
+          "id": 29,
           "gem": true,
           "link": "https://fullsuitcase.com/london-hidden-gems/",
           "latitude": 51.5128,
@@ -633,6 +723,7 @@
           ],
           "Price": 3,
           "Location": "Rural",
+          "id": 30,
           "gem": true,
           "link": "https://www.positano.com/en/e/il-sentiero-degli-dei",
           "latitude": 40.6281,
