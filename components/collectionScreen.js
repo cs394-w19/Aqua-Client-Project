@@ -1,12 +1,7 @@
 import React from 'react';
 import {StyleSheet, Text, View, TouchableWithoutFeedback, ScrollView, Image, TouchableHighlight} from 'react-native';
 import MapView, {PROVIDER_GOOGLE, Marker} from 'react-native-maps'
-import MapViewDirections from 'react-native-maps-directions';
-import APIKey from '../apiKey.json';
 
-
-// Insert the API KEY and remove it before you push
-const GOOGLE_MAPS_APIKEY = APIKey.apiKey;
 let images = [];
 let markers = [];
 images[0] = require("../assets/locationPictures/0.jpg");
@@ -51,18 +46,6 @@ const unCheckedBox = require('../assets/heart-green.png');
 
 
 export default class CollectionScreen extends React.Component {
-
-    static navigationOptions = {
-        title: 'Collection',
-        headerTitleStyle: {
-            marginRight: 56,
-            color: "#1EA28A",
-            textAlign: 'center',
-            flex: 1,
-            fontSize: 20
-        },tabBarIcon: ({ focused, horizontal, tintColor})=>(<Image source={unCheckedBox}/>)
-    }
-
     constructor(props) {
         super(props);
         this.state = {
@@ -72,8 +55,7 @@ export default class CollectionScreen extends React.Component {
     }
 
     componentWillMount() {
-        const db = this.props.db
-        const user = this.props.user
+        const { db, user } = this.props
         let savedLocations = []
         this.focusListener = this.props.navigation.addListener("didFocus", () => {
             db.collection("users")

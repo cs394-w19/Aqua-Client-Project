@@ -5,7 +5,8 @@ import {
     View,
     ScrollView,
     WebView,
-    TouchableWithoutFeedback
+    TouchableWithoutFeedback,
+    TextInput
 } from "react-native"
 import SuggestedItem from "./suggestedItem"
 import Suggestions from "../suggestions.json"
@@ -24,7 +25,8 @@ class SuggestionScreen extends React.Component {
             blogLink: null,
             webviewLoaded: false,
             db: null,
-            user: null
+            user: null,
+            chosenLoc: ""
         }
     }
 
@@ -52,8 +54,7 @@ class SuggestionScreen extends React.Component {
     }
 
     componentDidMount = () => {
-        const db = this.props.db
-        const user = this.props.user
+        const {db, user} = this.props
         let userPreferences = {}
         let categories = []
         this.focusListener = this.props.navigation.addListener("didFocus", () => {
@@ -90,17 +91,23 @@ class SuggestionScreen extends React.Component {
     retrieveSuggestions(categories) {
         let foundAttractions = []
         for (var i = 0; i < Suggestions.Locations.length; i++) {
-            foundAttractions = foundAttractions.concat(Suggestions.Locations[i].Attractions.filter(
-                    a => {
-                        let intersection = a.Categories.filter(x =>
-                            categories.includes(x)
-                        )
-                        if (intersection.length > 0) {
-                            return true
-                        } else return false
-                    }
+            foundAttractions = foundAttractions.concat((Suggestions.Locations[i].Attractions.filter(
+                a => {
+                    let intersection = a.Categories.filter(x =>
+                        categories.includes(x)
+                    )
+                    if (intersection.length > 0) {
+                        return true
+                    } else return false
+                }
                 )
-            )
+            ).map(l => {
+                    return {
+                        ...l,
+                        city: Suggestions.Locations[i].name
+                    }
+                }
+            ))
         }
         let foundRestaurants = []
         for (var i = 0; i < Suggestions.Locations.length; i++) {
@@ -117,7 +124,6 @@ class SuggestionScreen extends React.Component {
             )
         }
         foundAttractions = foundAttractions.concat(foundRestaurants)
-        console.log("found Attractions" + foundAttractions)
         return this.shuffle(foundAttractions);
     }
 
@@ -126,16 +132,12 @@ class SuggestionScreen extends React.Component {
     }
 
     handleItemSelect = name => {
-        const {navigate} = this.props.navigation
         const state = this.state
-        const db = this.state.db
-        const user = this.state.user
+        const {db, user} = state
         const suggestion = state.suggestions.find(s => s.name === name)
         let savedLocations = this.state.savedLocations
-
         suggestion.selected = !suggestion.selected
         this.setState(state)
-
         if (suggestion.selected) {
             savedLocations.push(suggestion)
             db.collection("users")
@@ -160,8 +162,7 @@ class SuggestionScreen extends React.Component {
     }
 
     render() {
-        const categories = this.state.categories
-        const suggestions = this.state.suggestions
+        const {categories, suggestions, chosenLoc} = this.state
         const suggestedItems = suggestions.map(l => {
             return (
                 <SuggestedItem
@@ -182,6 +183,14 @@ class SuggestionScreen extends React.Component {
                 <Text style={styles.headerSubtitle}>
                     Recommendations Based on your Profile
                 </Text>
+                <TextInput
+                    style={styles.textInput}
+                    placeholder="Whare Are You Travelling?"
+                    value={chosenLoc}
+                    onChangeText={(text) => {
+                        this.setState({chosenLoc: text})
+                    }}
+                />
                 <ScrollView style={{flex: 1}}>
                     <View style={styles.suggestionsContainer}>
                         {suggestedItems}
@@ -226,7 +235,6 @@ const styles = StyleSheet.create({
         paddingTop: 20,
     },
     header: {
-        margin: 14,
         textAlign: 'center',
         fontSize: 30,
         fontWeight: "bold",
@@ -235,14 +243,16 @@ const styles = StyleSheet.create({
     suggestionsContainer: {
         marginTop: 20,
         flex: 1,
-        flexDirection: "column"
+        flexDirection: "row",
+        flexWrap: "wrap",
+        justifyContent: "space-around"
     },
     webView: {
         margin: 10
     },
     webContainer: {
-        height: 500,
-        width: 400,
+        height: 400,
+        width: 350,
         borderRadius: 10,
         borderColor: "#1EA28A",
         borderWidth: 5,
@@ -284,11 +294,17 @@ const styles = StyleSheet.create({
         textAlign: "center"
     },
     headerSubtitle: {
-        margin: 10,
         textAlign: 'center',
         fontSize: 15,
-        fontWeight: "bold",
-        color: '#1EA28A',
+        color: 'darkgrey',
+    },
+    textInput: {
+        fontSize: 20,
+        borderWidth: 2,
+        width: 250,
+        height: 40,
+        padding: 5,
+        borderColor: 'darkgrey'
     }
 })
 

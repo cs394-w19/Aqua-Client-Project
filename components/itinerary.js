@@ -4,7 +4,6 @@ import {
     Text,
     View,
     TouchableWithoutFeedback,
-    ScrollView,
     Image,
     TouchableHighlight
 } from "react-native"
@@ -70,10 +69,8 @@ export default class Itinerary extends React.Component {
     }
 
     componentDidMount() {
-        const {navigate} = this.props.navigation
         const {state} = this.props.navigation
-        const db = state.params.db
-        const itineraryId = state.params.itineraryId
+        const { db, itineraryId } = state.params
         this.focusListener = this.props.navigation.addListener("didFocus", () => {
             let locations = []
             db.collection("itineraries")
@@ -104,11 +101,8 @@ export default class Itinerary extends React.Component {
     })
     }
     render() {
-        const { state, navigate } = this.props.navigation
-        const locations = this.state.locations
-        let {order, data} = this.state
-
-        console.log("114" + JSON.stringify(order))
+        const { navigate } = this.props.navigation
+        let {order, locations} = this.state
         const markerItems = order.map((o, index) => {
             const location = locations.find(s => s.name === o)
             return (
@@ -129,7 +123,6 @@ export default class Itinerary extends React.Component {
         const coordinates = order.map(
             o => locations.find(s => s.name === o).coordinates
         )
-        console.log("136" + JSON.stringify(order))
         return (
             <View style={styles.container}>
                 <Text style={styles.header}> {this.state.name} </Text>
@@ -174,9 +167,7 @@ export default class Itinerary extends React.Component {
                         onRowMoved={e => {
                             let db = this.state.db
                             let o = this.state.order
-                            console.log("before " + this.state.order)
                             o.splice(e.to, 0, o.splice(e.from, 1)[0])
-                            console.log("after " + this.state.order)
                             this.setState({order: o})
                             db.collection("itineraries")
                                 .doc(this.state.id)

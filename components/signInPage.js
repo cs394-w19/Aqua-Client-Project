@@ -4,10 +4,7 @@ import {
     Text,
     TextInput,
     TouchableWithoutFeedback,
-    TouchableOpacity,
-    ScrollView,
-    View,
-    Button
+    View
 } from "react-native"
 import firebase from "../firebase.js"
 

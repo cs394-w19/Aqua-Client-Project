@@ -1,13 +1,11 @@
 import React from "react"
 import {
-    Button,
     StyleSheet,
     Text,
     View,
     TouchableWithoutFeedback,
     ScrollView,
-    Image,
-    TextInput
+    Image
 } from "react-native"
 import Dialog from "react-native-dialog"
 
@@ -46,8 +44,7 @@ export default class ItineraryScreen extends React.Component {
     }
 
     componentDidMount() {
-        const db = this.props.db
-        const user = this.props.user
+        const { db, user } = this.props
         this.focusListener = this.props.navigation.addListener(
             "didFocus",
             () => {
@@ -90,8 +87,7 @@ export default class ItineraryScreen extends React.Component {
         itineraryName = itineraryName ? itineraryName : ""
         const { navigate } = this.props.navigation
         this.setState({ dialogVisible: false })
-        const db = this.props.db
-        const user = this.props.user
+        const { db, user } = this.props
         const itinerary = {
             name: itineraryName,
             city: "",
@@ -164,6 +160,7 @@ export default class ItineraryScreen extends React.Component {
                     >
                         <View style={styles.newItineraryBtn}>
                             <Text style={styles.newItineraryBtnText}>+</Text>
+                            <Text style={styles.newItineraryBtnText}>Create a New Trip</Text>
                         </View>
                     </TouchableWithoutFeedback>
                     <Text style={styles.subHeader}>Upcoming Trips</Text>

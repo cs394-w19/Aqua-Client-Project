@@ -12,8 +12,7 @@ export default class SuggestionScreen extends React.Component {
             textAlign: 'center',
             flex: 1,
             fontSize: 30
-        },
-        tabBarIcon: ({ focused, horizontal, tintColor})=>(<Image source={unCheckedBox}/>)
+        }
     }
 
     constructor(props) {
@@ -24,10 +23,8 @@ export default class SuggestionScreen extends React.Component {
     }
 
     render() {
-
         const {navigate} = this.props.navigation;
-        const db = this.props.db;
-        const user = this.props.user;
+        const { db, user } = this.props
         return (
             <View style={styles.container}>
                 <View style={styles.profileContainer}>

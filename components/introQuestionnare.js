@@ -1,11 +1,9 @@
 import React from "react"
 import {
-    Button,
     StyleSheet,
     Text,
     View,
-    TouchableWithoutFeedback,
-    ScrollView
+    TouchableWithoutFeedback
 } from "react-native"
 import questions from "../profileQuestions.json"
 import {NavigationActions, StackActions} from "react-navigation";
@@ -24,8 +22,7 @@ export default class App extends React.Component {
     }
 
     handleNextClick = () => {
-        const db = this.props.db
-        const user = this.props.user
+        const { db, user } = this.props
         let questions = this.state.questions
         const FilteredCategories = {}
         for (var i = 0; i < questions.length; i++) {

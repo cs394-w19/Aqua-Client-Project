@@ -43,32 +43,36 @@ export default class SuggestedItem extends React.Component {
         reason = "80% who liked " + reason + " liked this"
         const containerClick = location.gem ? handleGemClick : () => {
         }
+        const containerStyle = this.state.checked ? styles.containerSelected : styles.container
+        const textStyle=this.state.checked ? styles.textSelected: styles.text;
+        const reasonStyle= this.state.checked ? styles.reasonSelected : styles.reason;
+        const suggestedByStlye= this.state.checked ? styles.suggestedBySelected : styles.suggestedBy;
         return (
             <TouchableWithoutFeedback onPress={() => containerClick(location.link)}>
-                <View style={styles.container}>
-                    <Image source={images[location.id]} style={{height: 250, width: 350}}/>
+                <View style={containerStyle}>
+                    <Image source={images[location.id]} style={{height: 120, width: 180}}/>
                     <View style={styles.details}>
                         <View style={styles.textDetails}>
-                            <Text style={styles.text}>{location.name}</Text>
-                            <Text style={styles.reason}>{reason}</Text>
-                            {location.gem && <Text style={styles.suggestedBy}>Suggested By {location.website}</Text>}
+                            <Text style={textStyle}>{location.name}</Text>
+                            <Text style={reasonStyle}>{reason}</Text>
+                            {location.gem && <Text style={suggestedByStlye}>Suggested By {location.website}</Text>}
                         </View>
-                        {location.gem && <Image source={gem}
-                                                style={{
-                                                    position: 'absolute',
-                                                    right: 10,
-                                                    top: 5,
-                                                    height: 30,
-                                                    width: 30,
-                                                    rotate: '30deg'
-                                                }}/>
-                        }
-
                     </View>
-
+                    {location.gem && <Image source={gem}
+                                            style={{
+                                                position: 'absolute',
+                                                left: 10,
+                                                top: 10,
+                                                height: 30,
+                                                width: 30,
+                                            }}/>
+                    }
                     <View style={styles.checkbox}>
                         <CheckBox checked={location.selected} gem={location.gem}
-                                  handleCheckBoxClick={() => handleItemSelect(location.name)}/>
+                                  handleCheckBoxClick={() => {
+                                      this.setState({checked: !this.state.checked})
+                                      handleItemSelect(location.name)
+                                  }}/>
                     </View>
                 </View>
             </TouchableWithoutFeedback>
@@ -79,46 +83,58 @@ export default class SuggestedItem extends React.Component {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 0,
-        backgroundColor: '#1EA28A88',
-        borderRadius: 10,
-        borderWidth: 10,
-        borderColor: '#1EA28A88',
-        width: 370,
-        shadowColor: 'black',
-        shadowRadius: 5,
-        margin: 10,
+        backgroundColor: '#DADADAcc',
+        height: 220,
+        width: 180,
+        marginVertical: 5
     },
-    containerGem: {
-        flex: 0,
-        backgroundColor: "#1EA28A88",
-        alignItems: 'center'
+    containerSelected: {
+        backgroundColor: '#1EA28A',
+        height: 220,
+        width: 180,
+        marginVertical: 5
     },
     checkbox: {
         position: 'absolute',
-        right: 20,
-        top: 20,
+        right: 10,
+        top: 10,
     },
     details: {
         height: 100
     },
     textDetails: {
         flexDirection: 'column',
-        width: 300
+        width: 180
     },
     text: {
-        fontSize: 20,
+        fontSize: 15,
         marginTop: 5,
-        marginLeft: 10,
+        marginLeft: 10
     },
     reason: {
-        fontSize: 15,
+        fontSize: 10,
         marginLeft: 10,
-        color: "#1EA28A"
+        color: 'black'
     },
     suggestedBy: {
         fontSize: 10,
         marginLeft: 10,
-        color: "#fff",
+        color: '#1EA28A'
+    },
+    textSelected: {
+        fontSize: 15,
+        marginTop: 5,
+        marginLeft: 10,
+        color: '#fff'
+    },
+    reasonSelected: {
+        fontSize: 10,
+        marginLeft: 10,
+        color: '#fff'
+    },
+    suggestedBySelected: {
+        fontSize: 10,
+        marginLeft: 10,
+        color: '#fff'
     },
 })

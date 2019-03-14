@@ -1,11 +1,9 @@
 import React from "react"
 import {
-    Button,
     StyleSheet,
     Text,
     View,
-    TouchableWithoutFeedback,
-    ScrollView
+    TouchableWithoutFeedback
 } from "react-native"
 
 export default class App extends React.Component {
