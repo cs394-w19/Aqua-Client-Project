@@ -21,6 +21,20 @@ images[14] = require("../assets/locationPictures/14.jpg");
 images[15] = require("../assets/locationPictures/15.jpg");
 images[16] = require("../assets/locationPictures/16.jpg");
 images[17] = require("../assets/locationPictures/17.jpg");
+images[18] = require("../assets/locationPictures/18.jpg");
+images[19] = require("../assets/locationPictures/19.jpg");
+images[20] = require("../assets/locationPictures/20.jpg");
+images[21] = require("../assets/locationPictures/21.jpg");
+images[22] = require("../assets/locationPictures/22.jpg");
+images[23] = require("../assets/locationPictures/23.jpg");
+images[24] = require("../assets/locationPictures/24.jpg");
+images[25] = require("../assets/locationPictures/25.jpg");
+images[26] = require("../assets/locationPictures/26.jpg");
+images[27] = require("../assets/locationPictures/27.jpeg");
+images[28] = require("../assets/locationPictures/28.jpg");
+images[29] = require("../assets/locationPictures/29.jpg");
+images[30] = require("../assets/locationPictures/30.jpeg");
+
 const gem = require("../assets/diamond.png")
 
 export default class SuggestedItem extends React.Component {
