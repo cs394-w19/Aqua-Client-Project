@@ -102,10 +102,11 @@ export default class ItineraryScreen extends React.Component {
         const { db, user } = this.props
         const itinerary = {
             name: itineraryName,
-            city: "",
+            city: locationName,
             locations: [],
             users: [user]
         }
+        console.log("itinerary is here ->" + JSON.stringify(itinerary));
         let upcomingItineraries = this.state.upcomingItineraries
         db.collection("itineraries")
             .add(itinerary)

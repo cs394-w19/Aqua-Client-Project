@@ -176,7 +176,7 @@ class SuggestionScreen extends React.Component {
         const { db, user } = this.props
         const itinerary = {
             name: itineraryName,
-            city: "",
+            city: locationName,
             locations: [],
             users: [user]
         }
