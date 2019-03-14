@@ -611,8 +611,8 @@
         {
           "name": "Tea Estates",
           "Categories": [    
-            "Nature",
-            "Museums"  
+            "nature",
+            "museums"  
           ],
           "Price": 3,
           "Location": "Mountainside",
@@ -631,8 +631,8 @@
         {
           "name": "Inca Salt Pools",
           "Categories": [           
-            "Nature",
-            "Museums"      
+            "nature",
+            "museums"      
           ],
           "Price": 3,
           "Location": "Downtown",
@@ -651,7 +651,7 @@
         {
           "name": "Comic Strip Route",
           "Categories": [           
-            "Art"    
+            "art"    
           ],
           "Price": 3,
           "Location": "Downtown",
@@ -670,8 +670,8 @@
         {
           "name": "Epping Forest",
           "Categories": [           
-            "Nature",
-            "Hiking"       
+            "nature",
+            "hiking"       
           ],
           "Price": 3,
           "Location": "Rural",
@@ -684,9 +684,9 @@
         {
           "name": "Leadenhall Market",
           "Categories": [           
-            "Shopping",
-            "Historic Sites",
-            "Exotic"       
+            "shopping",
+            "historic Sites",
+            "exotic"       
           ],
           "Price": 3,
           "Location": "Downtown",
@@ -701,7 +701,7 @@
         {
           "name": "Saint Aymes",
           "Categories": [           
-            "Food"     
+            "food"     
           ],
           "Price": 3,
           "Location": "Downtown",
@@ -718,8 +718,8 @@
         {
           "name": "Sentiero degli dei Hike",
           "Categories": [           
-            "Hiking",
-            "Nature"       
+            "hiking",
+            "nature"       
           ],
           "Price": 3,
           "Location": "Rural",
