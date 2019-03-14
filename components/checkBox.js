@@ -9,7 +9,7 @@ export default class CheckBox extends React.Component {
             <TouchableWithoutFeedback onPress={this.props.handleCheckBoxClick}>
                 <View style={{width: 30, height: 30, borderRadius: 15, backgroundColor: '#ffffffcc'}}>
                     {this.props.checked &&
-                    <Image source={icon} style={{width: 38, height: 40, position: 'absolute', right: -6, top: -5}}/>
+                    <Image source={icon} style={{width: 40, height: 40, position: 'absolute', right: -4, top: -5}}/>
                     }
                 </View>
             </TouchableWithoutFeedback>

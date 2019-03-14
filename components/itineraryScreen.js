@@ -173,7 +173,7 @@ export default class ItineraryScreen extends React.Component {
                     >
                         <View style={styles.newItineraryBtn}>
                             <Text style={styles.newItineraryBtnText}>+</Text>
-                            <Text style={styles.newItineraryBtnText}>Create a New Trip</Text>
+                            <Text style={styles.newItineraryBtnTextSecondary}>Create a New Trip</Text>
                         </View>
                     </TouchableWithoutFeedback>
                     <Text style={styles.subHeader}>Upcoming Trips</Text>
@@ -241,6 +241,10 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         backgroundColor: "#ffffffcc",
         borderRadius: 10
+    },
+    newItineraryBtnTextSecondary: {
+        fontSize: 20,
+        color: "white"
     },
     newItineraryBtnText: {
         fontSize: 50,
