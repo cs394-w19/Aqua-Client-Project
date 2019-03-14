@@ -86,18 +86,12 @@ const styles = StyleSheet.create({
         backgroundColor: '#DADADAcc',
         height: 220,
         width: 180,
-        shadowOffset:{  width: 10,  height: 10,  },
-        shadowColor: 'black',
-        shadowOpacity: 1.0,
         marginVertical: 5
     },
     containerSelected: {
         backgroundColor: '#1EA28A',
         height: 220,
         width: 180,
-        shadowOffset:{  width: 10,  height: 10,  },
-        shadowColor: 'black',
-        shadowOpacity: 1.0,
         marginVertical: 5
     },
     checkbox: {

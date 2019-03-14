@@ -160,6 +160,7 @@ export default class ItineraryScreen extends React.Component {
                     >
                         <View style={styles.newItineraryBtn}>
                             <Text style={styles.newItineraryBtnText}>+</Text>
+                            <Text style={styles.newItineraryBtnText}>Create a New Trip</Text>
                         </View>
                     </TouchableWithoutFeedback>
                     <Text style={styles.subHeader}>Upcoming Trips</Text>

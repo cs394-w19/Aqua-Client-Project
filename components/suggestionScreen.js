@@ -54,7 +54,7 @@ class SuggestionScreen extends React.Component {
     }
 
     componentDidMount = () => {
-        const { db, user } = this.props
+        const {db, user} = this.props
         let userPreferences = {}
         let categories = []
         this.focusListener = this.props.navigation.addListener("didFocus", () => {
@@ -91,17 +91,23 @@ class SuggestionScreen extends React.Component {
     retrieveSuggestions(categories) {
         let foundAttractions = []
         for (var i = 0; i < Suggestions.Locations.length; i++) {
-            foundAttractions = foundAttractions.concat(Suggestions.Locations[i].Attractions.filter(
-                    a => {
-                        let intersection = a.Categories.filter(x =>
-                            categories.includes(x)
-                        )
-                        if (intersection.length > 0) {
-                            return true
-                        } else return false
-                    }
+            foundAttractions = foundAttractions.concat((Suggestions.Locations[i].Attractions.filter(
+                a => {
+                    let intersection = a.Categories.filter(x =>
+                        categories.includes(x)
+                    )
+                    if (intersection.length > 0) {
+                        return true
+                    } else return false
+                }
                 )
-            )
+            ).map(l => {
+                    return {
+                        ...l,
+                        city: Suggestions.Locations[i].name
+                    }
+                }
+            ))
         }
         let foundRestaurants = []
         for (var i = 0; i < Suggestions.Locations.length; i++) {
@@ -127,7 +133,7 @@ class SuggestionScreen extends React.Component {
 
     handleItemSelect = name => {
         const state = this.state
-        const { db, user } = state
+        const {db, user} = state
         const suggestion = state.suggestions.find(s => s.name === name)
         let savedLocations = this.state.savedLocations
         suggestion.selected = !suggestion.selected
@@ -156,7 +162,7 @@ class SuggestionScreen extends React.Component {
     }
 
     render() {
-        const { categories, suggestions, chosenLoc } = this.state
+        const {categories, suggestions, chosenLoc} = this.state
         const suggestedItems = suggestions.map(l => {
             return (
                 <SuggestedItem
@@ -181,7 +187,9 @@ class SuggestionScreen extends React.Component {
                     style={styles.textInput}
                     placeholder="Whare Are You Travelling?"
                     value={chosenLoc}
-                    onChangeText={(text) => { this.setState({ chosenLoc: text }) }}
+                    onChangeText={(text) => {
+                        this.setState({chosenLoc: text})
+                    }}
                 />
                 <ScrollView style={{flex: 1}}>
                     <View style={styles.suggestionsContainer}>
@@ -296,10 +304,7 @@ const styles = StyleSheet.create({
         width: 250,
         height: 40,
         padding: 5,
-        borderColor: 'darkgrey',
-        shadowOffset:{  width: 10,  height: 10,  },
-        shadowColor: 'black',
-        shadowOpacity: 1.0,
+        borderColor: 'darkgrey'
     }
 })
 
