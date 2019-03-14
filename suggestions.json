@@ -27,8 +27,8 @@
           "Location": "Downtown",
           "gem": false,
           "link": "https://www.publicgardens.org/sites/default/files/styles/1000x400_garden_image/public/images/Garden/Lurie%20Garden.jpg?itok=clGZJXIH",
-          "latitude": "41.8676 N",
-          "longitude": "87.6140 W"
+          "latitude": 41.8676,
+          "longitude": 87.6140
         },
         {
           "name": "Willis Tower",
@@ -42,8 +42,8 @@
           "Location": "Downtown",
           "gem": false,
           "link": null,
-          "latitude": "41.8789 N",
-          "longitude": "87.6359 W"
+          "latitude": 41.8789,
+          "longitude": 87.6359
         },
         {
           "name": "Field Museum",
@@ -58,8 +58,8 @@
           "Location": "Downtown",
           "gem": false,
           "link": null,
-          "latitude": "41.8663 N",
-          "longitude": "87.6170 W"
+          "latitude": 41.8663,
+          "longitude": 87.6170
         },
         {
           "name": "Wrigley Field",
@@ -73,8 +73,8 @@
           "Location": "Wrigleyville",
           "gem": false,
           "link": null,
-          "latitude": "41.9484 N",
-          "longitude": "87.6553 W"
+          "latitude": 41.9484,
+          "longitude": 87.6553
         },
         {
           "name": "Millenium Park",
@@ -89,8 +89,8 @@
           "Location": "Downtown",
           "gem": false,
           "link": null,
-          "latitude": "41.8826 N",
-          "longitude": "87.6226 W"
+          "latitude": 41.8826,
+          "longitude": 87.6226
         },
         {
           "name": "Sky Deck Chicago",
@@ -105,8 +105,8 @@
           "Location": "Downtown",
           "gem": false,
           "link": null,
-          "latitude": "41.8789 N",
-          "longitude": "87.6359 W"
+          "latitude": 41.8789,
+          "longitude": 87.6359
         },
         {
           "name": "Jay Pritzker Pavillion",
@@ -123,8 +123,8 @@
           "Location": "Downtown",
           "gem": false,
           "link": null,
-          "latitude": "41.8832 N",
-          "longitude": "87.6219 W"
+          "latitude": 41.8832,
+          "longitude": 87.6219
         },
         {
           "name": "Chicago River Cruise",
@@ -137,8 +137,8 @@
           "Location": "Downtown",
           "gem": false,
           "link": null,
-          "latitude": "41.8905 N",
-          "longitude": "87.6162 W"
+          "latitude": 41.8905,
+          "longitude": 87.6162
         }
       ],
       "Restaurants": [
@@ -156,8 +156,8 @@
           "Location": "Downtown",
           "gem": false,
           "link": null,
-          "latitude": "41.8925 N",
-          "longitude": "87.6162 W"
+          "latitude": 41.8925,
+          "longitude": 87.6162
         },
         {
           "name": "Alinea",
@@ -171,8 +171,8 @@
           "Location": "Old Town",
           "gem": false,
           "link": null,
-          "latitude": "41.9183 N",
-          "longitude": "87.6439 W"
+          "latitude": 41.9183,
+          "longitude": 87.6439
         },
         {
           "name": "Ramen Takeya",
@@ -185,22 +185,21 @@
           "Location": "West Loop",
           "gem": false,
           "link": null,
-          "latitude": "41.8764 N",
-          "longitude": "87.6507 W"
+          "latitude": 41.8764,
+          "longitude": 87.6507
         },
         {
           "name": "Gibsons Steakhouse",
           "Categories": [
             "Steakhouse",
-            "Fine",
-            ""
+            "Fine"
           ],
           "Price": 5,
           "Location": "Downtown",
           "gem": false,
           "link": null,
-          "latitude": "41.9014 N",
-          "longitude": "87.6279 W"
+          "latitude": 41.9014,
+          "longitude": 87.6279
         }
       ]
     },
@@ -516,8 +515,8 @@
           "gem": false,
           "link": null,
           "coordinates": {
-            "longitude": 48.8950,
-            "latitude": 2.1858
+            "latitude": 48.8950,
+            "longitude": 2.1858
           }
         }
       ]
@@ -535,8 +534,8 @@
           "Location": "Mountainside",
           "gem": true,
           "link": "https://media-cdn.tripadvisor.com/media/photo-s/11/3b/9d/57/munnar-tea-estates.jpg",
-          "latitude": "41.8676 N",
-          "longitude": "87.6140 W"
+          "latitude": 10.0889,
+          "longitude": -77.0595
         }
         ],
       "Restaurants": [  ]
@@ -548,56 +547,36 @@
           "name": "Inca Salt Pools",
           "Categories": [           
             "Nature",
-            "Museums"       
+            "Museums"      
           ],
           "Price": 3,
           "Location": "Downtown",
           "gem": false,
           "link": "https://lh6.ggpht.com/-Qmi3fOKPmW8/UWP52M7mz4I/AAAAAAAAnJg/8nVNSy4Rchs/maras-salt-mine-0%25255B2%25255D.jpg?imgmax=800",
-          "latitude": "41.8676 N",
-          "longitude": "87.6140 W"
+          "latitude": -13.3347,
+          "longitude": 72.1579
         }
         ],
       "Restaurants": [  ]
     },
     {
-      "name": "Muras",
+      "name": "Bruxelles",
       "Attractions": [
         {
           "name": "Comic Strip Route",
           "Categories": [           
-            "Art"
-                   
+            "Art"    
           ],
           "Price": 3,
           "Location": "Downtown",
           "gem": true,
           "link": "https://s3-eu-west-1.amazonaws.com/brussels-images/content/gallery/visit/article/9820_9820---LES-MURS-DE-LA-PROMENADE-BD-EN-DE%C3%8C%C2%81TAIL_sq_640.jpg",
-          "latitude": "41.8676 N",
-          "longitude": "87.6140 W"
+          "latitude": 50.8503,
+          "longitude": 4.3517
         }
         ],
       "Restaurants": [  ]
-    },
-    {
-      "name": "Muras",
-      "Attractions": [
-        {
-          "name": "Comic Strip Route",
-          "Categories": [           
-            "Art",
-            "Museums"       
-          ],
-          "Price": 3,
-          "Location": "Downtown",
-          "gem": true,
-          "link": "https://s3-eu-west-1.amazonaws.com/brussels-images/content/gallery/visit/article/9820_9820---LES-MURS-DE-LA-PROMENADE-BD-EN-DE%C3%8C%C2%81TAIL_sq_640.jpg",
-          "latitude": "41.8676 N",
-          "longitude": "87.6140 W"
-        }
-        ],
-      "Restaurants": [  ]
-    },
+    }
     {
       "name": "London",
       "Attractions": [
@@ -605,14 +584,14 @@
           "name": "Epping Forest",
           "Categories": [           
             "Nature",
-            "Exotic"       
+            "Hiking"       
           ],
           "Price": 3,
           "Location": "Rural",
           "gem": true,
           "link": "https:www.visiteppingforest.org",
-          "latitude": "41.8676 N",
-          "longitude": "87.6140 W"
+          "latitude": 51.7044,
+          "longitude": 0.1656
         },
         {
           "name": "Leadenhall Market",
@@ -625,23 +604,22 @@
           "Location": "Downtown",
           "gem": true,
           "link": "https://fullsuitcase.com/london-hidden-gems/",
-          "latitude": "41.8676 N",
-          "longitude": "87.6140 W"
+          "latitude": 51.5128,
+          "longitude": 0.0835
         }
         ],
       "Restaurants": [ 
         {
           "name": "Saint Aymes",
           "Categories": [           
-            "Food",
-            "Exotic"       
+            "Food"     
           ],
           "Price": 3,
           "Location": "Downtown",
           "gem": true,
           "link": "https://fullsuitcase.com/london-hidden-gems/",
-          "latitude": "41.8676 N",
-          "longitude": "87.6140 W"
+          "latitude": 51.5128,
+          "longitude": 0.0835
         } ]
     },
     {
@@ -650,14 +628,15 @@
         {
           "name": "Sentiero degli dei Hike",
           "Categories": [           
-            "Hiking",       
+            "Hiking",
+            "Nature"       
           ],
           "Price": 3,
           "Location": "Rural",
           "gem": true,
           "link": "https://www.positano.com/en/e/il-sentiero-degli-dei",
-          "latitude": "41.8676 N",
-          "longitude": "87.6140 W"
+          "latitude": 40.6281,
+          "longitude": 14.4850
         }
         ],
       "Restaurants": [  ]
