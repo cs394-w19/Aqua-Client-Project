@@ -9,7 +9,7 @@
             "Animals",
             "Family Friendly",
             "Daytime",
-            "Educational"            
+            "Educational"
           ],
           "Price": 3,
           "Location": "Downtown",
@@ -21,7 +21,7 @@
         {
           "name": "Lurie Garden",
           "Categories": [
-            "Nature"        
+            "Nature"
           ],
           "Price": 3,
           "Location": "Downtown",
@@ -482,8 +482,8 @@
           "gem": false,
           "link": null,
           "coordinates": {
-            "latitude": 48.8583,
-            "longitude": 2.2945
+            "latitude": 48.851996592,
+            "longitude": 2.367665196
           }
         },
         {
@@ -499,8 +499,8 @@
           "gem": false,
           "link": null,
           "coordinates": {
-            "latitude": 48.8583,
-            "longitude": 2.2945
+            "latitude": 48.8809,
+            "longitude": 2.3828
           }
         },
         {
@@ -516,8 +516,8 @@
           "gem": false,
           "link": null,
           "coordinates": {
-            "latitude": 48.8583,
-            "longitude": 2.2945
+            "latitude": 48.8716,
+            "longitude": 2.3580
           }
         },
         {
@@ -525,7 +525,7 @@
           "Categories": [
             "food",
             "drink"
-            
+
           ],
           "Price": 2,
           "Location": "Downtown",
@@ -533,8 +533,8 @@
           "gem": false,
           "link": null,
           "coordinates": {
-            "latitude": 48.8583,
-            "longitude": 2.2945
+            "latitude": 48.8736,
+            "longitude": 2.3355
           }
         },
         {
@@ -548,8 +548,8 @@
           "gem": false,
           "link": null,
           "coordinates": {
-            "latitude": 48.8583,
-            "longitude": 2.2945
+            "latitude": 48.8720,
+            "longitude": 2.3316
           }
         }
       ],
@@ -610,9 +610,9 @@
       "Attractions": [
         {
           "name": "Tea Estates",
-          "Categories": [    
+          "Categories": [
             "nature",
-            "museums"  
+            "museums"
           ],
           "Price": 3,
           "Location": "Mountainside",
@@ -622,7 +622,7 @@
           "latitude": 10.0889,
           "longitude": -77.0595
         }
-        ],
+      ],
       "Restaurants": [  ]
     },
     {
@@ -630,9 +630,9 @@
       "Attractions": [
         {
           "name": "Inca Salt Pools",
-          "Categories": [           
+          "Categories": [
             "nature",
-            "museums"      
+            "museums"
           ],
           "Price": 3,
           "Location": "Downtown",
@@ -642,7 +642,7 @@
           "latitude": -13.3347,
           "longitude": 72.1579
         }
-        ],
+      ],
       "Restaurants": [  ]
     },
     {
@@ -650,8 +650,8 @@
       "Attractions": [
         {
           "name": "Comic Strip Route",
-          "Categories": [           
-            "art"    
+          "Categories": [
+            "art"
           ],
           "Price": 3,
           "Location": "Downtown",
@@ -661,7 +661,7 @@
           "latitude": 50.8503,
           "longitude": 4.3517
         }
-        ],
+      ],
       "Restaurants": [  ]
     },
     {
@@ -669,9 +669,9 @@
       "Attractions": [
         {
           "name": "Epping Forest",
-          "Categories": [           
+          "Categories": [
             "nature",
-            "hiking"       
+            "hiking"
           ],
           "Price": 3,
           "Location": "Rural",
@@ -683,10 +683,10 @@
         },
         {
           "name": "Leadenhall Market",
-          "Categories": [           
+          "Categories": [
             "shopping",
             "historic sites",
-            "exotic"       
+            "exotic"
           ],
           "Price": 3,
           "Location": "Downtown",
@@ -696,12 +696,12 @@
           "latitude": 51.5128,
           "longitude": 0.0835
         }
-        ],
-      "Restaurants": [ 
+      ],
+      "Restaurants": [
         {
           "name": "Saint Aymes",
-          "Categories": [           
-            "food"     
+          "Categories": [
+            "food"
           ],
           "Price": 3,
           "Location": "Downtown",
@@ -717,9 +717,9 @@
       "Attractions": [
         {
           "name": "Sentiero degli dei Hike",
-          "Categories": [           
+          "Categories": [
             "hiking",
-            "nature"       
+            "nature"
           ],
           "Price": 3,
           "Location": "Rural",
@@ -729,7 +729,7 @@
           "latitude": 40.6281,
           "longitude": 14.4850
         }
-        ],
+      ],
       "Restaurants": [  ]
     }
 
