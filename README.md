@@ -1,5 +1,6 @@
 # glocal
 ## a react native application
+![](demo.gif)
 
 ### dependencies
 - universal
