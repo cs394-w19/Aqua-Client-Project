@@ -43,11 +43,11 @@
 - update the 'firebase.js' file with config contents 
 - create a new file 'apiKey.json' in the project directory
     - Input the key as follows:
-    '''
+    ```
     {
       "apiKey": "YOUR_API_KEY"
     }
-    '''
+    ```
 
 ### usage
 - test application `npm start`
