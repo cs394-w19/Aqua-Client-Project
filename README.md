@@ -31,6 +31,10 @@
     messagingSenderId: "<SENDER_ID>",
     };
     ```
+- create a Google Maps account:
+   - navigate to the [google maps console](https://developers.google.com/maps/documentation/directions/start)
+   - create an account and fill in payment information (you will not be charged unless you make many thousands of requests in a month)
+   - Copy the API key given to you for future use
 
 ### installation
 - clone repository `git clone https://github.com/cs394-w19/Aqua-Client-Project.git`
@@ -38,6 +42,12 @@
 - install all packages `npm install`
 - update the 'firebase.js' file with config contents 
 - create a new file 'apiKey.json' in the project directory
+    - Input the key as follows:
+    '''
+    {
+      "apiKey": "YOUR_API_KEY"
+    }
+    '''
 
 ### usage
 - test application `npm start`
